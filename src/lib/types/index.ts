@@ -69,6 +69,9 @@ export interface MenuItem {
   image: string;
   gallery?: string[];
   displayOrder?: number;
+  terroirBadge?: string;
+  flavorNotes?: string[];
+  chromaTheme?: 'ocean' | 'ember' | 'saffron' | 'amethyst' | 'terracotta' | 'emerald';
 }
 
 export type SeatingArea = 'atrium' | 'vault' | 'counter' | 'terrace';

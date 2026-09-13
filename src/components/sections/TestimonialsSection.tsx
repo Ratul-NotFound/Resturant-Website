@@ -2,58 +2,71 @@
 
 import React from 'react';
 import { reviewsData } from '@/data/reviewsData';
-import { Award, Sparkles, Star, Quote } from 'lucide-react';
+import { Award, Star, Quote, Sparkles } from 'lucide-react';
 
 export function TestimonialsSection() {
   return (
-    <section id="reviews" className="scroll-mt-28 relative py-28 sm:py-36 bg-[#0e0d0b] overflow-hidden text-[#cfc8bc]">
-      
-      {/* Background Accent */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.04),transparent_70%)] pointer-events-none" />
+    <section id="reviews" className="scroll-mt-28 relative py-24 sm:py-32 overflow-hidden" style={{ background: '#fafaf8' }}>
+
+      {/* Background blobs */}
+      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(232,48,42,0.05) 0%, transparent 70%)', transform: 'translate(-40%, -50%)' }} />
+      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#141210] border border-gold-primary/20 text-gold-light text-[10px] uppercase tracking-[0.3em] mb-4">
-            <Sparkles className="h-3 w-3 text-gold-primary" /> Critical Acclaim
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e8302a]/08 border border-[#e8302a]/20 text-[#e8302a] text-[10px] uppercase tracking-[0.3em] font-bold mb-5">
+            <Award className="h-3 w-3" />
+            Critical Acclaim
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-light text-champagne mb-4 tracking-[0.15em] uppercase">
-            Celebrated by Leading Gastronomes
+          <h2 className="headline-display text-3xl sm:text-5xl mb-5">
+            Celebrated by Leading{' '}
+            <span className="italic text-gradient-red">Gastronomes</span>
           </h2>
-          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans font-light max-w-xl mx-auto">
-            Independent evaluations and citations from the world’s most discerning culinary institutions.
+          <p className="text-[#666] text-sm leading-relaxed max-w-xl mx-auto">
+            Independent evaluations and citations from the world's most discerning culinary institutions.
           </p>
         </div>
 
-        {/* 4 Reviews 2x2 Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {reviewsData.map((review) => (
+        {/* 2x2 Review Cards */}
+        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+          {reviewsData.map((review, idx) => (
             <div
               key={review.id}
-              className="relative p-8 sm:p-10 rounded-3xl bg-[#141210] border border-gold-primary/15 shadow-xl flex flex-col justify-between hover:border-gold-primary/35 transition-all duration-500 group"
+              className="testimonial-card p-7 sm:p-8 flex flex-col justify-between group"
+              style={{
+                background: idx % 2 === 0 ? '#ffffff' : '#fef2f2',
+                borderTop: `3px solid ${idx % 4 === 0 ? '#e8302a' : idx % 4 === 1 ? '#3a7d44' : idx % 4 === 2 ? '#f59e0b' : '#0d9488'}`,
+              }}
             >
-              {/* Quote Mark */}
-              <Quote className="h-7 w-7 text-gold-primary/20 group-hover:text-gold-primary/35 transition-colors mb-6" />
+              {/* Large quote mark */}
+              <div className="flex items-start justify-between mb-4">
+                <Quote className="h-8 w-8 text-[#e8302a]/20 group-hover:text-[#e8302a]/35 transition-colors" />
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-3 w-3 fill-[#f59e0b] text-[#f59e0b]" />
+                  ))}
+                </div>
+              </div>
 
-              <p className="font-serif text-base sm:text-lg text-champagne/90 italic font-light leading-relaxed mb-8">
-                “{review.quote}”
+              <p className="font-serif text-base sm:text-lg text-[#222] italic font-normal leading-relaxed mb-6 flex-1">
+                "{review.quote}"
               </p>
 
-              <div className="pt-6 border-t border-gold-primary/10 flex items-center justify-between">
+              <div className="pt-5 border-t border-black/07 flex items-center justify-between">
                 <div>
-                  <h4 className="font-serif text-sm font-normal text-champagne tracking-wide">{review.publication}</h4>
-                  <p className="text-[11px] text-[#91887b] font-sans font-light mt-0.5">{review.author} · {review.year}</p>
+                  <h4 className="font-black text-[13px] text-[#111] tracking-wide">{review.publication}</h4>
+                  <p className="text-[11px] text-[#888] font-medium mt-0.5">{review.author} · {review.year}</p>
                 </div>
-
                 <div className="text-right">
-                  <span className="inline-flex items-center gap-1 text-xs font-light text-gold-primary">
-                    <Star className="h-3 w-3 fill-gold-primary" /> {review.rating}
+                  <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#e8302a]">
+                    <Star className="h-3.5 w-3.5 fill-[#e8302a]" /> {review.rating}
                   </span>
                   {review.awardBadge && (
-                    <span className="text-[10px] text-gold-light/80 block mt-0.5 font-light">
-                      {review.awardBadge}
-                    </span>
+                    <span className="text-[9px] text-[#666] block mt-0.5 font-medium">{review.awardBadge}</span>
                   )}
                 </div>
               </div>
@@ -61,31 +74,32 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Michelin Stars Distinction Banner */}
-        <div className="mt-16 p-8 rounded-3xl bg-[#141210] border border-gold-primary/20 text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="flex items-center gap-4 text-left">
-            <div className="p-3 rounded-full bg-gold-primary/10 text-gold-primary border border-gold-primary/20">
-              <Award className="h-6 w-6" />
-            </div>
-            <div>
-              <h3 className="font-serif text-lg font-light text-champagne tracking-wide">
-                The Michelin Guide Distinction
-              </h3>
-              <p className="text-xs text-[#91887b] font-light">
-                Three Michelin Stars: “Exceptional cuisine, worth a special journey.”
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2.5">
-            {[1, 2, 3].map((star) => (
-              <div
-                key={star}
-                className="h-9 w-9 rounded-full border border-gold-primary/30 bg-[#0c0b0a] flex items-center justify-center text-gold-primary shadow-gold-sm"
-              >
-                <Star className="h-4 w-4 fill-gold-primary" />
+        {/* Michelin Distinction Banner */}
+        <div className="mt-10 rounded-3xl overflow-hidden shadow-xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8"
+            style={{ background: 'linear-gradient(135deg, #e8302a 0%, #c0281f 100%)' }}>
+            <div className="flex items-center gap-4 text-white">
+              <div className="h-14 w-14 rounded-2xl bg-white/15 flex items-center justify-center">
+                <Award className="h-7 w-7 text-white" />
               </div>
-            ))}
+              <div>
+                <h3 className="font-black text-lg text-white tracking-wide">The Michelin Guide Distinction</h3>
+                <p className="text-red-100 text-xs font-medium mt-0.5">
+                  Three Stars: "Exceptional cuisine, worth a special journey."
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              {[1, 2, 3].map((star) => (
+                <div
+                  key={star}
+                  className="h-12 w-12 rounded-full bg-white flex items-center justify-center shadow-lg"
+                >
+                  <Star className="h-5 w-5 fill-[#e8302a] text-[#e8302a]" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

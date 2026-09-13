@@ -34,17 +34,17 @@ export function CurrencySelector({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-900 border border-neutral-800 hover:border-gold-primary/40 text-neutral-300 hover:text-gold-hover text-xs font-mono transition-all"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#141210] border border-gold-primary/20 hover:border-gold-primary/50 text-[#cfc8bc] hover:text-gold-hover text-xs font-mono transition-all"
         aria-label="Select Currency"
       >
         <Globe className="h-3 w-3 text-gold-primary" />
         <span>{activeCurrency.code} ({activeCurrency.symbol.trim()})</span>
-        <ChevronDown className="h-3 w-3 text-neutral-500" />
+        <ChevronDown className="h-3 w-3 text-[#91887b]" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-44 rounded-2xl bg-obsidian-900 border border-gold-primary/30 shadow-2xl py-1.5 z-50 backdrop-blur-xl animate-fade-in">
-          <div className="px-3 py-1 text-[10px] uppercase tracking-widest text-neutral-500 font-semibold border-b border-neutral-800">
+        <div className="absolute right-0 mt-2 w-44 rounded-2xl bg-[#141210] border border-gold-primary/25 shadow-2xl py-1.5 z-50 backdrop-blur-xl animate-fade-in">
+          <div className="px-3.5 py-1 text-[9px] uppercase tracking-[0.2em] text-[#91887b] font-medium border-b border-gold-primary/10">
             Cellar Currency
           </div>
           {CURRENCIES.map((curr) => (
@@ -57,12 +57,12 @@ export function CurrencySelector({
               }}
               className={`w-full flex items-center justify-between px-3.5 py-2 text-xs text-left font-mono transition-colors ${
                 currentCurrency === curr.code
-                  ? 'bg-gold-primary/15 text-gold-hover font-bold'
-                  : 'text-neutral-300 hover:bg-neutral-800'
+                  ? 'bg-gold-primary/10 text-gold-hover font-medium'
+                  : 'text-[#cfc8bc] hover:bg-[#1c1916]'
               }`}
             >
               <span>{curr.label}</span>
-              <span className="text-gold-light">{curr.symbol}</span>
+              <span className="text-gold-light/90">{curr.symbol}</span>
             </button>
           ))}
         </div>

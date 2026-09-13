@@ -15,13 +15,11 @@ import { ToastProvider, useToast } from '@/components/ui/Toast';
 import { Navbar } from '@/components/layout/Navbar';
 import { MobileDrawer } from '@/components/layout/MobileDrawer';
 import { Footer } from '@/components/layout/Footer';
+import { LiveAnnouncementBar } from '@/components/sections/LiveAnnouncementBar';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { StorySection } from '@/components/sections/StorySection';
+import { SharingFeastsSection } from '@/components/sections/SharingFeastsSection';
 import { MenuSection } from '@/components/sections/MenuSection';
-import { ChefSpecialsSection } from '@/components/sections/ChefSpecialsSection';
-import { AtmosphereSection } from '@/components/sections/AtmosphereSection';
 import { ReservationSection } from '@/components/sections/ReservationSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { LocationHoursSection } from '@/components/sections/LocationHoursSection';
 import { DishModal } from '@/components/ui/DishModal';
 import { CartDrawer } from '@/components/ui/CartDrawer';
@@ -99,18 +97,10 @@ function AuraRestaurantContent() {
       setLastOrderId(orderId);
       setLastOrderCalc(calc);
       setIsReceiptOpen(true);
-      showToast(`Order #${orderId} confirmed! Our culinary brigade has begun preparation.`, 'success', 'Order Dispatched');
+      showToast(`Order #${orderId} confirmed. Our culinary brigade has recorded your allocation.`, 'success', 'Allocation Confirmed');
     },
     [showToast]
   );
-
-  const handleSelectAreaFromAtmosphere = useCallback((area: SeatingArea) => {
-    setTargetBookingArea(area);
-    const element = document.getElementById('reservations');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
 
   const handleExploreDishById = useCallback((dishId: string) => {
     const item = MenuService.getInstance().getItemById(dishId);
@@ -128,13 +118,16 @@ function AuraRestaurantContent() {
 
   const handleSelectCurrency = (newCurrency: CurrencyCode) => {
     setCurrency(newCurrency);
-    showToast(`Currency updated to ${newCurrency}.`, 'info', 'Currency Active');
+    showToast(`Currency set to ${newCurrency}.`, 'info', 'Currency Updated');
   };
 
   return (
-    <div className="relative min-h-screen bg-obsidian-950 text-neutral-100 flex flex-col justify-between">
+    <div className="relative min-h-screen bg-white text-[#111] flex flex-col justify-between">
       
-      {/* Sticky Luxury Navbar */}
+      {/* Top Live Announcement / Promotional Marquee Ticker */}
+      <LiveAnnouncementBar />
+
+      {/* Sticky Clean Navbar */}
       <Navbar
         cartCount={cartCount}
         currency={currency}
@@ -146,23 +139,30 @@ function AuraRestaurantContent() {
         onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
 
-      {/* Main Sections */}
+      {/* Main Essential, Clean Section Flow */}
       <main className="flex-1">
-        <HeroSection onReserveClick={handleScrollToReservations} />
-        <StorySection />
+        <HeroSection
+          currency={currency}
+          onReserveClick={handleScrollToReservations}
+          onExploreDish={handleExploreDishById}
+          onOpenSommelier={() => setIsSommelierOpen(true)}
+        />
+        <SharingFeastsSection
+          currency={currency}
+          onAddToCart={(item) => handleAddToCart(item, 1)}
+          onSelectDish={setSelectedDish}
+          onReserveTable={handleScrollToReservations}
+        />
         <MenuSection
           currency={currency}
           onSelectDish={setSelectedDish}
           onAddToCart={(item) => handleAddToCart(item, 1)}
           onOpenSommelier={() => setIsSommelierOpen(true)}
         />
-        <ChefSpecialsSection onExploreDish={handleExploreDishById} />
-        <AtmosphereSection onSelectAreaForBooking={handleSelectAreaFromAtmosphere} />
         <ReservationSection
           initialArea={targetBookingArea}
           onBookingConfirmed={setConfirmedBooking}
         />
-        <TestimonialsSection />
         <LocationHoursSection />
       </main>
 

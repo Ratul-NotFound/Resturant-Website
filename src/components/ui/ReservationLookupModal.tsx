@@ -94,35 +94,35 @@ export function ReservationLookupModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-lg my-auto rounded-3xl bg-[#141210] border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up text-[#f7f4ed]"
+        className="relative w-full max-w-lg my-auto rounded-3xl bg-white border border-neutral-200 shadow-2xl p-6 sm:p-8 animate-slide-up text-neutral-800"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[#1a1714] text-[#91887b] hover:text-[#f7f4ed] transition-colors"
+          className="absolute top-4 right-4 p-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-neutral-900 border border-neutral-300 transition-colors"
           aria-label="Close modal"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
         </button>
 
         {/* Header */}
         <div className="mb-6 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-light text-[10px] uppercase tracking-widest font-semibold mb-2">
-            <Search className="h-3 w-3 text-gold-primary" /> Concierge Registry
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-brand-red text-[10px] uppercase tracking-wider font-bold mb-2">
+            <Search className="h-3.5 w-3.5" /> Concierge Registry
           </div>
-          <h3 className="font-serif text-2xl font-bold text-champagne">Manage Existing Reservation</h3>
-          <p className="text-xs text-[#91887b] mt-1">
-            Access your digital pass, check table allocation status, or request changes.
+          <h3 className="font-serif text-2xl font-bold text-neutral-900">Manage Existing Reservation</h3>
+          <p className="text-xs text-neutral-500 mt-1">
+            Access your digital boarding pass, check table status, or cancel reservation.
           </p>
         </div>
 
         {/* Search Form */}
-        <form onSubmit={handleLookup} className="space-y-3 mb-6">
+        <form onSubmit={handleLookup} className="space-y-4 mb-6">
           <div>
-            <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
+            <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
               Booking Reference Code (e.g. AURA-2026-7849)
             </label>
             <input
@@ -131,16 +131,16 @@ export function ReservationLookupModal({
               value={bookingRef}
               onChange={(e) => setBookingRef(e.target.value.toUpperCase())}
               maxLength={40}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs font-mono text-[#f7f4ed] placeholder-[#91887b] uppercase focus:outline-none focus:border-gold-primary"
+              className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-mono uppercase text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
             />
           </div>
 
-          <div className="text-center text-[11px] text-[#91887b] uppercase tracking-widest">
+          <div className="text-center text-[10px] text-neutral-400 font-mono uppercase tracking-widest">
             — OR BY EMAIL —
           </div>
 
           <div>
-            <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
+            <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
               Guest Email Address
             </label>
             <input
@@ -149,14 +149,14 @@ export function ReservationLookupModal({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               maxLength={254}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
+              className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
             />
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-brand-red/30 transition-all hover:scale-105 active:scale-95 disabled:opacity-50"
           >
             {isLoading ? (
               <>
@@ -172,31 +172,31 @@ export function ReservationLookupModal({
 
         {/* Found Booking Card */}
         {foundBooking && (
-          <div className="p-5 rounded-2xl bg-[#0c0b0a] border border-gold-primary/30 space-y-4 animate-fade-in">
+          <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-4 animate-fade-in">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] text-[#91887b] uppercase tracking-widest block">Guest Name</span>
-                <h4 className="font-serif text-lg font-bold text-champagne">{foundBooking.guestName}</h4>
+                <span className="text-[10px] text-neutral-500 uppercase tracking-wider block font-bold">Guest Name</span>
+                <h4 className="font-serif text-lg font-bold text-neutral-900">{foundBooking.guestName}</h4>
               </div>
               <span
-                className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                   foundBooking.status === 'CONFIRMED'
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
+                    : 'bg-red-50 text-red-700 border border-red-300'
                 }`}
               >
                 {foundBooking.status}
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs text-[#cfc8bc] border-t border-b border-gold-primary/10 py-3">
+            <div className="grid grid-cols-2 gap-3 text-xs text-neutral-700 border-t border-b border-neutral-200 py-3">
               <div>
-                <span className="text-[10px] text-[#91887b] block uppercase">Date & Time</span>
-                <span className="font-medium text-[#f7f4ed]">{formatDateReadable(foundBooking.date)} at {foundBooking.timeSlot}</span>
+                <span className="text-[10px] text-neutral-500 block uppercase font-bold">Date &amp; Time</span>
+                <span className="font-bold text-neutral-900">{formatDateReadable(foundBooking.date)} at {foundBooking.timeSlot}</span>
               </div>
               <div>
-                <span className="text-[10px] text-[#91887b] block uppercase">Salon & Guests</span>
-                <span className="font-medium text-[#f7f4ed] capitalize">{foundBooking.seatingArea} · {foundBooking.partySize} Guests</span>
+                <span className="text-[10px] text-neutral-500 block uppercase font-bold">Salon &amp; Guests</span>
+                <span className="font-bold text-neutral-900 capitalize">{foundBooking.seatingArea} · {foundBooking.partySize} Guests</span>
               </div>
             </div>
 
@@ -208,7 +208,7 @@ export function ReservationLookupModal({
                   onClose();
                   onViewBoardingPass(foundBooking);
                 }}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-sm"
+                className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-2xl bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-brand-red/30 transition-all hover:scale-105 active:scale-95"
               >
                 <QrCode className="h-4 w-4" /> View Digital Pass
               </button>
@@ -218,9 +218,10 @@ export function ReservationLookupModal({
                   type="button"
                   disabled={isCancelling}
                   onClick={handleCancelBooking}
-                  className="px-4 py-2.5 rounded-xl bg-rose-950/40 border border-rose-800 text-rose-300 hover:bg-rose-900/60 text-xs font-semibold uppercase tracking-wider transition-colors disabled:opacity-50"
+                  className="px-4 py-3 rounded-2xl bg-red-100 hover:bg-red-200 border border-red-300 text-red-700 text-xs font-bold uppercase tracking-wider transition-colors disabled:opacity-50"
+                  title="Release Table"
                 >
-                  {isCancelling ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Ban className="h-3.5 w-3.5" />}
+                  {isCancelling ? <Loader2 className="h-4 w-4 animate-spin" /> : <Ban className="h-4 w-4" />}
                 </button>
               )}
             </div>

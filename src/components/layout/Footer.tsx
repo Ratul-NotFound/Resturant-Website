@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { RESTAURANT_INFO, OPENING_HOURS, FAQ_ITEMS } from '@/data/restaurantConfig';
-import { Send, Sparkles, MapPin, Phone, Mail, Award, CheckCircle2, Loader2, HelpCircle, ChevronDown, Building2, Search } from 'lucide-react';
+import { Send, Wine, MapPin, Phone, Mail, Award, CheckCircle2, Loader2, HelpCircle, ChevronDown, Building2, Search } from 'lucide-react';
 import { useToast } from '../ui/Toast';
 import { Sanitizer } from '@/lib/security/Sanitizer';
 
@@ -64,61 +64,61 @@ export function Footer({
   };
 
   return (
-    <footer className="relative bg-[#0c0b0a] border-t border-gold-primary/20 pt-16 pb-12 overflow-hidden text-[#91887b] font-sans">
+    <footer className="relative border-t border-black/12 pt-16 pb-12 overflow-hidden font-sans" style={{ background: '#111111', color: '#aaaaaa' }}>
       
-      {/* Background Gold Ambient Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-[radial-gradient(ellipse_at_top,rgba(197,160,89,0.08),transparent_70%)] pointer-events-none" />
+      {/* Subtle red top glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-32 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at top, rgba(232,48,42,0.08) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Newsletter & Grand Header */}
-        <div className="grid lg:grid-cols-12 gap-10 pb-16 border-b border-gold-primary/15">
+        <div className="grid lg:grid-cols-12 gap-10 pb-16 border-b border-white/10">
           
           {/* Brand Presentation */}
           <div className="lg:col-span-6 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center h-12 w-12 rounded-full border border-gold-primary bg-[#141210] shadow-gold-sm">
-                <span className="font-serif text-2xl font-bold text-gold-primary">A</span>
+              <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-[#e8302a] shadow-lg shadow-red-500/30">
+                <span className="font-serif text-2xl font-black text-white">A</span>
               </div>
               <div>
-                <h3 className="font-serif text-2xl font-bold tracking-[0.25em] text-champagne leading-none">
+                <h3 className="font-serif text-2xl font-black tracking-[0.25em] text-white leading-none">
                   A U R A
                 </h3>
-                <span className="text-[10px] uppercase tracking-[0.25em] text-gold-light mt-1 block">
-                  ★★★ Three Michelin Stars · Haute Gastronomie
+                <span className="text-[10px] uppercase tracking-[0.25em] text-[#e8302a] mt-1 block font-semibold">
+                  ★★★ Three Michelin Stars
                 </span>
               </div>
             </div>
 
-            <p className="text-sm text-[#cfc8bc] max-w-md leading-relaxed">
+            <p className="text-sm text-[#999] max-w-md leading-relaxed">
               {RESTAURANT_INFO.tagline}. Located on the 30th floor overlooking the Manhattan skyline with our 4,000-bottle subterranean private reserve cellar.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-2 text-xs text-[#cfc8bc]">
-              <span className="inline-flex items-center gap-1 text-gold-hover">
-                <Award className="h-4 w-4 text-gold-primary" /> Michelin 3 Stars (2025)
+            <div className="flex flex-wrap gap-4 pt-2 text-xs text-[#777]">
+              <span className="inline-flex items-center gap-1.5 text-white">
+                <Award className="h-4 w-4 text-[#e8302a]" /> Michelin 3 Stars (2025)
               </span>
-              <span className="inline-flex items-center gap-1 text-gold-hover">
-                <Sparkles className="h-4 w-4 text-gold-primary" /> Grand Sommelier Award
+              <span className="inline-flex items-center gap-1.5 text-white">
+                <Wine className="h-4 w-4 text-[#e8302a]" /> Grand Sommelier Award
               </span>
             </div>
 
-            {/* Quick Actions Bar */}
-            <div className="flex flex-wrap gap-3 pt-3">
+            <div className="flex flex-wrap gap-2.5 pt-2">
               {onOpenPrivateDining && (
                 <button
                   onClick={onOpenPrivateDining}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#141210] border border-gold-primary/30 text-gold-hover text-xs font-semibold hover:bg-gold-primary hover:text-[#0c0b0a] transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/08 border border-white/12 text-white hover:bg-[#e8302a] hover:border-[#e8302a] text-xs font-semibold transition-all"
                 >
-                  <Building2 className="h-3.5 w-3.5" /> Private Vault Buyout Inquiry
+                  <Building2 className="h-3.5 w-3.5" /> Private Vault Buyouts
                 </button>
               )}
               {onOpenLookup && (
                 <button
                   onClick={onOpenLookup}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] text-xs font-semibold hover:border-gold-primary hover:text-white transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/05 border border-white/08 text-[#ccc] hover:text-white text-xs font-semibold transition-all"
                 >
-                  <Search className="h-3.5 w-3.5 text-gold-primary" /> Look Up / Cancel Reservation
+                  <Search className="h-3.5 w-3.5 text-gold-primary" /> Find / Manage Booking
                 </button>
               )}
             </div>
@@ -126,24 +126,24 @@ export function Footer({
 
           {/* Newsletter Form */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#141210]/90 border border-gold-primary/25 shadow-2xl backdrop-blur-md">
-              <span className="text-xs uppercase tracking-widest text-gold-light font-semibold block mb-1">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#141210] border border-gold-primary/20 shadow-xl">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-gold-light/90 font-medium block mb-1">
                 The Gastronomy Gazette
               </span>
-              <h4 className="font-serif text-xl font-bold text-champagne mb-2">
-                Private Cellar Invitations & Seasonal Menu Releases
+              <h4 className="font-serif text-xl font-light text-champagne mb-2 tracking-wide">
+                Private Cellar Invitations & Seasonal Releases
               </h4>
-              <p className="text-xs text-[#91887b] mb-4 leading-relaxed">
-                Receive confidential allocations for rare vintage wine dinners, white truffle auctions, and priority seasonal reservations.
+              <p className="text-xs text-[#91887b] mb-4 leading-relaxed font-light">
+                Receive confidential invitations for rare vintage wine dinners, white truffle harvests, and priority seasonal reservations.
               </p>
 
               {subscribed ? (
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-medium">
+                <div className="flex items-center gap-2 p-3 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-light px-4">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
                   Thank you. Your email has been added to our private register.
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="space-y-3">
+                <form onSubmit={handleSubscribe} className="space-y-2.5">
                   <input
                     type="text"
                     name="website_hp"
@@ -162,23 +162,23 @@ export function Footer({
                       value={newsletterEmail}
                       onChange={(e) => setNewsletterEmail(e.target.value)}
                       maxLength={254}
-                      className="flex-1 px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
+                      className="flex-1 px-4 py-2.5 rounded-full bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b]/60 focus:outline-none focus:border-gold-primary transition-colors"
                     />
                     <button
                       type="submit"
                       disabled={isSubscribing}
-                      className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow disabled:opacity-50"
+                      className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full gold-button text-xs font-medium uppercase tracking-[0.15em] shadow-gold-sm hover:shadow-gold-md disabled:opacity-50 transition-all"
                     >
                       {isSubscribing ? (
                         <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (
                         <>
-                          <Send className="h-3.5 w-3.5" /> Subscribe
+                          <Send className="h-3 w-3" /> Subscribe
                         </>
                       )}
                     </button>
                   </div>
-                  <p className="text-[10px] text-[#91887b]">
+                  <p className="text-[10px] text-[#91887b] font-light">
                     Strict privacy assured. Zero spam. Unsubscribe at any time.
                   </p>
                 </form>
@@ -189,12 +189,12 @@ export function Footer({
 
         {/* Interactive FAQ Section */}
         <div className="py-12 border-b border-gold-primary/15">
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="max-w-3xl mx-auto space-y-3">
             <div className="text-center mb-8">
-              <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold block mb-1">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-gold-light/90 font-medium block mb-1">
                 Concierge Guidance
               </span>
-              <h4 className="font-serif text-2xl font-bold text-champagne">Frequently Asked Questions</h4>
+              <h4 className="font-serif text-2xl font-light text-champagne tracking-wide">Frequently Asked Questions</h4>
             </div>
 
             {FAQ_ITEMS.map((faq, idx) => (
@@ -301,15 +301,17 @@ export function Footer({
           </div>
         </div>
 
-        {/* Bottom Copyright & Security Notice */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500">
-          <p>© {new Date().getFullYear()} AURA Luxury Restaurant Group. All rights reserved.</p>
+        {/* Bottom Copyright & Guest Information Notice */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#91887b] font-light">
+          <p>© {new Date().getFullYear()} AURA Haute Gastronomie & Private Cellar. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <span className="hover:text-neutral-400">Zero-Trust Architecture</span>
+            <a href="#reservations" className="hover:text-gold-hover transition-colors">Reservations Policy</a>
             <span>·</span>
-            <span className="hover:text-neutral-400">Self-Hosted Monolith</span>
+            <a href="#location" className="hover:text-gold-hover transition-colors">Dress Code & Valet</a>
             <span>·</span>
-            <span className="hover:text-neutral-400">Privacy & Terms</span>
+            <span className="hover:text-gold-hover cursor-pointer transition-colors">Press & Accolades</span>
+            <span>·</span>
+            <span className="hover:text-gold-hover cursor-pointer transition-colors">Privacy Policy</span>
           </div>
         </div>
       </div>

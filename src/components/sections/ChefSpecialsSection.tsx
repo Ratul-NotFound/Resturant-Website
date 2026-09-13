@@ -3,7 +3,7 @@
 import React from 'react';
 import { chefSpecialsData } from '@/data/chefSpecialsData';
 import { ChefFlipCard } from '../ui/ChefFlipCard';
-import { Sparkles, ChefHat } from 'lucide-react';
+import { ChefHat, Sparkles } from 'lucide-react';
 
 interface ChefSpecialsSectionProps {
   onExploreDish: (dishId: string) => void;
@@ -11,23 +11,28 @@ interface ChefSpecialsSectionProps {
 
 export function ChefSpecialsSection({ onExploreDish }: ChefSpecialsSectionProps) {
   return (
-    <section id="specials" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
+    <section id="specials" className="scroll-mt-28 relative py-24 sm:py-32 overflow-hidden" style={{ background: '#fafaf8' }}>
       
-      {/* Background Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
+      {/* Color accent blobs */}
+      <div className="absolute top-1/4 left-0 w-[380px] h-[380px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(232,48,42,0.07) 0%, transparent 70%)', transform: 'translate(-40%, 0)' }} />
+      <div className="absolute bottom-1/4 right-0 w-[350px] h-[350px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(13,148,136,0.07) 0%, transparent 70%)', transform: 'translate(40%, 0)' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-80 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(245,158,11,0.05) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-light text-xs font-semibold uppercase tracking-widest mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Master Brigade Signatures
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e8302a]/08 border border-[#e8302a]/20 text-[#e8302a] text-[10px] uppercase tracking-[0.3em] font-bold mb-5">
+            <Sparkles className="h-3 w-3" /> Brigade Signatures
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
-            Culinary Craft & Metallurgy
+          <h2 className="headline-display text-3xl sm:text-5xl mb-5">
+            Curated <span className="italic text-gradient-red">Chef Creations</span>
           </h2>
-          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
-            Interactive 3D showcases revealing the secret charcoal techniques, pristine embers, and flavor architectures of our master brigade. Tap any card to flip.
+          <p className="text-[#666] text-sm leading-relaxed max-w-xl mx-auto">
+            Conceived by Executive Chef Gabriel Moreau and our master brigade, marrying ancient Japanese binchotan fire with classical French culinary discipline.
           </p>
         </div>
 

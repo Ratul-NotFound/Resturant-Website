@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { atmosphereData } from '@/data/atmosphereData';
 import { AtmosphereRoom, SeatingArea } from '@/lib/types';
-import { Sparkles, Users, Check, Maximize2, Calendar, Sun, Sunset, Moon } from 'lucide-react';
+import { Building2, Users, Check, Maximize2, Calendar, Sun, Sunset, Moon } from 'lucide-react';
 import { LightboxModal } from '../ui/LightboxModal';
 
 interface AtmosphereSectionProps {
@@ -12,6 +12,46 @@ interface AtmosphereSectionProps {
 }
 
 type LightingMood = 'daylight' | 'sunset' | 'starlight';
+
+const SALON_PALETTES: Record<
+  SeatingArea,
+  {
+    name: string;
+    dotColor: string;
+    activeTab: string;
+    borderGlow: string;
+    badgeBg: string;
+  }
+> = {
+  atrium: {
+    name: 'The Grand Atrium',
+    dotColor: 'bg-amber-500',
+    activeTab: 'bg-amber-50 text-amber-800 border-amber-400 shadow-md',
+    borderGlow: 'border-amber-400 shadow-amber-200/60',
+    badgeBg: 'bg-amber-50 border-amber-200 text-amber-800',
+  },
+  vault: {
+    name: 'The Obsidian Vault',
+    dotColor: 'bg-purple-500',
+    activeTab: 'bg-purple-50 text-purple-800 border-purple-400 shadow-md',
+    borderGlow: 'border-purple-400 shadow-purple-200/60',
+    badgeBg: 'bg-purple-50 border-purple-200 text-purple-800',
+  },
+  counter: {
+    name: "The Chef's Omakase Counter",
+    dotColor: 'bg-rose-500',
+    activeTab: 'bg-rose-50 text-rose-800 border-rose-400 shadow-md',
+    borderGlow: 'border-rose-400 shadow-rose-200/60',
+    badgeBg: 'bg-rose-50 border-rose-200 text-rose-800',
+  },
+  terrace: {
+    name: 'The Heated Sky Terrace',
+    dotColor: 'bg-sky-500',
+    activeTab: 'bg-sky-50 text-sky-800 border-sky-400 shadow-md',
+    borderGlow: 'border-sky-400 shadow-sky-200/60',
+    badgeBg: 'bg-sky-50 border-sky-200 text-sky-800',
+  },
+};
 
 export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionProps) {
   const [activeAreaId, setActiveAreaId] = useState<SeatingArea>('atrium');
@@ -21,6 +61,7 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
 
   const activeRoom: AtmosphereRoom =
     atmosphereData.find((r) => r.id === activeAreaId) || atmosphereData[0];
+  const currentPalette = SALON_PALETTES[activeAreaId];
 
   const handleOpenLightbox = (index = 0) => {
     setLightboxIndex(index);
@@ -38,23 +79,24 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
   };
 
   return (
-    <section id="atmosphere" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
+    <section id="atmosphere" className="scroll-mt-28 relative py-24 sm:py-32 overflow-hidden" style={{ background: '#ffffff' }}>
       
-      {/* Background Ambience */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
+      {/* Background blobs */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%)', transform: 'translate(30%, -30%)' }} />
+      <div className="absolute bottom-0 left-0 w-[350px] h-[350px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(232,48,42,0.05) 0%, transparent 70%)', transform: 'translate(-30%, 30%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-light text-xs font-semibold uppercase tracking-widest mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Architectural Opulence
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e8302a]/08 border border-[#e8302a]/20 text-[#e8302a] text-[10px] uppercase tracking-[0.3em] font-bold mb-5">
+            <Building2 className="h-3 w-3" /> Architecture &amp; Ambience
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
-            The Four Distinct Dining Salons
+          <h2 className="headline-display text-3xl sm:text-5xl mb-5">
+            The Dining <span className="italic text-gradient-red">Salons</span>
           </h2>
-          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
-            Experience our dynamic lighting ambiance simulator across Daylight, Golden Hour Sunset, and Intimate Starlight Candlelight.
+          <p className="text-[#666] text-sm leading-relaxed max-w-xl mx-auto">
+            Four bespoke architectural enclaves calibrated across natural daylight, golden hour, and candlelit evening service.
           </p>
         </div>
 
@@ -62,24 +104,29 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
           
           {/* Salon Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none w-full sm:w-auto">
-            {atmosphereData.map((room) => (
-              <button
-                key={room.id}
-                onClick={() => setActiveAreaId(room.id)}
-                className={`px-4 py-2 rounded-full text-xs font-serif tracking-wider whitespace-nowrap transition-all duration-300 ${
-                  activeAreaId === room.id
-                    ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
-                    : 'bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] hover:text-white hover:border-gold-primary/40'
-                }`}
-              >
-                {room.name}
-              </button>
-            ))}
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none w-full sm:w-auto">
+            {atmosphereData.map((room) => {
+              const pal = SALON_PALETTES[room.id];
+              const isSelected = activeAreaId === room.id;
+              return (
+                <button
+                  key={room.id}
+                  onClick={() => setActiveAreaId(room.id)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-serif tracking-wider whitespace-nowrap transition-all duration-300 border ${
+                    isSelected
+                      ? `${pal.activeTab} font-semibold`
+                      : 'bg-[#141210] border-white/10 text-neutral-400 hover:text-white hover:border-white/25'
+                  }`}
+                >
+                  <span className={`h-1.5 w-1.5 rounded-full ${pal.dotColor}`} />
+                  {room.name}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Lighting Mode Simulator Switch */}
-          <div className="flex items-center gap-1 p-1 bg-[#141210] rounded-full border border-gold-primary/20 text-xs">
+          {/* Lighting Mode Switcher */}
+          <div className="flex items-center gap-1 p-1 bg-[#141210] rounded-full border border-white/10 text-xs">
             <button
               onClick={() => setLightingMood('daylight')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium transition-all ${
@@ -114,7 +161,7 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
         </div>
 
         {/* Active Room Detailed Showcase Card */}
-        <div className="rounded-2xl bg-[#141210] border border-gold-primary/20 shadow-xl overflow-hidden grid lg:grid-cols-12 gap-0">
+        <div className={`rounded-3xl bg-[#141210] border ${currentPalette.borderGlow} transition-all duration-500 overflow-hidden grid lg:grid-cols-12 gap-0 shadow-2xl`}>
           
           {/* Photography Side with Lightbox Trigger */}
           <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[460px] bg-[#0c0b0a] group overflow-hidden">

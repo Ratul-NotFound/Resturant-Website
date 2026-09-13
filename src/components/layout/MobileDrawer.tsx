@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { X, Calendar, ShoppingBag, Phone, MapPin, Sparkles, Wine, Search } from 'lucide-react';
+import { X, Calendar, ShoppingBag, Phone, MapPin, Building2, Wine, Search } from 'lucide-react';
 import { RESTAURANT_INFO } from '@/data/restaurantConfig';
 import { CurrencyCode } from '@/lib/types';
 
@@ -33,13 +33,10 @@ export function MobileDrawer({
   if (!isOpen) return null;
 
   const links = [
-    { label: 'Philosophy & Terroir', href: '#story' },
-    { label: 'The Culinary Experiences', href: '#menu' },
-    { label: 'Chef Brigade Signatures', href: '#specials' },
-    { label: 'Dining Salons & Atmosphere', href: '#atmosphere' },
+    { label: 'Menu & Signatures', href: '#menu' },
+    { label: 'Royal Sharing Feasts', href: '#sharing-feasts' },
     { label: 'Table Reservations', href: '#reservations' },
-    { label: 'Critical Acclaim', href: '#reviews' },
-    { label: 'Location & Private Cellar', href: '#location' },
+    { label: 'Location & Service Hours', href: '#location' },
   ];
 
   const handleNavClick = (href: string) => {
@@ -53,28 +50,28 @@ export function MobileDrawer({
 
   return (
     <div className="fixed inset-0 z-50 lg:hidden overflow-hidden animate-fade-in">
-      {/* Dark Backdrop */}
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-xl" onClick={onClose} />
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={onClose} />
 
-      <div className="relative w-full h-full bg-[#0c0b0a] flex flex-col justify-between p-6 sm:p-8 animate-slide-up overflow-y-auto">
+      <div className="relative w-full h-full bg-white text-neutral-900 flex flex-col justify-between p-6 sm:p-8 animate-slide-up overflow-y-auto shadow-2xl">
         {/* Top Bar */}
-        <div className="flex items-center justify-between pb-6 border-b border-gold-primary/20">
+        <div className="flex items-center justify-between pb-6 border-b border-black/10">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center h-11 w-11 rounded-full border border-gold-primary/50 bg-[#141210] shadow-gold-sm">
-              <span className="font-serif text-xl font-bold text-gold-primary">A</span>
+            <div className="flex items-center justify-center h-11 w-11 rounded-2xl bg-brand-red text-white shadow-md font-bold text-xl">
+              <span>A</span>
             </div>
             <div>
-              <span className="font-serif text-xl font-bold tracking-[0.25em] text-champagne block leading-none">
+              <span className="font-serif text-xl font-bold tracking-[0.2em] text-neutral-900 block leading-none">
                 A U R A
               </span>
-              <span className="text-[9px] uppercase tracking-[0.25em] text-gold-light block mt-1">
-                ★★★ Three Michelin Stars
+              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-brand-red block mt-1">
+                ★★★ Haute Gastronomie
               </span>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2.5 rounded-full bg-[#1c1916] text-neutral-400 hover:text-white border border-gold-primary/20"
+            className="p-2.5 rounded-full bg-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200 transition-colors"
             aria-label="Close navigation"
           >
             <X className="h-5 w-5" />
@@ -82,7 +79,7 @@ export function MobileDrawer({
         </div>
 
         {/* Navigation Links */}
-        <nav className="my-auto py-6 space-y-3">
+        <nav className="my-auto py-6 space-y-2">
           {links.map((link, idx) => (
             <a
               key={link.href}
@@ -91,10 +88,10 @@ export function MobileDrawer({
                 e.preventDefault();
                 handleNavClick(link.href);
               }}
-              className="group flex items-center justify-between py-2.5 text-base sm:text-lg font-serif text-neutral-300 hover:text-gold-hover transition-colors border-b border-neutral-900/80"
+              className="group flex items-center justify-between py-3 text-lg font-serif font-bold text-neutral-800 hover:text-brand-red transition-colors border-b border-neutral-100"
             >
-              <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
-              <span className="text-xs font-mono text-neutral-600 group-hover:text-gold-primary transition-colors">
+              <span className="group-hover:translate-x-1.5 transition-transform">{link.label}</span>
+              <span className="text-xs font-mono font-medium text-neutral-400 group-hover:text-brand-red transition-colors">
                 0{idx + 1} →
               </span>
             </a>
@@ -102,16 +99,16 @@ export function MobileDrawer({
         </nav>
 
         {/* Quick Concierge Modals Strip */}
-        <div className="grid grid-cols-2 gap-2 py-4 border-t border-b border-neutral-800/80">
+        <div className="grid grid-cols-2 gap-2.5 py-4 border-t border-b border-neutral-100">
           {onOpenSommelier && (
             <button
               onClick={() => {
                 onClose();
                 onOpenSommelier();
               }}
-              className="p-2.5 rounded-xl bg-[#141210] border border-gold-primary/25 text-gold-light hover:text-champagne text-left text-xs font-medium transition-colors flex items-center gap-2"
+              className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-200/80 text-neutral-700 hover:bg-red-50 hover:text-brand-red hover:border-brand-red/30 text-left text-xs font-semibold transition-all flex items-center gap-2 px-3.5"
             >
-              <Wine className="h-3.5 w-3.5 text-gold-primary shrink-0" />
+              <Wine className="h-4 w-4 text-brand-red shrink-0" />
               <span>Cellar Sommelier</span>
             </button>
           )}
@@ -122,9 +119,9 @@ export function MobileDrawer({
                 onClose();
                 onOpenLookup();
               }}
-              className="p-2.5 rounded-xl bg-[#141210] border border-neutral-800 text-neutral-300 hover:text-white text-left text-xs font-medium transition-colors flex items-center gap-2"
+              className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-200/80 text-neutral-700 hover:bg-red-50 hover:text-brand-red hover:border-brand-red/30 text-left text-xs font-semibold transition-all flex items-center gap-2 px-3.5"
             >
-              <Search className="h-3.5 w-3.5 text-gold-primary shrink-0" />
+              <Search className="h-4 w-4 text-brand-red shrink-0" />
               <span>Find Booking</span>
             </button>
           )}
@@ -135,25 +132,25 @@ export function MobileDrawer({
                 onClose();
                 onOpenPrivateDining();
               }}
-              className="col-span-2 p-2.5 rounded-xl bg-[#141210] border border-neutral-800 text-neutral-300 hover:text-white text-left text-xs font-medium transition-colors flex items-center justify-between"
+              className="col-span-2 p-2.5 rounded-xl bg-neutral-50 border border-neutral-200/80 text-neutral-700 hover:bg-red-50 hover:text-brand-red hover:border-brand-red/30 text-left text-xs font-semibold transition-all flex items-center justify-between px-3.5"
             >
               <span className="flex items-center gap-2">
-                <Sparkles className="h-3.5 w-3.5 text-gold-primary shrink-0" />
-                Private Vault Buyouts & Gala Events
+                <Building2 className="h-4 w-4 text-brand-red shrink-0" />
+                Private Dining & Salon Buyouts
               </span>
-              <span className="text-gold-light text-[11px]">Inquire →</span>
+              <span className="text-brand-red font-bold text-xs">Inquire →</span>
             </button>
           )}
         </div>
 
         {/* Bottom Actions & Info */}
-        <div className="space-y-3 pt-4">
+        <div className="space-y-2.5 pt-4">
           <button
             onClick={() => {
               onClose();
               onOpenReservation();
             }}
-            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-[0.15em] shadow-lg shadow-brand-red/25 transition-all"
           >
             <Calendar className="h-4 w-4" /> Reserve a Table
           </button>
@@ -163,17 +160,17 @@ export function MobileDrawer({
               onClose();
               onOpenCart();
             }}
-            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#141210] border border-gold-primary/30 text-xs font-semibold text-neutral-200 uppercase tracking-wider hover:border-gold-primary"
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-xs font-bold text-neutral-800 uppercase tracking-[0.15em] transition-all"
           >
-            <ShoppingBag className="h-4 w-4 text-gold-primary" /> Curated Tasting Order ({cartCount} courses)
+            <ShoppingBag className="h-3.5 w-3.5 text-brand-red" /> Tasting Order ({cartCount} courses)
           </button>
 
-          <div className="text-[11px] text-neutral-400 flex items-center justify-between pt-2">
+          <div className="text-[11px] text-neutral-500 font-medium flex items-center justify-between pt-2">
             <span className="flex items-center gap-1">
-              <Phone className="h-3 w-3 text-gold-light" /> {RESTAURANT_INFO.phone}
+              <Phone className="h-3 w-3 text-brand-red" /> {RESTAURANT_INFO.phone}
             </span>
             <span className="flex items-center gap-1">
-              <MapPin className="h-3 w-3 text-gold-light" /> 432 Park Ave, NY
+              <MapPin className="h-3 w-3 text-brand-red" /> 432 Park Ave, NY
             </span>
           </div>
         </div>

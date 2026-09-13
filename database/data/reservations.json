@@ -134,5 +134,39 @@
     "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtNTI3MCIsImd1ZXN0IjoiQmFyb25lc3MgVml2aWVubmUgRHVwb250IiwiZGF0ZSI6IjIwMjYtMTAtMDUiLCJ0aW1lIjoiMTk6MzAiLCJhcmVhIjoidmF1bHQiLCJwYXJ0eSI6NH0=",
     "createdAt": "2026-09-13T20:07:34.431Z",
     "updatedAt": "2026-09-13T20:07:34.431Z"
+  },
+  {
+    "id": "RES-1789330632206-8202",
+    "bookingReference": "AURA-2026-4547",
+    "guestName": "Baroness Vivienne Dupont",
+    "guestEmail": "vivienne.dupont@dupont-luxury.com",
+    "guestPhone": "+12125550144",
+    "partySize": 4,
+    "date": "2026-10-05",
+    "timeSlot": "19:30",
+    "seatingArea": "vault",
+    "occasion": "anniversary",
+    "dietaryNotes": "Prefers Dom Pérignon 2013 upon seating",
+    "status": "CONFIRMED",
+    "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtNDU0NyIsImd1ZXN0IjoiQmFyb25lc3MgVml2aWVubmUgRHVwb250IiwiZGF0ZSI6IjIwMjYtMTAtMDUiLCJ0aW1lIjoiMTk6MzAiLCJhcmVhIjoidmF1bHQiLCJwYXJ0eSI6NH0=",
+    "createdAt": "2026-09-13T20:17:12.206Z",
+    "updatedAt": "2026-09-13T20:17:12.206Z"
+  },
+  {
+    "id": "RES-1789334178808-4596",
+    "bookingReference": "AURA-2026-1644",
+    "guestName": "Baroness Vivienne Dupont",
+    "guestEmail": "vivienne.dupont@dupont-luxury.com",
+    "guestPhone": "+12125550144",
+    "partySize": 4,
+    "date": "2026-11-20",
+    "timeSlot": "17:30",
+    "seatingArea": "vault",
+    "occasion": "anniversary",
+    "dietaryNotes": "Prefers Dom Pérignon 2013 upon seating",
+    "status": "CONFIRMED",
+    "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtMTY0NCIsImd1ZXN0IjoiQmFyb25lc3MgVml2aWVubmUgRHVwb250IiwiZGF0ZSI6IjIwMjYtMTEtMjAiLCJ0aW1lIjoiMTc6MzAiLCJhcmVhIjoidmF1bHQiLCJwYXJ0eSI6NH0=",
+    "createdAt": "2026-09-13T21:16:18.808Z",
+    "updatedAt": "2026-09-13T21:16:18.808Z"
   }
 ]

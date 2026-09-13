@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { MenuItem, CurrencyCode } from '@/lib/types';
 import { menuData } from '@/data/menuData';
-import { X, Wine, Sparkles, Compass, CheckCircle2, ChevronRight, Glasses, Plus } from 'lucide-react';
+import { X, Wine, ChevronRight, Glasses, Plus } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils/formatting';
 
 interface SommelierAssistantModalProps {
@@ -24,13 +24,13 @@ type WinePreference =
   | 'zero-proof';
 
 const WINE_PREFERENCES: Array<{ id: WinePreference; label: string; desc: string }> = [
-  { id: 'all', label: 'Complete Sommelier List', desc: 'Browse all 30 paired allocations' },
+  { id: 'all', label: 'All Cellar Pairings', desc: 'Browse all 30 paired selections' },
   { id: 'champagne', label: 'Vintage Champagne & Sparkling', desc: 'Dom Pérignon 2013, Krug Grande Cuvée' },
-  { id: 'burgundy-white', label: 'Grand Cru Mineral Whites', desc: 'Chablis Les Clos, Meursault Perrières, Puligny-Montrachet' },
-  { id: 'bordeaux-red', label: 'Aristocratic Left & Right Bank', desc: 'Château Margaux 2010, Opus One Napa Valley' },
-  { id: 'piedmont-red', label: 'Italian Barolo & Barbaresco', desc: 'Monfortino Conterno 2015, Sorì Tildìn Gaja' },
-  { id: 'sweet-botrytis', label: 'Liquid Gold Dessert Nectars', desc: 'Château d’Yquem 2016, Tokaji Aszú 6 Puttonyos' },
-  { id: 'zero-proof', label: 'Artisanal Non-Alcoholic Pairing', desc: 'Distilled Botanicals, Cold-Drip Jasmine & Yuzu Clouds' },
+  { id: 'burgundy-white', label: 'Grand Cru Mineral Whites', desc: 'Chablis Les Clos, Meursault Perrières' },
+  { id: 'bordeaux-red', label: 'Bordeaux & Napa Reserves', desc: 'Château Margaux 2010, Opus One Napa Valley' },
+  { id: 'piedmont-red', label: 'Italian Barolo & Barbaresco', desc: 'Monfortino Conterno 2015, Gaja' },
+  { id: 'sweet-botrytis', label: 'Dessert Nectars', desc: 'Château d’Yquem 2016, Tokaji Aszú' },
+  { id: 'zero-proof', label: 'Artisanal Zero-Proof', desc: 'Distilled Botanicals, Cold-Drip Jasmine' },
 ];
 
 export function SommelierAssistantModal({
@@ -52,35 +52,35 @@ export function SommelierAssistantModal({
     if (selectedPref === 'bordeaux-red') return item.winePairing?.region.includes('Bordeaux') || item.winePairing?.region.includes('Napa') || item.winePairing?.region.includes('Tuscany');
     if (selectedPref === 'piedmont-red') return item.winePairing?.region.includes('Piedmont');
     if (selectedPref === 'sweet-botrytis') return item.winePairing?.region.includes('Sauternes') || item.winePairing?.region.includes('Tokaj') || item.winePairing?.region.includes('Port');
-    if (selectedPref === 'zero-proof') return item.category === 'cocktails' && item.dietary.includes('halal');
+    if (selectedPref === 'zero-proof') return item.category === 'desserts' || item.dietary.includes('halal');
     return true;
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-4xl my-auto rounded-3xl bg-obsidian-900 border border-gold-primary/40 shadow-2xl p-6 sm:p-8 animate-slide-up flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-4xl my-auto rounded-3xl bg-white border border-neutral-200 shadow-2xl p-6 sm:p-8 animate-slide-up flex flex-col max-h-[90vh] text-neutral-800"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-neutral-900 border border-neutral-300 transition-colors"
           aria-label="Close sommelier assistant"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
         </button>
 
         {/* Header */}
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-light font-semibold mb-1">
-            <Wine className="h-4 w-4 text-gold-primary" /> 4,000-Bottle Reserve Cellar
+          <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-brand-red font-bold mb-1">
+            <Wine className="h-4 w-4" /> 4,000-Bottle Reserve Cellar
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-champagne">
-            Grand Sommelier Pairing Engine
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+            Sommelier Reserve Pairings
           </h2>
-          <p className="text-xs text-neutral-400">
-            Select your preferred vintage wine profile to discover its harmonious Michelin course pairing.
+          <p className="text-xs text-neutral-500 mt-1">
+            Select a vintage wine profile to explore our sommelier's bespoke course pairings.
           </p>
         </div>
 
@@ -90,10 +90,10 @@ export function SommelierAssistantModal({
             <button
               key={pref.id}
               onClick={() => setSelectedPref(pref.id)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all ${
                 selectedPref === pref.id
-                  ? 'bg-gold-primary text-obsidian-950 shadow-gold-sm'
-                  : 'bg-obsidian-950 border border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                  ? 'bg-brand-red text-white shadow-md shadow-brand-red/30'
+                  : 'bg-neutral-100 border border-neutral-200 text-neutral-700 hover:bg-neutral-200'
               }`}
             >
               {pref.label}
@@ -102,11 +102,11 @@ export function SommelierAssistantModal({
         </div>
 
         {/* Results List */}
-        <div className="flex-1 overflow-y-auto space-y-4 pr-1">
+        <div className="flex-1 overflow-y-auto space-y-3.5 pr-1">
           {pairedDishes.map((dish) => (
             <div
               key={dish.id}
-              className="p-5 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 hover:border-gold-primary/45 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group cursor-pointer shadow-card-dark"
+              className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200 hover:border-brand-red/40 hover:bg-red-50/20 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group cursor-pointer shadow-sm"
               onClick={() => {
                 onClose();
                 onSelectDish(dish);
@@ -114,33 +114,33 @@ export function SommelierAssistantModal({
             >
               <div className="space-y-1 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-brand-red font-bold">
                     {dish.category.replace('-', ' ')}
                   </span>
-                  <span className="text-xs font-serif font-bold text-gold-primary">
+                  <span className="text-xs font-mono font-bold text-neutral-900">
                     {formatCurrency(dish.price, currency)}
                   </span>
                 </div>
-                <h4 className="font-serif text-base font-bold text-champagne group-hover:text-gold-hover transition-colors">
+                <h4 className="font-serif text-base font-bold text-neutral-900 group-hover:text-brand-red transition-colors">
                   {dish.name}
                 </h4>
                 
                 {dish.winePairing ? (
-                  <div className="flex items-start gap-2 text-xs text-[#cfc8bc] mt-2 bg-gold-primary/5 p-2.5 rounded-xl border border-gold-primary/15">
-                    <Glasses className="h-4 w-4 text-gold-primary shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2.5 text-xs text-neutral-700 mt-2 bg-white p-3 rounded-2xl border border-neutral-200">
+                    <Glasses className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-serif font-semibold text-gold-hover">
+                      <span className="font-bold text-neutral-900">
                         {dish.winePairing.name} ({dish.winePairing.vintage})
                       </span>
-                      <span className="text-[#91887b] block text-[11px]">{dish.winePairing.region}</span>
-                      <p className="text-[11px] text-[#91887b] italic mt-0.5">
+                      <span className="text-neutral-500 block text-[11px] font-sans">{dish.winePairing.region}</span>
+                      <p className="text-xs text-neutral-600 italic font-serif mt-0.5">
                         “{dish.winePairing.notes}”
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <p className="text-xs text-[#91887b] italic mt-1">
-                    Artisanal distilled botanicals & zero-proof pairing
+                  <p className="text-xs text-neutral-500 italic mt-1">
+                    Artisanal distilled botanicals &amp; zero-proof pairing
                   </p>
                 )}
               </div>
@@ -153,16 +153,16 @@ export function SommelierAssistantModal({
                       e.stopPropagation();
                       onAddToCart(dish);
                     }}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gold-primary/15 hover:bg-gold-primary text-gold-hover hover:text-obsidian-950 text-xs font-semibold border border-gold-primary/30 transition-colors"
+                    className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:scale-105"
                   >
                     <Plus className="h-3.5 w-3.5" /> Add with Pairing
                   </button>
                 )}
                 <button
                   type="button"
-                  className="flex items-center gap-1 text-xs text-gold-hover font-semibold hover:text-white transition-colors"
+                  className="flex items-center gap-1 text-xs text-neutral-500 font-bold hover:text-brand-red transition-colors"
                 >
-                  Inspect <ChevronRight className="h-4 w-4" />
+                  Inspect <ChevronRight className="h-3.5 w-3.5" />
                 </button>
               </div>
             </div>

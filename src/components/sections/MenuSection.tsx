@@ -1,66 +1,87 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import Image from 'next/image';
-import { MenuItem, DishCategory, DietaryTag, AllergenType, CurrencyCode } from '@/lib/types';
+import { MenuItem, DishCategory, DietaryTag, CurrencyCode } from '@/lib/types';
 import { MenuService } from '@/lib/services/MenuService';
-import { formatCurrency } from '@/lib/utils/formatting';
 import { DishCard } from '../ui/DishCard';
 import { PriceSlider } from '../ui/PriceSlider';
-import { Search, Sparkles, Filter, X, Utensils, Wine, ShieldAlert, Check, Calendar, ArrowRight, Award } from 'lucide-react';
-import { Sanitizer } from '@/lib/security/Sanitizer';
+import { formatCurrency } from '@/lib/utils/formatting';
+import {
+  Search,
+  Filter,
+  Wine,
+  Sparkles,
+  ShieldAlert,
+  Calendar,
+  Award,
+  Utensils,
+  X,
+  Flame,
+  Check,
+} from 'lucide-react';
 
 interface MenuSectionProps {
   currency?: CurrencyCode;
-  onSelectDish: (item: MenuItem) => void;
-  onAddToCart: (item: MenuItem) => void;
+  onSelectDish: (dish: MenuItem) => void;
+  onAddToCart: (dish: MenuItem) => void;
   onOpenSommelier: () => void;
 }
 
-const CATEGORIES: Array<{ id: DishCategory | 'all'; label: string }> = [
-  { id: 'all', label: 'All 30 Courses' },
-  { id: 'starters', label: 'Starters & Crudo' },
-  { id: 'prime-cuts', label: 'Prime Cuts & Wagyu' },
-  { id: 'ocean', label: 'Ocean & Turbot' },
-  { id: 'pasta-grains', label: 'Artisan Pasta & Truffle' },
-  { id: 'desserts', label: 'Grand Desserts' },
-  { id: 'cocktails', label: 'Pairings & Cocktails' },
+const CATEGORIES: { id: DishCategory | 'all'; label: string; dotColor: string; activeClass: string }[] = [
+  { id: 'all', label: 'All Specialties', dotColor: 'bg-brand-red', activeClass: 'bg-brand-red text-white shadow-md' },
+  { id: 'prime-cuts', label: 'Flame-Grilled Wagyu', dotColor: 'bg-rose-500', activeClass: 'bg-rose-600 text-white shadow-md' },
+  { id: 'ocean', label: 'Oceanic Seafood', dotColor: 'bg-emerald-500', activeClass: 'bg-emerald-600 text-white shadow-md' },
+  { id: 'pasta-grains', label: 'Royal Tehari & Grains', dotColor: 'bg-blue-500', activeClass: 'bg-blue-600 text-white shadow-md' },
+  { id: 'starters', label: 'Starters & Cru', dotColor: 'bg-amber-500', activeClass: 'bg-amber-500 text-white shadow-md' },
+  { id: 'desserts', label: 'Artisanal Sweets', dotColor: 'bg-purple-500', activeClass: 'bg-purple-600 text-white shadow-md' },
+  { id: 'cocktails', label: 'Cellar & Elixirs', dotColor: 'bg-teal-500', activeClass: 'bg-teal-600 text-white shadow-md' },
 ];
 
-const DIETARY_FILTERS: Array<{ id: DietaryTag | 'all'; label: string }> = [
+const DIETARY_FILTERS: { id: DietaryTag | 'all'; label: string }[] = [
   { id: 'all', label: 'All Diets' },
+  { id: 'halal', label: '100% Halal' },
   { id: 'gluten-free', label: 'Gluten-Free' },
   { id: 'dairy-free', label: 'Dairy-Free' },
   { id: 'vegan', label: 'Vegan' },
   { id: 'vegetarian', label: 'Vegetarian' },
-  { id: 'halal', label: 'Halal' },
-  { id: 'keto', label: 'Keto' },
 ];
 
-const ALLERGEN_OPTIONS: AllergenType[] = [
-  'Fish',
-  'Molluscs',
-  'Crustaceans',
-  'Dairy',
-  'Gluten',
-  'Eggs',
-  'Nuts',
-  'Soy',
-  'Sesame',
-];
+const ALLERGEN_OPTIONS: string[] = ['Crustaceans', 'Dairy', 'Gluten', 'Nuts', 'Eggs', 'Soy', 'Fish'];
 
-// Flagship 10-course Michelin Odyssey dish IDs
-const TASTING_MENU_IDS = [
-  'dish-01', // Oscietra Caviar Tartlet
-  'dish-02', // Hokkaido Scallop Crudo
-  'dish-04', // Pan-Seared Hudson Valley Foie Gras
-  'dish-13', // Brittany Turbot en Papillote
-  'dish-19', // 30-Yolk Tajarin with Alba White Truffle
-  'dish-07', // A5 Miyazaki Wagyu Ribeye
-  'dish-21', // Acquerello Risotto 24K Gold & Saffron
-  'dish-25', // Yuzu & White Chocolate Sphere
-  'dish-23', // Valrhona Grand Cru Molten Soufflé
-  'dish-27', // Smoked Old Fashioned '1920'
+const TASTING_ACTS = [
+  {
+    actNumber: 'Act I',
+    title: 'Oceanic Genesis & Cold-Chain Purity',
+    time: 'Courses 01 – 03',
+    description: 'Sub-polar Hokkaido sea-urchin, Brittany wild turbot crudo, and Oscietra caviar pearls.',
+    dishIds: ['dish-01', 'dish-02', 'dish-03'],
+    badgeBg: 'bg-teal-50 border-teal-200 text-teal-800',
+    borderColor: 'border-teal-200',
+    bgGradient: 'bg-gradient-to-br from-teal-50/50 via-white to-white',
+    accentColor: 'text-teal-700',
+  },
+  {
+    actNumber: 'Act II',
+    title: 'Elemental Hearth & Ancestral Smoke',
+    time: 'Courses 04 – 07',
+    description: 'Ozaki A5 Wagyu over 400°C Binchotan, glazed Challans duck, and Alba white truffle risotto.',
+    dishIds: ['dish-05', 'dish-06', 'dish-07', 'dish-08'],
+    badgeBg: 'bg-rose-50 border-rose-200 text-rose-800',
+    borderColor: 'border-rose-200',
+    bgGradient: 'bg-gradient-to-br from-rose-50/50 via-white to-white',
+    accentColor: 'text-rose-700',
+  },
+  {
+    actNumber: 'Act III',
+    title: 'Ephemeral Botanical Climax',
+    time: 'Courses 08 – 10',
+    description: 'Smoked bone marrow gelato, fermented honey ganache, and rare Kyoto Uji matcha infusions.',
+    dishIds: ['dish-09', 'dish-10'],
+    badgeBg: 'bg-amber-50 border-amber-200 text-amber-800',
+    borderColor: 'border-amber-200',
+    bgGradient: 'bg-gradient-to-br from-amber-50/50 via-white to-white',
+    accentColor: 'text-amber-700',
+  },
 ];
 
 export function MenuSection({
@@ -69,55 +90,48 @@ export function MenuSection({
   onAddToCart,
   onOpenSommelier,
 }: MenuSectionProps) {
-  const [viewMode, setViewMode] = useState<'tasting' | 'alacarte'>('tasting');
-  const [selectedCategory, setSelectedCategory] = useState<DishCategory | 'all'>('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedDiet, setSelectedDiet] = useState<DietaryTag | 'all'>('all');
-  const [excludedAllergens, setExcludedAllergens] = useState<AllergenType[]>([]);
-  const [showAllergenFilter, setShowAllergenFilter] = useState(false);
-  const [maxPrice, setMaxPrice] = useState(220);
-
   const menuService = useMemo(() => MenuService.getInstance(), []);
 
-  const toggleAllergenExclusion = (allergen: AllergenType) => {
+  const [viewMode, setViewMode] = useState<'alacarte' | 'tasting'>('alacarte');
+  const [selectedCategory, setSelectedCategory] = useState<DishCategory | 'all'>('all');
+  const [selectedDiet, setSelectedDiet] = useState<DietaryTag | 'all'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [maxPrice, setMaxPrice] = useState(220);
+  const [excludedAllergens, setExcludedAllergens] = useState<string[]>([]);
+  const [showAllergenFilter, setShowAllergenFilter] = useState(false);
+
+  const toggleAllergenExclusion = (allergen: string) => {
     setExcludedAllergens((prev) =>
       prev.includes(allergen) ? prev.filter((a) => a !== allergen) : [...prev, allergen]
     );
   };
 
-  const tastingItems = useMemo(() => {
-    return TASTING_MENU_IDS.map((id) => menuService.getItemById(id)).filter(Boolean) as MenuItem[];
-  }, [menuService]);
-
   const filteredItems = useMemo(() => {
     let items = menuService.filterItems({
-      category: selectedCategory,
-      searchQuery: Sanitizer.cleanText(searchQuery, 60),
-      dietaryFilter: selectedDiet,
-      minPrice: 0,
-      maxPrice,
+      category: selectedCategory === 'all' ? undefined : selectedCategory,
+      dietaryFilter: selectedDiet === 'all' ? undefined : selectedDiet,
+      searchQuery: searchQuery.trim() || undefined,
+      maxPrice: maxPrice < 220 ? maxPrice : undefined,
     });
 
     if (excludedAllergens.length > 0) {
-      items = items.filter((item) => {
-        for (const allergen of excludedAllergens) {
-          if (item.allergens.includes(allergen)) {
-            return false;
-          }
-        }
-        return true;
-      });
+      items = items.filter(
+        (item) =>
+          !item.allergens.some((a) =>
+            excludedAllergens.some((ex) => a.toLowerCase().includes(ex.toLowerCase()))
+          )
+      );
     }
 
     return items;
-  }, [menuService, selectedCategory, searchQuery, selectedDiet, excludedAllergens, maxPrice]);
+  }, [menuService, selectedCategory, selectedDiet, searchQuery, maxPrice, excludedAllergens]);
 
   const handleClearFilters = () => {
     setSelectedCategory('all');
-    setSearchQuery('');
     setSelectedDiet('all');
-    setExcludedAllergens([]);
+    setSearchQuery('');
     setMaxPrice(220);
+    setExcludedAllergens([]);
   };
 
   const scrollToReservations = () => {
@@ -126,250 +140,135 @@ export function MenuSection({
   };
 
   return (
-    <section id="menu" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
+    <section id="menu" className="scroll-mt-28 relative py-24 sm:py-32 overflow-hidden bg-white">
       
-      {/* Background Accent Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 bg-[radial-gradient(ellipse_at_top,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
+      {/* Ambient background blob */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at top, rgba(232,48,42,0.06) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* === SECTION HEADER (Reference Styling) === */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/25 text-gold-light text-xs font-semibold uppercase tracking-widest mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Haute Gastronomie
+          <div className="inline-flex items-center gap-2 mb-4">
+            <span className="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-brand-red text-white shadow-md flex items-center gap-1.5">
+              <Flame className="h-3.5 w-3.5 text-amber-300 fill-amber-300" />
+              Tasty &amp; Flame-Kissed
+            </span>
+            <span className="text-xs text-neutral-500 font-bold">· Handcrafted Fresh</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
-            The Culinary Experiences
+
+          <h2 className="text-3xl sm:text-5xl font-black text-neutral-900 tracking-tight uppercase mb-4">
+            Favorite Menu &amp;{' '}
+            <span className="text-gradient-red italic">Master Creations</span>
           </h2>
-          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
-            Orchestrated nightly by Executive Chef Gabriel Moreau. Experience our signature blind tasting journey or explore seasonal à la carte allocations.
+
+          <p className="text-neutral-600 text-sm leading-relaxed max-w-xl mx-auto font-normal">
+            Inspired by recipes and creations of the world's best chefs. Experience our 10-course symphonic tasting journey or explore single-estate flame-grilled cuts.
           </p>
 
-          {/* Luxury Mode Toggle Switch */}
-          <div className="inline-flex items-center p-1 rounded-full bg-[#141210] border border-gold-primary/25 mt-8">
-            <button
-              onClick={() => setViewMode('tasting')}
-              className={`flex items-center gap-2 px-6 py-2 rounded-full text-xs font-serif tracking-wider transition-all duration-300 ${
-                viewMode === 'tasting'
-                  ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
-                  : 'text-[#91887b] hover:text-[#f7f4ed]'
-              }`}
-            >
-              <Award className="h-3.5 w-3.5" /> Grand Tasting Odyssey
-            </button>
+          {/* Mode Switcher Pills */}
+          <div className="inline-flex items-center p-1.5 rounded-full bg-neutral-100 border border-neutral-200 mt-8 shadow-inner">
             <button
               onClick={() => setViewMode('alacarte')}
-              className={`flex items-center gap-2 px-6 py-2 rounded-full text-xs font-serif tracking-wider transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold tracking-wider transition-all duration-300 ${
                 viewMode === 'alacarte'
-                  ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
-                  : 'text-[#91887b] hover:text-[#f7f4ed]'
+                  ? 'bg-brand-red text-white shadow-lg shadow-brand-red/30'
+                  : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
-              <Utensils className="h-3.5 w-3.5" /> Seasonal À La Carte
+              <Utensils className="h-3.5 w-3.5" /> À La Carte Menu
+            </button>
+
+            <button
+              onClick={() => setViewMode('tasting')}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold tracking-wider transition-all duration-300 ${
+                viewMode === 'tasting'
+                  ? 'bg-brand-red text-white shadow-lg shadow-brand-red/30'
+                  : 'text-neutral-600 hover:text-neutral-900'
+              }`}
+            >
+              <Award className="h-3.5 w-3.5" /> 10-Course Grand Tasting
             </button>
           </div>
         </div>
 
-        {/* VIEW 1: GRAND TASTING MENU ODYSSEY */}
-        {viewMode === 'tasting' && (
-          <div className="space-y-10 animate-fade-in">
-            {/* Banner card */}
-            <div className="p-8 sm:p-10 rounded-2xl bg-[#141210] border border-gold-primary/20 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold-light block mb-1">
-                  Signature Michelin 3-Star Experience
-                </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-light text-champagne">
-                  The Ten-Course Celestial Odyssey
-                </h3>
-                <p className="text-xs text-[#91887b] max-w-xl mt-2 leading-relaxed font-sans font-light">
-                  A harmonious progression through oceanic purity, wood-fired hearth intensity, and rare Périgord truffles. Served in The Grand Atrium & Chef’s Omakase Counter.
-                </p>
-                <div className="flex flex-wrap items-center gap-4 mt-4 text-xs font-sans">
-                  <span className="text-champagne font-medium">
-                    Tasting Menu: <span className="text-gold-primary font-serif font-bold">{formatCurrency(395, currency)}</span> / guest
-                  </span>
-                  <span className="text-neutral-600">·</span>
-                  <span className="text-[#cfc8bc]">
-                    Grand Sommelier Pairing: <span className="text-gold-light font-serif font-medium">{formatCurrency(250, currency)}</span>
-                  </span>
-                </div>
-              </div>
-
-              <div className="shrink-0 flex flex-col sm:flex-row items-center gap-3">
-                <button
-                  onClick={onOpenSommelier}
-                  className="px-5 py-2.5 rounded-full gold-button-outline text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
-                >
-                  <Wine className="h-3.5 w-3.5 text-gold-primary" /> Cellar Pairings
-                </button>
-                <button
-                  onClick={scrollToReservations}
-                  className="px-6 py-2.5 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm flex items-center gap-2"
-                >
-                  <Calendar className="h-3.5 w-3.5" /> Reserve Experience
-                </button>
-              </div>
-            </div>
-
-            {/* Sequential 10-Course Progression Timeline */}
-            <div className="space-y-3">
-              {tastingItems.map((dish, index) => (
-                <div
-                  key={dish.id}
-                  onClick={() => onSelectDish(dish)}
-                  className="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-4 sm:p-5 rounded-2xl bg-[#141210]/60 border border-gold-primary/10 hover:border-gold-primary/30 transition-all duration-300 cursor-pointer"
-                >
-                  <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
-                    {/* Course Sequence Badge */}
-                    <div className="h-10 w-10 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 flex flex-col items-center justify-center text-center shrink-0">
-                      <span className="font-serif text-sm font-light text-gold-light">{String(index + 1).padStart(2, '0')}</span>
-                    </div>
-
-                    {/* Thumbnail */}
-                    <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden shrink-0 bg-[#1a1714]">
-                      <Image
-                        src={dish.image}
-                        alt={dish.name}
-                        fill
-                        sizes="80px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-
-                    {/* Titles */}
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-[9px] uppercase tracking-[0.2em] text-[#91887b] font-mono">
-                          {dish.category.replace('-', ' ')}
-                        </span>
-                        {dish.isChefSpecial && (
-                          <span className="text-[9px] text-gold-primary font-mono">
-                            ✦ Signature
-                          </span>
-                        )}
-                      </div>
-                      <h4 className="font-serif text-base sm:text-lg font-normal text-[#f7f4ed] group-hover:text-gold-hover transition-colors truncate">
-                        {dish.name}
-                      </h4>
-                      <p className="text-xs text-[#cfc8bc]/70 line-clamp-1 max-w-lg mt-0.5 font-light">
-                        {dish.shortDesc || dish.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Sommelier & Action */}
-                  <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-gold-primary/10">
-                    {dish.winePairing && (
-                      <div className="hidden lg:block text-right">
-                        <span className="text-[9px] uppercase tracking-wider text-[#91887b] block font-mono">Sommelier Pairing</span>
-                        <span className="text-xs font-serif text-gold-light/90 font-light">{dish.winePairing.name} ({dish.winePairing.vintage})</span>
-                      </div>
-                    )}
-
-                    <div className="flex items-center gap-3">
-                      <span className="font-serif text-base font-medium text-gold-primary">
-                        {formatCurrency(dish.price, currency)}
-                      </span>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onAddToCart(dish);
-                        }}
-                        className="px-3 py-1 rounded-full bg-gold-primary/10 hover:bg-gold-primary text-gold-hover hover:text-[#0c0b0a] text-xs font-medium border border-gold-primary/20 transition-colors"
-                      >
-                        + Add
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Book CTA */}
-            <div className="text-center pt-8">
-              <button
-                onClick={scrollToReservations}
-                className="px-10 py-4 rounded-xl gold-button text-xs font-bold uppercase tracking-widest shadow-gold-glow inline-flex items-center gap-2"
-              >
-                <Calendar className="h-4 w-4" /> Reserve The Grand Tasting Menu
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* VIEW 2: SEASONAL À LA CARTE CATALOG */}
+        {/* =========================================================
+            VIEW 1: SEASONAL À LA CARTE CATALOG (FAVORITE MENU)
+            ========================================================= */}
         {viewMode === 'alacarte' && (
           <div className="space-y-8 animate-fade-in">
-            {/* Search Bar & Interactive Filter Row */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#141210]/95 border border-gold-primary/20 backdrop-blur-md shadow-2xl space-y-6">
+            
+            {/* Filter & Search Bar */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-black/10 shadow-xl space-y-6">
               
-              {/* Top Row: Search Input + Sommelier Trigger + Price Slider */}
+              {/* Top Row: Trie Search + Cellar Assistant + Price Range Slider */}
               <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                 
-                {/* Trie-Powered Instant Search Bar */}
+                {/* Trie Search Bar */}
                 <div className="relative w-full lg:max-w-md">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gold-primary" />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-red" />
                   <input
                     type="text"
-                    placeholder="Search courses, ingredients (Wagyu, Caviar, Truffle)..."
+                    placeholder="Search dishes, ingredients (Wagyu, Tehari, Lobster, Truffle)..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     maxLength={60}
-                    className="w-full pl-11 pr-10 py-3 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary transition-colors"
+                    className="w-full pl-11 pr-10 py-3 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white transition-colors shadow-inner font-medium"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#91887b] hover:text-white"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-neutral-400 hover:text-neutral-900"
                     >
                       <X className="h-4 w-4" />
                     </button>
                   )}
                 </div>
 
-                {/* Sommelier Pairing Assistant Quick Button */}
+                {/* Sommelier Pairing Guide Button */}
                 <button
                   onClick={onOpenSommelier}
-                  className="w-full lg:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-gold-primary/10 hover:bg-gold-primary/20 text-gold-hover border border-gold-primary/30 text-xs font-semibold uppercase tracking-wider transition-all shrink-0"
+                  className="w-full lg:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-red-50 hover:bg-red-100 text-brand-red border border-red-200 text-xs font-bold uppercase tracking-wider transition-all shrink-0 shadow-sm"
                 >
-                  <Wine className="h-4 w-4 text-gold-primary" /> Sommelier Cellar Pairing Guide
+                  <Wine className="h-4 w-4 text-brand-red" /> Sommelier Cellar Pairing Guide
                 </button>
 
                 {/* Price Slider */}
                 <PriceSlider min={20} max={220} value={maxPrice} onChange={setMaxPrice} />
               </div>
 
-              {/* Category Tabs */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              {/* Category Filter Pills (Inspired by Reference Image 3) */}
+              <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
                 {CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-300 border ${
                       selectedCategory === cat.id
-                        ? 'bg-gold-primary text-[#0c0b0a] shadow-gold-sm font-bold'
-                        : 'bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed] hover:border-gold-primary/30'
+                        ? `${cat.activeClass}`
+                        : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
                     }`}
                   >
+                    <span className={`h-1.5 w-1.5 rounded-full ${cat.dotColor}`} />
                     {cat.label}
                   </button>
                 ))}
               </div>
 
               {/* Dietary Filter & Allergen Row */}
-              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gold-primary/15">
-                <span className="text-[11px] font-semibold text-[#cfc8bc] uppercase flex items-center gap-1.5 mr-2">
-                  <Filter className="h-3 w-3 text-gold-primary" /> Dietary:
+              <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-neutral-100">
+                <span className="text-[11px] font-bold text-neutral-700 uppercase flex items-center gap-1.5 mr-2">
+                  <Filter className="h-3 w-3 text-brand-red" /> Dietary:
                 </span>
                 {DIETARY_FILTERS.map((diet) => (
                   <button
                     key={diet.id}
                     onClick={() => setSelectedDiet(diet.id)}
-                    className={`px-3 py-1 rounded-lg text-[11px] font-medium transition-all ${
+                    className={`px-3 py-1 rounded-xl text-[11px] font-bold transition-all ${
                       selectedDiet === diet.id
-                        ? 'bg-gold-primary/20 border border-gold-primary text-gold-hover'
-                        : 'bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed]'
+                        ? 'bg-brand-red text-white shadow-sm'
+                        : 'bg-neutral-100 border border-neutral-200 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200'
                     }`}
                   >
                     {diet.label}
@@ -379,22 +278,22 @@ export function MenuSection({
                 <button
                   type="button"
                   onClick={() => setShowAllergenFilter(!showAllergenFilter)}
-                  className={`ml-auto flex items-center gap-1 px-3 py-1 rounded-lg text-[11px] font-semibold border transition-all ${
+                  className={`ml-auto flex items-center gap-1 px-3 py-1 rounded-xl text-[11px] font-bold border transition-all ${
                     excludedAllergens.length > 0 || showAllergenFilter
-                      ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                      : 'bg-[#0c0b0a] border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed]'
+                      ? 'bg-amber-500 text-white border-amber-600 shadow-sm'
+                      : 'bg-neutral-100 border-neutral-200 text-neutral-700 hover:bg-neutral-200'
                   }`}
                 >
-                  <ShieldAlert className="h-3 w-3" />
+                  <ShieldAlert className="h-3.5 w-3.5" />
                   Allergen Exclusion ({excludedAllergens.length})
                 </button>
               </div>
 
               {/* Expandable Allergen Exclusion Matrix */}
               {showAllergenFilter && (
-                <div className="p-4 rounded-2xl bg-[#0c0b0a] border border-amber-500/30 space-y-2 animate-fade-in">
-                  <span className="text-[11px] font-semibold text-amber-300 uppercase tracking-wider block">
-                    Exclude Specific Allergens (Zero-Tolerance Matrix):
+                <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200 space-y-2 animate-fade-in">
+                  <span className="text-[11px] font-bold text-amber-900 uppercase tracking-wider block">
+                    Zero-Tolerance Allergen Filter Matrix:
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {ALLERGEN_OPTIONS.map((allergen) => {
@@ -404,13 +303,13 @@ export function MenuSection({
                           key={allergen}
                           type="button"
                           onClick={() => toggleAllergenExclusion(allergen)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all ${
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                             isExcluded
-                              ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 line-through'
-                              : 'bg-[#141210] border-gold-primary/15 text-[#cfc8bc] hover:border-gold-primary/30'
+                              ? 'bg-rose-500 border-rose-600 text-white line-through shadow-sm'
+                              : 'bg-white border-neutral-200 text-neutral-700 hover:border-amber-300'
                           }`}
                         >
-                          {isExcluded && <X className="h-3 w-3 text-rose-400" />}
+                          {isExcluded && <X className="h-3 w-3 text-white" />}
                           No {allergen}
                         </button>
                       );
@@ -420,15 +319,15 @@ export function MenuSection({
               )}
             </div>
 
-            {/* Results Counter */}
-            <div className="flex items-center justify-between text-xs text-neutral-400 mb-6 px-2">
+            {/* Results Count & Reset Filter */}
+            <div className="flex items-center justify-between text-xs text-neutral-500 mb-6 px-2">
               <span>
-                Showing <strong className="text-champagne font-mono">{filteredItems.length}</strong> of 30 Signature Dishes
+                Showing <strong className="text-neutral-900 font-bold">{filteredItems.length}</strong> of 30 Signature Courses
               </span>
               {(selectedCategory !== 'all' || searchQuery || selectedDiet !== 'all' || excludedAllergens.length > 0 || maxPrice < 220) && (
                 <button
                   onClick={handleClearFilters}
-                  className="text-[11px] text-neutral-400 hover:text-gold-hover underline underline-offset-4"
+                  className="text-[11px] font-bold text-brand-red hover:underline underline-offset-4"
                 >
                   Reset All Filters
                 </button>
@@ -437,15 +336,15 @@ export function MenuSection({
 
             {/* Dishes Grid */}
             {filteredItems.length === 0 ? (
-              <div className="py-20 text-center rounded-3xl bg-obsidian-900/40 border border-neutral-800">
-                <Utensils className="h-10 w-10 text-neutral-600 mx-auto mb-3" />
-                <h3 className="font-serif text-xl font-semibold text-neutral-300 mb-1">No Courses Match Your Criteria</h3>
+              <div className="py-20 text-center rounded-3xl bg-white border border-neutral-200 shadow-sm">
+                <Utensils className="h-10 w-10 text-neutral-300 mx-auto mb-3" />
+                <h3 className="font-serif text-xl font-bold text-neutral-900 mb-1">No Courses Match Your Criteria</h3>
                 <p className="text-xs text-neutral-500 max-w-sm mx-auto mb-6">
-                  Try adjusting your dietary filter, clearing allergen exclusions, or searching for a different ingredient.
+                  Try adjusting your dietary filter, clearing allergen exclusions, or searching for another ingredient.
                 </p>
                 <button
                   onClick={handleClearFilters}
-                  className="px-6 py-2.5 rounded-xl gold-button text-xs font-semibold uppercase tracking-wider"
+                  className="px-6 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold uppercase tracking-wider shadow-md hover:bg-brand-redDark"
                 >
                   Reset All Filters
                 </button>
@@ -465,6 +364,118 @@ export function MenuSection({
             )}
           </div>
         )}
+
+        {/* =========================================================
+            VIEW 2: 10-COURSE GRAND TASTING MENU ODYSSEY
+            ========================================================= */}
+        {viewMode === 'tasting' && (
+          <div className="space-y-10 animate-fade-in">
+            {/* Banner card */}
+            <div
+              className="p-7 sm:p-9 rounded-3xl border border-black/10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6"
+              style={{ background: 'linear-gradient(135deg, #fff9f0 0%, #ffffff 100%)' }}
+            >
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20 mb-3">
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-brand-red">Signature 3-Star Michelin Experience</span>
+                </div>
+                <h3 className="font-serif text-2xl sm:text-3xl font-black text-neutral-900">
+                  The Ten-Course Celestial Odyssey
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-600 max-w-xl mt-2 leading-relaxed font-normal">
+                  A harmonious progression through oceanic purity, wood-fired hearth intensity, and rare Alba truffles.
+                </p>
+                <div className="flex flex-wrap items-center gap-4 mt-4 text-sm">
+                  <span className="text-neutral-900 font-bold">
+                    Tasting Menu: <span className="text-brand-red font-black">{formatCurrency(395, currency)}</span> / guest
+                  </span>
+                  <span className="text-neutral-300">·</span>
+                  <span className="text-neutral-600">
+                    Grand Cru Pairing: <span className="text-[#3a7d44] font-bold">{formatCurrency(250, currency)}</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="shrink-0 flex flex-col sm:flex-row items-center gap-3">
+                <button
+                  onClick={onOpenSommelier}
+                  className="px-5 py-2.5 rounded-xl border border-neutral-300 hover:border-neutral-500 text-neutral-800 text-xs font-bold uppercase tracking-wider flex items-center gap-2"
+                >
+                  <Wine className="h-3.5 w-3.5 text-brand-red" /> Cellar Pairings
+                </button>
+                <button
+                  onClick={scrollToReservations}
+                  className="px-6 py-2.5 rounded-xl bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md"
+                >
+                  <Calendar className="h-3.5 w-3.5" /> Reserve Table
+                </button>
+              </div>
+            </div>
+
+            {/* 3 Symphonic Acts Tasting Menu Progression */}
+            <div className="space-y-10">
+              {TASTING_ACTS.map((act, actIdx) => {
+                const actDishes = act.dishIds
+                  .map((id) => menuService.getItemById(id))
+                  .filter(Boolean) as MenuItem[];
+
+                return (
+                  <div
+                    key={act.actNumber}
+                    className={`rounded-3xl p-6 sm:p-8 border ${act.borderColor} ${act.bgGradient} shadow-xl space-y-6`}
+                  >
+                    {/* Act Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-black/5">
+                      <div>
+                        <div className="flex items-center gap-2.5 mb-1.5">
+                          <span
+                            className={`px-3 py-0.5 rounded-full text-[10px] font-mono tracking-widest uppercase font-bold border ${act.badgeBg}`}
+                          >
+                            {act.actNumber}
+                          </span>
+                          <span className={`text-xs uppercase tracking-widest font-mono font-bold ${act.accentColor}`}>
+                            Symphonic Movement 0{actIdx + 1}
+                          </span>
+                        </div>
+                        <h4 className="font-serif text-xl sm:text-2xl font-bold text-neutral-900">
+                          {act.title}
+                        </h4>
+                        <p className="text-xs text-neutral-500 mt-1 max-w-xl">{act.description}</p>
+                      </div>
+                      <span className="text-xs font-mono font-bold text-neutral-400 self-start sm:self-auto">
+                        {act.time}
+                      </span>
+                    </div>
+
+                    {/* Act Dishes Grid */}
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {actDishes.map((dish) => (
+                        <DishCard
+                          key={dish.id}
+                          item={dish}
+                          currency={currency}
+                          onSelect={onSelectDish}
+                          onAddToCart={onAddToCart}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom Book CTA */}
+            <div className="text-center pt-8">
+              <button
+                onClick={scrollToReservations}
+                className="px-10 py-4 rounded-2xl bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-widest shadow-xl shadow-brand-red/30 inline-flex items-center gap-2"
+              >
+                <Calendar className="h-4 w-4" /> Reserve The Grand Tasting Menu
+              </button>
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );

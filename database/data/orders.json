@@ -334,5 +334,229 @@
     "status": "INQUIRY_RECEIVED",
     "estimated_prep": 0,
     "created_at": "2026-09-13T20:07:35.118Z"
+  },
+  {
+    "id": "ORD-2026-4414",
+    "customer": {
+      "name": "Lady Catherine Vance",
+      "email": "catherine.vance@vance-holdings.com",
+      "phone": "+12125550188",
+      "address": "740 Park Avenue, Penthouse 12B, New York, NY"
+    },
+    "items": [
+      {
+        "id": "dish-01",
+        "name": "Royal Oscietra Caviar Tartlet",
+        "price": 68,
+        "quantity": 2,
+        "itemTotal": 136
+      },
+      {
+        "id": "dish-07",
+        "name": "A5 Miyazaki Wagyu Ribeye (6oz)",
+        "price": 185,
+        "quantity": 1,
+        "itemTotal": 185
+      }
+    ],
+    "couponCode": "AURA20",
+    "tipPercentage": 20,
+    "calculation": {
+      "subtotal": 321,
+      "discount": 64.2,
+      "discountPercentage": 20,
+      "tax": 22.79,
+      "tip": 51.36,
+      "grandTotal": 330.95,
+      "estimatedPrepMinutes": 35
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-13T20:17:12.514Z"
+  },
+  {
+    "id": "EVT-1789330632812-1630",
+    "customer_name": "Duchess Eleanor de Montfort",
+    "customer_email": "eleanor@montfort-estate.co.uk",
+    "customer_phone": "+12125550177",
+    "delivery_address": "PRIVATE EVENT: The Obsidian Vault (Party of 18)",
+    "items_json": "{\"id\":\"EVT-1789330632812-1630\",\"name\":\"Duchess Eleanor de Montfort\",\"email\":\"eleanor@montfort-estate.co.uk\",\"phone\":\"+12125550177\",\"date\":\"2026-11-20\",\"partySize\":18,\"salon\":\"The Obsidian Vault\",\"budget\":\"\",\"message\":\"Private buyout with rare 1982 Bordeaux pairing\",\"status\":\"RECEIVED\",\"createdAt\":\"2026-09-13T20:17:12.813Z\"}",
+    "coupon_code": null,
+    "tip_percentage": 0,
+    "subtotal": 0,
+    "discount": 0,
+    "tax": 0,
+    "tip_amount": 0,
+    "grand_total": 0,
+    "status": "INQUIRY_RECEIVED",
+    "estimated_prep": 0,
+    "created_at": "2026-09-13T20:17:12.813Z"
+  },
+  {
+    "id": "ORD-2026-9743",
+    "customer": {
+      "name": "Lady Catherine Vance",
+      "email": "catherine.vance@vance-holdings.com",
+      "phone": "+12125550188",
+      "address": "740 Park Avenue, Penthouse 12B, New York, NY"
+    },
+    "items": [
+      {
+        "id": "dish-01",
+        "name": "Royal Oscietra Caviar Tartlet",
+        "price": 68,
+        "quantity": 2,
+        "itemTotal": 136
+      },
+      {
+        "id": "dish-07",
+        "name": "A5 Miyazaki Wagyu Ribeye (6oz)",
+        "price": 185,
+        "quantity": 1,
+        "itemTotal": 185
+      }
+    ],
+    "couponCode": "AURA20",
+    "tipPercentage": 20,
+    "calculation": {
+      "subtotal": 321,
+      "discount": 64.2,
+      "discountPercentage": 20,
+      "tax": 22.79,
+      "tip": 51.36,
+      "grandTotal": 330.95,
+      "estimatedPrepMinutes": 35
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-13T20:44:32.958Z"
+  },
+  {
+    "id": "EVT-1789332273350-2606",
+    "customer_name": "Duchess Eleanor de Montfort",
+    "customer_email": "eleanor@montfort-estate.co.uk",
+    "customer_phone": "+12125550177",
+    "delivery_address": "PRIVATE EVENT: The Obsidian Vault (Party of 18)",
+    "items_json": "{\"id\":\"EVT-1789332273350-2606\",\"name\":\"Duchess Eleanor de Montfort\",\"email\":\"eleanor@montfort-estate.co.uk\",\"phone\":\"+12125550177\",\"date\":\"2026-11-20\",\"partySize\":18,\"salon\":\"The Obsidian Vault\",\"budget\":\"\",\"message\":\"Private buyout with rare 1982 Bordeaux pairing\",\"status\":\"RECEIVED\",\"createdAt\":\"2026-09-13T20:44:33.350Z\"}",
+    "coupon_code": null,
+    "tip_percentage": 0,
+    "subtotal": 0,
+    "discount": 0,
+    "tax": 0,
+    "tip_amount": 0,
+    "grand_total": 0,
+    "status": "INQUIRY_RECEIVED",
+    "estimated_prep": 0,
+    "created_at": "2026-09-13T20:44:33.350Z"
+  },
+  {
+    "id": "ORD-2026-6587",
+    "customer": {
+      "name": "Lady Catherine Vance",
+      "email": "catherine.vance@vance-holdings.com",
+      "phone": "+12125550188",
+      "address": "740 Park Avenue, Penthouse 12B, New York, NY"
+    },
+    "items": [
+      {
+        "id": "dish-01",
+        "name": "Royal Oscietra Caviar Tartlet",
+        "price": 68,
+        "quantity": 2,
+        "itemTotal": 136
+      },
+      {
+        "id": "dish-07",
+        "name": "A5 Miyazaki Wagyu Ribeye (6oz)",
+        "price": 185,
+        "quantity": 1,
+        "itemTotal": 185
+      }
+    ],
+    "couponCode": "AURA20",
+    "tipPercentage": 20,
+    "calculation": {
+      "subtotal": 321,
+      "discount": 64.2,
+      "discountPercentage": 20,
+      "tax": 22.79,
+      "tip": 51.36,
+      "grandTotal": 330.95,
+      "estimatedPrepMinutes": 35
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-13T21:09:18.647Z"
+  },
+  {
+    "id": "EVT-1789333759057-1151",
+    "customer_name": "Duchess Eleanor de Montfort",
+    "customer_email": "eleanor@montfort-estate.co.uk",
+    "customer_phone": "+12125550177",
+    "delivery_address": "PRIVATE EVENT: The Obsidian Vault (Party of 18)",
+    "items_json": "{\"id\":\"EVT-1789333759057-1151\",\"name\":\"Duchess Eleanor de Montfort\",\"email\":\"eleanor@montfort-estate.co.uk\",\"phone\":\"+12125550177\",\"date\":\"2026-11-20\",\"partySize\":18,\"salon\":\"The Obsidian Vault\",\"budget\":\"\",\"message\":\"Private buyout with rare 1982 Bordeaux pairing\",\"status\":\"RECEIVED\",\"createdAt\":\"2026-09-13T21:09:19.057Z\"}",
+    "coupon_code": null,
+    "tip_percentage": 0,
+    "subtotal": 0,
+    "discount": 0,
+    "tax": 0,
+    "tip_amount": 0,
+    "grand_total": 0,
+    "status": "INQUIRY_RECEIVED",
+    "estimated_prep": 0,
+    "created_at": "2026-09-13T21:09:19.057Z"
+  },
+  {
+    "id": "ORD-2026-3995",
+    "customer": {
+      "name": "Lady Catherine Vance",
+      "email": "catherine.vance@vance-holdings.com",
+      "phone": "+12125550188",
+      "address": "740 Park Avenue, Penthouse 12B, New York, NY"
+    },
+    "items": [
+      {
+        "id": "dish-01",
+        "name": "Royal Oscietra Caviar Tartlet",
+        "price": 68,
+        "quantity": 2,
+        "itemTotal": 136
+      },
+      {
+        "id": "dish-07",
+        "name": "A5 Miyazaki Wagyu Ribeye (6oz)",
+        "price": 185,
+        "quantity": 1,
+        "itemTotal": 185
+      }
+    ],
+    "couponCode": "AURA20",
+    "tipPercentage": 20,
+    "calculation": {
+      "subtotal": 321,
+      "discount": 64.2,
+      "discountPercentage": 20,
+      "tax": 22.79,
+      "tip": 51.36,
+      "grandTotal": 330.95,
+      "estimatedPrepMinutes": 35
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-13T21:16:19.466Z"
+  },
+  {
+    "id": "EVT-1789334179894-9794",
+    "customer_name": "Duchess Eleanor de Montfort",
+    "customer_email": "eleanor@montfort-estate.co.uk",
+    "customer_phone": "+12125550177",
+    "delivery_address": "PRIVATE EVENT: The Obsidian Vault (Party of 18)",
+    "items_json": "{\"id\":\"EVT-1789334179894-9794\",\"name\":\"Duchess Eleanor de Montfort\",\"email\":\"eleanor@montfort-estate.co.uk\",\"phone\":\"+12125550177\",\"date\":\"2026-11-20\",\"partySize\":18,\"salon\":\"The Obsidian Vault\",\"budget\":\"\",\"message\":\"Private buyout with rare 1982 Bordeaux pairing\",\"status\":\"RECEIVED\",\"createdAt\":\"2026-09-13T21:16:19.894Z\"}",
+    "coupon_code": null,
+    "tip_percentage": 0,
+    "subtotal": 0,
+    "discount": 0,
+    "tax": 0,
+    "tip_amount": 0,
+    "grand_total": 0,
+    "status": "INQUIRY_RECEIVED",
+    "estimated_prep": 0,
+    "created_at": "2026-09-13T21:16:19.894Z"
   }
 ]

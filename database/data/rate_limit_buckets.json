@@ -2,31 +2,61 @@
   {
     "ip": "::1",
     "endpoint": "slots_api",
-    "tokens": 28.164,
-    "last_refill": "1789330054584"
+    "tokens": 28.0415,
+    "last_refill": "1789336528172"
   },
   {
     "ip": "::1",
     "endpoint": "menu_api",
-    "tokens": 58.025,
-    "last_refill": "1789330054086"
+    "tokens": 58.095,
+    "last_refill": "1789333757921"
   },
   {
     "ip": "::1",
     "endpoint": "reservations_book",
-    "tokens": 3.0057416666666663,
-    "last_refill": "1789330055116"
+    "tokens": 3.0053,
+    "last_refill": "1789333759053"
   },
   {
     "ip": "::1",
     "endpoint": "cart_checkout",
     "tokens": 2,
-    "last_refill": "1789330054758"
+    "last_refill": "1789333758644"
   },
   {
     "ip": "::1",
     "endpoint": "newsletter_subscribe",
     "tokens": 1,
-    "last_refill": "1789330054925"
+    "last_refill": "1789333758858"
+  },
+  {
+    "ip": "::ffff:127.0.0.1",
+    "endpoint": "menu_api",
+    "tokens": 58.027,
+    "last_refill": "1789334178315"
+  },
+  {
+    "ip": "::ffff:127.0.0.1",
+    "endpoint": "slots_api",
+    "tokens": 28.323,
+    "last_refill": "1789334179223"
+  },
+  {
+    "ip": "::ffff:127.0.0.1",
+    "endpoint": "reservations_book",
+    "tokens": 3.0090833333333338,
+    "last_refill": "1789334179891"
+  },
+  {
+    "ip": "::ffff:127.0.0.1",
+    "endpoint": "cart_checkout",
+    "tokens": 2,
+    "last_refill": "1789334179463"
+  },
+  {
+    "ip": "::ffff:127.0.0.1",
+    "endpoint": "newsletter_subscribe",
+    "tokens": 1,
+    "last_refill": "1789334179699"
   }
 ]

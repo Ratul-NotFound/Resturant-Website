@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import { CartItem, OrderCalculation, CurrencyCode } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils/formatting';
 import { PROMO_COUPONS } from '@/data/restaurantConfig';
-import { X, CheckCircle2, ShieldCheck, Tag, Sparkles, CreditCard, ArrowRight, Loader2 } from 'lucide-react';
-import { fireCelebrationConfetti } from '@/lib/utils/confetti';
+import { X, CheckCircle2, ShieldCheck, Tag, CreditCard, ArrowRight, Loader2, Sparkles } from 'lucide-react';
 import { useToast } from './Toast';
 import { Sanitizer } from '@/lib/security/Sanitizer';
 
@@ -55,12 +54,12 @@ export function CheckoutModal({
       setAppliedCoupon(clean);
       setDiscountPercent(PROMO_COUPONS[clean].discountPercent);
       showToast(
-        `Coupon ${clean} applied (${PROMO_COUPONS[clean].discountPercent}% courtesy)!`,
+        `Coupon ${clean} applied (${PROMO_COUPONS[clean].discountPercent}% discount)!`,
         'success',
         'Promotion Active'
       );
     } else {
-      showToast('Invalid or expired promotional code. Try AURA20, VIP10, or CHEFVIP', 'error', 'Invalid Coupon');
+      showToast('Invalid or expired code. Try AURA20, VIP10, or CHEFVIP', 'error', 'Invalid Coupon');
     }
   };
 
@@ -117,8 +116,7 @@ export function CheckoutModal({
       const data = await response.json();
 
       if (response.ok && data.success) {
-        fireCelebrationConfetti();
-        showToast('Your culinary order has been accepted!', 'success', 'Order Confirmed');
+        showToast('Your culinary order has been confirmed.', 'success', 'Order Confirmed');
         onOrderSuccess(data.orderId, data.calculation);
         onClose();
       } else {
@@ -132,50 +130,50 @@ export function CheckoutModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-2xl my-auto rounded-3xl bg-[#141210] border border-gold-primary/35 shadow-2xl p-6 sm:p-8 animate-slide-up text-[#cfc8bc]"
+        className="relative w-full max-w-2xl my-auto rounded-3xl bg-white border border-neutral-200 shadow-2xl p-6 sm:p-8 animate-slide-up text-neutral-800"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[#1c1916] text-neutral-400 hover:text-white border border-gold-primary/20 transition-colors"
+          className="absolute top-4 right-4 p-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-neutral-900 border border-neutral-300 transition-colors"
           aria-label="Close checkout"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
         </button>
 
         {/* Header */}
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-light font-semibold mb-1">
-            <ShieldCheck className="h-4 w-4 text-gold-primary" /> Zero-Trust Verified Checkout ({currency})
+          <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-brand-red font-bold mb-1">
+            <ShieldCheck className="h-4 w-4" /> Secure Order Checkout ({currency})
           </div>
-          <h2 className="font-serif text-2xl font-bold text-champagne">Finalize Tasting Selection</h2>
-          <p className="text-xs text-[#91887b]">
-            Authoritative course allocations confirmed against our cellar inventory.
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">Finalize Your Order</h2>
+          <p className="text-xs text-neutral-500 mt-1">
+            Freshly prepared flame-grilled dishes delivered straight to your table or penthouse.
           </p>
         </div>
 
         <form onSubmit={handleSubmitOrder} className="space-y-6">
           {/* Customer Details */}
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
+              <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
                 Full Name *
               </label>
               <input
                 type="text"
                 required
-                placeholder="e.g. Lord Harrington"
+                placeholder="e.g. Julian Montgomery"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 maxLength={80}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
               />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
+              <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
                 Email Address *
               </label>
               <input
@@ -185,11 +183,11 @@ export function CheckoutModal({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 maxLength={254}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
               />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
+              <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
                 Phone Number *
               </label>
               <input
@@ -199,11 +197,11 @@ export function CheckoutModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 maxLength={16}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
               />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
+              <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
                 Delivery / Table Destination *
               </label>
               <input
@@ -213,29 +211,29 @@ export function CheckoutModal({
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 maxLength={200}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
               />
             </div>
           </div>
 
           {/* Promo Coupon Section */}
-          <div className="p-4 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20">
-            <span className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-2">
-              Promotional Courtesy Code
+          <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200">
+            <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-2 font-bold">
+              Promotional Discount Code
             </span>
             {appliedCoupon ? (
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/30">
+              <div className="flex items-center justify-between p-3 rounded-2xl bg-emerald-50 border border-emerald-200 px-4">
                 <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-gold-primary" />
+                  <Tag className="h-4 w-4 text-emerald-600" />
                   <div>
-                    <span className="text-xs font-mono font-bold text-gold-hover">{appliedCoupon}</span>
-                    <span className="text-[11px] text-gold-light ml-2">({discountPercent}% Courtesy Applied)</span>
+                    <span className="text-xs font-mono font-bold text-emerald-800">{appliedCoupon}</span>
+                    <span className="text-xs text-emerald-700 font-medium ml-2">({discountPercent}% Discount Applied)</span>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={handleRemoveCoupon}
-                  className="text-xs text-[#91887b] hover:text-rose-400"
+                  className="text-xs text-neutral-500 hover:text-brand-red font-bold"
                 >
                   Remove
                 </button>
@@ -248,12 +246,12 @@ export function CheckoutModal({
                   value={couponInput}
                   onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                   maxLength={20}
-                  className="flex-1 px-3.5 py-2 rounded-xl bg-[#141210] border border-gold-primary/25 text-xs font-mono text-neutral-200 uppercase placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                  className="flex-1 px-4 py-2.5 rounded-2xl bg-white border border-neutral-300 text-xs font-mono uppercase text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 transition-all"
                 />
                 <button
                   type="button"
                   onClick={handleApplyCoupon}
-                  className="px-4 py-2 rounded-xl gold-button-outline text-xs font-semibold uppercase tracking-wider"
+                  className="px-6 py-2.5 rounded-2xl bg-neutral-200 hover:bg-neutral-300 text-neutral-800 text-xs font-bold uppercase tracking-wider transition-all"
                 >
                   Apply
                 </button>
@@ -263,8 +261,8 @@ export function CheckoutModal({
 
           {/* Gratuity / Sommelier Tip Selector */}
           <div>
-            <span className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-2">
-              Sommelier & Brigade Gratuity
+            <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-2 font-bold">
+              Culinary Brigade Gratuity
             </span>
             <div className="grid grid-cols-4 gap-2">
               {[15, 18, 20, 25].map((pct) => (
@@ -272,10 +270,10 @@ export function CheckoutModal({
                   key={pct}
                   type="button"
                   onClick={() => setTipPercent(pct)}
-                  className={`py-2 rounded-xl text-xs font-semibold border transition-all ${
+                  className={`py-2.5 rounded-2xl text-xs font-bold border transition-all ${
                     tipPercent === pct
-                      ? 'bg-gold-primary/20 border-gold-primary text-gold-hover shadow-gold-sm'
-                      : 'bg-[#0c0b0a] border-gold-primary/20 text-[#91887b] hover:text-neutral-200'
+                      ? 'bg-brand-red text-white border-brand-red shadow-md shadow-brand-red/30'
+                      : 'bg-neutral-100 border-neutral-200 text-neutral-700 hover:bg-neutral-200'
                   }`}
                 >
                   {pct}%
@@ -285,28 +283,28 @@ export function CheckoutModal({
           </div>
 
           {/* Bill Calculation Summary */}
-          <div className="p-4 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 space-y-2 text-xs">
-            <div className="flex justify-between text-[#91887b]">
-              <span>Courses Subtotal ({items.reduce((s, i) => s + i.quantity, 0)} items)</span>
-              <span className="font-mono text-neutral-200">{formatCurrency(subtotal, currency)}</span>
+          <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-2 text-xs font-medium">
+            <div className="flex justify-between text-neutral-600">
+              <span>Dishes Subtotal ({items.reduce((s, i) => s + i.quantity, 0)} items)</span>
+              <span className="font-mono font-bold text-neutral-900">{formatCurrency(subtotal, currency)}</span>
             </div>
             {discountAmount > 0 && (
-              <div className="flex justify-between text-gold-light">
-                <span>Promotional Courtesy ({discountPercent}%)</span>
-                <span className="font-mono">- {formatCurrency(discountAmount, currency)}</span>
+              <div className="flex justify-between text-emerald-700">
+                <span>Promotional Discount ({discountPercent}%)</span>
+                <span className="font-mono font-bold">- {formatCurrency(discountAmount, currency)}</span>
               </div>
             )}
-            <div className="flex justify-between text-[#91887b]">
+            <div className="flex justify-between text-neutral-600">
               <span>NYC Hospitality Sales Tax (8.875%)</span>
-              <span className="font-mono text-neutral-200">{formatCurrency(tax, currency)}</span>
+              <span className="font-mono text-neutral-900">{formatCurrency(tax, currency)}</span>
             </div>
-            <div className="flex justify-between text-[#91887b]">
+            <div className="flex justify-between text-neutral-600">
               <span>Brigade Gratuity ({tipPercent}%)</span>
-              <span className="font-mono text-neutral-200">{formatCurrency(tip, currency)}</span>
+              <span className="font-mono text-neutral-900">{formatCurrency(tip, currency)}</span>
             </div>
-            <div className="flex justify-between text-base font-bold pt-3 border-t border-gold-primary/20 text-champagne">
-              <span className="font-serif">Grand Total</span>
-              <span className="font-serif text-gold-primary text-lg">{formatCurrency(grandTotal, currency)}</span>
+            <div className="flex justify-between text-sm pt-3 border-t border-neutral-200 text-neutral-900">
+              <span className="font-serif font-bold">Grand Total</span>
+              <span className="font-serif text-brand-red text-lg font-black">{formatCurrency(grandTotal, currency)}</span>
             </div>
           </div>
 
@@ -314,11 +312,11 @@ export function CheckoutModal({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-brand-red/30 hover:scale-105 active:scale-95 disabled:opacity-50 transition-all"
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" /> Verifying Order Security...
+                <Loader2 className="h-4 w-4 animate-spin" /> Verifying Order Allocation...
               </>
             ) : (
               <>

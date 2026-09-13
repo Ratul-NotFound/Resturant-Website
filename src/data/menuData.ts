@@ -1,6 +1,6 @@
 import { MenuItem } from '@/lib/types';
 
-export const menuData: MenuItem[] = [
+const rawMenuData: MenuItem[] = [
   // ═══════════════════════════════════════════════════════════════
   // 1. STARTERS (6 items)
   // ═══════════════════════════════════════════════════════════════
@@ -821,3 +821,178 @@ export const menuData: MenuItem[] = [
     displayOrder: 30,
   },
 ];
+
+const TERROIR_METADATA: Record<
+  string,
+  {
+    terroirBadge: string;
+    flavorNotes: string[];
+    chromaTheme: 'ocean' | 'ember' | 'saffron' | 'amethyst' | 'terracotta' | 'emerald';
+  }
+> = {
+  'dish-01': {
+    terroirBadge: '🌊 Caspian Basin · 24k Gold Sablé',
+    flavorNotes: ['Smoked Crème', 'Nutty Salinity', 'Imperial Caviar'],
+    chromaTheme: 'saffron',
+  },
+  'dish-02': {
+    terroirBadge: '🌊 Hokkaido Sea · Hand-Dived Scallop',
+    flavorNotes: ['Iodine Sweetness', 'Finger Lime', 'White Ponzu'],
+    chromaTheme: 'ocean',
+  },
+  'dish-03': {
+    terroirBadge: '🌿 Andria, Puglia · Périgord Black Truffle',
+    flavorNotes: ['Stracciatella Cream', 'Earth Truffle', '25yr Balsamic'],
+    chromaTheme: 'emerald',
+  },
+  'dish-04': {
+    terroirBadge: '🔥 Hudson Valley · Oak Hearth Sear',
+    flavorNotes: ['Black Mission Fig', 'Rich Duck Confit', 'Port Wine Glaze'],
+    chromaTheme: 'ember',
+  },
+  'dish-05': {
+    terroirBadge: '🌊 Maldives Longline · Line-Caught Tuna',
+    flavorNotes: ['Avocado Silk', 'Serrano Heat', 'Black Sesame Coral'],
+    chromaTheme: 'ocean',
+  },
+  'dish-06': {
+    terroirBadge: '🌊 Kagoshima Deep Trench · Langoustine',
+    flavorNotes: ['Sweet Crustacean', 'Yuzu Pearls', 'Osetra Salt'],
+    chromaTheme: 'ocean',
+  },
+  'dish-07': {
+    terroirBadge: '🔥 Miyazaki Prefecture · Binchotan Sear',
+    flavorNotes: ['Extreme BMS 12 Marbling', 'Charred Oak', 'Bone Marrow Tare'],
+    chromaTheme: 'ember',
+  },
+  'dish-08': {
+    terroirBadge: '🔥 Snake River Farms · 45-Day Salt Aged',
+    flavorNotes: ['Concentrated Umami', 'Périgord Jus', 'Roasted Shallot'],
+    chromaTheme: 'ember',
+  },
+  'dish-09': {
+    terroirBadge: '🔥 Rocky Mountain Pasture · Herb-Crusted',
+    flavorNotes: ['Black Garlic Jus', 'Charred Rosemary', 'Confit Salsify'],
+    chromaTheme: 'terracotta',
+  },
+  'dish-10': {
+    terroirBadge: '🔥 Berkshire Heritage · Binchotan Char',
+    flavorNotes: ['Maple Bourbon Glaze', 'Honey Apple Chutney', 'Crispy Crackling'],
+    chromaTheme: 'terracotta',
+  },
+  'dish-11': {
+    terroirBadge: '🌿 Limousin Valley · Morel & Vin Jaune',
+    flavorNotes: ['Tender Milk-Fed Veal', 'Foraged Morels', 'Jura Wine Cream'],
+    chromaTheme: 'saffron',
+  },
+  'dish-12': {
+    terroirBadge: '🔥 Hyogo Prefecture · Pure Tajima Bloodline',
+    flavorNotes: ['Velvet Texture', 'Alba Truffle Butter', 'Sweet Wood Smoke'],
+    chromaTheme: 'ember',
+  },
+  'dish-13': {
+    terroirBadge: '🌊 Brittany Coast · Wild Line-Caught',
+    flavorNotes: ['Sweet Flaky Turbot', 'Champagne Nage', 'Fennel Pollen'],
+    chromaTheme: 'ocean',
+  },
+  'dish-14': {
+    terroirBadge: '🌊 Heard Island · Antarctic Sub-Zero',
+    flavorNotes: ['Silky Snow Flesh', 'Saikyo Miso Caramel', 'Hajikami Ginger'],
+    chromaTheme: 'ocean',
+  },
+  'dish-15': {
+    terroirBadge: '🔥 Gulf of Maine · Hennessy XO Flambé',
+    flavorNotes: ['Sweet Cold-Water Claw', 'Aged Gruyère AOP', 'Périgord Truffle'],
+    chromaTheme: 'ember',
+  },
+  'dish-16': {
+    terroirBadge: '🌊 Huelva Gulf · 800m Deep Sea Trench',
+    flavorNotes: ['Deep Crimson Head Jus', 'Sweet Tail Meat', 'Binchotan Smoke'],
+    chromaTheme: 'ember',
+  },
+  'dish-17': {
+    terroirBadge: '🌊 English Channel · Dayboat Caught',
+    flavorNotes: ['Brown Alpine Butter', 'Meyer Lemon', 'Crisp Capers'],
+    chromaTheme: 'saffron',
+  },
+  'dish-18': {
+    terroirBadge: '🌊 Marlborough Sounds · Crisp Skin',
+    flavorNotes: ['Omega-Rich Flake', 'Sorrel Velouté', 'Sea Buckthorn'],
+    chromaTheme: 'ocean',
+  },
+  'dish-19': {
+    terroirBadge: '🌾 Piedmont Hills · 30-Yolk Golden Silk',
+    flavorNotes: ['Golden Egg Silk', 'Alba White Truffle', 'Alpine Grass Butter'],
+    chromaTheme: 'saffron',
+  },
+  'dish-20': {
+    terroirBadge: '🌊 Adriatic Blue Crab · Saffron Dough',
+    flavorNotes: ['Sweet Crab Mousse', 'Bisque Emulsion', 'Tarragon Oil'],
+    chromaTheme: 'ocean',
+  },
+  'dish-21': {
+    terroirBadge: '🌾 7-Year Aged Rice · 24K Gold Leaf',
+    flavorNotes: ['Vercelli Carnaroli', 'Navelli Saffron', '36mo Parmigiano'],
+    chromaTheme: 'saffron',
+  },
+  'dish-22': {
+    terroirBadge: '🌿 Vosges Mountains · Wild Foraged Forest',
+    flavorNotes: ['Smoked Mushroom Jus', 'Thyme Herb Essence', 'Parmesan Crisp'],
+    chromaTheme: 'emerald',
+  },
+  'dish-23': {
+    terroirBadge: '🍯 Guanaja 70% · Single Plantation Cocoa',
+    flavorNotes: ['Warm Molten Core', 'Madagascar Bourbon', 'Gold Leaf Crisp'],
+    chromaTheme: 'amethyst',
+  },
+  'dish-24': {
+    terroirBadge: '🍯 Raiatea Island · 729 Caramelized Layers',
+    flavorNotes: ['Caramelized Pastry', 'Bourbon Vanilla Bean', 'Fleur de Sel'],
+    chromaTheme: 'saffron',
+  },
+  'dish-25': {
+    terroirBadge: '🍯 Kochi Prefecture · Tableside Pour',
+    flavorNotes: ['Tart Kochi Yuzu', 'Silky Valrhona Opalys', 'Matcha Moss'],
+    chromaTheme: 'saffron',
+  },
+  'dish-26': {
+    terroirBadge: '🌾 Langhe Hills · IGP Piedmont Hazelnut',
+    flavorNotes: ['Roasted Tonda Gentile', 'Dark Gianduja', 'Caramelized Praline'],
+    chromaTheme: 'amethyst',
+  },
+  'dish-27': {
+    terroirBadge: '🍸 Subterranean Vault · Applewood Smoke',
+    flavorNotes: ['Pappy Van Winkle 15yr', 'Luxardo Marasca', 'Charred Orange'],
+    chromaTheme: 'terracotta',
+  },
+  'dish-28': {
+    terroirBadge: '🍸 Reims Grand Cru · Hand-Crafted Elixir',
+    flavorNotes: ['Dom Pérignon 2013', 'Monkey 47 Botanicals', 'Bergamot Caviar'],
+    chromaTheme: 'saffron',
+  },
+  'dish-29': {
+    terroirBadge: '🍸 48-Hour Drip · Botanical Clarification',
+    flavorNotes: ['Crystal Clear Rum', 'Earl Grey Tea', 'Winter Spices'],
+    chromaTheme: 'amethyst',
+  },
+  'dish-30': {
+    terroirBadge: '🌿 Artisanal Copper Still · Cold-Drip Distillate',
+    flavorNotes: ['Wild Gentian Root', 'Yuzu Blossom Mist', 'Red Shiso Cloud'],
+    chromaTheme: 'emerald',
+  },
+};
+
+export const menuData: MenuItem[] = rawMenuData.map((dish) => {
+  const meta = TERROIR_METADATA[dish.id];
+  if (meta) {
+    return {
+      ...dish,
+      terroirBadge: meta.terroirBadge,
+      flavorNotes: meta.flavorNotes,
+      chromaTheme: meta.chromaTheme,
+    };
+  }
+  return dish;
+});
+
+export default menuData;
