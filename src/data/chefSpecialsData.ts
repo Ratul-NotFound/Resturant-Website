@@ -35,7 +35,7 @@ export const chefSpecialsData: ChefSpecial[] = [
     quote: 'Hand-cut pasta of pure golden yolks, creating an ethereal silk that carries the heavenly perfume of fresh white truffles.',
     chefName: 'Matteo Bellini',
     chefTitle: 'Master Pastaiolo',
-    frontImage: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85',
+    frontImage: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85',
     backImage: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=1200&q=85',
     technique: 'Extruded and hand-cut daily with 30 organic egg yolks per kilo; emulsified with alpine butter and shaved tableside',
     flavorProfile: ['Rich Egg Yolk Silk', 'Musky Alba Truffle', 'Aged Parmigiano Vacche Rosse', 'Alpine Grass Butter'],

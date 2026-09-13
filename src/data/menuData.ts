@@ -531,8 +531,8 @@ export const menuData: MenuItem[] = [
     },
     chefNote: 'Pasta is rolled and cut by hand every afternoon at 4:00 PM for optimal elasticity.',
     farmProvenance: 'San Damiano d’Asti Organic Farm & Alba Truffle Hunters',
-    image: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85',
-    gallery: ['https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85'],
+    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85',
+    gallery: ['https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85'],
     displayOrder: 19,
   },
   {
@@ -612,8 +612,8 @@ export const menuData: MenuItem[] = [
     },
     chefNote: 'Sweetbreads are soaked in milk for 24 hours, peeled, and pan-fried to crisp perfection.',
     farmProvenance: 'Jura Wild Foragers & Limousin Veal Producers',
-    image: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85',
-    gallery: ['https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85'],
+    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=85',
+    gallery: ['https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=85'],
     displayOrder: 22,
   },
 

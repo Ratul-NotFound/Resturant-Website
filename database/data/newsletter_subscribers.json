@@ -3,5 +3,10 @@
     "email": "vip.patron@aura-michelin.com",
     "isActive": true,
     "subscribedAt": "2026-09-13T18:28:36.501Z"
+  },
+  {
+    "email": "vivienne.dupont@dupont-luxury.com",
+    "isActive": true,
+    "subscribedAt": "2026-09-13T19:10:02.545Z"
   }
 ]
