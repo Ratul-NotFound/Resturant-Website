@@ -67,9 +67,9 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
               <button
                 key={room.id}
                 onClick={() => setActiveAreaId(room.id)}
-                className={`px-4 py-2.5 rounded-2xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full text-xs font-serif tracking-wider whitespace-nowrap transition-all duration-300 ${
                   activeAreaId === room.id
-                    ? 'bg-gold-primary text-obsidian-950 shadow-gold-glow font-bold'
+                    ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
                     : 'bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] hover:text-white hover:border-gold-primary/40'
                 }`}
               >
@@ -79,45 +79,45 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
           </div>
 
           {/* Lighting Mode Simulator Switch */}
-          <div className="flex items-center gap-1.5 p-1 bg-[#141210] rounded-2xl border border-gold-primary/20 text-xs">
+          <div className="flex items-center gap-1 p-1 bg-[#141210] rounded-full border border-gold-primary/20 text-xs">
             <button
               onClick={() => setLightingMood('daylight')}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium transition-all ${
                 lightingMood === 'daylight'
                   ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40'
-                  : 'text-neutral-400 hover:text-white'
+                  : 'text-[#91887b] hover:text-white'
               }`}
             >
-              <Sun className="h-3.5 w-3.5" /> Day
+              <Sun className="h-3 w-3" /> Day
             </button>
             <button
               onClick={() => setLightingMood('sunset')}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium transition-all ${
                 lightingMood === 'sunset'
                   ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
-                  : 'text-neutral-400 hover:text-white'
+                  : 'text-[#91887b] hover:text-white'
               }`}
             >
-              <Sunset className="h-3.5 w-3.5" /> Sunset
+              <Sunset className="h-3 w-3" /> Sunset
             </button>
             <button
               onClick={() => setLightingMood('starlight')}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium transition-all ${
                 lightingMood === 'starlight'
                   ? 'bg-gold-primary/20 text-gold-hover border border-gold-primary/40'
-                  : 'text-neutral-400 hover:text-white'
+                  : 'text-[#91887b] hover:text-white'
               }`}
             >
-              <Moon className="h-3.5 w-3.5" /> Starlight
+              <Moon className="h-3 w-3" /> Starlight
             </button>
           </div>
         </div>
 
         {/* Active Room Detailed Showcase Card */}
-        <div className="rounded-3xl bg-obsidian-900/90 border border-gold-primary/30 shadow-2xl overflow-hidden grid lg:grid-cols-12 gap-0">
+        <div className="rounded-2xl bg-[#141210] border border-gold-primary/20 shadow-xl overflow-hidden grid lg:grid-cols-12 gap-0">
           
           {/* Photography Side with Lightbox Trigger */}
-          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[480px] bg-obsidian-950 group overflow-hidden">
+          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[460px] bg-[#0c0b0a] group overflow-hidden">
             <Image
               src={activeRoom.image}
               alt={activeRoom.name}
@@ -128,43 +128,43 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
             />
             {/* Dynamic Mood Lighting Overlay */}
             <div className={`absolute inset-0 transition-colors duration-700 ${getMoodOverlayStyle()}`} />
-            <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0b0a]/90 via-transparent to-black/20" />
 
             {/* Expand Full-Res Lightbox Button */}
             <button
               onClick={() => handleOpenLightbox(0)}
-              className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2 rounded-xl bg-obsidian-900/90 text-gold-hover text-xs font-semibold border border-gold-primary/30 shadow-xl backdrop-blur-md hover:bg-gold-primary hover:text-obsidian-950 transition-all"
+              className="absolute bottom-6 right-6 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#141210]/90 text-gold-hover text-xs font-medium border border-gold-primary/30 shadow-lg backdrop-blur-md hover:bg-gold-primary hover:text-[#0c0b0a] transition-all"
             >
-              <Maximize2 className="h-3.5 w-3.5" /> Fullscreen Lightbox
+              <Maximize2 className="h-3 w-3" /> View Gallery
             </button>
           </div>
 
           {/* Details Side */}
           <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between space-y-6">
             <div>
-              <span className="text-xs uppercase tracking-widest text-gold-light font-semibold block mb-1">
+              <span className="text-[10px] uppercase font-mono tracking-[0.25em] text-gold-light block mb-1">
                 {activeRoom.tagline}
               </span>
-              <h3 className="font-serif text-3xl font-bold text-champagne mb-3">
+              <h3 className="font-serif text-2xl sm:text-3xl font-light text-champagne mb-3">
                 {activeRoom.name}
               </h3>
-              <p className="text-sm text-neutral-300 leading-relaxed mb-6 font-sans">
+              <p className="text-xs sm:text-sm text-[#cfc8bc] leading-relaxed mb-6 font-sans font-light">
                 {activeRoom.description}
               </p>
 
               {/* Capacity Banner */}
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-300 mb-6">
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/15 text-xs text-[#cfc8bc] mb-6">
                 <Users className="h-4 w-4 text-gold-primary shrink-0" />
                 <span>{activeRoom.capacity}</span>
               </div>
 
               {/* Key Features List */}
-              <div className="space-y-2.5">
-                <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block">
-                  Signature Salon Features
+              <div className="space-y-2">
+                <span className="text-[10px] uppercase font-mono tracking-wider text-[#91887b] block">
+                  Signature Features
                 </span>
                 {activeRoom.features.map((feat) => (
-                  <div key={feat} className="flex items-start gap-2.5 text-xs text-neutral-300">
+                  <div key={feat} className="flex items-start gap-2.5 text-xs text-[#cfc8bc] font-light">
                     <Check className="h-3.5 w-3.5 text-gold-primary shrink-0 mt-0.5" />
                     <span>{feat}</span>
                   </div>
@@ -173,12 +173,12 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
             </div>
 
             {/* Reserve This Salon Action */}
-            <div className="pt-6 border-t border-neutral-800">
+            <div className="pt-6 border-t border-gold-primary/15">
               <button
                 onClick={() => onSelectAreaForBooking(activeRoom.id)}
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm"
               >
-                <Calendar className="h-4 w-4" /> Book a Table in {activeRoom.name}
+                <Calendar className="h-3.5 w-3.5" /> Reserve Table in {activeRoom.name}
               </button>
             </div>
           </div>

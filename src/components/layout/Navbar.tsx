@@ -126,7 +126,7 @@ export function Navbar({
           {/* Reserve Table CTA */}
           <button
             onClick={onOpenReservation}
-            className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+            className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm"
           >
             <Calendar className="h-3.5 w-3.5" /> Reserve
           </button>
@@ -134,7 +134,7 @@ export function Navbar({
           {/* Mobile Menu Hamburger */}
           <button
             onClick={onToggleMobileMenu}
-            className="lg:hidden p-2 rounded-xl bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] hover:text-white"
+            className="lg:hidden p-2 rounded-full bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] hover:text-white"
             aria-label="Open mobile menu"
           >
             <Menu className="h-5 w-5" />

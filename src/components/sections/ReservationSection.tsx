@@ -177,24 +177,24 @@ export function ReservationSection({
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-light text-xs font-semibold uppercase tracking-widest mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Table Allocations
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-gold-primary/20 bg-gold-primary/5 text-gold-light text-[10px] uppercase font-mono tracking-[0.25em] mb-4">
+            <Sparkles className="h-3 w-3 text-gold-primary" /> Table Allocations
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
-            Reserve Your Culinary Odyssey
+          <h2 className="font-serif text-3xl sm:text-5xl font-light text-champagne mb-4 tracking-tight">
+            Reserve Your Table
           </h2>
-          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
-            Real-time table allocations backed by our atomic scheduling engine. Guaranteed confirmation with digital boarding pass.
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans max-w-xl mx-auto font-light">
+            Real-time table allocations backed by our atomic scheduling engine. Guaranteed confirmation with digital pass.
           </p>
         </div>
 
         {/* Wizard Card */}
-        <div className="rounded-3xl bg-[#141210]/95 border border-gold-primary/30 shadow-2xl p-6 sm:p-10 backdrop-blur-xl">
+        <div className="rounded-2xl bg-[#141210] border border-gold-primary/20 shadow-xl p-6 sm:p-10">
           
           {/* Progress Steps Header */}
-          <div className="grid grid-cols-4 gap-2 mb-8 pb-6 border-b border-neutral-800 text-xs">
+          <div className="grid grid-cols-4 gap-2 mb-8 pb-6 border-b border-gold-primary/15 text-xs">
             {[
-              { num: 1, label: 'Date & Guests' },
+              { num: 1, label: 'Guests & Date' },
               { num: 2, label: 'Salon' },
               { num: 3, label: 'Seating Time' },
               { num: 4, label: 'Guest Details' },
@@ -202,24 +202,24 @@ export function ReservationSection({
               <div
                 key={st.num}
                 className={`flex flex-col items-center text-center cursor-pointer transition-colors ${
-                  step >= st.num ? 'text-gold-hover' : 'text-neutral-600'
+                  step >= st.num ? 'text-gold-light' : 'text-[#91887b]/60'
                 }`}
                 onClick={() => {
                   if (st.num < step) setStep(st.num);
                 }}
               >
                 <div
-                  className={`h-8 w-8 rounded-full flex items-center justify-center font-serif font-bold text-xs mb-1 transition-all ${
+                  className={`h-7 w-7 rounded-full flex items-center justify-center font-mono text-xs mb-1.5 transition-all ${
                     step === st.num
-                      ? 'bg-gold-primary text-obsidian-950 shadow-gold-sm ring-2 ring-gold-light'
+                      ? 'bg-gold-primary text-[#0c0b0a] font-bold shadow-gold-sm'
                       : step > st.num
-                      ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
-                      : 'bg-neutral-900 text-neutral-600 border border-neutral-800'
+                      ? 'bg-gold-primary/15 text-gold-light border border-gold-primary/30'
+                      : 'bg-[#0c0b0a] text-[#91887b] border border-gold-primary/10'
                   }`}
                 >
-                  {step > st.num ? '✓' : st.num}
+                  {step > st.num ? '✓' : `0${st.num}`}
                 </div>
-                <span className="hidden sm:inline font-medium">{st.label}</span>
+                <span className="hidden sm:inline font-mono text-[10px] uppercase tracking-wider">{st.label}</span>
               </div>
             ))}
           </div>
@@ -230,7 +230,7 @@ export function ReservationSection({
                 <CheckCircle2 className="h-4 w-4" /> Table Confirmed & Guaranteed
               </div>
               <div>
-                <h3 className="font-serif text-3xl font-bold text-champagne">
+                <h3 className="font-serif text-3xl font-light text-champagne">
                   We Await Your Arrival, {latestConfirmed.guestName}
                 </h3>
                 <p className="text-xs text-[#91887b] mt-1 font-mono uppercase tracking-widest">
@@ -238,35 +238,35 @@ export function ReservationSection({
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#0c0b0a] border border-gold-primary/25 max-w-md mx-auto grid grid-cols-2 gap-4 text-xs text-left">
+              <div className="p-6 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 max-w-md mx-auto grid grid-cols-2 gap-4 text-xs text-left">
                 <div>
-                  <span className="text-[10px] text-[#91887b] uppercase block">Dining Date</span>
+                  <span className="text-[10px] text-[#91887b] uppercase block font-mono">Dining Date</span>
                   <span className="font-serif font-bold text-champagne">{latestConfirmed.date}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#91887b] uppercase block">Seating Time</span>
+                  <span className="text-[10px] text-[#91887b] uppercase block font-mono">Seating Time</span>
                   <span className="font-serif font-bold text-champagne">{latestConfirmed.timeSlot}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#91887b] uppercase block">Dining Salon</span>
+                  <span className="text-[10px] text-[#91887b] uppercase block font-mono">Dining Salon</span>
                   <span className="font-serif font-bold text-gold-light capitalize">{latestConfirmed.seatingArea}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#91887b] uppercase block">Party</span>
-                  <span className="font-serif font-bold text-champagne">{latestConfirmed.partySize} Distinguished Guests</span>
+                  <span className="text-[10px] text-[#91887b] uppercase block font-mono">Party</span>
+                  <span className="font-serif font-bold text-champagne">{latestConfirmed.partySize} Guests</span>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                 <button
                   onClick={() => onBookingConfirmed(latestConfirmed)}
-                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+                  className="w-full sm:w-auto px-8 py-3 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm"
                 >
                   View Digital Boarding Pass
                 </button>
                 <button
                   onClick={handleResetBookingWizard}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl gold-button-outline text-xs font-bold uppercase tracking-wider"
+                  className="w-full sm:w-auto px-6 py-3 rounded-full gold-button-outline text-xs font-semibold uppercase tracking-wider"
                 >
                   Book Another Table
                 </button>
@@ -277,14 +277,14 @@ export function ReservationSection({
               {/* STEP 1: PARTY SIZE & DATE */}
               {step === 1 && (
                 <div className="space-y-6 animate-fade-in">
-                  <h3 className="font-serif text-xl font-bold text-champagne">
-                    Step 1: Select Guests & Dining Date
+                  <h3 className="font-serif text-xl font-light text-champagne">
+                    Select Guests & Dining Date
                   </h3>
 
               {/* Party Size Selector */}
               <div>
-                <label className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block mb-2">
-                  Number of Distinguished Guests
+                <label className="text-[11px] font-mono text-[#91887b] uppercase tracking-wider block mb-2">
+                  Number of Guests
                 </label>
                 <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                   {[1, 2, 3, 4, 5, 6, 8, 10, 12].map((size) => (
@@ -292,10 +292,10 @@ export function ReservationSection({
                       key={size}
                       type="button"
                       onClick={() => setPartySize(size)}
-                      className={`py-3 rounded-xl text-xs font-bold font-serif transition-all ${
+                      className={`py-2.5 rounded-xl text-xs font-serif transition-all ${
                         partySize === size
-                          ? 'bg-gold-primary text-obsidian-950 shadow-gold-sm ring-1 ring-gold-light'
-                          : 'bg-obsidian-900 border border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                          ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
+                          : 'bg-[#0c0b0a] border border-gold-primary/15 text-[#cfc8bc] hover:border-gold-primary/30'
                       }`}
                     >
                       {size} {size === 1 ? 'Guest' : 'Guests'}
@@ -306,15 +306,15 @@ export function ReservationSection({
 
               {/* Calendar Date Input */}
               <div>
-                <label className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block mb-2">
-                  Select Calendar Date
+                <label className="text-[11px] font-mono text-[#91887b] uppercase tracking-wider block mb-2">
+                  Calendar Date
                 </label>
                 <input
                   type="date"
                   value={date}
                   min={getTomorrowDateString()}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-neutral-800 text-xs text-neutral-200 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] focus:outline-none focus:border-gold-primary"
                 />
               </div>
 
@@ -322,7 +322,7 @@ export function ReservationSection({
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="px-8 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+                  className="px-8 py-3 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm"
                 >
                   Continue to Salons →
                 </button>
@@ -333,8 +333,8 @@ export function ReservationSection({
           {/* STEP 2: SALON & ATMOSPHERE SELECTION */}
           {step === 2 && (
             <div className="space-y-6 animate-fade-in">
-              <h3 className="font-serif text-xl font-bold text-champagne">
-                Step 2: Choose Dining Salon & Atmosphere
+              <h3 className="font-serif text-xl font-light text-champagne">
+                Choose Dining Salon
               </h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
@@ -345,16 +345,16 @@ export function ReservationSection({
                     className={`p-5 rounded-2xl cursor-pointer border transition-all ${
                       seatingArea === area.id
                         ? 'bg-gold-primary/10 border-gold-primary shadow-gold-sm'
-                        : 'bg-obsidian-900 border-neutral-800 hover:border-neutral-700'
+                        : 'bg-[#0c0b0a] border-gold-primary/15 hover:border-gold-primary/30'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-serif text-base font-bold text-champagne">{area.name}</h4>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <h4 className="font-serif text-base font-normal text-champagne">{area.name}</h4>
                       {seatingArea === area.id && (
                         <CheckCircle2 className="h-4 w-4 text-gold-primary" />
                       )}
                     </div>
-                    <p className="text-xs text-neutral-400 leading-relaxed">{area.desc}</p>
+                    <p className="text-xs text-[#91887b] leading-relaxed font-light">{area.desc}</p>
                   </div>
                 ))}
               </div>
@@ -363,14 +363,14 @@ export function ReservationSection({
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="px-6 py-3 rounded-xl bg-neutral-900 text-neutral-400 hover:text-white text-xs font-semibold uppercase tracking-wider"
+                  className="px-6 py-2.5 rounded-full bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed] text-xs font-mono uppercase tracking-wider"
                 >
                   ← Back
                 </button>
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="px-8 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+                  className="px-8 py-2.5 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm"
                 >
                   Continue to Times →
                 </button>
@@ -381,25 +381,25 @@ export function ReservationSection({
           {/* STEP 3: MIN-HEAP TIME SLOTS */}
           {step === 3 && (
             <div className="space-y-6 animate-fade-in">
-              <h3 className="font-serif text-xl font-bold text-champagne">
-                Step 3: Select Real-Time Table Seating
+              <h3 className="font-serif text-xl font-light text-champagne">
+                Select Table Seating Time
               </h3>
 
               {isLoadingSlots ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center">
-                  <Loader2 className="h-8 w-8 text-gold-primary animate-spin mb-3" />
-                  <p className="text-xs text-neutral-400">Querying real-time salon capacity...</p>
+                  <Loader2 className="h-6 w-6 text-gold-primary animate-spin mb-2" />
+                  <p className="text-xs text-[#91887b] font-mono">Querying table capacity...</p>
                 </div>
               ) : availableSlots.length === 0 ? (
-                <div className="p-8 rounded-2xl bg-neutral-900 text-center">
-                  <AlertCircle className="h-8 w-8 text-amber-400 mx-auto mb-2" />
-                  <p className="text-xs text-neutral-300 mb-4">
+                <div className="p-8 rounded-2xl bg-[#0c0b0a] border border-gold-primary/15 text-center">
+                  <AlertCircle className="h-6 w-6 text-amber-400 mx-auto mb-2" />
+                  <p className="text-xs text-[#cfc8bc] mb-4">
                     No open tables remaining for the chosen date and salon.
                   </p>
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="px-6 py-2.5 rounded-xl gold-button-outline text-xs font-semibold uppercase"
+                    className="px-6 py-2 rounded-full gold-button-outline text-xs font-semibold uppercase"
                   >
                     Select Another Date
                   </button>
@@ -416,30 +416,30 @@ export function ReservationSection({
                         type="button"
                         disabled={isWaitlist}
                         onClick={() => setSelectedSlot(slot.time)}
-                        className={`p-3.5 rounded-2xl border text-center transition-all ${
+                        className={`p-3 rounded-xl border text-center transition-all ${
                           isSelected
-                            ? 'bg-gold-primary text-obsidian-950 font-bold border-gold-light shadow-gold-sm'
+                            ? 'bg-gold-primary text-[#0c0b0a] font-semibold border-gold-light shadow-gold-sm'
                             : isWaitlist
-                            ? 'bg-obsidian-950/40 border-neutral-900 text-neutral-600 opacity-40 cursor-not-allowed'
-                            : 'bg-obsidian-900 border-neutral-800 text-neutral-200 hover:border-gold-primary/40'
+                            ? 'bg-[#0c0b0a]/40 border-gold-primary/5 text-[#91887b]/30 opacity-40 cursor-not-allowed'
+                            : 'bg-[#0c0b0a] border-gold-primary/15 text-[#cfc8bc] hover:border-gold-primary/35'
                         }`}
                       >
-                        <span className="font-serif text-sm block font-bold">{slot.label}</span>
+                        <span className="font-serif text-sm block font-normal">{slot.label}</span>
                         <span
-                          className={`text-[10px] mt-1 block uppercase tracking-wider font-semibold ${
+                          className={`text-[9px] mt-0.5 block uppercase tracking-wider font-mono ${
                             isSelected
-                              ? 'text-obsidian-950'
+                              ? 'text-[#0c0b0a]'
                               : slot.status === 'FEW_LEFT'
                               ? 'text-amber-400'
                               : isWaitlist
-                              ? 'text-neutral-600'
-                              : 'text-emerald-400'
+                              ? 'text-[#91887b]'
+                              : 'text-emerald-400/90'
                           }`}
                         >
                           {slot.status === 'FEW_LEFT'
                             ? `Only ${slot.remaining} Left`
                             : slot.status === 'WAITLIST'
-                            ? 'Committed'
+                            ? 'Booked'
                             : 'Available'}
                         </span>
                       </button>
@@ -452,7 +452,7 @@ export function ReservationSection({
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="px-6 py-3 rounded-xl bg-neutral-900 text-neutral-400 hover:text-white text-xs font-semibold uppercase tracking-wider"
+                  className="px-6 py-2.5 rounded-full bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed] text-xs font-mono uppercase tracking-wider"
                 >
                   ← Back
                 </button>
@@ -460,9 +460,9 @@ export function ReservationSection({
                   type="button"
                   disabled={!selectedSlot}
                   onClick={handleNextStep}
-                  className="px-8 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow disabled:opacity-40"
+                  className="px-8 py-2.5 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm disabled:opacity-40"
                 >
-                  Confirm Time & Info →
+                  Guest Details →
                 </button>
               </div>
             </div>
@@ -471,13 +471,13 @@ export function ReservationSection({
           {/* STEP 4: GUEST INFORMATION & SUBMISSION */}
           {step === 4 && (
             <form onSubmit={handleSubmitBooking} className="space-y-6 animate-fade-in">
-              <h3 className="font-serif text-xl font-bold text-champagne">
-                Step 4: Distinguished Guest Details
+              <h3 className="font-serif text-xl font-light text-champagne">
+                Guest Details
               </h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                  <label className="text-[10px] font-mono text-[#91887b] uppercase tracking-wider block mb-1">
                     Full Name *
                   </label>
                   <input
@@ -487,11 +487,11 @@ export function ReservationSection({
                     value={guestName}
                     onChange={(e) => setGuestName(e.target.value)}
                     maxLength={80}
-                    className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                    className="w-full px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b]/60 focus:outline-none focus:border-gold-primary"
                   />
                 </div>
                 <div>
-                  <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                  <label className="text-[10px] font-mono text-[#91887b] uppercase tracking-wider block mb-1">
                     Email Address *
                   </label>
                   <input
@@ -501,11 +501,11 @@ export function ReservationSection({
                     value={guestEmail}
                     onChange={(e) => setGuestEmail(e.target.value)}
                     maxLength={254}
-                    className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                    className="w-full px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b]/60 focus:outline-none focus:border-gold-primary"
                   />
                 </div>
                 <div>
-                  <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                  <label className="text-[10px] font-mono text-[#91887b] uppercase tracking-wider block mb-1">
                     Phone Number *
                   </label>
                   <input
@@ -515,20 +515,20 @@ export function ReservationSection({
                     value={guestPhone}
                     onChange={(e) => setGuestPhone(e.target.value)}
                     maxLength={16}
-                    className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                    className="w-full px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b]/60 focus:outline-none focus:border-gold-primary"
                   />
                 </div>
                 <div>
-                  <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                  <label className="text-[10px] font-mono text-[#91887b] uppercase tracking-wider block mb-1">
                     Dining Occasion
                   </label>
                   <select
                     value={occasion}
                     onChange={(e) => setOccasion(e.target.value as OccasionType)}
-                    className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-neutral-800 text-xs text-neutral-200 focus:outline-none focus:border-gold-primary"
+                    className="w-full px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] focus:outline-none focus:border-gold-primary"
                   >
                     {OCCASIONS.map((occ) => (
-                      <option key={occ.id} value={occ.id} className="bg-obsidian-950">
+                      <option key={occ.id} value={occ.id} className="bg-[#0c0b0a]">
                         {occ.label}
                       </option>
                     ))}
@@ -537,32 +537,32 @@ export function ReservationSection({
               </div>
 
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
-                  Dietary Restrictions, Allergens & Special Arrangements
+                <label className="text-[10px] font-mono text-[#91887b] uppercase tracking-wider block mb-1">
+                  Dietary Restrictions, Allergens & Notes
                 </label>
                 <textarea
-                  rows={3}
-                  placeholder="e.g. Severe shellfish allergy, private corner booth requested, champagne on arrival..."
+                  rows={2}
+                  placeholder="e.g. Shellfish allergy, anniversary table request..."
                   value={dietaryNotes}
                   onChange={(e) => setDietaryNotes(e.target.value)}
                   maxLength={500}
-                  className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b]/60 focus:outline-none focus:border-gold-primary"
                 />
               </div>
 
               {/* Booking Summary Box */}
-              <div className="p-4 rounded-2xl bg-gold-primary/5 border border-gold-primary/20 flex items-center justify-between text-xs">
+              <div className="p-4 rounded-xl bg-[#0c0b0a] border border-gold-primary/15 flex items-center justify-between text-xs">
                 <div>
-                  <span className="text-gold-light font-semibold block">
+                  <span className="text-gold-light font-medium block">
                     {partySize} Guests · {date} at {selectedSlot}
                   </span>
-                  <span className="text-neutral-400 capitalize">
+                  <span className="text-[#91887b] capitalize text-[11px]">
                     {seatingArea} Salon · {occasion}
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-gold-primary font-serif font-bold text-sm">
-                    No Prepayment Required
+                  <span className="text-gold-primary font-mono text-xs">
+                    Guaranteed Booking
                   </span>
                 </div>
               </div>
@@ -571,21 +571,21 @@ export function ReservationSection({
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="px-6 py-3 rounded-xl bg-neutral-900 text-neutral-400 hover:text-white text-xs font-semibold uppercase tracking-wider"
+                  className="px-6 py-2.5 rounded-full bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed] text-xs font-mono uppercase tracking-wider"
                 >
                   ← Back
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-10 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow disabled:opacity-50"
+                  className="px-10 py-3 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
-                      <Loader2 className="h-4 w-4 animate-spin" /> Securing Allocation...
+                      <Loader2 className="h-4 w-4 animate-spin" /> Confirming Allocation...
                     </span>
                   ) : (
-                    'Confirm Table Reservation'
+                    'Confirm Reservation'
                   )}
                 </button>
               </div>

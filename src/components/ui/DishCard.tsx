@@ -31,98 +31,78 @@ export function DishCard({ item, currency = 'USD', onSelect, onAddToCart }: Dish
           <div className="absolute inset-0 bg-gradient-to-t from-[#141210] via-[#141210]/20 to-black/30" />
 
           {/* Badges Overlay */}
-          <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+          <div className="absolute top-3 left-3 z-10">
             {item.isChefSpecial && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-gold-primary text-obsidian-950 shadow-md">
-                <Sparkles className="h-3 w-3" /> Chef’s Signature
-              </span>
-            )}
-            {item.isPopular && !item.isChefSpecial && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-amber-500/15 text-amber-300 border border-amber-500/30 backdrop-blur-md">
-                <Flame className="h-3 w-3" /> Popular Choice
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-mono tracking-widest uppercase bg-[#0c0b0a]/80 text-gold-light border border-gold-primary/30 backdrop-blur-md">
+                ✦ Signature
               </span>
             )}
           </div>
 
           {/* Quick View Button on Image Hover */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-obsidian-900/95 text-gold-hover text-xs font-medium border border-gold-primary/40 shadow-xl transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-              <Eye className="h-3.5 w-3.5" /> View Pairing & Provenance
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#141210]/95 text-gold-hover text-[11px] font-medium border border-gold-primary/30 shadow-lg">
+              <Eye className="h-3 w-3" /> View Provenance
             </span>
           </div>
         </div>
 
         {/* Card Content */}
         <div className="flex flex-col flex-1 p-5">
-          {/* Category & Meta */}
-          <div className="flex items-center justify-between text-xs text-neutral-400 mb-2 font-sans">
-            <span className="uppercase tracking-widest text-[10px] text-gold-light font-medium">
+          {/* Category */}
+          <div className="mb-1.5">
+            <span className="uppercase tracking-[0.2em] text-[9px] text-[#91887b] font-mono">
               {item.category.replace('-', ' ')}
             </span>
-            <div className="flex items-center gap-3 text-[11px]">
-              {item.prepTime && (
-                <span className="inline-flex items-center gap-1 text-neutral-400">
-                  <Clock className="h-3 w-3" /> {item.prepTime}
-                </span>
-              )}
-              {item.calories && (
-                <span className="text-neutral-400">{item.calories} kcal</span>
-              )}
-            </div>
           </div>
 
           {/* Title & Price */}
-          <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="flex items-baseline justify-between gap-3 mb-2">
             <h3
               onClick={() => onSelect(item)}
-              className="font-serif text-lg font-medium text-champagne group-hover:text-gold-hover transition-colors cursor-pointer leading-snug line-clamp-1"
+              className="font-serif text-lg font-normal text-[#f7f4ed] group-hover:text-gold-hover transition-colors cursor-pointer leading-snug truncate"
             >
               {item.name}
             </h3>
-            <span className="font-serif text-lg font-bold text-gold-primary shrink-0">
+            <span className="font-serif text-base font-medium text-gold-primary shrink-0">
               {formatCurrency(item.price, currency)}
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-xs text-neutral-400 line-clamp-2 mb-4 leading-relaxed">
+          <p className="text-xs text-[#cfc8bc]/80 line-clamp-2 mb-4 leading-relaxed font-light">
             {item.shortDesc || item.description}
           </p>
 
-          {/* Dietary Badges */}
-          <div className="flex flex-wrap gap-1 mb-4">
-            {item.dietary.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#1c1916] text-[#cfc8bc] border border-gold-primary/20 capitalize"
-              >
-                {tag.replace('-', ' ')}
-              </span>
-            ))}
+          {/* Subtle Wine Pairing / Dietary Hint */}
+          <div className="flex items-center gap-2 mb-4 text-[10px] text-[#91887b]">
             {item.winePairing && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-gold-primary/10 text-gold-light border border-gold-primary/25">
-                <Wine className="h-2.5 w-2.5" /> Wine Paired
+              <span className="inline-flex items-center gap-1 text-gold-light/90">
+                <Wine className="h-2.5 w-2.5 text-gold-primary" /> {item.winePairing.vintage} {item.winePairing.name}
               </span>
+            )}
+            {!item.winePairing && item.dietary.length > 0 && (
+              <span className="capitalize">{item.dietary.slice(0, 2).join(' · ').replace(/-/g, ' ')}</span>
             )}
           </div>
 
           {/* Action Row */}
-          <div className="mt-auto pt-3 border-t border-gold-primary/15 flex items-center justify-between gap-2">
+          <div className="mt-auto pt-3 border-t border-gold-primary/10 flex items-center justify-between gap-2">
             <button
               onClick={() => onSelect(item)}
-              className="text-xs text-neutral-400 hover:text-gold-hover transition-colors font-medium flex items-center gap-1"
+              className="text-[11px] text-[#91887b] hover:text-gold-hover transition-colors font-mono tracking-wider uppercase"
             >
-              Explore Course →
+              Details →
             </button>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onAddToCart(item);
               }}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gold-primary/10 hover:bg-gold-primary text-gold-hover hover:text-obsidian-950 font-medium text-xs border border-gold-primary/30 transition-all duration-300"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gold-primary/10 hover:bg-gold-primary text-gold-hover hover:text-[#0c0b0a] font-medium text-xs border border-gold-primary/25 transition-all duration-300"
               aria-label={`Select ${item.name}`}
             >
-              <Plus className="h-3.5 w-3.5" /> Add to Tasting
+              <Plus className="h-3 w-3" /> Select
             </button>
           </div>
         </div>

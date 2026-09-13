@@ -146,52 +146,52 @@ export function MenuSection({
           </p>
 
           {/* Luxury Mode Toggle Switch */}
-          <div className="inline-flex items-center p-1.5 rounded-2xl bg-[#141210] border border-gold-primary/30 mt-8 shadow-card-dark">
+          <div className="inline-flex items-center p-1 rounded-full bg-[#141210] border border-gold-primary/25 mt-8">
             <button
               onClick={() => setViewMode('tasting')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-serif font-bold uppercase tracking-wider transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-2 rounded-full text-xs font-serif tracking-wider transition-all duration-300 ${
                 viewMode === 'tasting'
-                  ? 'bg-gold-primary text-[#0c0b0a] shadow-gold-sm'
-                  : 'text-[#91887b] hover:text-champagne'
+                  ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
+                  : 'text-[#91887b] hover:text-[#f7f4ed]'
               }`}
             >
-              <Award className="h-3.5 w-3.5" /> Grand Tasting Odyssey (10 Courses)
+              <Award className="h-3.5 w-3.5" /> Grand Tasting Odyssey
             </button>
             <button
               onClick={() => setViewMode('alacarte')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-serif font-bold uppercase tracking-wider transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-2 rounded-full text-xs font-serif tracking-wider transition-all duration-300 ${
                 viewMode === 'alacarte'
-                  ? 'bg-gold-primary text-[#0c0b0a] shadow-gold-sm'
-                  : 'text-[#91887b] hover:text-champagne'
+                  ? 'bg-gold-primary text-[#0c0b0a] font-semibold shadow-gold-sm'
+                  : 'text-[#91887b] hover:text-[#f7f4ed]'
               }`}
             >
-              <Utensils className="h-3.5 w-3.5" /> Seasonal À La Carte Catalog
+              <Utensils className="h-3.5 w-3.5" /> Seasonal À La Carte
             </button>
           </div>
         </div>
 
         {/* VIEW 1: GRAND TASTING MENU ODYSSEY */}
         {viewMode === 'tasting' && (
-          <div className="space-y-12 animate-fade-in">
+          <div className="space-y-10 animate-fade-in">
             {/* Banner card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#141210] via-[#1a1714] to-[#141210] border border-gold-primary/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="p-8 sm:p-10 rounded-2xl bg-[#141210] border border-gold-primary/20 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
-                <span className="text-[11px] font-semibold text-gold-light uppercase tracking-widest block mb-1">
-                  The Signature Michelin 3-Star Experience
+                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold-light block mb-1">
+                  Signature Michelin 3-Star Experience
                 </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-champagne">
+                <h3 className="font-serif text-2xl sm:text-3xl font-light text-champagne">
                   The Ten-Course Celestial Odyssey
                 </h3>
-                <p className="text-xs text-[#91887b] max-w-xl mt-2 leading-relaxed font-sans">
+                <p className="text-xs text-[#91887b] max-w-xl mt-2 leading-relaxed font-sans font-light">
                   A harmonious progression through oceanic purity, wood-fired hearth intensity, and rare Périgord truffles. Served in The Grand Atrium & Chef’s Omakase Counter.
                 </p>
-                <div className="flex flex-wrap gap-4 mt-4 text-xs">
-                  <span className="text-champagne font-serif font-bold">
-                    Tasting Menu: <span className="text-gold-primary">{formatCurrency(395, currency)}</span> / guest
+                <div className="flex flex-wrap items-center gap-4 mt-4 text-xs font-sans">
+                  <span className="text-champagne font-medium">
+                    Tasting Menu: <span className="text-gold-primary font-serif font-bold">{formatCurrency(395, currency)}</span> / guest
                   </span>
-                  <span className="text-neutral-500">·</span>
+                  <span className="text-neutral-600">·</span>
                   <span className="text-[#cfc8bc]">
-                    Grand Sommelier Pairing: <span className="text-gold-light">{formatCurrency(250, currency)}</span>
+                    Grand Sommelier Pairing: <span className="text-gold-light font-serif font-medium">{formatCurrency(250, currency)}</span>
                   </span>
                 </div>
               </div>
@@ -199,36 +199,35 @@ export function MenuSection({
               <div className="shrink-0 flex flex-col sm:flex-row items-center gap-3">
                 <button
                   onClick={onOpenSommelier}
-                  className="px-5 py-3 rounded-xl gold-button-outline text-xs font-bold uppercase tracking-wider flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-full gold-button-outline text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
                 >
                   <Wine className="h-3.5 w-3.5 text-gold-primary" /> Cellar Pairings
                 </button>
                 <button
                   onClick={scrollToReservations}
-                  className="px-7 py-3 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-full gold-button text-xs font-semibold uppercase tracking-wider shadow-gold-sm flex items-center gap-2"
                 >
-                  <Calendar className="h-4 w-4" /> Book This Experience
+                  <Calendar className="h-3.5 w-3.5" /> Reserve Experience
                 </button>
               </div>
             </div>
 
             {/* Sequential 10-Course Progression Timeline */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {tastingItems.map((dish, index) => (
                 <div
                   key={dish.id}
                   onClick={() => onSelectDish(dish)}
-                  className="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-5 sm:p-6 rounded-2xl bg-[#141210]/90 border border-gold-primary/15 hover:border-gold-primary/40 transition-all duration-300 cursor-pointer shadow-card-dark"
+                  className="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-4 sm:p-5 rounded-2xl bg-[#141210]/60 border border-gold-primary/10 hover:border-gold-primary/30 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="flex items-center gap-5 w-full md:w-auto">
+                  <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
                     {/* Course Sequence Badge */}
-                    <div className="h-12 w-12 rounded-xl bg-[#0c0b0a] border border-gold-primary/25 flex flex-col items-center justify-center text-center shrink-0">
-                      <span className="text-[9px] uppercase tracking-wider text-gold-light/80 font-sans">Course</span>
-                      <span className="font-serif font-bold text-base text-champagne">{String(index + 1).padStart(2, '0')}</span>
+                    <div className="h-10 w-10 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 flex flex-col items-center justify-center text-center shrink-0">
+                      <span className="font-serif text-sm font-light text-gold-light">{String(index + 1).padStart(2, '0')}</span>
                     </div>
 
                     {/* Thumbnail */}
-                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl overflow-hidden shrink-0 bg-[#1a1714]">
+                    <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden shrink-0 bg-[#1a1714]">
                       <Image
                         src={dish.image}
                         alt={dish.name}
@@ -240,36 +239,36 @@ export function MenuSection({
 
                     {/* Titles */}
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="text-[9px] uppercase tracking-[0.2em] text-[#91887b] font-mono">
                           {dish.category.replace('-', ' ')}
                         </span>
                         {dish.isChefSpecial && (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase bg-gold-primary text-obsidian-950">
-                            ★ Signature
+                          <span className="text-[9px] text-gold-primary font-mono">
+                            ✦ Signature
                           </span>
                         )}
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-champagne group-hover:text-gold-hover transition-colors truncate">
+                      <h4 className="font-serif text-base sm:text-lg font-normal text-[#f7f4ed] group-hover:text-gold-hover transition-colors truncate">
                         {dish.name}
                       </h4>
-                      <p className="text-xs text-neutral-400 line-clamp-1 max-w-lg mt-0.5">
+                      <p className="text-xs text-[#cfc8bc]/70 line-clamp-1 max-w-lg mt-0.5 font-light">
                         {dish.shortDesc || dish.description}
                       </p>
                     </div>
                   </div>
 
                   {/* Sommelier & Action */}
-                  <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-neutral-800">
+                  <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-gold-primary/10">
                     {dish.winePairing && (
                       <div className="hidden lg:block text-right">
-                        <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">Allocation Pairing</span>
-                        <span className="text-xs font-serif text-gold-light font-medium">{dish.winePairing.name} ({dish.winePairing.vintage})</span>
+                        <span className="text-[9px] uppercase tracking-wider text-[#91887b] block font-mono">Sommelier Pairing</span>
+                        <span className="text-xs font-serif text-gold-light/90 font-light">{dish.winePairing.name} ({dish.winePairing.vintage})</span>
                       </div>
                     )}
 
                     <div className="flex items-center gap-3">
-                      <span className="font-serif text-sm font-bold text-gold-primary">
+                      <span className="font-serif text-base font-medium text-gold-primary">
                         {formatCurrency(dish.price, currency)}
                       </span>
                       <button
@@ -277,9 +276,9 @@ export function MenuSection({
                           e.stopPropagation();
                           onAddToCart(dish);
                         }}
-                        className="px-3.5 py-1.5 rounded-lg bg-gold-primary/10 hover:bg-gold-primary text-gold-hover hover:text-obsidian-950 text-xs font-medium border border-gold-primary/30 transition-colors"
+                        className="px-3 py-1 rounded-full bg-gold-primary/10 hover:bg-gold-primary text-gold-hover hover:text-[#0c0b0a] text-xs font-medium border border-gold-primary/20 transition-colors"
                       >
-                        Add to Selection
+                        + Add
                       </button>
                     </div>
                   </div>
