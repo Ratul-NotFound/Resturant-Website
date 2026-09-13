@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MenuItem } from '@/lib/types';
+import { MenuItem, CurrencyCode } from '@/lib/types';
 import { menuData } from '@/data/menuData';
-import { X, Wine, Sparkles, Compass, CheckCircle2, ChevronRight, Glasses } from 'lucide-react';
+import { X, Wine, Sparkles, Compass, CheckCircle2, ChevronRight, Glasses, Plus } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils/formatting';
 
 interface SommelierAssistantModalProps {
   isOpen: boolean;
+  currency?: CurrencyCode;
   onClose: () => void;
   onSelectDish: (item: MenuItem) => void;
+  onAddToCart?: (item: MenuItem) => void;
 }
 
 type WinePreference =
@@ -33,8 +35,10 @@ const WINE_PREFERENCES: Array<{ id: WinePreference; label: string; desc: string 
 
 export function SommelierAssistantModal({
   isOpen,
+  currency = 'USD',
   onClose,
   onSelectDish,
+  onAddToCart,
 }: SommelierAssistantModalProps) {
   const [selectedPref, setSelectedPref] = useState<WinePreference>('all');
 
@@ -102,7 +106,7 @@ export function SommelierAssistantModal({
           {pairedDishes.map((dish) => (
             <div
               key={dish.id}
-              className="p-5 rounded-2xl bg-obsidian-950 border border-neutral-800 hover:border-gold-primary/40 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group cursor-pointer"
+              className="p-5 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 hover:border-gold-primary/45 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group cursor-pointer shadow-card-dark"
               onClick={() => {
                 onClose();
                 onSelectDish(dish);
@@ -114,7 +118,7 @@ export function SommelierAssistantModal({
                     {dish.category.replace('-', ' ')}
                   </span>
                   <span className="text-xs font-serif font-bold text-gold-primary">
-                    {formatCurrency(dish.price)}
+                    {formatCurrency(dish.price, currency)}
                   </span>
                 </div>
                 <h4 className="font-serif text-base font-bold text-champagne group-hover:text-gold-hover transition-colors">
@@ -122,31 +126,45 @@ export function SommelierAssistantModal({
                 </h4>
                 
                 {dish.winePairing ? (
-                  <div className="flex items-start gap-2 text-xs text-neutral-300 mt-2 bg-gold-primary/5 p-2.5 rounded-xl border border-gold-primary/15">
+                  <div className="flex items-start gap-2 text-xs text-[#cfc8bc] mt-2 bg-gold-primary/5 p-2.5 rounded-xl border border-gold-primary/15">
                     <Glasses className="h-4 w-4 text-gold-primary shrink-0 mt-0.5" />
                     <div>
                       <span className="font-serif font-semibold text-gold-hover">
                         {dish.winePairing.name} ({dish.winePairing.vintage})
                       </span>
-                      <span className="text-neutral-400 block text-[11px]">{dish.winePairing.region}</span>
-                      <p className="text-[11px] text-neutral-400 italic mt-0.5">
+                      <span className="text-[#91887b] block text-[11px]">{dish.winePairing.region}</span>
+                      <p className="text-[11px] text-[#91887b] italic mt-0.5">
                         “{dish.winePairing.notes}”
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <p className="text-xs text-neutral-400 italic mt-1">
+                  <p className="text-xs text-[#91887b] italic mt-1">
                     Artisanal distilled botanicals & zero-proof pairing
                   </p>
                 )}
               </div>
 
-              <button
-                type="button"
-                className="self-end sm:self-center flex items-center gap-1 text-xs text-gold-hover font-semibold shrink-0 group-hover:translate-x-1 transition-transform"
-              >
-                Inspect Course <ChevronRight className="h-4 w-4" />
-              </button>
+              <div className="self-end sm:self-center flex items-center gap-2 shrink-0 pt-2 sm:pt-0">
+                {onAddToCart && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAddToCart(dish);
+                    }}
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gold-primary/15 hover:bg-gold-primary text-gold-hover hover:text-obsidian-950 text-xs font-semibold border border-gold-primary/30 transition-colors"
+                  >
+                    <Plus className="h-3.5 w-3.5" /> Add with Pairing
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="flex items-center gap-1 text-xs text-gold-hover font-semibold hover:text-white transition-colors"
+                >
+                  Inspect <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           ))}
         </div>

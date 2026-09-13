@@ -79,10 +79,10 @@ export function ChefFlipCard({ special, onExploreDish }: ChefFlipCardProps) {
         </div>
 
         {/* BACK SIDE */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden bg-obsidian-900 border border-gold-primary/50 shadow-gold-glow flex flex-col justify-between p-6 sm:p-8">
+        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden bg-[#141210] border border-gold-primary/50 shadow-gold-glow flex flex-col justify-between p-6 sm:p-8">
           {/* Subtle Background Pattern */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-obsidian-900 via-obsidian-950 to-black opacity-95" />
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]" />
+          <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#141210] via-[#0c0b0a] to-black opacity-95" />
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#c5a059_1px,transparent_1px)] [background-size:16px_16px]" />
 
           {/* Top Header */}
           <div className="relative z-10 flex items-center justify-between">
@@ -97,7 +97,7 @@ export function ChefFlipCard({ special, onExploreDish }: ChefFlipCardProps) {
                 e.stopPropagation();
                 setIsFlipped(false);
               }}
-              className="p-2 rounded-full bg-neutral-800 text-gold-light border border-neutral-700 hover:bg-gold-primary hover:text-obsidian-950 transition-colors"
+              className="p-2 rounded-full bg-[#1c1916] text-gold-light border border-gold-primary/30 hover:bg-gold-primary hover:text-obsidian-950 transition-colors"
               title="Flip back"
             >
               <RotateCw className="h-3.5 w-3.5" />

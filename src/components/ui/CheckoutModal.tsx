@@ -134,13 +134,13 @@ export function CheckoutModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-2xl my-auto rounded-3xl bg-obsidian-900 border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up"
+        className="relative w-full max-w-2xl my-auto rounded-3xl bg-[#141210] border border-gold-primary/35 shadow-2xl p-6 sm:p-8 animate-slide-up text-[#cfc8bc]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-800/80 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-[#1c1916] text-neutral-400 hover:text-white border border-gold-primary/20 transition-colors"
           aria-label="Close checkout"
         >
           <X className="h-5 w-5" />
@@ -151,9 +151,9 @@ export function CheckoutModal({
           <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-light font-semibold mb-1">
             <ShieldCheck className="h-4 w-4 text-gold-primary" /> Zero-Trust Verified Checkout ({currency})
           </div>
-          <h2 className="font-serif text-2xl font-bold text-champagne">Finalize Culinary Order</h2>
-          <p className="text-xs text-neutral-400">
-            Authoritative prices re-verified against our Michelin cellar repository.
+          <h2 className="font-serif text-2xl font-bold text-champagne">Finalize Tasting Selection</h2>
+          <p className="text-xs text-[#91887b]">
+            Authoritative course allocations confirmed against our cellar inventory.
           </p>
         </div>
 
@@ -161,7 +161,7 @@ export function CheckoutModal({
           {/* Customer Details */}
           <div className="grid sm:grid-cols-2 gap-3">
             <div>
-              <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
                 Full Name *
               </label>
               <input
@@ -171,11 +171,11 @@ export function CheckoutModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 maxLength={80}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
               />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
                 Email Address *
               </label>
               <input
@@ -185,11 +185,11 @@ export function CheckoutModal({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 maxLength={254}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
               />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
                 Phone Number *
               </label>
               <input
@@ -199,11 +199,11 @@ export function CheckoutModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 maxLength={16}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
               />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-1">
                 Delivery / Table Destination *
               </label>
               <input
@@ -213,14 +213,14 @@ export function CheckoutModal({
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 maxLength={200}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
               />
             </div>
           </div>
 
           {/* Promo Coupon Section */}
-          <div className="p-4 rounded-2xl bg-obsidian-950/70 border border-neutral-800">
-            <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-2">
+          <div className="p-4 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20">
+            <span className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-2">
               Promotional Courtesy Code
             </span>
             {appliedCoupon ? (
@@ -235,7 +235,7 @@ export function CheckoutModal({
                 <button
                   type="button"
                   onClick={handleRemoveCoupon}
-                  className="text-xs text-neutral-400 hover:text-rose-400"
+                  className="text-xs text-[#91887b] hover:text-rose-400"
                 >
                   Remove
                 </button>
@@ -248,7 +248,7 @@ export function CheckoutModal({
                   value={couponInput}
                   onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                   maxLength={20}
-                  className="flex-1 px-3.5 py-2 rounded-xl bg-obsidian-900 border border-neutral-700 text-xs font-mono text-neutral-200 uppercase placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                  className="flex-1 px-3.5 py-2 rounded-xl bg-[#141210] border border-gold-primary/25 text-xs font-mono text-neutral-200 uppercase placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
                 />
                 <button
                   type="button"
@@ -263,7 +263,7 @@ export function CheckoutModal({
 
           {/* Gratuity / Sommelier Tip Selector */}
           <div>
-            <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-2">
+            <span className="text-[11px] font-semibold text-[#91887b] uppercase tracking-wider block mb-2">
               Sommelier & Brigade Gratuity
             </span>
             <div className="grid grid-cols-4 gap-2">
@@ -275,7 +275,7 @@ export function CheckoutModal({
                   className={`py-2 rounded-xl text-xs font-semibold border transition-all ${
                     tipPercent === pct
                       ? 'bg-gold-primary/20 border-gold-primary text-gold-hover shadow-gold-sm'
-                      : 'bg-obsidian-950 border-neutral-800 text-neutral-400 hover:text-neutral-200'
+                      : 'bg-[#0c0b0a] border-gold-primary/20 text-[#91887b] hover:text-neutral-200'
                   }`}
                 >
                   {pct}%
@@ -285,8 +285,8 @@ export function CheckoutModal({
           </div>
 
           {/* Bill Calculation Summary */}
-          <div className="p-4 rounded-2xl bg-obsidian-950 border border-neutral-800 space-y-2 text-xs">
-            <div className="flex justify-between text-neutral-400">
+          <div className="p-4 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 space-y-2 text-xs">
+            <div className="flex justify-between text-[#91887b]">
               <span>Courses Subtotal ({items.reduce((s, i) => s + i.quantity, 0)} items)</span>
               <span className="font-mono text-neutral-200">{formatCurrency(subtotal, currency)}</span>
             </div>
@@ -296,15 +296,15 @@ export function CheckoutModal({
                 <span className="font-mono">- {formatCurrency(discountAmount, currency)}</span>
               </div>
             )}
-            <div className="flex justify-between text-neutral-400">
+            <div className="flex justify-between text-[#91887b]">
               <span>NYC Hospitality Sales Tax (8.875%)</span>
               <span className="font-mono text-neutral-200">{formatCurrency(tax, currency)}</span>
             </div>
-            <div className="flex justify-between text-neutral-400">
+            <div className="flex justify-between text-[#91887b]">
               <span>Brigade Gratuity ({tipPercent}%)</span>
               <span className="font-mono text-neutral-200">{formatCurrency(tip, currency)}</span>
             </div>
-            <div className="flex justify-between text-base font-bold pt-3 border-t border-neutral-800 text-champagne">
+            <div className="flex justify-between text-base font-bold pt-3 border-t border-gold-primary/20 text-champagne">
               <span className="font-serif">Grand Total</span>
               <span className="font-serif text-gold-primary text-lg">{formatCurrency(grandTotal, currency)}</span>
             </div>

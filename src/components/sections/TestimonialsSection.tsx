@@ -6,10 +6,10 @@ import { Award, Sparkles, Star, Quote } from 'lucide-react';
 
 export function TestimonialsSection() {
   return (
-    <section id="reviews" className="relative py-24 sm:py-32 bg-obsidian-950 overflow-hidden text-neutral-300">
+    <section id="reviews" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0e0d0b] overflow-hidden text-[#cfc8bc]">
       
       {/* Background Accent */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(212,175,55,0.04),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -21,7 +21,7 @@ export function TestimonialsSection() {
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
             Celebrated by the World’s Leading Gastronomes
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
             Independent evaluations and press citations from the globe’s most esteemed culinary critics.
           </p>
         </div>
@@ -31,7 +31,7 @@ export function TestimonialsSection() {
           {reviewsData.map((review) => (
             <div
               key={review.id}
-              className="relative p-8 sm:p-10 rounded-3xl bg-obsidian-900/80 border border-gold-primary/25 shadow-2xl backdrop-blur-md flex flex-col justify-between hover:border-gold-primary/50 transition-all duration-300 group"
+              className="relative p-8 sm:p-10 rounded-3xl bg-[#141210] border border-gold-primary/20 shadow-2xl backdrop-blur-md flex flex-col justify-between hover:border-gold-primary/45 transition-all duration-300 group"
             >
               {/* Quote Mark */}
               <Quote className="h-10 w-10 text-gold-primary/20 group-hover:text-gold-primary/40 transition-colors mb-4" />
@@ -40,10 +40,10 @@ export function TestimonialsSection() {
                 “{review.quote}”
               </p>
 
-              <div className="pt-6 border-t border-neutral-800 flex items-center justify-between">
+              <div className="pt-6 border-t border-gold-primary/15 flex items-center justify-between">
                 <div>
                   <h4 className="font-serif text-base font-bold text-champagne">{review.publication}</h4>
-                  <p className="text-xs text-neutral-400 font-sans">{review.author} · {review.year}</p>
+                  <p className="text-xs text-[#91887b] font-sans">{review.author} · {review.year}</p>
                 </div>
 
                 <div className="text-right">

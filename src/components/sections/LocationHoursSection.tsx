@@ -21,10 +21,10 @@ export function LocationHoursSection() {
   }, []);
 
   return (
-    <section id="location" className="relative py-24 sm:py-32 bg-obsidian-900 overflow-hidden text-neutral-300">
+    <section id="location" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
       
       {/* Background Glow */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -36,7 +36,7 @@ export function LocationHoursSection() {
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
             The Manhattan Sky Sanctum
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
             Located on the 30th floor of 432 Park Avenue. Direct elevator access via private white-glove concierge.
           </p>
         </div>
@@ -48,7 +48,7 @@ export function LocationHoursSection() {
           <div className="lg:col-span-6 space-y-6">
             
             {/* Live Operational Status Banner */}
-            <div className="p-6 rounded-3xl bg-obsidian-950/90 border border-gold-primary/30 shadow-2xl backdrop-blur-md">
+            <div className="p-6 rounded-3xl bg-[#141210] border border-gold-primary/30 shadow-2xl backdrop-blur-md">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-semibold uppercase tracking-widest text-gold-light">
                   Real-Time Service Status
@@ -120,11 +120,11 @@ export function LocationHoursSection() {
           <div className="lg:col-span-6 space-y-6">
             
             {/* Architectural Sky Map Card */}
-            <div className="relative h-[340px] sm:h-[400px] w-full rounded-3xl overflow-hidden bg-obsidian-950 border border-gold-primary/30 shadow-2xl flex flex-col justify-between p-6 sm:p-8">
+            <div className="relative h-[340px] sm:h-[400px] w-full rounded-3xl overflow-hidden bg-[#0c0b0a] border border-gold-primary/30 shadow-2xl flex flex-col justify-between p-6 sm:p-8">
               
               {/* Background Luxury Dark Street View Overlay */}
-              <div className="absolute inset-0 z-0 opacity-40 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/70 to-transparent" />
+              <div className="absolute inset-0 z-0 opacity-40 bg-[radial-gradient(#c5a059_1px,transparent_1px)] [background-size:24px_24px]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0b0a] via-[#0c0b0a]/70 to-transparent" />
 
               {/* Pin Centerpiece */}
               <div className="relative z-10 flex flex-col items-center justify-center my-auto text-center">

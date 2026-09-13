@@ -4,17 +4,20 @@
 
 @layer base {
   :root {
-    --bg-primary: #0a0a0c;
-    --bg-secondary: #121217;
-    --bg-card: rgba(18, 18, 24, 0.85);
-    --gold-primary: #d4af37;
-    --gold-hover: #f3e5ab;
-    --gold-light: #dfba53;
-    --gold-dark: #aa8528;
-    --champagne: #faebd7;
-    --bronze: #8c7853;
-    --text-main: #f5f5f7;
-    --text-muted: #a1a1aa;
+    --bg-primary: #0c0b0a;
+    --bg-secondary: #141210;
+    --bg-card: rgba(20, 18, 16, 0.88);
+    --gold-primary: #c5a059;
+    --gold-hover: #dfbe7a;
+    --gold-light: #e8d39b;
+    --gold-dark: #9e7d3b;
+    --champagne: #f7f4ed;
+    --bronze: #9e8a6e;
+    --text-main: #f7f4ed;
+    --text-body: #cfc8bc;
+    --text-muted: #91887b;
+    --border-hairline: rgba(197, 160, 89, 0.18);
+    --border-highlight: rgba(197, 160, 89, 0.38);
   }
 
   html {
@@ -28,88 +31,85 @@
     color: var(--text-main);
     font-family: var(--font-outfit), 'Outfit', sans-serif;
     overflow-x: hidden;
-    selection-background-color: #d4af37;
-    selection-color: #0a0a0c;
   }
 
   ::selection {
-    background: #d4af37;
-    color: #0a0a0c;
+    background: #c5a059;
+    color: #0c0b0a;
   }
 
   /* Custom luxury scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a0c;
+    background: #0c0b0a;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2a2a35;
-    border-radius: 4px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: #24201c;
+    border-radius: 3px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #d4af37;
+    background: #c5a059;
   }
 }
 
 /* Glassmorphism & Gold Luxury Utilities */
 .glass-panel {
-  background: rgba(18, 18, 24, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(20, 18, 16, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 160, 89, 0.18);
 }
 
 .glass-panel-hover {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(24, 24, 32, 0.9);
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+  background: rgba(26, 23, 20, 0.94);
+  border-color: rgba(197, 160, 89, 0.38);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.7);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #fff2cc 0%, #d4af37 50%, #aa8528 100%);
+  background: linear-gradient(135deg, #fffaf0 0%, #dfbe7a 40%, #c5a059 70%, #9e7d3b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-gradient-border {
-  border-image: linear-gradient(135deg, #d4af37, rgba(212, 175, 55, 0.2), #d4af37) 1;
-}
-
 .gold-button {
-  background: linear-gradient(135deg, #d4af37 0%, #b89124 100%);
-  color: #0a0a0c;
+  background: linear-gradient(135deg, #dfbe7a 0%, #c5a059 50%, #ad8745 100%);
+  color: #0c0b0a;
   font-weight: 600;
-  transition: all 0.3s ease;
+  letter-spacing: 0.08em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px -3px rgba(197, 160, 89, 0.22);
 }
 .gold-button:hover {
-  background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 100%);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #e8d39b 0%, #dfbe7a 50%, #c5a059 100%);
+  box-shadow: 0 6px 25px -2px rgba(197, 160, 89, 0.32);
+  transform: translateY(-1px);
 }
 .gold-button:active {
   transform: translateY(0);
 }
 
 .gold-button-outline {
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  color: #d4af37;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  color: #dfbe7a;
+  letter-spacing: 0.08em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .gold-button-outline:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: #d4af37;
-  color: #f3e5ab;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
-  transform: translateY(-2px);
+  background: rgba(197, 160, 89, 0.08);
+  border-color: #c5a059;
+  color: #f7f4ed;
+  box-shadow: 0 4px 18px -3px rgba(197, 160, 89, 0.18);
+  transform: translateY(-1px);
 }
 
 /* 3D Flip Card Styles */

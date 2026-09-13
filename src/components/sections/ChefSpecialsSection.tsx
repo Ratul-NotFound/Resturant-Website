@@ -11,23 +11,23 @@ interface ChefSpecialsSectionProps {
 
 export function ChefSpecialsSection({ onExploreDish }: ChefSpecialsSectionProps) {
   return (
-    <section id="specials" className="relative py-24 sm:py-32 bg-obsidian-900 overflow-hidden text-neutral-300">
+    <section id="specials" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
       
       {/* Background Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-light text-xs font-semibold uppercase tracking-widest mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Master Creations
+            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Master Brigade Signatures
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
-            Chef Brigade Signature Showcase
+            Culinary Craft & Metallurgy
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
-            Interactive 3D showcases revealing the secret techniques, wood-fired charring, and flavor architectures of our Executive Chefs. Tap any card to flip.
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
+            Interactive 3D showcases revealing the secret charcoal techniques, pristine embers, and flavor architectures of our master brigade. Tap any card to flip.
           </p>
         </div>
 

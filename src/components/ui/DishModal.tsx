@@ -27,15 +27,15 @@ export function DishModal({ item, currency = 'USD', onClose, onAddToCart }: Dish
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in">
       <div
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-obsidian-900 border border-gold-primary/30 shadow-2xl animate-slide-up"
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#141210] border border-gold-primary/35 shadow-2xl animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-obsidian-950/80 text-neutral-400 hover:text-white border border-neutral-700/60 backdrop-blur-md transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-[#0c0b0a]/90 text-neutral-400 hover:text-white border border-gold-primary/30 backdrop-blur-md transition-colors"
           aria-label="Close dish details"
         >
           <X className="h-5 w-5" />
@@ -88,27 +88,27 @@ export function DishModal({ item, currency = 'USD', onClose, onAddToCart }: Dish
           </p>
 
           {/* Meta Details Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-obsidian-950/70 border border-neutral-800">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[#0c0b0a] border border-gold-primary/20">
             <div>
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Preparation Time</span>
+              <span className="text-[10px] text-[#91887b] uppercase tracking-wider block">Preparation Time</span>
               <span className="text-xs font-medium text-neutral-200 flex items-center gap-1 mt-1">
                 <Clock className="h-3.5 w-3.5 text-gold-light" /> {item.prepTime || '15 mins'}
               </span>
             </div>
             <div>
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Caloric Value</span>
+              <span className="text-[10px] text-[#91887b] uppercase tracking-wider block">Caloric Value</span>
               <span className="text-xs font-medium text-neutral-200 block mt-1">
                 {item.calories ? `${item.calories} kcal` : 'Chef Precision'}
               </span>
             </div>
             <div>
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Dietary Profile</span>
+              <span className="text-[10px] text-[#91887b] uppercase tracking-wider block">Dietary Profile</span>
               <span className="text-xs font-medium text-neutral-200 block mt-1 capitalize">
                 {item.dietary.join(', ').replace(/-/g, ' ') || 'Classic'}
               </span>
             </div>
             <div>
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Allergen Notice</span>
+              <span className="text-[10px] text-[#91887b] uppercase tracking-wider block">Allergen Notice</span>
               <span className="text-xs font-medium text-amber-300 flex items-center gap-1 mt-1">
                 <ShieldAlert className="h-3.5 w-3.5" />
                 {item.allergens.length > 0 ? item.allergens.join(', ') : 'None'}

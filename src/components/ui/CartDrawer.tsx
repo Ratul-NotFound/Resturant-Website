@@ -38,22 +38,22 @@ export function CartDrawer({
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-obsidian-900 border-l border-gold-primary/30 shadow-2xl flex flex-col justify-between animate-slide-up">
+        <div className="w-screen max-w-md bg-[#141210] border-l border-gold-primary/30 shadow-2xl flex flex-col justify-between animate-slide-up">
           
           {/* Header */}
-          <div className="p-6 border-b border-neutral-800 flex items-center justify-between">
+          <div className="p-6 border-b border-gold-primary/20 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <ShoppingBag className="h-5 w-5 text-gold-primary" />
               <div>
                 <h3 className="font-serif text-lg font-bold text-champagne">Your Tasting Order</h3>
-                <p className="text-[11px] text-neutral-400">
+                <p className="text-[11px] text-[#91887b]">
                   {items.length === 0 ? 'No courses added yet' : `${items.length} unique courses selected`}
                 </p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-full hover:bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+              className="p-2 rounded-full hover:bg-[#1c1916] text-neutral-400 hover:text-white border border-gold-primary/20 transition-colors"
               aria-label="Close cart"
             >
               <X className="h-5 w-5" />
@@ -82,10 +82,10 @@ export function CartDrawer({
               items.map(({ item, quantity, notes }) => (
                 <div
                   key={item.id}
-                  className="flex gap-3 p-3.5 rounded-2xl bg-obsidian-950/80 border border-neutral-800 hover:border-gold-primary/30 transition-all"
+                  className="flex gap-3 p-3.5 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 hover:border-gold-primary/40 transition-all"
                 >
                   {/* Dish Thumbnail */}
-                  <div className="relative h-20 w-20 rounded-xl overflow-hidden shrink-0 bg-neutral-800">
+                  <div className="relative h-20 w-20 rounded-xl overflow-hidden shrink-0 bg-[#1c1916]">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -104,7 +104,7 @@ export function CartDrawer({
                         </h4>
                         <button
                           onClick={() => onRemoveItem(item.id)}
-                          className="text-neutral-500 hover:text-rose-400 transition-colors p-0.5"
+                          className="text-[#91887b] hover:text-rose-400 transition-colors p-0.5"
                           title="Remove course"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
@@ -116,24 +116,24 @@ export function CartDrawer({
                     </div>
 
                     {notes && (
-                      <p className="text-[10px] text-neutral-400 italic line-clamp-1">
+                      <p className="text-[10px] text-[#91887b] italic line-clamp-1">
                         Note: {notes}
                       </p>
                     )}
 
                     {/* Quantity Controls */}
-                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-neutral-800/80">
-                      <div className="flex items-center gap-2 bg-neutral-900 rounded-lg p-1 border border-neutral-800">
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-gold-primary/10">
+                      <div className="flex items-center gap-2 bg-[#1c1916] rounded-lg p-1 border border-gold-primary/20">
                         <button
                           onClick={() => onUpdateQty(item.id, quantity - 1)}
-                          className="p-1 rounded text-neutral-400 hover:text-white transition-colors"
+                          className="p-1 rounded text-[#91887b] hover:text-white transition-colors"
                         >
                           <Minus className="h-3 w-3" />
                         </button>
                         <span className="text-xs font-bold text-champagne w-5 text-center">{quantity}</span>
                         <button
                           onClick={() => onUpdateQty(item.id, quantity + 1)}
-                          className="p-1 rounded text-neutral-400 hover:text-white transition-colors"
+                          className="p-1 rounded text-[#91887b] hover:text-white transition-colors"
                         >
                           <Plus className="h-3 w-3" />
                         </button>
@@ -150,17 +150,17 @@ export function CartDrawer({
 
           {/* Footer Checkout Summary */}
           {items.length > 0 && (
-            <div className="p-6 bg-obsidian-950/90 border-t border-neutral-800 space-y-4">
+            <div className="p-6 bg-[#0c0b0a] border-t border-gold-primary/20 space-y-4">
               <div className="space-y-1.5 text-xs font-sans">
-                <div className="flex justify-between text-neutral-400">
+                <div className="flex justify-between text-[#91887b]">
                   <span>Courses Subtotal</span>
                   <span className="font-medium text-neutral-200">{formatCurrency(subtotal, currency)}</span>
                 </div>
-                <div className="flex justify-between text-neutral-400">
+                <div className="flex justify-between text-[#91887b]">
                   <span>Estimated Tax & Service</span>
-                  <span className="text-neutral-400">Calculated at Checkout</span>
+                  <span className="text-[#91887b]">Calculated at Checkout</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-neutral-800">
+                <div className="flex justify-between text-sm pt-2 border-t border-gold-primary/15">
                   <span className="font-serif font-bold text-champagne">Estimated Total</span>
                   <span className="font-serif font-bold text-gold-primary text-base">
                     {formatCurrency(subtotal, currency)}

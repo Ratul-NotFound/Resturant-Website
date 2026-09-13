@@ -42,6 +42,7 @@ export function ReservationSection({
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<string>('');
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+  const [latestConfirmed, setLatestConfirmed] = useState<ReservationRecord | null>(null);
 
   // Guest Details
   const [guestName, setGuestName] = useState('');
@@ -63,6 +64,7 @@ export function ReservationSection({
     async function fetchSlots() {
       if (!date || !seatingArea) return;
       setIsLoadingSlots(true);
+      setSelectedSlot(''); // Reset selection on date/area change
       try {
         const res = await fetch(
           `/api/reservations/slots?date=${date}&area=${seatingArea}&partySize=${partySize}`
@@ -70,13 +72,10 @@ export function ReservationSection({
         const data = await res.json();
         if (data.success && Array.isArray(data.slots)) {
           setAvailableSlots(data.slots);
-          if (data.slots.length > 0 && !selectedSlot) {
-            const firstAvail = data.slots.find((s: TimeSlot) => s.status !== 'WAITLIST');
-            if (firstAvail) setSelectedSlot(firstAvail.time);
-          }
+          const firstAvail = data.slots.find((s: TimeSlot) => s.status !== 'WAITLIST');
+          if (firstAvail) setSelectedSlot(firstAvail.time);
         }
       } catch {
-        // Fallback default slots
         setAvailableSlots([]);
       } finally {
         setIsLoadingSlots(false);
@@ -104,6 +103,16 @@ export function ReservationSection({
 
   const handlePrevStep = () => {
     setStep((prev) => Math.max(1, prev - 1));
+  };
+
+  const handleResetBookingWizard = () => {
+    setLatestConfirmed(null);
+    setStep(1);
+    setGuestName('');
+    setGuestEmail('');
+    setGuestPhone('');
+    setDietaryNotes('');
+    setOccasion('none');
   };
 
   const handleSubmitBooking = async (e: React.FormEvent) => {
@@ -146,6 +155,7 @@ export function ReservationSection({
       if (response.ok && data.success) {
         fireCelebrationConfetti();
         showToast('Your reservation at AURA has been confirmed!', 'success', 'Table Reserved');
+        setLatestConfirmed(data.booking);
         onBookingConfirmed(data.booking);
       } else {
         showToast(data.error || 'Booking could not be processed.', 'error', 'Reservation Notice');
@@ -158,28 +168,28 @@ export function ReservationSection({
   };
 
   return (
-    <section id="reservations" className="relative py-24 sm:py-32 bg-obsidian-900 overflow-hidden text-neutral-300">
+    <section id="reservations" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
       
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.06),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-light text-xs font-semibold uppercase tracking-widest mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Private Reservations
+            <Sparkles className="h-3.5 w-3.5 text-gold-primary" /> Table Allocations
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
             Reserve Your Culinary Odyssey
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
             Real-time table allocations backed by our atomic scheduling engine. Guaranteed confirmation with digital boarding pass.
           </p>
         </div>
 
         {/* Wizard Card */}
-        <div className="rounded-3xl bg-obsidian-950/90 border border-gold-primary/30 shadow-2xl p-6 sm:p-10 backdrop-blur-xl">
+        <div className="rounded-3xl bg-[#141210]/95 border border-gold-primary/30 shadow-2xl p-6 sm:p-10 backdrop-blur-xl">
           
           {/* Progress Steps Header */}
           <div className="grid grid-cols-4 gap-2 mb-8 pb-6 border-b border-neutral-800 text-xs">
@@ -214,12 +224,62 @@ export function ReservationSection({
             ))}
           </div>
 
-          {/* STEP 1: PARTY SIZE & DATE */}
-          {step === 1 && (
-            <div className="space-y-6 animate-fade-in">
-              <h3 className="font-serif text-xl font-bold text-champagne">
-                Step 1: Select Guests & Dining Date
-              </h3>
+          {latestConfirmed ? (
+            <div className="py-8 text-center space-y-6 animate-fade-in">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-widest">
+                <CheckCircle2 className="h-4 w-4" /> Table Confirmed & Guaranteed
+              </div>
+              <div>
+                <h3 className="font-serif text-3xl font-bold text-champagne">
+                  We Await Your Arrival, {latestConfirmed.guestName}
+                </h3>
+                <p className="text-xs text-[#91887b] mt-1 font-mono uppercase tracking-widest">
+                  Booking Reference: <span className="text-gold-primary font-bold">{latestConfirmed.bookingReference}</span>
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-[#0c0b0a] border border-gold-primary/25 max-w-md mx-auto grid grid-cols-2 gap-4 text-xs text-left">
+                <div>
+                  <span className="text-[10px] text-[#91887b] uppercase block">Dining Date</span>
+                  <span className="font-serif font-bold text-champagne">{latestConfirmed.date}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-[#91887b] uppercase block">Seating Time</span>
+                  <span className="font-serif font-bold text-champagne">{latestConfirmed.timeSlot}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-[#91887b] uppercase block">Dining Salon</span>
+                  <span className="font-serif font-bold text-gold-light capitalize">{latestConfirmed.seatingArea}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-[#91887b] uppercase block">Party</span>
+                  <span className="font-serif font-bold text-champagne">{latestConfirmed.partySize} Distinguished Guests</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <button
+                  onClick={() => onBookingConfirmed(latestConfirmed)}
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+                >
+                  View Digital Boarding Pass
+                </button>
+                <button
+                  onClick={handleResetBookingWizard}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl gold-button-outline text-xs font-bold uppercase tracking-wider"
+                >
+                  Book Another Table
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* STEP 1: PARTY SIZE & DATE */}
+              {step === 1 && (
+                <div className="space-y-6 animate-fade-in">
+                  <h3 className="font-serif text-xl font-bold text-champagne">
+                    Step 1: Select Guests & Dining Date
+                  </h3>
 
               {/* Party Size Selector */}
               <div>
@@ -531,7 +591,9 @@ export function ReservationSection({
               </div>
             </form>
           )}
-        </div>
+        </>
+      )}
+    </div>
       </div>
     </section>
   );

@@ -177,9 +177,14 @@ function AuraRestaurantContent() {
       <MobileDrawer
         isOpen={isMobileMenuOpen}
         cartCount={cartCount}
+        currency={currency}
+        onSelectCurrency={handleSelectCurrency}
         onClose={() => setIsMobileMenuOpen(false)}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenReservation={handleScrollToReservations}
+        onOpenLookup={() => setIsLookupOpen(true)}
+        onOpenSommelier={() => setIsSommelierOpen(true)}
+        onOpenPrivateDining={() => setIsPrivateDiningOpen(true)}
       />
 
       {/* Dish Detailed View Modal */}
@@ -228,8 +233,10 @@ function AuraRestaurantContent() {
       {/* Sommelier Cellar Pairing Guide Modal */}
       <SommelierAssistantModal
         isOpen={isSommelierOpen}
+        currency={currency}
         onClose={() => setIsSommelierOpen(false)}
         onSelectDish={(item) => setSelectedDish(item)}
+        onAddToCart={(item) => handleAddToCart(item, 1)}
       />
 
       {/* Order Printable Receipt Modal */}

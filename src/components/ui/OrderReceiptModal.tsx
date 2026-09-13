@@ -30,7 +30,7 @@ export function OrderReceiptModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-lg my-auto rounded-3xl bg-obsidian-900 border border-gold-primary/40 shadow-2xl p-6 sm:p-8 animate-slide-up text-neutral-300"
+        className="relative w-full max-w-lg my-auto rounded-3xl bg-[#141210] border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up text-[#cfc8bc]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -67,15 +67,36 @@ export function OrderReceiptModal({
           </div>
 
           {/* Kitchen Timeline */}
-          <div className="p-4 rounded-2xl bg-obsidian-950 border border-neutral-800 space-y-2">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 space-y-3">
             <div className="flex items-center justify-between text-gold-light font-semibold">
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5 text-xs">
                 <ChefHat className="h-4 w-4 text-gold-primary" /> Brigade Status
               </span>
-              <span className="text-[11px] font-mono">Est. {calculation.estimatedPrepMinutes} Mins</span>
+              <span className="text-[11px] font-mono text-gold-primary">Est. {calculation.estimatedPrepMinutes} Mins</span>
             </div>
-            <p className="text-[11px] text-neutral-400">
-              Your courses have entered our kitchen queue under Executive Chef Gabriel Moreau.
+
+            {/* 4-Stage Brigade Progress Steps */}
+            <div className="grid grid-cols-4 gap-1.5 pt-1 text-center">
+              <div className="space-y-1">
+                <div className="h-1.5 rounded-full bg-emerald-500" />
+                <span className="text-[9px] uppercase font-bold text-emerald-400 block">Received</span>
+              </div>
+              <div className="space-y-1">
+                <div className="h-1.5 rounded-full bg-gold-primary animate-pulse" />
+                <span className="text-[9px] uppercase font-bold text-gold-light block">Sous Prep</span>
+              </div>
+              <div className="space-y-1">
+                <div className="h-1.5 rounded-full bg-[#24201c]" />
+                <span className="text-[9px] uppercase text-[#91887b] block">Plating</span>
+              </div>
+              <div className="space-y-1">
+                <div className="h-1.5 rounded-full bg-[#24201c]" />
+                <span className="text-[9px] uppercase text-[#91887b] block">Dispatched</span>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-[#91887b]">
+              Your courses have entered our hearth kitchen queue under Executive Chef Gabriel Moreau.
             </p>
           </div>
 

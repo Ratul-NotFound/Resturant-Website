@@ -38,10 +38,10 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
   };
 
   return (
-    <section id="atmosphere" className="relative py-24 sm:py-32 bg-obsidian-950 overflow-hidden text-neutral-300">
+    <section id="atmosphere" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
       
       {/* Background Ambience */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -53,7 +53,7 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
             The Four Distinct Dining Salons
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
             Experience our dynamic lighting ambiance simulator across Daylight, Golden Hour Sunset, and Intimate Starlight Candlelight.
           </p>
         </div>
@@ -70,7 +70,7 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
                 className={`px-4 py-2.5 rounded-2xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${
                   activeAreaId === room.id
                     ? 'bg-gold-primary text-obsidian-950 shadow-gold-glow font-bold'
-                    : 'bg-obsidian-900 border border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'
+                    : 'bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] hover:text-white hover:border-gold-primary/40'
                 }`}
               >
                 {room.name}
@@ -79,7 +79,7 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
           </div>
 
           {/* Lighting Mode Simulator Switch */}
-          <div className="flex items-center gap-1.5 p-1 bg-obsidian-900 rounded-2xl border border-neutral-800 text-xs">
+          <div className="flex items-center gap-1.5 p-1 bg-[#141210] rounded-2xl border border-gold-primary/20 text-xs">
             <button
               onClick={() => setLightingMood('daylight')}
               className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
