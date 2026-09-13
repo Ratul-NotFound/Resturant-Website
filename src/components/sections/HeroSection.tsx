@@ -262,11 +262,11 @@ export function HeroSection({
             </div>
 
             {/* Bottom Dish Callout Card */}
-            <div className="absolute -bottom-4 left-2 right-2 sm:left-4 sm:right-4 z-30 p-4 sm:p-5 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-black/10 transition-all">
+            <div className="absolute -bottom-4 left-2 right-2 sm:left-4 sm:right-4 z-30 p-4 sm:p-5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-neutral-100 transition-all">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-brand-red px-2 py-0.5 rounded-full bg-red-50 border border-red-200">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red px-2.5 py-0.5 rounded-full bg-red-50 border border-red-100">
                       {activeDish.tag}
                     </span>
                     <span className="text-xs font-mono font-bold text-neutral-900">
@@ -276,14 +276,14 @@ export function HeroSection({
                   <h3 className="font-serif text-sm sm:text-base font-bold text-neutral-900 leading-tight">
                     {activeDish.name}
                   </h3>
-                  <p className="text-[11px] text-neutral-500 line-clamp-1 mt-0.5">
+                  <p className="text-[11px] text-neutral-500 line-clamp-1 mt-0.5 font-normal">
                     {activeDish.subtitle}
                   </p>
                 </div>
                 {onExploreDish && (
                   <button
                     onClick={() => onExploreDish(activeDish.id)}
-                    className="shrink-0 p-2.5 rounded-xl bg-brand-red hover:bg-brand-redDark text-white shadow-md transition-colors"
+                    className="shrink-0 p-2.5 rounded-full bg-neutral-900 hover:bg-brand-red text-white shadow-sm transition-colors"
                     title="View Course Details"
                   >
                     <ArrowRight className="h-4 w-4" />
@@ -297,77 +297,77 @@ export function HeroSection({
         </div>
 
         {/* =========================================================
-            BOTTOM 3 CATEGORY BREAKOUT CARDS (Galito's Reference)
+            BOTTOM 3 CATEGORY BREAKOUT CARDS
             Classic Meals | Sharing Feasts | Starters & Cru
             ========================================================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-16 mt-8 border-t border-neutral-200/80">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-16 mt-8 border-t border-neutral-100">
           
           {/* Card 1: CLASSIC MEALS */}
           <div
             onClick={scrollToMenu}
-            className="group relative bg-white border border-neutral-200 rounded-3xl p-6 text-center shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col items-center"
+            className="group relative bg-white border border-neutral-100 hover:border-brand-red/30 rounded-3xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-400 hover:-translate-y-1 cursor-pointer flex flex-col items-center"
           >
-            <div className="w-28 h-28 -mt-16 mb-2 relative drop-shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <div className="w-24 h-24 -mt-14 mb-2 relative drop-shadow-md group-hover:scale-105 transition-transform duration-400">
               <Image
                 src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80"
                 alt="Classic Meals"
                 fill
-                sizes="112px"
-                className="object-cover rounded-full border-2 border-white shadow-lg"
+                sizes="96px"
+                className="object-cover rounded-full border-4 border-white shadow-md ring-1 ring-black/5"
               />
             </div>
-            <h3 className="font-black text-base text-neutral-900 uppercase tracking-wide mt-2">
-              CLASSIC MEALS
+            <h3 className="font-bold text-sm text-neutral-900 uppercase tracking-wider mt-2">
+              Classic Meals
             </h3>
-            <p className="text-xs text-neutral-500 mt-1 font-medium">A5 Wagyu Ribeye &amp; Binchotan Duck</p>
+            <p className="text-xs text-neutral-500 mt-1 font-normal">A5 Wagyu Ribeye &amp; Binchotan Duck</p>
             <div className="mt-3 inline-flex items-center gap-1 text-brand-red text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Explore</span> <ArrowRight className="h-3.5 w-3.5" />
+              <span>Explore</span> <ArrowRight className="h-3 w-3" />
             </div>
           </div>
 
           {/* Card 2: SHARING FEASTS */}
           <div
             onClick={scrollToFeasts}
-            className="group relative bg-white border border-neutral-200 rounded-3xl p-6 text-center shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col items-center"
+            className="group relative bg-white border border-neutral-100 hover:border-emerald-500/30 rounded-3xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-400 hover:-translate-y-1 cursor-pointer flex flex-col items-center"
           >
-            <div className="w-28 h-28 -mt-16 mb-2 relative drop-shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <div className="w-24 h-24 -mt-14 mb-2 relative drop-shadow-md group-hover:scale-105 transition-transform duration-400">
               <Image
                 src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80"
                 alt="Sharing Feasts"
                 fill
-                sizes="112px"
-                className="object-cover rounded-full border-2 border-white shadow-lg"
+                sizes="96px"
+                className="object-cover rounded-full border-4 border-white shadow-md ring-1 ring-black/5"
               />
             </div>
-            <h3 className="font-black text-base text-neutral-900 uppercase tracking-wide mt-2">
-              SHARING FEASTS
+            <h3 className="font-bold text-sm text-neutral-900 uppercase tracking-wider mt-2">
+              Sharing Feasts
             </h3>
-            <p className="text-xs text-neutral-500 mt-1 font-medium">Grand Tasting Odysseys &amp; Family Platters</p>
-            <div className="mt-3 inline-flex items-center gap-1 text-[#3a7d44] text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Explore</span> <ArrowRight className="h-3.5 w-3.5" />
+            <p className="text-xs text-neutral-500 mt-1 font-normal">Grand Tasting Odysseys &amp; Family Platters</p>
+            <div className="mt-3 inline-flex items-center gap-1 text-emerald-600 text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+              <span>Explore</span> <ArrowRight className="h-3 w-3" />
             </div>
           </div>
 
           {/* Card 3: STARTERS & CRU */}
           <div
             onClick={scrollToMenu}
-            className="group relative bg-white border border-neutral-200 rounded-3xl p-6 text-center shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col items-center"
+            className="group relative bg-white border border-neutral-100 hover:border-amber-500/30 rounded-3xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-400 hover:-translate-y-1 cursor-pointer flex flex-col items-center"
           >
-            <div className="w-28 h-28 -mt-16 mb-2 relative drop-shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <div className="w-24 h-24 -mt-14 mb-2 relative drop-shadow-md group-hover:scale-105 transition-transform duration-400">
               <Image
                 src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=300&q=80"
                 alt="Starters & Cru"
                 fill
-                sizes="112px"
-                className="object-cover rounded-full border-2 border-white shadow-lg"
+                sizes="96px"
+                className="object-cover rounded-full border-4 border-white shadow-md ring-1 ring-black/5"
               />
             </div>
-            <h3 className="font-black text-base text-neutral-900 uppercase tracking-wide mt-2">
-              STARTERS &amp; CRU
+            <h3 className="font-bold text-sm text-neutral-900 uppercase tracking-wider mt-2">
+              Starters &amp; Cru
             </h3>
-            <p className="text-xs text-neutral-500 mt-1 font-medium">Oscietra Caviar, Hokkaido Uni &amp; Tartare</p>
-            <div className="mt-3 inline-flex items-center gap-1 text-[#d97706] text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Explore</span> <ArrowRight className="h-3.5 w-3.5" />
+            <p className="text-xs text-neutral-500 mt-1 font-normal">Oscietra Caviar, Hokkaido Uni &amp; Tartare</p>
+            <div className="mt-3 inline-flex items-center gap-1 text-amber-600 text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+              <span>Explore</span> <ArrowRight className="h-3 w-3" />
             </div>
           </div>
 

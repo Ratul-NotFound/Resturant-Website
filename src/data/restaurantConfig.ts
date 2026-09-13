@@ -24,6 +24,12 @@ export const RESTAURANT_INFO = {
   valetParking: 'Complimentary private white-glove valet on 56th Street entrance.',
   dressCode: 'Elegant Attire Required. Jackets recommended for gentlemen. Athletic wear, caps, and beachwear are strictly prohibited.',
   corkagePolicy: '$150 per 750ml bottle (maximum 2 bottles per party, must not be present on our active 4,000-bottle list).',
+  socialLinks: {
+    facebook: 'https://facebook.com/aurarestaurant',
+    instagram: 'https://instagram.com/aurarestaurant',
+    tiktok: 'https://tiktok.com/@aurarestaurant',
+    youtube: 'https://youtube.com/@aurarestaurant',
+  },
 };
 
 export const CURRENCIES: CurrencyConfig[] = [

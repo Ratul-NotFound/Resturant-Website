@@ -65,11 +65,14 @@ export function Navbar({
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-9 text-[13px] font-bold uppercase tracking-wider text-[#333]">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-[12px] font-bold uppercase tracking-wider text-[#333]">
+          <a href="#story"           className="hover:text-brand-red transition-colors duration-200">About</a>
           <a href="#menu"            className="hover:text-brand-red transition-colors duration-200">Menu</a>
-          <a href="#sharing-feasts"  className="hover:text-brand-red transition-colors duration-200 text-amber-700">Sharing Feasts</a>
+          <a href="#sharing-feasts"  className="hover:text-brand-red transition-colors duration-200 text-amber-700">Offers</a>
+          <a href="#atmosphere"      className="hover:text-brand-red transition-colors duration-200">Gallery</a>
+          <a href="#reviews"         className="hover:text-brand-red transition-colors duration-200">Reviews</a>
           <a href="#reservations"    className="hover:text-brand-red transition-colors duration-200">Reservations</a>
-          <a href="#location"        className="hover:text-brand-red transition-colors duration-200">Location &amp; Hours</a>
+          <a href="#location"        className="hover:text-brand-red transition-colors duration-200">Location</a>
         </nav>
 
         {/* Right Actions */}

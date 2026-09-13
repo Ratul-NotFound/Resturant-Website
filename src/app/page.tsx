@@ -17,8 +17,11 @@ import { MobileDrawer } from '@/components/layout/MobileDrawer';
 import { Footer } from '@/components/layout/Footer';
 import { LiveAnnouncementBar } from '@/components/sections/LiveAnnouncementBar';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { SharingFeastsSection } from '@/components/sections/SharingFeastsSection';
+import { StorySection } from '@/components/sections/StorySection';
 import { MenuSection } from '@/components/sections/MenuSection';
+import { SharingFeastsSection } from '@/components/sections/SharingFeastsSection';
+import { AtmosphereSection } from '@/components/sections/AtmosphereSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ReservationSection } from '@/components/sections/ReservationSection';
 import { LocationHoursSection } from '@/components/sections/LocationHoursSection';
 import { DishModal } from '@/components/ui/DishModal';
@@ -116,6 +119,14 @@ function AuraRestaurantContent() {
     }
   }, []);
 
+  const handleSelectAreaForBooking = useCallback(
+    (area: SeatingArea) => {
+      setTargetBookingArea(area);
+      handleScrollToReservations();
+    },
+    [handleScrollToReservations]
+  );
+
   const handleSelectCurrency = (newCurrency: CurrencyCode) => {
     setCurrency(newCurrency);
     showToast(`Currency set to ${newCurrency}.`, 'info', 'Currency Updated');
@@ -139,30 +150,50 @@ function AuraRestaurantContent() {
         onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
 
-      {/* Main Essential, Clean Section Flow */}
+      {/* Main Complete Section Flow Matching SRS FR-01 through FR-12 */}
       <main className="flex-1">
+        {/* FR-02: Hero Section */}
         <HeroSection
           currency={currency}
           onReserveClick={handleScrollToReservations}
           onExploreDish={handleExploreDishById}
           onOpenSommelier={() => setIsSommelierOpen(true)}
         />
-        <SharingFeastsSection
-          currency={currency}
-          onAddToCart={(item) => handleAddToCart(item, 1)}
-          onSelectDish={setSelectedDish}
-          onReserveTable={handleScrollToReservations}
-        />
+
+        {/* FR-03: Restaurant Introduction & Philosophy */}
+        <StorySection />
+
+        {/* FR-04: Menu Section */}
         <MenuSection
           currency={currency}
           onSelectDish={setSelectedDish}
           onAddToCart={(item) => handleAddToCart(item, 1)}
           onOpenSommelier={() => setIsSommelierOpen(true)}
         />
+
+        {/* FR-05 & FR-06: Featured Dishes & Special Offers */}
+        <SharingFeastsSection
+          currency={currency}
+          onAddToCart={(item) => handleAddToCart(item, 1)}
+          onSelectDish={setSelectedDish}
+          onReserveTable={handleScrollToReservations}
+        />
+
+        {/* FR-07: Atmosphere & Visual Gallery with Lightbox */}
+        <AtmosphereSection
+          onSelectAreaForBooking={handleSelectAreaForBooking}
+        />
+
+        {/* FR-09: Customer Reviews & Critical Acclaim */}
+        <TestimonialsSection />
+
+        {/* FR-08: Table Reservation Wizard */}
         <ReservationSection
           initialArea={targetBookingArea}
           onBookingConfirmed={setConfirmedBooking}
         />
+
+        {/* FR-10: Location, Service Schedule & Map */}
         <LocationHoursSection />
       </main>
 

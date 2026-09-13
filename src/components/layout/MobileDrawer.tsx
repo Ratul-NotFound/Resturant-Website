@@ -33,8 +33,12 @@ export function MobileDrawer({
   if (!isOpen) return null;
 
   const links = [
+    { label: 'Home', href: '#hero' },
+    { label: 'About & Philosophy', href: '#story' },
     { label: 'Menu & Signatures', href: '#menu' },
-    { label: 'Royal Sharing Feasts', href: '#sharing-feasts' },
+    { label: 'Special Offers & Feasts', href: '#sharing-feasts' },
+    { label: 'Atmosphere & Gallery', href: '#atmosphere' },
+    { label: 'Critical Reviews', href: '#reviews' },
     { label: 'Table Reservations', href: '#reservations' },
     { label: 'Location & Service Hours', href: '#location' },
   ];
