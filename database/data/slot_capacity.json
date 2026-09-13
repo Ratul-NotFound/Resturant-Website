@@ -1,0 +1,147 @@
+[
+  {
+    "area": "atrium",
+    "time": "17:00",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "17:30",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "18:00",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "18:30",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "19:00",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "19:30",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "20:00",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "20:30",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "21:00",
+    "tables": 5
+  },
+  {
+    "area": "atrium",
+    "time": "21:30",
+    "tables": 5
+  },
+  {
+    "area": "vault",
+    "time": "17:30",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "18:00",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "18:30",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "19:00",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "19:30",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "20:00",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "20:30",
+    "tables": 3
+  },
+  {
+    "area": "vault",
+    "time": "21:00",
+    "tables": 3
+  },
+  {
+    "area": "counter",
+    "time": "18:00",
+    "tables": 6
+  },
+  {
+    "area": "counter",
+    "time": "21:00",
+    "tables": 6
+  },
+  {
+    "area": "terrace",
+    "time": "17:00",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "17:30",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "18:00",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "18:30",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "19:00",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "19:30",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "20:00",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "20:30",
+    "tables": 4
+  },
+  {
+    "area": "terrace",
+    "time": "21:00",
+    "tables": 4
+  }
+]

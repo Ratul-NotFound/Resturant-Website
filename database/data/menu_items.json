@@ -1,0 +1,1249 @@
+[
+  {
+    "id": "dish-01",
+    "name": "Royal Oscietra Caviar Tartlet",
+    "slug": "royal-oscietra-caviar-tartlet",
+    "category": "starters",
+    "price": 68,
+    "description": "Crisp buckwheat sablé filled with smoked crème fraîche, egg yolk emulsion, and 15g Imperial Oscietra Caviar dusted with 24k gold leaf.",
+    "shortDesc": "Oscietra Caviar, smoked crème fraîche, gold leaf sablé.",
+    "ingredients": [
+      "Imperial Oscietra Caviar",
+      "Buckwheat Sablé",
+      "Smoked Crème Fraîche",
+      "Egg Yolk Confit",
+      "Chive Oil",
+      "24k Gold Leaf"
+    ],
+    "dietary": [
+      "nut-free"
+    ],
+    "allergens": [
+      "Fish",
+      "Dairy",
+      "Gluten",
+      "Eggs"
+    ],
+    "calories": 290,
+    "prepTime": "12 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Dom Pérignon Vintage Champagne",
+      "vintage": "2013",
+      "region": "Épernay, France",
+      "notes": "Crisp brioche, fine minerality, and vibrant acidity that balances the caviar salinity."
+    },
+    "chefNote": "Caviar is sourced exclusively from sustainable sturgeon farms in the Caspian basin.",
+    "farmProvenance": "Kaviari Paris & Normandy Dairy Estate",
+    "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=85",
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 1
+  },
+  {
+    "id": "dish-02",
+    "name": "Hokkaido Scallop Crudo",
+    "slug": "hokkaido-scallop-crudo",
+    "category": "starters",
+    "price": 42,
+    "description": "Hand-dived raw Hokkaido scallops sliced paper-thin, compressed finger lime, white ponzu gelée, Oscietra pearls, and shiso oil.",
+    "shortDesc": "Hand-dived scallops, finger lime, white ponzu, shiso.",
+    "ingredients": [
+      "Hokkaido Diver Scallops",
+      "Finger Lime",
+      "White Ponzu Gelée",
+      "Sea Grapes",
+      "Shiso Leaf Oil",
+      "Black Sesame Coral"
+    ],
+    "dietary": [
+      "gluten-free",
+      "dairy-free",
+      "raw"
+    ],
+    "allergens": [
+      "Molluscs",
+      "Soy",
+      "Sesame"
+    ],
+    "calories": 210,
+    "prepTime": "10 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Chablis Grand Cru Les Clos",
+      "vintage": "2020",
+      "region": "Burgundy, France",
+      "notes": "Flinty limestone minerality with green apple freshness and delicate floral hints."
+    },
+    "chefNote": "Dived fresh from Hokkaido coastal waters, flown in twice weekly under zero-temperature loss.",
+    "farmProvenance": "Hokkaido Fisheries Cooperative, Japan",
+    "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 2
+  },
+  {
+    "id": "dish-03",
+    "name": "Truffle Burrata Royale",
+    "slug": "truffle-burrata-royale",
+    "category": "starters",
+    "price": 36,
+    "description": "Artisanal Pugliese burrata filled with liquid stracciatella, fresh Périgord black truffle shavings, 25-year aged balsamic, and heirloom tomato carpaccio.",
+    "shortDesc": "Pugliese burrata, Périgord black truffle, aged balsamic.",
+    "ingredients": [
+      "Pugliese Burrata",
+      "Périgord Black Truffle",
+      "25-Year Balsamico di Modena",
+      "Heirloom Tomatoes",
+      "Cold-Pressed Tuscan Olive Oil",
+      "Fleur de Sel"
+    ],
+    "dietary": [
+      "vegetarian",
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy"
+    ],
+    "calories": 420,
+    "prepTime": "8 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Gavi di Gavi La Scolca Black Label",
+      "vintage": "2021",
+      "region": "Piedmont, Italy",
+      "notes": "Rich almond undertones, white peach aromatics, and crisp stony finish."
+    },
+    "chefNote": "Crafted daily by master cheesemakers in Andria, Puglia, and served within 36 hours of creation.",
+    "farmProvenance": "Caseificio Andriese, Puglia & Provence Truffières",
+    "image": "https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 3
+  },
+  {
+    "id": "dish-04",
+    "name": "Pan-Seared Hudson Valley Foie Gras",
+    "slug": "pan-seared-foie-gras",
+    "category": "starters",
+    "price": 48,
+    "description": "A-grade duck liver seared over open oak embers, caramelized Mission fig compote, spiced brioche croutons, and aged Port wine reduction.",
+    "shortDesc": "Oak-seared foie gras, Mission fig compote, Port reduction.",
+    "ingredients": [
+      "Grade A Duck Foie Gras",
+      "Black Mission Figs",
+      "Brioche Feuilletée",
+      "Late-Harvest Port Glaze",
+      "Pistachio Crumble",
+      "Micro Amaranth"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "allergens": [
+      "Dairy",
+      "Gluten",
+      "Nuts",
+      "Eggs"
+    ],
+    "calories": 520,
+    "prepTime": "14 mins",
+    "isChefSpecial": true,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Château d’Yquem Premier Cru Supérieur",
+      "vintage": "2016",
+      "region": "Sauternes, France",
+      "notes": "Honeyed apricot, candied citrus peel, saffron, and unmatched silky unctuousness."
+    },
+    "chefNote": "Flash-seared for exactly 45 seconds per side to caramelize the exterior while leaving the core velvety.",
+    "farmProvenance": "Hudson Valley Artisanal Farms, New York",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 4
+  },
+  {
+    "id": "dish-05",
+    "name": "Wagyu Beef Tartare Cone",
+    "slug": "wagyu-beef-tartare-cone",
+    "category": "starters",
+    "price": 38,
+    "description": "Hand-minced Miyazaki A5 beef tenderloin, cured quail egg yolk, preserved shallots, black garlic aioli, nested in a crisp nori-sesame tuile cone.",
+    "shortDesc": "Miyazaki A5 Wagyu, cured quail yolk, nori-sesame cone.",
+    "ingredients": [
+      "Miyazaki A5 Wagyu Tenderloin",
+      "Quail Egg Confit",
+      "Black Garlic Aioli",
+      "Shallot Brunoise",
+      "Nori Tuile Cone",
+      "Smoked Maldon Salt"
+    ],
+    "dietary": [
+      "dairy-free",
+      "raw"
+    ],
+    "allergens": [
+      "Eggs",
+      "Soy",
+      "Sesame"
+    ],
+    "calories": 340,
+    "prepTime": "10 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Barolo Monfortino Riserva Giacomo Conterno",
+      "vintage": "2015",
+      "region": "Piedmont, Italy",
+      "notes": "Dried rose petals, tar, wild truffle, and structured fine tannins."
+    },
+    "chefNote": "The delicate nori cone provides a textural snap that contrasts the melt-in-mouth marbling.",
+    "farmProvenance": "Miyazaki Prefecture Cattle Ranch, Japan",
+    "image": "https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 5
+  },
+  {
+    "id": "dish-06",
+    "name": "Charred Spanish Galician Octopus",
+    "slug": "charred-galician-octopus",
+    "category": "starters",
+    "price": 39,
+    "description": "Slow-braised then charcoal-grilled Galician octopus tentacle, saffron potato foam, smoked Pimentón de la Vera emulsion, and crispy caperberries.",
+    "shortDesc": "Charcoal octopus, saffron potato foam, smoked paprika oil.",
+    "ingredients": [
+      "Galician Octopus",
+      "Saffron Potato Purée",
+      "Pimentón de la Vera",
+      "Fried Caperberries",
+      "Micro Greens",
+      "Chili Thread Infusion"
+    ],
+    "dietary": [
+      "gluten-free",
+      "dairy-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Molluscs"
+    ],
+    "calories": 310,
+    "prepTime": "15 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Albariño Do Ferreiro Cepas Vellas",
+      "vintage": "2021",
+      "region": "Rías Baixas, Spain",
+      "notes": "Saline coastal breeze, crushed seashell minerality, and vibrant citrus zest."
+    },
+    "chefNote": "Sous-vide braised at 78°C for 6 hours with bay leaves and cork before hitting the 400°C binchotan grill.",
+    "farmProvenance": "Rías Baixas Artisanal Diver Fisheries, Galicia",
+    "image": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 6
+  },
+  {
+    "id": "dish-07",
+    "name": "A5 Miyazaki Wagyu Ribeye (6oz)",
+    "slug": "a5-miyazaki-wagyu-ribeye",
+    "category": "prime-cuts",
+    "price": 185,
+    "description": "Certified BMS 12 Miyazaki Wagyu ribeye seared on Japanese binchotan charcoal, glazed with bone marrow tare, served with wasabi leaf condiment and charred spring alliums.",
+    "shortDesc": "BMS 12 Miyazaki A5, bone marrow tare, freshly grated Shizuoka wasabi.",
+    "ingredients": [
+      "Miyazaki A5 Wagyu Ribeye",
+      "Aged Bone Marrow Tare",
+      "Shizuoka Real Wasabi",
+      "Smoked Sea Salt",
+      "Charred Tokyo Negi",
+      "Black Truffle Jus"
+    ],
+    "dietary": [
+      "gluten-free",
+      "dairy-free",
+      "keto"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "calories": 780,
+    "prepTime": "18 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Château Margaux 1er Grand Cru Classé",
+      "vintage": "2010",
+      "region": "Margaux, Bordeaux, France",
+      "notes": "Silky cassis, violet perfume, graphite, cedar, and velvety aristocratic tannins."
+    },
+    "chefNote": "Accompanied by an individual certificate of pedigree and nose-print registry verification.",
+    "farmProvenance": "Ozaki Farm, Miyazaki Prefecture, Japan",
+    "image": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1200&q=85",
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 7
+  },
+  {
+    "id": "dish-08",
+    "name": "45-Day Dry-Aged Prime Tomahawk (38oz)",
+    "slug": "dry-aged-prime-tomahawk",
+    "category": "prime-cuts",
+    "price": 210,
+    "description": "Prime Black Angus long-bone ribeye dry-aged in our Himalayan salt-brick vault for 45 days. Roasted with thyme butter and served with roasted bone marrow and black garlic chimichurri.",
+    "shortDesc": "45-day Himalayan salt-aged Tomahawk, bone marrow, black garlic.",
+    "ingredients": [
+      "Prime Black Angus Beef",
+      "Himalayan Salt Dry-Aging",
+      "Cultured Thyme Butter",
+      "Roasted Beef Marrow",
+      "Black Garlic Chimichurri",
+      "Smoked Maldon Salt"
+    ],
+    "dietary": [
+      "gluten-free",
+      "keto"
+    ],
+    "allergens": [
+      "Dairy"
+    ],
+    "calories": 1450,
+    "prepTime": "30 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Opus One Red Blend",
+      "vintage": "2018",
+      "region": "Napa Valley, California",
+      "notes": "Blackberry, espresso roast, French oak vanilla, and firm muscular structure."
+    },
+    "chefNote": "Carved tableside by our executive grill master with smoked rosemary torch presentation.",
+    "farmProvenance": "Creekstone Farms Master Ranch, Kansas",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 8
+  },
+  {
+    "id": "dish-09",
+    "name": "Milk-Fed Dutch Veal Chop",
+    "slug": "milk-fed-dutch-veal-chop",
+    "category": "prime-cuts",
+    "price": 88,
+    "description": "Bone-in tender Dutch veal chop pan-roasted with sage brown butter, morel mushroom fricassee, potato mousseline, and Madeira veal reduction.",
+    "shortDesc": "Dutch veal chop, sage brown butter, wild morels, Madeira glaze.",
+    "ingredients": [
+      "Dutch Milk-Fed Veal",
+      "Wild Morel Mushrooms",
+      "Ratte Potato Mousseline",
+      "Fresh Sage",
+      "Cultured Butter",
+      "Madeira Jus"
+    ],
+    "dietary": [
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy"
+    ],
+    "calories": 680,
+    "prepTime": "20 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Brunello di Montalcino Biondi-Santi",
+      "vintage": "2016",
+      "region": "Tuscany, Italy",
+      "notes": "Bright sour cherry, leather, tobacco leaf, and refined earthy elegance."
+    },
+    "chefNote": "Cooked precisely to medium-rare at 54°C core temperature for pristine tenderness.",
+    "farmProvenance": "Ekro Dutch Certified Heritage Farms",
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 9
+  },
+  {
+    "id": "dish-10",
+    "name": "Crispy Kurobuta Berkshire Pork Belly",
+    "slug": "kurobuta-pork-belly",
+    "category": "prime-cuts",
+    "price": 64,
+    "description": "36-hour slow-cooked Berkshire pork belly with glass-crisp crackling, spiced apple-calvados glaze, celeriac silk, and pickled mustard seed caviar.",
+    "shortDesc": "Crisp crackling Berkshire pork, apple-calvados glaze, celeriac silk.",
+    "ingredients": [
+      "Kurobuta Pork Belly",
+      "Honeycrisp Apples",
+      "Calvados Apple Brandy",
+      "Celeriac Purée",
+      "Pickled Mustard Seeds",
+      "Star Anise Infusion"
+    ],
+    "dietary": [
+      "gluten-free",
+      "dairy-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Mustard"
+    ],
+    "calories": 820,
+    "prepTime": "16 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Riesling Grand Cru Rangen de Thann Zind-Humbrecht",
+      "vintage": "2019",
+      "region": "Alsace, France",
+      "notes": "Volcanic smoke, rich stone fruit, dried honey, and crisp balancing acidity."
+    },
+    "chefNote": "Pork skin is hand-perforated thousands of times to achieve an ultra-light, aerated crackling.",
+    "farmProvenance": "Snake River Farms Heritage Berkshire Reserve",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 10
+  },
+  {
+    "id": "dish-11",
+    "name": "Scottish Highland Venison Loin",
+    "slug": "scottish-venison-loin",
+    "category": "prime-cuts",
+    "price": 78,
+    "description": "Juniper-rubbed wild red deer loin roasted over pine embers, parsnip velvet, fermented blackcurrant jus, cocoa nib crumble, and braised red endive.",
+    "shortDesc": "Pine-roasted venison, parsnip velvet, blackcurrant jus, cocoa nibs.",
+    "ingredients": [
+      "Highland Red Deer Loin",
+      "Wild Juniper Berries",
+      "Parsnip Purée",
+      "Blackcurrants",
+      "Single-Origin Cocoa Nibs",
+      "Pétit Red Endive"
+    ],
+    "dietary": [
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy"
+    ],
+    "calories": 590,
+    "prepTime": "18 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Côte-Rôtie La Landonne Guigal",
+      "vintage": "2017",
+      "region": "Rhône Valley, France",
+      "notes": "Crushed black pepper, smoked bacon fat, black olive tapenade, and deep cassis."
+    },
+    "chefNote": "Ethically wild-harvested from the Scottish Highlands estates during peak autumn season.",
+    "farmProvenance": "Argyll Highland Game Estates, Scotland",
+    "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 11
+  },
+  {
+    "id": "dish-12",
+    "name": "Australian Wagyu Tenderloin Rossini",
+    "slug": "wagyu-tenderloin-rossini",
+    "category": "prime-cuts",
+    "price": 145,
+    "description": "Sher Wagyu tenderloin MB9+ topped with seared foie gras, freshly shaved black Périgord truffle, toasted brioche disc, and rich Madeira demi-glace.",
+    "shortDesc": "Wagyu MB9+, seared foie gras, fresh black truffle, brioche.",
+    "ingredients": [
+      "Australian Sher Wagyu MB9+",
+      "Foie Gras",
+      "Fresh Black Truffle",
+      "Brioche Toast",
+      "Madagascar Green Peppercorn",
+      "Truffle Veal Glace"
+    ],
+    "dietary": [
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy",
+      "Gluten",
+      "Eggs"
+    ],
+    "calories": 910,
+    "prepTime": "22 mins",
+    "isChefSpecial": true,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Sassicaia Tenuta San Guido",
+      "vintage": "2019",
+      "region": "Bolgheri, Tuscany, Italy",
+      "notes": "Blackcurrant, rosemary bush, cedar, crushed stone, and regal aristocratic balance."
+    },
+    "chefNote": "Our tribute to classic French haute cuisine, perfected with 21st-century Wagyu marbling.",
+    "farmProvenance": "Sher Wagyu Pastoral Reserve, Victoria, Australia",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 12
+  },
+  {
+    "id": "dish-13",
+    "name": "Brittany Turbot en Papillote",
+    "slug": "brittany-turbot-en-papillote",
+    "category": "ocean",
+    "price": 92,
+    "description": "Line-caught wild Brittany turbot filleted tableside, braised in parchment with Champagne fumet, sea asparagus, chanterelle mushrooms, and caviar butter.",
+    "shortDesc": "Wild turbot, Champagne fumet, chanterelles, caviar butter.",
+    "ingredients": [
+      "Brittany Wild Turbot",
+      "Champagne Fumet",
+      "Sea Asparagus",
+      "Golden Chanterelles",
+      "Caviar Butter",
+      "Baby Leeks"
+    ],
+    "dietary": [
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Fish",
+      "Dairy"
+    ],
+    "calories": 490,
+    "prepTime": "22 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Meursault Premier Cru Les Perrières Domaine Roulot",
+      "vintage": "2019",
+      "region": "Burgundy, France",
+      "notes": "Toasted hazelnuts, crushed chalk, Meyer lemon, and endless creamy tension."
+    },
+    "chefNote": "Parchment envelope is cut open at your table to release an explosion of sea steam and aromatic herbs.",
+    "farmProvenance": "Le Guilvinec Port Artisanal Dayboats, Brittany",
+    "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 13
+  },
+  {
+    "id": "dish-14",
+    "name": "Glazed Chilean Sea Bass",
+    "slug": "glazed-chilean-sea-bass",
+    "category": "ocean",
+    "price": 84,
+    "description": "Antarctic Patagonian toothfish marinated in 3-year aged Saikyo miso and mirin, caramelized over binchotan embers, ginger-dashi foam, and pickled lotus root.",
+    "shortDesc": "Saikyo miso glazed sea bass, ginger dashi foam, lotus root.",
+    "ingredients": [
+      "Chilean Sea Bass",
+      "Kyoto Saikyo Miso",
+      "Hon-Mirin",
+      "Ginger Dashi Emulsion",
+      "Crispy Lotus Root",
+      "Bok Choy Heart"
+    ],
+    "dietary": [
+      "gluten-free",
+      "dairy-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Fish",
+      "Soy"
+    ],
+    "calories": 610,
+    "prepTime": "18 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Condrieu La Doriane Guigal",
+      "vintage": "2020",
+      "region": "Rhône Valley, France",
+      "notes": "White peach, honeysuckle, apricot, and rich voluptuous texture."
+    },
+    "chefNote": "Marinated for 72 hours in handcrafted sweet white miso from Kyoto before gentle caramelization.",
+    "farmProvenance": "Certified Sustainable Antarctic Fisheries, Ross Sea",
+    "image": "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 14
+  },
+  {
+    "id": "dish-15",
+    "name": "Whole Maine Lobster Thermidor",
+    "slug": "whole-maine-lobster-thermidor",
+    "category": "ocean",
+    "price": 110,
+    "description": "Whole 2lb Maine lobster meat flamed with Hennessy XO Cognac, folded in gruyère béchamel, Dijon mustard, tarragon, gratinéed in shell with black truffle crumbs.",
+    "shortDesc": "2lb Maine lobster, Hennessy XO béchamel, Gruyère, black truffle.",
+    "ingredients": [
+      "Live Maine Lobster",
+      "Hennessy XO Cognac",
+      "Aged Gruyère AOP",
+      "Dijon Mustard",
+      "Fresh Tarragon",
+      "Truffle Brioche Crumbs"
+    ],
+    "dietary": [
+      "nut-free"
+    ],
+    "allergens": [
+      "Crustaceans",
+      "Dairy",
+      "Gluten",
+      "Eggs",
+      "Mustard"
+    ],
+    "calories": 890,
+    "prepTime": "25 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Corton-Charlemagne Grand Cru Louis Latour",
+      "vintage": "2018",
+      "region": "Burgundy, France",
+      "notes": "Buttery brioche, roasted almonds, ripe pear, and majestic stone power."
+    },
+    "chefNote": "Harvested from cold Atlantic trap lines off the coast of Stonington, Maine.",
+    "farmProvenance": "Stonington Lobster Co-op, Maine",
+    "image": "https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 15
+  },
+  {
+    "id": "dish-16",
+    "name": "Mediterranean Red Carabinero Prawns",
+    "slug": "mediterranean-red-carabinero-prawns",
+    "category": "ocean",
+    "price": 95,
+    "description": "Jumbo deep-sea Spanish Scarlet Cardinal prawns flashed on sea-salt plancha, head essence bisque vinaigrette, garlic chips, and sourdough wafers.",
+    "shortDesc": "Scarlet Carabinero prawns, head coral bisque, garlic wafers.",
+    "ingredients": [
+      "Spanish Carabinero Prawns",
+      "Prawn Coral Bisque",
+      "Crispy Garlic Chips",
+      "Smoked Sea Salt",
+      "Fino Sherry Emulsion",
+      "Charred Lemon"
+    ],
+    "dietary": [
+      "dairy-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Crustaceans",
+      "Gluten"
+    ],
+    "calories": 420,
+    "prepTime": "12 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Tondonia Blanco Reserva López de Heredia",
+      "vintage": "2011",
+      "region": "Rioja, Spain",
+      "notes": "Oxidative complexity, beeswax, chamomile, dried citrus, and intense savory depth."
+    },
+    "chefNote": "The rich head coral is pure oceanic nectar; we encourage guests to squeeze it over the prawn meat.",
+    "farmProvenance": "Huelva Deep-Sea Fishermen Guild, Andalucia",
+    "image": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 16
+  },
+  {
+    "id": "dish-17",
+    "name": "Wild Dover Sole Meunière",
+    "slug": "wild-dover-sole-meuniere",
+    "category": "ocean",
+    "price": 98,
+    "description": "Whole wild Dover sole filleted tableside with classical precision, noisette browned butter, Meyer lemon juice, capers, and chopped flat-leaf parsley.",
+    "shortDesc": "Classic whole Dover sole, noisette brown butter, Meyer lemon.",
+    "ingredients": [
+      "Wild English Dover Sole",
+      "Normandy Noisette Butter",
+      "Pantelleria Salted Capers",
+      "Meyer Lemon",
+      "Italian Parsley",
+      "Sea Salt"
+    ],
+    "dietary": [
+      "nut-free"
+    ],
+    "allergens": [
+      "Fish",
+      "Dairy",
+      "Gluten"
+    ],
+    "calories": 560,
+    "prepTime": "20 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Puligny-Montrachet Domaine Leflaive",
+      "vintage": "2020",
+      "region": "Burgundy, France",
+      "notes": "White flowers, citrus blossom, crisp limestone, and aristocratic precision."
+    },
+    "chefNote": "Flown directly from the English Channel, de-boned tableside in under 60 seconds.",
+    "farmProvenance": "Brixham Fish Market, Devon, England",
+    "image": "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 17
+  },
+  {
+    "id": "dish-18",
+    "name": "Alaskan King Crab in Sea Urchin Butter",
+    "slug": "alaskan-king-crab-sea-urchin-butter",
+    "category": "ocean",
+    "price": 135,
+    "description": "Steamed colossal Alaskan Red King Crab merus section glazed in whipped Hokkaido uni butter, yuzu kosho pearls, and crispy nori dust.",
+    "shortDesc": "Red King Crab merus, whipped Hokkaido uni butter, yuzu kosho.",
+    "ingredients": [
+      "Red King Crab Merus",
+      "Hokkaido Sea Urchin (Uni)",
+      "Cultured Butter",
+      "Yuzu Kosho Gel",
+      "Toasted Nori Dust",
+      "Micro Sorrel"
+    ],
+    "dietary": [
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Crustaceans",
+      "Dairy",
+      "Molluscs"
+    ],
+    "calories": 510,
+    "prepTime": "15 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Krug Grande Cuvée 170th Édition Champagne",
+      "vintage": "NV",
+      "region": "Reims, France",
+      "notes": "Dried fruit, gingerbread, hazelnut, marzipan, and endless energetic bubbles."
+    },
+    "chefNote": "Only the single largest center leg segment (merus) is used for this preparation.",
+    "farmProvenance": "Bering Sea Sustainable Fleet & Yoichi Bay, Hokkaido",
+    "image": "https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 18
+  },
+  {
+    "id": "dish-19",
+    "name": "30-Yolk Tajarin with White Alba Truffle",
+    "slug": "tajarin-alba-white-truffle",
+    "category": "pasta-grains",
+    "price": 98,
+    "description": "Hand-cut Piedmontese angel hair pasta made with 30 organic egg yolks per kilo, emulsified mountain butter, 36-month Vacche Rosse Parmigiano, and fresh Alba white truffle.",
+    "shortDesc": "30-egg yolk hand-cut pasta, mountain butter, shaved white truffle.",
+    "ingredients": [
+      "Organic Egg Yolks",
+      "Tipo 00 Flour",
+      "Alpine Mountain Butter",
+      "Parmigiano-Reggiano Vacche Rosse",
+      "Fresh Alba White Truffle",
+      "Pasta Water Emulsion"
+    ],
+    "dietary": [
+      "vegetarian",
+      "nut-free"
+    ],
+    "allergens": [
+      "Gluten",
+      "Dairy",
+      "Eggs"
+    ],
+    "calories": 650,
+    "prepTime": "14 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Barbaresco Sorì Tildìn Gaja",
+      "vintage": "2016",
+      "region": "Piedmont, Italy",
+      "notes": "Black tea, wild strawberry, truffles, liquorice, and aristocratic silkiness."
+    },
+    "chefNote": "Pasta is rolled and cut by hand every afternoon at 4:00 PM for optimal elasticity.",
+    "farmProvenance": "San Damiano d’Asti Organic Farm & Alba Truffle Hunters",
+    "image": "https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 19
+  },
+  {
+    "id": "dish-20",
+    "name": "Duck Confit Agnolotti al Plin",
+    "slug": "duck-confit-agnolotti",
+    "category": "pasta-grains",
+    "price": 52,
+    "description": "Piedmontese pinched ravioli filled with 12-hour braised Rohan duck confit, foie gras mousse, toasted hazelnuts, and Barolo reduction brodo.",
+    "shortDesc": "Pinched ravioli of duck confit, foie gras, Piedmont hazelnuts.",
+    "ingredients": [
+      "Handmade Egg Pasta",
+      "Rohan Duck Confit",
+      "Foie Gras Mousse",
+      "Barolo Red Wine Glaze",
+      "Piedmont IGP Hazelnuts",
+      "Aged Thyme"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "allergens": [
+      "Gluten",
+      "Dairy",
+      "Eggs",
+      "Nuts"
+    ],
+    "calories": 710,
+    "prepTime": "16 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Nebbiolo d’Alba Bruno Giacosa",
+      "vintage": "2019",
+      "region": "Piedmont, Italy",
+      "notes": "Fresh cherries, crushed rose petals, tobacco, and gentle spice."
+    },
+    "chefNote": "The classic \"plin\" pinch seals an explosion of molten duck jus within each parcel.",
+    "farmProvenance": "Hudson Valley Duck & Cortemilia Hazelnut Groves",
+    "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 20
+  },
+  {
+    "id": "dish-21",
+    "name": "Saffron & 24K Gold Leaf Risotto",
+    "slug": "saffron-gold-leaf-risotto",
+    "category": "pasta-grains",
+    "price": 58,
+    "description": "Acquerello aged Carnaroli rice simmered in capon broth with L’Aquila DOP saffron threads, whipped with bone marrow butter and crowned with a sheet of edible 24K gold leaf.",
+    "shortDesc": "Acquerello Carnaroli rice, L’Aquila saffron, 24K edible gold sheet.",
+    "ingredients": [
+      "7-Year Aged Acquerello Rice",
+      "L’Aquila DOP Saffron",
+      "Capon Essence Broth",
+      "Bone Marrow Butter",
+      "Parmigiano 36-Month",
+      "24K Edible Gold Leaf"
+    ],
+    "dietary": [
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy"
+    ],
+    "calories": 580,
+    "prepTime": "22 mins",
+    "isChefSpecial": true,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Franciacorta Cuvée Annamaria Clementi Ca’ del Bosco",
+      "vintage": "2013",
+      "region": "Lombardy, Italy",
+      "notes": "Complex toasted brioche, golden apples, candied ginger, and fine effervescence."
+    },
+    "chefNote": "Acquerello rice aged 7 years absorbs twice the stock while retaining an infallible al dente core.",
+    "farmProvenance": "Tenuta Colombara, Vercelli & Navelli Plateau, Abruzzo",
+    "image": "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 21
+  },
+  {
+    "id": "dish-22",
+    "name": "Hand-Rolled Cavatelli with Morels & Sweetbreads",
+    "slug": "hand-rolled-cavatelli-morels",
+    "category": "pasta-grains",
+    "price": 49,
+    "description": "Semolina cavatelli pasta tossed with pan-crisped veal sweetbreads, fresh French morel mushrooms, vin jaune emulsion, and wild chervil.",
+    "shortDesc": "Semolina cavatelli, crispy veal sweetbreads, morels, Vin Jaune.",
+    "ingredients": [
+      "Durum Semolina Cavatelli",
+      "Glazed Veal Sweetbreads",
+      "French Morel Mushrooms",
+      "Jura Vin Jaune",
+      "Crème Double",
+      "Wild Chervil"
+    ],
+    "dietary": [
+      "nut-free"
+    ],
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "calories": 640,
+    "prepTime": "15 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Château-Chalon Vin Jaune Domaine Macle",
+      "vintage": "2014",
+      "region": "Jura, France",
+      "notes": "Walnut skin, curry spices, dried apple, and unbelievable savory oxidative power."
+    },
+    "chefNote": "Sweetbreads are soaked in milk for 24 hours, peeled, and pan-fried to crisp perfection.",
+    "farmProvenance": "Jura Wild Foragers & Limousin Veal Producers",
+    "image": "https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 22
+  },
+  {
+    "id": "dish-23",
+    "name": "Valrhona Grand Cru Dark Chocolate Soufflé",
+    "slug": "valrhona-chocolate-souffle",
+    "category": "desserts",
+    "price": 32,
+    "description": "Hot Guanaja 70% dark chocolate soufflé with molten center, punctured tableside and drizzled with bourbon vanilla crème anglaise and fleur de sel caramel.",
+    "shortDesc": "Guanaja 70% molten soufflé, Tahitian vanilla anglaise.",
+    "ingredients": [
+      "Valrhona Guanaja 70%",
+      "Organic Egg Whites",
+      "Tahitian Bourbon Vanilla",
+      "Salted Butter Caramel",
+      "Gold Leaf Dust",
+      "Cacao Nibs"
+    ],
+    "dietary": [
+      "vegetarian",
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy",
+      "Eggs",
+      "Gluten"
+    ],
+    "calories": 480,
+    "prepTime": "20 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Vintage Port Quinta do Noval Nacional",
+      "vintage": "2011",
+      "region": "Douro Valley, Portugal",
+      "notes": "Dense blackberry paste, cocoa essence, dark licorice, and infinite depth."
+    },
+    "chefNote": "Baked to order; rises exactly 4.5cm above the ramekin rim and served within 90 seconds.",
+    "farmProvenance": "Valrhona Plantation, Tain l’Hermitage & Tahiti Vanilla Co-op",
+    "image": "https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 23
+  },
+  {
+    "id": "dish-24",
+    "name": "24K Gold Leaf Mille-Feuille",
+    "slug": "gold-leaf-mille-feuille",
+    "category": "desserts",
+    "price": 28,
+    "description": "Caramelized inverted puff pastry sheets layered with Madagascar vanilla mousseline, crunchy praline feuilletine, and gilded with 24-carat edible gold.",
+    "shortDesc": "Inverted puff pastry, Madagascar vanilla mousseline, 24K gold.",
+    "ingredients": [
+      "Inverted Puff Pastry",
+      "Madagascar Vanilla Pods",
+      "Hazelnut Praliné",
+      "Caramelized Sugar Glass",
+      "Edible 24K Gold Foil"
+    ],
+    "dietary": [
+      "vegetarian"
+    ],
+    "allergens": [
+      "Gluten",
+      "Dairy",
+      "Eggs",
+      "Nuts"
+    ],
+    "calories": 420,
+    "prepTime": "10 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": {
+      "name": "Tokaji Aszú 6 Puttonyos Szepsy",
+      "vintage": "2013",
+      "region": "Tokaj, Hungary",
+      "notes": "Dried apricot, orange blossom honey, fiery ginger, and bracing vibrant acidity."
+    },
+    "chefNote": "Inverted pastry technique encloses the butter on the outside, creating ethereal shattering flakes.",
+    "farmProvenance": "Beurre d’Isigny AOP & Sambava Vanilla Growers, Madagascar",
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 24
+  },
+  {
+    "id": "dish-25",
+    "name": "Yuzu & White Chocolate Sphere",
+    "slug": "yuzu-white-chocolate-sphere",
+    "category": "desserts",
+    "price": 29,
+    "description": "Delicate blown white chocolate sphere melted at the table by warm ginger-lemongrass consommé, revealing yuzu curd, matcha sponge, and shiso sorbet.",
+    "shortDesc": "Melting white chocolate sphere, yuzu curd, matcha, shiso sorbet.",
+    "ingredients": [
+      "Opalys White Chocolate",
+      "Kochi Yuzu Juice",
+      "Uji Ceremonial Matcha",
+      "Lemongrass Ginger Infusion",
+      "Shiso Sorbet",
+      "Crispy Meringue"
+    ],
+    "dietary": [
+      "vegetarian",
+      "gluten-free",
+      "nut-free"
+    ],
+    "allergens": [
+      "Dairy",
+      "Eggs",
+      "Soy"
+    ],
+    "calories": 390,
+    "prepTime": "12 mins",
+    "isChefSpecial": true,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Moscato d’Asti Vietti Cascinetta",
+      "vintage": "2022",
+      "region": "Piedmont, Italy",
+      "notes": "Fizzy white peach, elderflower, orange zest, and playful lightness."
+    },
+    "chefNote": "Interactive dessert presentation; pouring the warm consommé collapses the sphere before your eyes.",
+    "farmProvenance": "Kochi Prefecture Citrus Groves & Uji Tea Gardens, Kyoto",
+    "image": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 25
+  },
+  {
+    "id": "dish-26",
+    "name": "Bronte Pistachio & Amarena Saint-Honoré",
+    "slug": "pistachio-amarena-saint-honore",
+    "category": "desserts",
+    "price": 27,
+    "description": "Puff pastry disc with caramelized choux buns filled with Sicilian Bronte pistachio diplomat cream, Amarena cherry compote, and spun sugar crown.",
+    "shortDesc": "Caramelized choux, Bronte pistachio diplomat, Amarena cherries.",
+    "ingredients": [
+      "Sicilian Bronte Pistachio Paste",
+      "Amarena Fabbri Cherries",
+      "Caramelized Choux Puffs",
+      "Feuilletage Pastry",
+      "Whipped Mascarpone",
+      "Spun Sugar"
+    ],
+    "dietary": [
+      "vegetarian"
+    ],
+    "allergens": [
+      "Gluten",
+      "Dairy",
+      "Eggs",
+      "Nuts"
+    ],
+    "calories": 460,
+    "prepTime": "10 mins",
+    "isChefSpecial": false,
+    "isPopular": false,
+    "winePairing": {
+      "name": "Passito di Pantelleria Ben Ryé Donnafugata",
+      "vintage": "2020",
+      "region": "Sicily, Italy",
+      "notes": "Sun-dried Zibibbo grapes, candied apricot, rosemary, and sweet caramel finish."
+    },
+    "chefNote": "Pistachios from the volcanic slopes of Mount Etna provide an unmistakable emerald green hue.",
+    "farmProvenance": "DOP Bronte Pistachio Consortium, Mount Etna, Sicily",
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 26
+  },
+  {
+    "id": "dish-27",
+    "name": "The Golden Empress (24K Gold Leaf Cocktail)",
+    "slug": "golden-empress-cocktail",
+    "category": "cocktails",
+    "price": 35,
+    "description": "Grand Marnier Cuvée du Centenaire, Dom Pérignon Vintage Champagne, saffron cordial, edible 24K gold flakes, served in crystal coupe with diamond ice.",
+    "shortDesc": "Centenaire Cognac, Dom Pérignon, saffron cordial, 24K gold.",
+    "ingredients": [
+      "Grand Marnier Centenaire",
+      "Dom Pérignon 2013",
+      "Saffron Cordial",
+      "Lemon Verbena Mist",
+      "Edible 24K Gold Flakes",
+      "Hand-Carved Diamond Ice"
+    ],
+    "dietary": [
+      "vegan",
+      "gluten-free",
+      "nut-free",
+      "dairy-free"
+    ],
+    "allergens": [],
+    "calories": 160,
+    "prepTime": "5 mins",
+    "isChefSpecial": true,
+    "isPopular": true,
+    "winePairing": null,
+    "chefNote": "Presented inside a cloche of sweet orange blossom vapor.",
+    "farmProvenance": "House of Grand Marnier & Moët & Chandon Épernay",
+    "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 27
+  },
+  {
+    "id": "dish-28",
+    "name": "Smoked Old Fashioned ‘1920’",
+    "slug": "smoked-old-fashioned-1920",
+    "category": "cocktails",
+    "price": 32,
+    "description": "Pappy Van Winkle 15-Year Bourbon, raw Demerara smoked syrup, artisanal Angostura bitters, smoked under torched French oak barrel staves.",
+    "shortDesc": "Pappy Van Winkle 15yr, smoked Demerara, charred French oak smoke.",
+    "ingredients": [
+      "Rare Kentucky Bourbon",
+      "Smoked Demerara Sugar",
+      "Orange Essential Oils",
+      "Aromatic House Bitters",
+      "Brandied Luxardo Cherry",
+      "Oak Smoke Cloche"
+    ],
+    "dietary": [
+      "vegan",
+      "gluten-free",
+      "nut-free",
+      "dairy-free"
+    ],
+    "allergens": [],
+    "calories": 190,
+    "prepTime": "6 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": null,
+    "chefNote": "Unveiled at your table as rich fragrant oak smoke billows over the crystal tumbler.",
+    "farmProvenance": "Old Rip Van Winkle Distillery, Frankfort, Kentucky",
+    "image": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 28
+  },
+  {
+    "id": "dish-29",
+    "name": "Black Truffle Infused Boulevardier",
+    "slug": "truffle-boulevardier",
+    "category": "cocktails",
+    "price": 34,
+    "description": "WhistlePig 12-Year Rye washed with winter black truffle oil, Campari Cask Tales, Carpano Antica Formula Vermouth, and flamed orange peel.",
+    "shortDesc": "Black truffle washed Rye, Campari Cask Tales, Carpano Antica.",
+    "ingredients": [
+      "Black Truffle Washed Rye",
+      "Campari Cask Tales",
+      "Carpano Antica Formula",
+      "Flamed Valencia Orange Peel",
+      "Single Sphere Clear Ice"
+    ],
+    "dietary": [
+      "vegan",
+      "gluten-free",
+      "nut-free",
+      "dairy-free"
+    ],
+    "allergens": [],
+    "calories": 185,
+    "prepTime": "5 mins",
+    "isChefSpecial": true,
+    "isPopular": false,
+    "winePairing": null,
+    "chefNote": "Fat-washed with infused Périgord truffle butter over 48 hours for profound umami resonance.",
+    "farmProvenance": "WhistlePig Farm, Vermont & Fratelli Branca, Milan",
+    "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 29
+  },
+  {
+    "id": "dish-30",
+    "name": "Tokyo Cloud (Zero-Proof Lychee Shiso)",
+    "slug": "tokyo-cloud-mocktail",
+    "category": "cocktails",
+    "price": 24,
+    "description": "Artisanal non-alcoholic creation: Seedlip Grove 42 botanicals, clarified white peach nectar, red shiso infusion, topped with aerated yuzu foam.",
+    "shortDesc": "Seedlip Grove 42, white peach nectar, red shiso, yuzu cloud foam.",
+    "ingredients": [
+      "Seedlip Distilled Botanicals",
+      "White Peach Nectar",
+      "Red Shiso Leaf Infusion",
+      "Yuzu Aerated Cloud Foam",
+      "Sparkling Mineral Water"
+    ],
+    "dietary": [
+      "vegan",
+      "gluten-free",
+      "nut-free",
+      "dairy-free",
+      "halal"
+    ],
+    "allergens": [],
+    "calories": 85,
+    "prepTime": "4 mins",
+    "isChefSpecial": false,
+    "isPopular": true,
+    "winePairing": null,
+    "chefNote": "A multi-layered non-alcoholic masterwork designed to pair with lighter ocean and starter courses.",
+    "farmProvenance": "Seedlip Distillery, England & Yamanashi White Peach Groves",
+    "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85"
+    ],
+    "displayOrder": 30
+  }
+]
