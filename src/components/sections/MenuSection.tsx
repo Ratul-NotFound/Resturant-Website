@@ -200,7 +200,7 @@ export function MenuSection({
           <div className="space-y-8 animate-fade-in">
             
             {/* Filter & Search Bar */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-black/10 shadow-xl space-y-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-6">
               
               {/* Top Row: Trie Search + Cellar Assistant + Price Range Slider */}
               <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -372,8 +372,7 @@ export function MenuSection({
           <div className="space-y-10 animate-fade-in">
             {/* Banner card */}
             <div
-              className="p-7 sm:p-9 rounded-3xl border border-black/10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6"
-              style={{ background: 'linear-gradient(135deg, #fff9f0 0%, #ffffff 100%)' }}
+              className="p-7 sm:p-9 rounded-3xl border border-neutral-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-center justify-between gap-6 bg-white"
             >
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20 mb-3">

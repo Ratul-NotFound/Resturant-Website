@@ -103,25 +103,25 @@ export function LocationHoursSection() {
       
       {/* Background Glow */}
       <div
-        className="absolute bottom-0 right-0 w-[450px] h-[450px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(58,125,68,0.07) 0%, transparent 70%)', transform: 'translate(30%, 30%)' }}
+        className="absolute bottom-0 right-0 w-[450px] h-[450px] rounded-full pointer-events-none opacity-40"
+        style={{ background: 'radial-gradient(circle, rgba(58,125,68,0.06) 0%, transparent 70%)', transform: 'translate(30%, 30%)' }}
       />
       <div
-        className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(232,48,42,0.05) 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }}
+        className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none opacity-40"
+        style={{ background: 'radial-gradient(circle, rgba(232,48,42,0.05) 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e8302a]/08 border border-[#e8302a]/20 text-[#e8302a] text-[10px] uppercase tracking-[0.3em] font-bold mb-5">
-            <MapPin className="h-3 w-3" /> Location, Hours &amp; Inquiries
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 text-brand-red border border-red-200 text-xs font-bold uppercase tracking-wider mb-4">
+            <MapPin className="h-3.5 w-3.5" /> Location, Hours &amp; Inquiries
           </div>
-          <h2 className="headline-display text-3xl sm:text-5xl mb-5">
-            Visit &amp; <span className="italic text-gradient-red">Connect With Us</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-neutral-900 tracking-tight uppercase mb-4">
+            Visit &amp; <span className="text-gradient-red italic">Connect With Us</span>
           </h2>
-          <p className="text-[#666] text-sm leading-relaxed max-w-xl mx-auto">
+          <p className="text-neutral-600 text-sm leading-relaxed max-w-xl mx-auto font-normal">
             Experience our 30th-floor sky sanctum overlooking the Manhattan skyline or send an inquiry to our guest relations team.
           </p>
         </div>
@@ -133,21 +133,21 @@ export function LocationHoursSection() {
           <div className="lg:col-span-6 space-y-6">
             
             {/* Live Operational Status Banner */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-black/10 shadow-lg">
+            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)]">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-500 font-bold">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-bold">
                   Operational Service Status
                 </span>
                 <span
                   className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-bold ${
                     liveStatus.isOpen
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
-                      : 'bg-neutral-100 text-neutral-600 border border-neutral-300'
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                      : 'bg-neutral-100 text-neutral-600 border border-neutral-200'
                   }`}
                 >
                   <span
                     className={`h-2 w-2 rounded-full ${
-                      liveStatus.isOpen ? 'bg-emerald-500 animate-ping' : 'bg-neutral-400'
+                      liveStatus.isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-neutral-400'
                     }`}
                   />
                   {liveStatus.isOpen ? 'Open For Service' : 'Cellar Rest'}
@@ -157,11 +157,11 @@ export function LocationHoursSection() {
               <h3 className="font-serif text-xl font-bold text-neutral-900 mb-1 tracking-wide">
                 {liveStatus.statusText}
               </h3>
-              <p className="text-xs text-neutral-500 font-medium">{liveStatus.nextEventText}</p>
+              <p className="text-xs text-neutral-500 font-normal">{liveStatus.nextEventText}</p>
             </div>
 
             {/* Weekly Schedule Table */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-black/10 shadow-lg space-y-4">
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
               <h4 className="font-serif text-sm font-bold text-neutral-900 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
                 <Clock className="h-4 w-4 text-brand-red" /> Weekly Service Hours
               </h4>
@@ -215,20 +215,20 @@ export function LocationHoursSection() {
 
             {/* Concierge & White-Glove Valet */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-white border border-black/10 shadow-sm">
+              <div className="p-5 rounded-2xl bg-white border border-neutral-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
                 <div className="flex items-center gap-2 text-brand-red text-[11px] font-bold uppercase tracking-[0.15em] mb-2">
                   <Car className="h-4 w-4" /> White-Glove Valet
                 </div>
-                <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                <p className="text-xs text-neutral-500 leading-relaxed font-normal">
                   {RESTAURANT_INFO.valetParking}
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-black/10 shadow-sm">
+              <div className="p-5 rounded-2xl bg-white border border-neutral-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
                 <div className="flex items-center gap-2 text-brand-red text-[11px] font-bold uppercase tracking-[0.15em] mb-2">
                   <Shield className="h-4 w-4" /> Dress Code Policy
                 </div>
-                <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                <p className="text-xs text-neutral-500 leading-relaxed font-normal">
                   {RESTAURANT_INFO.dressCode}
                 </p>
               </div>
@@ -240,21 +240,21 @@ export function LocationHoursSection() {
           <div id="contact" className="lg:col-span-6 space-y-6 scroll-mt-28">
             
             {/* Direct Contact Form Card */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-black/10 shadow-xl space-y-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-6">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-brand-red text-[10px] font-bold uppercase tracking-wider mb-2 border border-red-200">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-brand-red text-[10px] font-bold uppercase tracking-wider mb-2 border border-red-100">
                   <MessageSquare className="h-3 w-3" /> Send a Message
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-neutral-900 tracking-wide">
                   Contact Guest Relations
                 </h3>
-                <p className="text-xs text-neutral-500 mt-1">
+                <p className="text-xs text-neutral-500 mt-1 font-normal">
                   Inquire about dining experiences, dietary arrangements, private reservations, or press partnerships.
                 </p>
               </div>
 
               {contactSuccessMsg ? (
-                <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-300 text-center space-y-3 animate-fade-in">
+                <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3 animate-fade-in">
                   <CheckCircle2 className="h-8 w-8 text-emerald-600 mx-auto" />
                   <h4 className="font-serif text-lg font-bold text-emerald-900">
                     Message Received
@@ -274,7 +274,7 @@ export function LocationHoursSection() {
                 <form onSubmit={handleContactSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
+                      <label className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider block mb-1 font-bold">
                         Your Full Name *
                       </label>
                       <input
@@ -284,12 +284,12 @@ export function LocationHoursSection() {
                         value={contactName}
                         onChange={(e) => setContactName(e.target.value)}
                         maxLength={80}
-                        className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
+                        className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
+                      <label className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider block mb-1 font-bold">
                         Email Address *
                       </label>
                       <input
@@ -299,13 +299,13 @@ export function LocationHoursSection() {
                         value={contactEmail}
                         onChange={(e) => setContactEmail(e.target.value)}
                         maxLength={254}
-                        className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
+                        className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
+                    <label className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider block mb-1 font-bold">
                       Contact Phone *
                     </label>
                     <input
@@ -315,12 +315,12 @@ export function LocationHoursSection() {
                       value={contactPhone}
                       onChange={(e) => setContactPhone(e.target.value)}
                       maxLength={16}
-                      className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
+                      className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1 font-bold">
+                    <label className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider block mb-1 font-bold">
                       Your Inquiry or Special Request *
                     </label>
                     <textarea
@@ -330,7 +330,7 @@ export function LocationHoursSection() {
                       value={contactMessage}
                       onChange={(e) => setContactMessage(e.target.value)}
                       maxLength={1000}
-                      className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-300 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
+                      className="w-full px-4 py-3 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs font-medium text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-red focus:bg-white focus:ring-2 focus:ring-brand-red/20 transition-all"
                     />
                   </div>
 
@@ -355,24 +355,24 @@ export function LocationHoursSection() {
 
             {/* Direct Contact Phone & Email Cards */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-white border border-black/10 shadow-sm flex items-center gap-3.5">
+              <div className="p-5 rounded-2xl bg-white border border-neutral-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-3.5">
                 <div className="p-2.5 rounded-2xl bg-red-50 text-brand-red border border-red-100">
                   <Phone className="h-4 w-4" />
                 </div>
                 <div>
-                  <span className="text-neutral-500 uppercase text-[9px] font-bold tracking-[0.2em] block">Concierge Desk</span>
+                  <span className="text-neutral-400 uppercase text-[9px] font-bold tracking-[0.2em] block">Concierge Desk</span>
                   <a href={`tel:${RESTAURANT_INFO.phone}`} className="font-serif text-sm font-bold text-neutral-900 hover:text-brand-red transition-colors">
                     {RESTAURANT_INFO.phone}
                   </a>
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-black/10 shadow-sm flex items-center gap-3.5">
+              <div className="p-5 rounded-2xl bg-white border border-neutral-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-3.5">
                 <div className="p-2.5 rounded-2xl bg-red-50 text-brand-red border border-red-100">
                   <Mail className="h-4 w-4" />
                 </div>
                 <div>
-                  <span className="text-neutral-500 uppercase text-[9px] font-bold tracking-[0.2em] block">Reservations Desk</span>
+                  <span className="text-neutral-400 uppercase text-[9px] font-bold tracking-[0.2em] block">Reservations Desk</span>
                   <a href={`mailto:${RESTAURANT_INFO.reservationsEmail}`} className="font-serif text-xs font-bold text-neutral-900 hover:text-brand-red transition-colors">
                     {RESTAURANT_INFO.reservationsEmail}
                   </a>
@@ -387,4 +387,3 @@ export function LocationHoursSection() {
     </section>
   );
 }
-
