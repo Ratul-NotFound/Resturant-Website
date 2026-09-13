@@ -1,0 +1,43 @@
+import { ChefSpecial } from '@/lib/types';
+
+export const chefSpecialsData: ChefSpecial[] = [
+  {
+    id: 'special-01',
+    dishId: 'dish-07',
+    title: 'Miyazaki A5 Wagyu Ribeye BMS 12',
+    subTitle: 'The Pinnacle of Japanese Marbling',
+    quote: 'Marbled to sheer impossibility. It does not merely melt; it evaporates on the tongue with the savory sweetness of pure umami.',
+    chefName: 'Gabriel Moreau',
+    chefTitle: 'Executive Chef & Co-Founder',
+    frontImage: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1200&q=85',
+    backImage: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85',
+    technique: 'Direct Kishu Binchotan Sear (400°C) with Bone Marrow Tare and Fresh Wasabi Grated on Sharkskin',
+    flavorProfile: ['Unctuous Marbling', 'Charred Oak Smoke', 'Sweet Bone Marrow', 'Zesty Shizuoka Wasabi'],
+  },
+  {
+    id: 'special-02',
+    dishId: 'dish-15',
+    title: 'Whole Maine Lobster Thermidor Flambé',
+    subTitle: 'Hennessy XO & Black Truffle Gratin',
+    quote: 'Classic French luxury reincarnated through precision heat control and 30-year Cognac flame.',
+    chefName: 'Claire Laurent',
+    chefTitle: 'Head of Culinary R&D',
+    frontImage: 'https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=85',
+    backImage: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=85',
+    technique: 'Tableside Hennessy XO flambé over live charcoal, folded in aged Gruyère AOP béchamel and Périgord truffles',
+    flavorProfile: ['Sweet Cold-Water Lobster', 'Aged Cognac Warmth', 'Earthy Black Truffle', 'Nutty Gruyère'],
+  },
+  {
+    id: 'special-03',
+    dishId: 'dish-19',
+    title: '30-Yolk Tajarin with Alba White Truffle',
+    subTitle: 'The Golden Thread of Piedmont',
+    quote: 'Hand-cut pasta of pure golden yolks, creating an ethereal silk that carries the heavenly perfume of fresh white truffles.',
+    chefName: 'Matteo Bellini',
+    chefTitle: 'Master Pastaiolo',
+    frontImage: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281045?auto=format&fit=crop&w=1200&q=85',
+    backImage: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=1200&q=85',
+    technique: 'Extruded and hand-cut daily with 30 organic egg yolks per kilo; emulsified with alpine butter and shaved tableside',
+    flavorProfile: ['Rich Egg Yolk Silk', 'Musky Alba Truffle', 'Aged Parmigiano Vacche Rosse', 'Alpine Grass Butter'],
+  },
+];
