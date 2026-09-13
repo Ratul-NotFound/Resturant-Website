@@ -2,31 +2,31 @@
   {
     "ip": "::1",
     "endpoint": "slots_api",
-    "tokens": 29,
-    "last_refill": "1789329428857"
+    "tokens": 28.164,
+    "last_refill": "1789330054584"
   },
   {
     "ip": "::1",
     "endpoint": "menu_api",
-    "tokens": 58.024,
-    "last_refill": "1789326602220"
+    "tokens": 58.025,
+    "last_refill": "1789330054086"
   },
   {
     "ip": "::1",
     "endpoint": "reservations_book",
-    "tokens": 1.1040750000000004,
-    "last_refill": "1789326602575"
+    "tokens": 3.0057416666666663,
+    "last_refill": "1789330055116"
   },
   {
     "ip": "::1",
     "endpoint": "cart_checkout",
-    "tokens": 1.6118000000000001,
-    "last_refill": "1789326602515"
+    "tokens": 2,
+    "last_refill": "1789330054758"
   },
   {
     "ip": "::1",
     "endpoint": "newsletter_subscribe",
-    "tokens": 0.40303333333333335,
-    "last_refill": "1789326602543"
+    "tokens": 1,
+    "last_refill": "1789330054925"
   }
 ]

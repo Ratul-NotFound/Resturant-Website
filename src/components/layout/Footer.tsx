@@ -64,20 +64,20 @@ export function Footer({
   };
 
   return (
-    <footer className="relative bg-obsidian-950 border-t border-gold-primary/20 pt-16 pb-12 overflow-hidden text-neutral-400 font-sans">
+    <footer className="relative bg-[#0c0b0a] border-t border-gold-primary/20 pt-16 pb-12 overflow-hidden text-[#91887b] font-sans">
       
       {/* Background Gold Ambient Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-[radial-gradient(ellipse_at_top,rgba(197,160,89,0.08),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Newsletter & Grand Header */}
-        <div className="grid lg:grid-cols-12 gap-10 pb-16 border-b border-neutral-800">
+        <div className="grid lg:grid-cols-12 gap-10 pb-16 border-b border-gold-primary/15">
           
           {/* Brand Presentation */}
           <div className="lg:col-span-6 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center h-12 w-12 rounded-full border border-gold-primary bg-obsidian-900 shadow-gold-sm">
+              <div className="flex items-center justify-center h-12 w-12 rounded-full border border-gold-primary bg-[#141210] shadow-gold-sm">
                 <span className="font-serif text-2xl font-bold text-gold-primary">A</span>
               </div>
               <div>
@@ -90,11 +90,11 @@ export function Footer({
               </div>
             </div>
 
-            <p className="text-sm text-neutral-300 max-w-md leading-relaxed">
+            <p className="text-sm text-[#cfc8bc] max-w-md leading-relaxed">
               {RESTAURANT_INFO.tagline}. Located on the 30th floor overlooking the Manhattan skyline with our 4,000-bottle subterranean private reserve cellar.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-2 text-xs text-neutral-300">
+            <div className="flex flex-wrap gap-4 pt-2 text-xs text-[#cfc8bc]">
               <span className="inline-flex items-center gap-1 text-gold-hover">
                 <Award className="h-4 w-4 text-gold-primary" /> Michelin 3 Stars (2025)
               </span>
@@ -108,7 +108,7 @@ export function Footer({
               {onOpenPrivateDining && (
                 <button
                   onClick={onOpenPrivateDining}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-obsidian-900 border border-gold-primary/30 text-gold-hover text-xs font-semibold hover:bg-gold-primary hover:text-obsidian-950 transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#141210] border border-gold-primary/30 text-gold-hover text-xs font-semibold hover:bg-gold-primary hover:text-[#0c0b0a] transition-all"
                 >
                   <Building2 className="h-3.5 w-3.5" /> Private Vault Buyout Inquiry
                 </button>
@@ -116,7 +116,7 @@ export function Footer({
               {onOpenLookup && (
                 <button
                   onClick={onOpenLookup}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-obsidian-900 border border-neutral-700 text-neutral-300 text-xs font-semibold hover:border-gold-primary hover:text-white transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] text-xs font-semibold hover:border-gold-primary hover:text-white transition-all"
                 >
                   <Search className="h-3.5 w-3.5 text-gold-primary" /> Look Up / Cancel Reservation
                 </button>
@@ -126,14 +126,14 @@ export function Footer({
 
           {/* Newsletter Form */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <div className="p-6 sm:p-8 rounded-3xl bg-obsidian-900/80 border border-gold-primary/25 shadow-2xl backdrop-blur-md">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#141210]/90 border border-gold-primary/25 shadow-2xl backdrop-blur-md">
               <span className="text-xs uppercase tracking-widest text-gold-light font-semibold block mb-1">
                 The Gastronomy Gazette
               </span>
               <h4 className="font-serif text-xl font-bold text-champagne mb-2">
                 Private Cellar Invitations & Seasonal Menu Releases
               </h4>
-              <p className="text-xs text-neutral-400 mb-4 leading-relaxed">
+              <p className="text-xs text-[#91887b] mb-4 leading-relaxed">
                 Receive confidential allocations for rare vintage wine dinners, white truffle auctions, and priority seasonal reservations.
               </p>
 
@@ -162,7 +162,7 @@ export function Footer({
                       value={newsletterEmail}
                       onChange={(e) => setNewsletterEmail(e.target.value)}
                       maxLength={254}
-                      className="flex-1 px-4 py-3 rounded-xl bg-obsidian-950 border border-neutral-700 text-xs text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-gold-primary"
+                      className="flex-1 px-4 py-3 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
                     />
                     <button
                       type="submit"
@@ -178,7 +178,7 @@ export function Footer({
                       )}
                     </button>
                   </div>
-                  <p className="text-[10px] text-neutral-500">
+                  <p className="text-[10px] text-[#91887b]">
                     Strict privacy assured. Zero spam. Unsubscribe at any time.
                   </p>
                 </form>
@@ -188,7 +188,7 @@ export function Footer({
         </div>
 
         {/* Interactive FAQ Section */}
-        <div className="py-12 border-b border-neutral-800">
+        <div className="py-12 border-b border-gold-primary/15">
           <div className="max-w-3xl mx-auto space-y-4">
             <div className="text-center mb-8">
               <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold block mb-1">
@@ -200,7 +200,7 @@ export function Footer({
             {FAQ_ITEMS.map((faq, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl bg-obsidian-900/60 border border-neutral-800 overflow-hidden transition-colors"
+                className="rounded-2xl bg-[#141210]/80 border border-gold-primary/15 overflow-hidden transition-colors"
               >
                 <button
                   type="button"
@@ -212,13 +212,13 @@ export function Footer({
                     {faq.question}
                   </span>
                   <ChevronDown
-                    className={`h-4 w-4 text-neutral-500 transition-transform duration-300 ${
+                    className={`h-4 w-4 text-[#91887b] transition-transform duration-300 ${
                       openFaqIdx === idx ? 'rotate-180 text-gold-primary' : ''
                     }`}
                   />
                 </button>
                 {openFaqIdx === idx && (
-                  <div className="px-5 pb-5 text-xs text-neutral-300 leading-relaxed font-sans border-t border-neutral-800/60 pt-3 animate-fade-in">
+                  <div className="px-5 pb-5 text-xs text-[#cfc8bc] leading-relaxed font-sans border-t border-gold-primary/10 pt-3 animate-fade-in">
                     {faq.answer}
                   </div>
                 )}
@@ -228,7 +228,7 @@ export function Footer({
         </div>
 
         {/* Middle Navigation & Information Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-b border-neutral-800 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-b border-gold-primary/15 text-xs">
           
           {/* Navigation Links */}
           <div className="space-y-3">

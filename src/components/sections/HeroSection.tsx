@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onReserveClick }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-obsidian-950">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#0c0b0a]">
       
       {/* Background High-Resolution Photography with Dark Overlay */}
       <div className="absolute inset-0 z-0">
@@ -23,14 +23,14 @@ export function HeroSection({ onReserveClick }: HeroSectionProps) {
           sizes="100vw"
           className="object-cover object-center scale-105 animate-pulse-subtle"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian-950/90 via-obsidian-950/75 to-obsidian-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,12,0.85)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0b0a]/90 via-[#0c0b0a]/75 to-[#0c0b0a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(12,11,10,0.85)_100%)]" />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Accolades Top Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-obsidian-900/80 border border-gold-primary/40 backdrop-blur-md shadow-gold-sm mb-6 animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#141210]/90 border border-gold-primary/40 backdrop-blur-md shadow-gold-sm mb-6 animate-fade-in">
           <Award className="h-4 w-4 text-gold-primary" />
           <span className="text-xs uppercase tracking-[0.25em] font-semibold text-champagne">
             ★★★ Three Michelin Stars · 2025 Edition

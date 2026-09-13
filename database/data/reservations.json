@@ -117,5 +117,22 @@
     "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtMzcwNiIsImd1ZXN0IjoiQmFyb25lc3MgVml2aWVubmUgRHVwb250IiwiZGF0ZSI6IjIwMjYtMTAtMDUiLCJ0aW1lIjoiMTk6MzAiLCJhcmVhIjoidmF1bHQiLCJwYXJ0eSI6NH0=",
     "createdAt": "2026-09-13T19:10:02.278Z",
     "updatedAt": "2026-09-13T19:10:02.278Z"
+  },
+  {
+    "id": "RES-1789330054431-1996",
+    "bookingReference": "AURA-2026-5270",
+    "guestName": "Baroness Vivienne Dupont",
+    "guestEmail": "vivienne.dupont@dupont-luxury.com",
+    "guestPhone": "+12125550144",
+    "partySize": 4,
+    "date": "2026-10-05",
+    "timeSlot": "19:30",
+    "seatingArea": "vault",
+    "occasion": "anniversary",
+    "dietaryNotes": "Prefers Dom Pérignon 2013 upon seating",
+    "status": "CONFIRMED",
+    "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtNTI3MCIsImd1ZXN0IjoiQmFyb25lc3MgVml2aWVubmUgRHVwb250IiwiZGF0ZSI6IjIwMjYtMTAtMDUiLCJ0aW1lIjoiMTk6MzAiLCJhcmVhIjoidmF1bHQiLCJwYXJ0eSI6NH0=",
+    "createdAt": "2026-09-13T20:07:34.431Z",
+    "updatedAt": "2026-09-13T20:07:34.431Z"
   }
 ]

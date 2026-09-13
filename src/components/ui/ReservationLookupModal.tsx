@@ -96,13 +96,13 @@ export function ReservationLookupModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-lg my-auto rounded-3xl bg-obsidian-900 border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up"
+        className="relative w-full max-w-lg my-auto rounded-3xl bg-[#141210] border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up text-[#f7f4ed]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-[#1a1714] text-[#91887b] hover:text-[#f7f4ed] transition-colors"
           aria-label="Close modal"
         >
           <X className="h-5 w-5" />
@@ -114,7 +114,7 @@ export function ReservationLookupModal({
             <Search className="h-3 w-3 text-gold-primary" /> Concierge Registry
           </div>
           <h3 className="font-serif text-2xl font-bold text-champagne">Manage Existing Reservation</h3>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[#91887b] mt-1">
             Access your digital pass, check table allocation status, or request changes.
           </p>
         </div>
@@ -122,7 +122,7 @@ export function ReservationLookupModal({
         {/* Search Form */}
         <form onSubmit={handleLookup} className="space-y-3 mb-6">
           <div>
-            <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+            <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
               Booking Reference Code (e.g. AURA-2026-7849)
             </label>
             <input
@@ -131,16 +131,16 @@ export function ReservationLookupModal({
               value={bookingRef}
               onChange={(e) => setBookingRef(e.target.value.toUpperCase())}
               maxLength={40}
-              className="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs font-mono text-neutral-200 placeholder-neutral-600 uppercase focus:outline-none focus:border-gold-primary"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs font-mono text-[#f7f4ed] placeholder-[#91887b] uppercase focus:outline-none focus:border-gold-primary"
             />
           </div>
 
-          <div className="text-center text-[11px] text-neutral-600 uppercase tracking-widest">
+          <div className="text-center text-[11px] text-[#91887b] uppercase tracking-widest">
             — OR BY EMAIL —
           </div>
 
           <div>
-            <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+            <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
               Guest Email Address
             </label>
             <input
@@ -149,7 +149,7 @@ export function ReservationLookupModal({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               maxLength={254}
-              className="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
             />
           </div>
 
@@ -172,10 +172,10 @@ export function ReservationLookupModal({
 
         {/* Found Booking Card */}
         {foundBooking && (
-          <div className="p-5 rounded-2xl bg-obsidian-950 border border-gold-primary/30 space-y-4 animate-fade-in">
+          <div className="p-5 rounded-2xl bg-[#0c0b0a] border border-gold-primary/30 space-y-4 animate-fade-in">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] text-neutral-400 uppercase tracking-widest block">Guest Name</span>
+                <span className="text-[10px] text-[#91887b] uppercase tracking-widest block">Guest Name</span>
                 <h4 className="font-serif text-lg font-bold text-champagne">{foundBooking.guestName}</h4>
               </div>
               <span
@@ -189,14 +189,14 @@ export function ReservationLookupModal({
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs text-neutral-300 border-t border-b border-neutral-800 py-3">
+            <div className="grid grid-cols-2 gap-3 text-xs text-[#cfc8bc] border-t border-b border-gold-primary/10 py-3">
               <div>
-                <span className="text-[10px] text-neutral-500 block uppercase">Date & Time</span>
-                <span className="font-medium text-neutral-200">{formatDateReadable(foundBooking.date)} at {foundBooking.timeSlot}</span>
+                <span className="text-[10px] text-[#91887b] block uppercase">Date & Time</span>
+                <span className="font-medium text-[#f7f4ed]">{formatDateReadable(foundBooking.date)} at {foundBooking.timeSlot}</span>
               </div>
               <div>
-                <span className="text-[10px] text-neutral-500 block uppercase">Salon & Guests</span>
-                <span className="font-medium text-neutral-200 capitalize">{foundBooking.seatingArea} · {foundBooking.partySize} Guests</span>
+                <span className="text-[10px] text-[#91887b] block uppercase">Salon & Guests</span>
+                <span className="font-medium text-[#f7f4ed] capitalize">{foundBooking.seatingArea} · {foundBooking.partySize} Guests</span>
               </div>
             </div>
 

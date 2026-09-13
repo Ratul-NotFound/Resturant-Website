@@ -76,7 +76,7 @@ export function LocationHoursSection() {
             </div>
 
             {/* Weekly Schedule Table */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-obsidian-950/80 border border-neutral-800 shadow-xl space-y-3">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#141210] border border-gold-primary/20 shadow-xl space-y-3">
               <h4 className="font-serif text-base font-bold text-champagne uppercase tracking-wider mb-4 flex items-center gap-2">
                 <Clock className="h-4 w-4 text-gold-primary" /> Weekly Service Hours
               </h4>
@@ -84,10 +84,10 @@ export function LocationHoursSection() {
                 {OPENING_HOURS.map((h) => (
                   <div
                     key={h.day}
-                    className="flex items-center justify-between py-1.5 border-b border-neutral-900 last:border-0"
+                    className="flex items-center justify-between py-1.5 border-b border-gold-primary/10 last:border-0"
                   >
-                    <span className="font-medium text-neutral-300 w-24">{h.day}</span>
-                    <span className="text-neutral-400">{h.lunch}</span>
+                    <span className="font-medium text-[#f7f4ed] w-24">{h.day}</span>
+                    <span className="text-[#91887b]">{h.lunch}</span>
                     <span className="text-gold-light font-mono text-right">{h.dinner}</span>
                   </div>
                 ))}
@@ -96,20 +96,20 @@ export function LocationHoursSection() {
 
             {/* Concierge & White-Glove Valet */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-obsidian-950 border border-neutral-800">
+              <div className="p-5 rounded-2xl bg-[#141210] border border-gold-primary/20">
                 <div className="flex items-center gap-2 text-gold-light text-xs font-semibold uppercase tracking-wider mb-2">
                   <Car className="h-4 w-4 text-gold-primary" /> White-Glove Valet
                 </div>
-                <p className="text-xs text-neutral-300 leading-relaxed">
+                <p className="text-xs text-[#cfc8bc] leading-relaxed">
                   {RESTAURANT_INFO.valetParking}
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-obsidian-950 border border-neutral-800">
+              <div className="p-5 rounded-2xl bg-[#141210] border border-gold-primary/20">
                 <div className="flex items-center gap-2 text-gold-light text-xs font-semibold uppercase tracking-wider mb-2">
                   <Shield className="h-4 w-4 text-gold-primary" /> Dress Code Policy
                 </div>
-                <p className="text-xs text-neutral-300 leading-relaxed">
+                <p className="text-xs text-[#cfc8bc] leading-relaxed">
                   {RESTAURANT_INFO.dressCode}
                 </p>
               </div>
@@ -130,7 +130,7 @@ export function LocationHoursSection() {
               <div className="relative z-10 flex flex-col items-center justify-center my-auto text-center">
                 <div className="relative flex items-center justify-center">
                   <div className="h-16 w-16 rounded-full bg-gold-primary/20 border border-gold-primary animate-ping absolute" />
-                  <div className="h-12 w-12 rounded-full bg-gold-primary text-obsidian-950 flex items-center justify-center shadow-gold-glow relative z-10">
+                  <div className="h-12 w-12 rounded-full bg-gold-primary text-[#0c0b0a] flex items-center justify-center shadow-gold-glow relative z-10">
                     <MapPin className="h-6 w-6" />
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export function LocationHoursSection() {
 
               {/* Bottom Quick Directions Link */}
               <div className="relative z-10 pt-4 border-t border-gold-primary/20 flex items-center justify-between">
-                <span className="text-xs text-neutral-400">Between 56th & 57th Streets</span>
+                <span className="text-xs text-[#91887b]">Between 56th & 57th Streets</span>
                 <a
                   href="https://maps.google.com/?q=432+Park+Avenue+New+York"
                   target="_blank"
@@ -158,13 +158,13 @@ export function LocationHoursSection() {
             </div>
 
             {/* Direct Contact Inquiries */}
-            <div className="p-6 rounded-3xl bg-obsidian-950 border border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div className="p-6 rounded-3xl bg-[#141210] border border-gold-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
               <div className="flex items-center gap-3">
-                <div className="p-3 rounded-xl bg-neutral-900 text-gold-primary border border-neutral-800">
+                <div className="p-3 rounded-xl bg-[#0c0b0a] text-gold-primary border border-gold-primary/20">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
-                  <span className="text-neutral-400 uppercase text-[10px] block">Concierge Desk</span>
+                  <span className="text-[#91887b] uppercase text-[10px] block">Concierge Desk</span>
                   <a href={`tel:${RESTAURANT_INFO.phone}`} className="font-serif text-base font-bold text-champagne hover:text-gold-hover">
                     {RESTAURANT_INFO.phone}
                   </a>
@@ -172,11 +172,11 @@ export function LocationHoursSection() {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="p-3 rounded-xl bg-neutral-900 text-gold-primary border border-neutral-800">
+                <div className="p-3 rounded-xl bg-[#0c0b0a] text-gold-primary border border-gold-primary/20">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <span className="text-neutral-400 uppercase text-[10px] block">Private Vault Bookings</span>
+                  <span className="text-[#91887b] uppercase text-[10px] block">Private Vault Bookings</span>
                   <a href={`mailto:${RESTAURANT_INFO.reservationsEmail}`} className="font-serif text-sm font-bold text-champagne hover:text-gold-hover">
                     {RESTAURANT_INFO.reservationsEmail}
                   </a>

@@ -126,7 +126,7 @@ export function MenuSection({
   };
 
   return (
-    <section id="menu" className="scroll-mt-28 relative py-24 sm:py-32 bg-obsidian-950 overflow-hidden text-neutral-300">
+    <section id="menu" className="scroll-mt-28 relative py-24 sm:py-32 bg-[#0c0b0a] overflow-hidden text-[#cfc8bc]">
       
       {/* Background Accent Gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 bg-[radial-gradient(ellipse_at_top,rgba(197,160,89,0.06),transparent_70%)] pointer-events-none" />
@@ -141,18 +141,18 @@ export function MenuSection({
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-champagne mb-4 tracking-tight">
             The Culinary Experiences
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
+          <p className="text-xs sm:text-sm text-[#91887b] leading-relaxed font-sans">
             Orchestrated nightly by Executive Chef Gabriel Moreau. Experience our signature blind tasting journey or explore seasonal à la carte allocations.
           </p>
 
           {/* Luxury Mode Toggle Switch */}
-          <div className="inline-flex items-center p-1.5 rounded-2xl bg-obsidian-900 border border-gold-primary/30 mt-8 shadow-card-dark">
+          <div className="inline-flex items-center p-1.5 rounded-2xl bg-[#141210] border border-gold-primary/30 mt-8 shadow-card-dark">
             <button
               onClick={() => setViewMode('tasting')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-serif font-bold uppercase tracking-wider transition-all duration-300 ${
                 viewMode === 'tasting'
-                  ? 'bg-gold-primary text-obsidian-950 shadow-gold-sm'
-                  : 'text-neutral-400 hover:text-champagne'
+                  ? 'bg-gold-primary text-[#0c0b0a] shadow-gold-sm'
+                  : 'text-[#91887b] hover:text-champagne'
               }`}
             >
               <Award className="h-3.5 w-3.5" /> Grand Tasting Odyssey (10 Courses)
@@ -161,8 +161,8 @@ export function MenuSection({
               onClick={() => setViewMode('alacarte')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-serif font-bold uppercase tracking-wider transition-all duration-300 ${
                 viewMode === 'alacarte'
-                  ? 'bg-gold-primary text-obsidian-950 shadow-gold-sm'
-                  : 'text-neutral-400 hover:text-champagne'
+                  ? 'bg-gold-primary text-[#0c0b0a] shadow-gold-sm'
+                  : 'text-[#91887b] hover:text-champagne'
               }`}
             >
               <Utensils className="h-3.5 w-3.5" /> Seasonal À La Carte Catalog
@@ -174,7 +174,7 @@ export function MenuSection({
         {viewMode === 'tasting' && (
           <div className="space-y-12 animate-fade-in">
             {/* Banner card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-obsidian-900 via-obsidian-850 to-obsidian-900 border border-gold-primary/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#141210] via-[#1a1714] to-[#141210] border border-gold-primary/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <span className="text-[11px] font-semibold text-gold-light uppercase tracking-widest block mb-1">
                   The Signature Michelin 3-Star Experience
@@ -182,7 +182,7 @@ export function MenuSection({
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-champagne">
                   The Ten-Course Celestial Odyssey
                 </h3>
-                <p className="text-xs text-neutral-400 max-w-xl mt-2 leading-relaxed font-sans">
+                <p className="text-xs text-[#91887b] max-w-xl mt-2 leading-relaxed font-sans">
                   A harmonious progression through oceanic purity, wood-fired hearth intensity, and rare Périgord truffles. Served in The Grand Atrium & Chef’s Omakase Counter.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-4 text-xs">
@@ -190,7 +190,7 @@ export function MenuSection({
                     Tasting Menu: <span className="text-gold-primary">{formatCurrency(395, currency)}</span> / guest
                   </span>
                   <span className="text-neutral-500">·</span>
-                  <span className="text-neutral-300">
+                  <span className="text-[#cfc8bc]">
                     Grand Sommelier Pairing: <span className="text-gold-light">{formatCurrency(250, currency)}</span>
                   </span>
                 </div>
@@ -218,17 +218,17 @@ export function MenuSection({
                 <div
                   key={dish.id}
                   onClick={() => onSelectDish(dish)}
-                  className="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-5 sm:p-6 rounded-2xl bg-obsidian-900/70 border border-neutral-800/80 hover:border-gold-primary/40 transition-all duration-300 cursor-pointer shadow-card-dark"
+                  className="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-5 sm:p-6 rounded-2xl bg-[#141210]/90 border border-gold-primary/15 hover:border-gold-primary/40 transition-all duration-300 cursor-pointer shadow-card-dark"
                 >
                   <div className="flex items-center gap-5 w-full md:w-auto">
                     {/* Course Sequence Badge */}
-                    <div className="h-12 w-12 rounded-xl bg-obsidian-950 border border-gold-primary/20 flex flex-col items-center justify-center text-center shrink-0">
+                    <div className="h-12 w-12 rounded-xl bg-[#0c0b0a] border border-gold-primary/25 flex flex-col items-center justify-center text-center shrink-0">
                       <span className="text-[9px] uppercase tracking-wider text-gold-light/80 font-sans">Course</span>
                       <span className="font-serif font-bold text-base text-champagne">{String(index + 1).padStart(2, '0')}</span>
                     </div>
 
                     {/* Thumbnail */}
-                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl overflow-hidden shrink-0 bg-neutral-800">
+                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl overflow-hidden shrink-0 bg-[#1a1714]">
                       <Image
                         src={dish.image}
                         alt={dish.name}
@@ -303,7 +303,7 @@ export function MenuSection({
         {viewMode === 'alacarte' && (
           <div className="space-y-8 animate-fade-in">
             {/* Search Bar & Interactive Filter Row */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-obsidian-900/90 border border-gold-primary/20 backdrop-blur-md shadow-2xl space-y-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#141210]/95 border border-gold-primary/20 backdrop-blur-md shadow-2xl space-y-6">
               
               {/* Top Row: Search Input + Sommelier Trigger + Price Slider */}
               <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -317,12 +317,12 @@ export function MenuSection({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     maxLength={60}
-                    className="w-full pl-11 pr-10 py-3 rounded-2xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-gold-primary transition-colors"
+                    className="w-full pl-11 pr-10 py-3 rounded-2xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary transition-colors"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-neutral-400 hover:text-white"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#91887b] hover:text-white"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -349,8 +349,8 @@ export function MenuSection({
                     onClick={() => setSelectedCategory(cat.id)}
                     className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
                       selectedCategory === cat.id
-                        ? 'bg-gold-primary text-obsidian-950 shadow-gold-sm font-bold'
-                        : 'bg-obsidian-950 border border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'
+                        ? 'bg-gold-primary text-[#0c0b0a] shadow-gold-sm font-bold'
+                        : 'bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed] hover:border-gold-primary/30'
                     }`}
                   >
                     {cat.label}
@@ -359,8 +359,8 @@ export function MenuSection({
               </div>
 
               {/* Dietary Filter & Allergen Row */}
-              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-neutral-800/80">
-                <span className="text-[11px] font-semibold text-neutral-400 uppercase flex items-center gap-1.5 mr-2">
+              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gold-primary/15">
+                <span className="text-[11px] font-semibold text-[#cfc8bc] uppercase flex items-center gap-1.5 mr-2">
                   <Filter className="h-3 w-3 text-gold-primary" /> Dietary:
                 </span>
                 {DIETARY_FILTERS.map((diet) => (
@@ -370,7 +370,7 @@ export function MenuSection({
                     className={`px-3 py-1 rounded-lg text-[11px] font-medium transition-all ${
                       selectedDiet === diet.id
                         ? 'bg-gold-primary/20 border border-gold-primary text-gold-hover'
-                        : 'bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-neutral-200'
+                        : 'bg-[#0c0b0a] border border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed]'
                     }`}
                   >
                     {diet.label}
@@ -383,7 +383,7 @@ export function MenuSection({
                   className={`ml-auto flex items-center gap-1 px-3 py-1 rounded-lg text-[11px] font-semibold border transition-all ${
                     excludedAllergens.length > 0 || showAllergenFilter
                       ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                      : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-200'
+                      : 'bg-[#0c0b0a] border-gold-primary/15 text-[#91887b] hover:text-[#f7f4ed]'
                   }`}
                 >
                   <ShieldAlert className="h-3 w-3" />
@@ -393,7 +393,7 @@ export function MenuSection({
 
               {/* Expandable Allergen Exclusion Matrix */}
               {showAllergenFilter && (
-                <div className="p-4 rounded-2xl bg-obsidian-950 border border-amber-500/30 space-y-2 animate-fade-in">
+                <div className="p-4 rounded-2xl bg-[#0c0b0a] border border-amber-500/30 space-y-2 animate-fade-in">
                   <span className="text-[11px] font-semibold text-amber-300 uppercase tracking-wider block">
                     Exclude Specific Allergens (Zero-Tolerance Matrix):
                   </span>
@@ -408,7 +408,7 @@ export function MenuSection({
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all ${
                             isExcluded
                               ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 line-through'
-                              : 'bg-neutral-900 border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                              : 'bg-[#141210] border-gold-primary/15 text-[#cfc8bc] hover:border-gold-primary/30'
                           }`}
                         >
                           {isExcluded && <X className="h-3 w-3 text-rose-400" />}

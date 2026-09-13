@@ -62,16 +62,16 @@ export function TestimonialsSection() {
         </div>
 
         {/* Michelin Stars Banner */}
-        <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-obsidian-900 via-obsidian-900 to-obsidian-900 border border-gold-primary/40 text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="mt-16 p-8 rounded-3xl bg-[#141210] border border-gold-primary/40 text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="flex items-center gap-4 text-left">
-            <div className="p-3.5 rounded-2xl bg-gold-primary text-obsidian-950 shadow-gold-sm">
+            <div className="p-3.5 rounded-2xl bg-gold-primary text-[#0c0b0a] shadow-gold-sm">
               <Award className="h-8 w-8" />
             </div>
             <div>
               <h3 className="font-serif text-xl font-bold text-champagne">
                 The Michelin Guide Distinction
               </h3>
-              <p className="text-xs text-neutral-400">
+              <p className="text-xs text-[#91887b]">
                 Three Michelin Stars: “Exceptional cuisine, worth a special journey.”
               </p>
             </div>
@@ -81,7 +81,7 @@ export function TestimonialsSection() {
             {[1, 2, 3].map((star) => (
               <div
                 key={star}
-                className="h-10 w-10 rounded-full border border-gold-primary/50 bg-obsidian-950 flex items-center justify-center text-gold-primary shadow-gold-sm"
+                className="h-10 w-10 rounded-full border border-gold-primary/50 bg-[#0c0b0a] flex items-center justify-center text-gold-primary shadow-gold-sm"
               >
                 <Star className="h-5 w-5 fill-gold-primary" />
               </div>

@@ -79,13 +79,13 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
       <div
-        className="relative w-full max-w-xl my-auto rounded-3xl bg-obsidian-900 border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up text-neutral-300"
+        className="relative w-full max-w-xl my-auto rounded-3xl bg-[#141210] border border-gold-primary/30 shadow-2xl p-6 sm:p-8 animate-slide-up text-[#f7f4ed]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-[#1a1714] text-[#91887b] hover:text-[#f7f4ed] transition-colors"
           aria-label="Close modal"
         >
           <X className="h-5 w-5" />
@@ -99,7 +99,7 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
           <h2 className="font-serif text-2xl font-bold text-champagne">
             Private Salon & Gala Inquiries
           </h2>
-          <p className="text-xs text-neutral-400">
+          <p className="text-xs text-[#91887b]">
             Dedicated service from our Executive Culinary Director and Sommelier team.
           </p>
         </div>
@@ -110,7 +110,7 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
               <CheckCircle2 className="h-8 w-8" />
             </div>
             <h3 className="font-serif text-xl font-bold text-champagne">Inquiry Received</h3>
-            <p className="text-xs text-neutral-400 max-w-sm mx-auto leading-relaxed">
+            <p className="text-xs text-[#cfc8bc] max-w-sm mx-auto leading-relaxed">
               Our Head Concierge will contact you within 4 hours to review menu customizations, cellar allocations, and room layout.
             </p>
             <button
@@ -124,7 +124,7 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
           <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
             <div className="grid sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                   Host / Organizer Name *
                 </label>
                 <input
@@ -134,11 +134,11 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   maxLength={80}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
                 />
               </div>
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                   Corporate / Personal Email *
                 </label>
                 <input
@@ -148,11 +148,11 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   maxLength={254}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
                 />
               </div>
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                   Contact Phone Number *
                 </label>
                 <input
@@ -162,31 +162,31 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   maxLength={16}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
                 />
               </div>
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                   Preferred Event Date
                 </label>
                 <input
                   type="date"
                   value={preferredDate}
                   onChange={(e) => setPreferredDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] focus:outline-none focus:border-gold-primary"
                 />
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                   Salon Preference
                 </label>
                 <select
                   value={salonPreference}
                   onChange={(e) => setSalonPreference(e.target.value as any)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] focus:outline-none focus:border-gold-primary"
                 >
                   <option value="vault">The Obsidian Vault (2–24 Guests)</option>
                   <option value="atrium">The Grand Atrium (Up to 80 Guests)</option>
@@ -197,7 +197,7 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
               </div>
 
               <div>
-                <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                   Estimated Party Size
                 </label>
                 <input
@@ -206,13 +206,13 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
                   max={200}
                   value={partySize}
                   onChange={(e) => setPartySize(Number(e.target.value))}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 focus:outline-none focus:border-gold-primary"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] focus:outline-none focus:border-gold-primary"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-[#cfc8bc] uppercase tracking-wider block mb-1">
                 Event Overview & Custom Requirements
               </label>
               <textarea
@@ -221,7 +221,7 @@ export function PrivateDiningModal({ isOpen, onClose }: PrivateDiningModalProps)
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 maxLength={500}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-950 border border-neutral-800 text-xs text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-gold-primary"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0c0b0a] border border-gold-primary/20 text-xs text-[#f7f4ed] placeholder-[#91887b] focus:outline-none focus:border-gold-primary"
               />
             </div>
 

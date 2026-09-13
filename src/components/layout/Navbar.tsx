@@ -56,15 +56,15 @@ export function Navbar({
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
         isScrolled
-          ? 'bg-obsidian-950/85 backdrop-blur-xl border-b border-gold-primary/20 py-3 shadow-2xl shadow-black/50'
-          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-4 sm:py-5'
+          ? 'bg-[#0c0b0a]/90 backdrop-blur-xl border-b border-gold-primary/20 py-3 shadow-2xl shadow-black/60'
+          : 'bg-gradient-to-b from-[#0c0b0a]/80 via-[#0c0b0a]/40 to-transparent py-4 sm:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative flex items-center justify-center h-10 w-10 rounded-full border border-gold-primary/40 bg-obsidian-900 group-hover:border-gold-primary group-hover:shadow-gold-glow transition-all duration-300">
+          <div className="relative flex items-center justify-center h-10 w-10 rounded-full border border-gold-primary/40 bg-[#141210] group-hover:border-gold-primary group-hover:shadow-gold-glow transition-all duration-300">
             <span className="font-serif text-xl font-bold text-gold-primary group-hover:text-gold-hover">A</span>
           </div>
           <div>
@@ -78,7 +78,7 @@ export function Navbar({
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-medium uppercase tracking-widest text-neutral-300">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-medium uppercase tracking-widest text-[#cfc8bc]">
           <a href="#story" className="hover:text-gold-hover transition-colors">Heritage</a>
           <a href="#menu" className="hover:text-gold-hover transition-colors">The Menu</a>
           <a href="#specials" className="hover:text-gold-hover transition-colors">Chef Specials</a>
@@ -99,7 +99,7 @@ export function Navbar({
           {/* Manage Booking Quick Trigger */}
           <button
             onClick={onOpenLookup}
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-900/80 border border-neutral-800 hover:border-gold-primary/40 text-neutral-400 hover:text-gold-hover text-xs transition-colors"
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#141210]/90 border border-gold-primary/20 hover:border-gold-primary/50 text-[#cfc8bc] hover:text-gold-hover text-xs transition-colors"
             title="Manage or look up existing reservation"
           >
             <Search className="h-3 w-3 text-gold-primary" />
@@ -112,12 +112,12 @@ export function Navbar({
           {/* Cart Drawer Trigger */}
           <button
             onClick={onOpenCart}
-            className="relative p-2.5 rounded-full bg-obsidian-900 border border-neutral-800 hover:border-gold-primary/50 text-neutral-300 hover:text-gold-hover transition-all"
+            className="relative p-2.5 rounded-full bg-[#141210] border border-gold-primary/20 hover:border-gold-primary/50 text-[#cfc8bc] hover:text-gold-hover transition-all"
             aria-label="View tasting order"
           >
             <ShoppingBag className="h-4 w-4" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gold-primary text-obsidian-950 text-[10px] font-bold flex items-center justify-center shadow-gold-sm animate-bounce">
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gold-primary text-[#0c0b0a] text-[10px] font-bold flex items-center justify-center shadow-gold-sm animate-bounce">
                 {cartCount}
               </span>
             )}
@@ -134,7 +134,7 @@ export function Navbar({
           {/* Mobile Menu Hamburger */}
           <button
             onClick={onToggleMobileMenu}
-            className="lg:hidden p-2 rounded-xl bg-obsidian-900 border border-neutral-800 text-neutral-300 hover:text-white"
+            className="lg:hidden p-2 rounded-xl bg-[#141210] border border-gold-primary/20 text-[#cfc8bc] hover:text-white"
             aria-label="Open mobile menu"
           >
             <Menu className="h-5 w-5" />
