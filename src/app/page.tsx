@@ -1,7 +1,14 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { MenuItem, SeatingArea, CartItem, ReservationRecord, OrderCalculation } from '@/lib/types';
+import {
+  MenuItem,
+  SeatingArea,
+  CartItem,
+  ReservationRecord,
+  OrderCalculation,
+  CurrencyCode,
+} from '@/lib/types';
 import { CartService } from '@/lib/services/CartService';
 import { MenuService } from '@/lib/services/MenuService';
 import { ToastProvider, useToast } from '@/components/ui/Toast';
@@ -20,9 +27,16 @@ import { DishModal } from '@/components/ui/DishModal';
 import { CartDrawer } from '@/components/ui/CartDrawer';
 import { CheckoutModal } from '@/components/ui/CheckoutModal';
 import { ReservationPassModal } from '@/components/ui/ReservationPassModal';
+import { ReservationLookupModal } from '@/components/ui/ReservationLookupModal';
+import { SommelierAssistantModal } from '@/components/ui/SommelierAssistantModal';
+import { OrderReceiptModal } from '@/components/ui/OrderReceiptModal';
+import { PrivateDiningModal } from '@/components/ui/PrivateDiningModal';
 
 function AuraRestaurantContent() {
   const { showToast } = useToast();
+
+  // Active Currency
+  const [currency, setCurrency] = useState<CurrencyCode>('USD');
 
   // Cart State
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -34,6 +48,16 @@ function AuraRestaurantContent() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLookupOpen, setIsLookupOpen] = useState(false);
+  const [isSommelierOpen, setIsSommelierOpen] = useState(false);
+  const [isPrivateDiningOpen, setIsPrivateDiningOpen] = useState(false);
+
+  // Order Receipt Modal
+  const [isReceiptOpen, setIsReceiptOpen] = useState(false);
+  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
+  const [lastOrderCalc, setLastOrderCalc] = useState<OrderCalculation | null>(null);
+
+  // Confirmed Reservation Modal
   const [confirmedBooking, setConfirmedBooking] = useState<ReservationRecord | null>(null);
   const [targetBookingArea, setTargetBookingArea] = useState<SeatingArea>('atrium');
 
@@ -72,6 +96,9 @@ function AuraRestaurantContent() {
   const handleOrderSuccess = useCallback(
     (orderId: string, calc: OrderCalculation) => {
       CartService.getInstance().clear();
+      setLastOrderId(orderId);
+      setLastOrderCalc(calc);
+      setIsReceiptOpen(true);
       showToast(`Order #${orderId} confirmed! Our culinary brigade has begun preparation.`, 'success', 'Order Dispatched');
     },
     [showToast]
@@ -99,14 +126,23 @@ function AuraRestaurantContent() {
     }
   }, []);
 
+  const handleSelectCurrency = (newCurrency: CurrencyCode) => {
+    setCurrency(newCurrency);
+    showToast(`Currency updated to ${newCurrency}.`, 'info', 'Currency Active');
+  };
+
   return (
     <div className="relative min-h-screen bg-obsidian-950 text-neutral-100 flex flex-col justify-between">
       
       {/* Sticky Luxury Navbar */}
       <Navbar
         cartCount={cartCount}
+        currency={currency}
+        onSelectCurrency={handleSelectCurrency}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenReservation={handleScrollToReservations}
+        onOpenLookup={() => setIsLookupOpen(true)}
+        onOpenSommelier={() => setIsSommelierOpen(true)}
         onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
 
@@ -115,8 +151,10 @@ function AuraRestaurantContent() {
         <HeroSection onReserveClick={handleScrollToReservations} />
         <StorySection />
         <MenuSection
+          currency={currency}
           onSelectDish={setSelectedDish}
           onAddToCart={(item) => handleAddToCart(item, 1)}
+          onOpenSommelier={() => setIsSommelierOpen(true)}
         />
         <ChefSpecialsSection onExploreDish={handleExploreDishById} />
         <AtmosphereSection onSelectAreaForBooking={handleSelectAreaFromAtmosphere} />
@@ -129,7 +167,11 @@ function AuraRestaurantContent() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer
+        onOpenLookup={() => setIsLookupOpen(true)}
+        onOpenPrivateDining={() => setIsPrivateDiningOpen(true)}
+        onOpenSommelier={() => setIsSommelierOpen(true)}
+      />
 
       {/* Mobile Drawer */}
       <MobileDrawer
@@ -143,6 +185,7 @@ function AuraRestaurantContent() {
       {/* Dish Detailed View Modal */}
       <DishModal
         item={selectedDish}
+        currency={currency}
         onClose={() => setSelectedDish(null)}
         onAddToCart={handleAddToCart}
       />
@@ -152,6 +195,7 @@ function AuraRestaurantContent() {
         isOpen={isCartOpen}
         items={cartItems}
         subtotal={cartSubtotal}
+        currency={currency}
         onClose={() => setIsCartOpen(false)}
         onUpdateQty={handleUpdateCartQty}
         onRemoveItem={handleRemoveCartItem}
@@ -163,6 +207,7 @@ function AuraRestaurantContent() {
         isOpen={isCheckoutOpen}
         items={cartItems}
         subtotal={cartSubtotal}
+        currency={currency}
         onClose={() => setIsCheckoutOpen(false)}
         onOrderSuccess={handleOrderSuccess}
       />
@@ -171,6 +216,35 @@ function AuraRestaurantContent() {
       <ReservationPassModal
         booking={confirmedBooking}
         onClose={() => setConfirmedBooking(null)}
+      />
+
+      {/* Reservation Lookup & Cancel Modal */}
+      <ReservationLookupModal
+        isOpen={isLookupOpen}
+        onClose={() => setIsLookupOpen(false)}
+        onViewBoardingPass={(b) => setConfirmedBooking(b)}
+      />
+
+      {/* Sommelier Cellar Pairing Guide Modal */}
+      <SommelierAssistantModal
+        isOpen={isSommelierOpen}
+        onClose={() => setIsSommelierOpen(false)}
+        onSelectDish={(item) => setSelectedDish(item)}
+      />
+
+      {/* Order Printable Receipt Modal */}
+      <OrderReceiptModal
+        isOpen={isReceiptOpen}
+        orderId={lastOrderId}
+        calculation={lastOrderCalc}
+        currency={currency}
+        onClose={() => setIsReceiptOpen(false)}
+      />
+
+      {/* Private Dining & Buyout Inquiry Modal */}
+      <PrivateDiningModal
+        isOpen={isPrivateDiningOpen}
+        onClose={() => setIsPrivateDiningOpen(false)}
       />
     </div>
   );

@@ -16,11 +16,35 @@ export type DietaryTag =
   | 'keto'
   | 'raw';
 
+export type AllergenType =
+  | 'Fish'
+  | 'Molluscs'
+  | 'Crustaceans'
+  | 'Dairy'
+  | 'Gluten'
+  | 'Eggs'
+  | 'Nuts'
+  | 'Soy'
+  | 'Sesame'
+  | 'Mustard';
+
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CHF';
+
+export interface CurrencyConfig {
+  code: CurrencyCode;
+  symbol: string;
+  rateAgainstUSD: number; // e.g. EUR = 0.92, JPY = 155
+  label: string;
+}
+
 export interface WinePairing {
   name: string;
   vintage: string;
   region: string;
   notes: string;
+  grapeVariety?: string;
+  servingTemp?: string;
+  glassType?: string;
 }
 
 export interface MenuItem {
@@ -38,6 +62,7 @@ export interface MenuItem {
   prepTime?: string;
   isChefSpecial?: boolean;
   isPopular?: boolean;
+  isVipReserve?: boolean;
   winePairing?: WinePairing | null;
   chefNote?: string;
   farmProvenance?: string;
@@ -109,6 +134,7 @@ export interface OrderPayload {
   }>;
   couponCode?: string;
   tipPercentage: number;
+  currency?: CurrencyCode;
 }
 
 export interface OrderCalculation {
@@ -119,6 +145,8 @@ export interface OrderCalculation {
   tip: number;
   grandTotal: number;
   estimatedPrepMinutes: number;
+  currency?: CurrencyCode;
+  exchangeRate?: number;
 }
 
 export interface AtmosphereRoom {
@@ -130,6 +158,11 @@ export interface AtmosphereRoom {
   features: string[];
   image: string;
   gallery: string[];
+  lightingPresets: {
+    daylight: string;
+    sunset: string;
+    starlight: string;
+  };
 }
 
 export interface ChefSpecial {
@@ -169,4 +202,21 @@ export interface ToastMessage {
   title?: string;
   message: string;
   duration?: number;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+  category: 'reservations' | 'cellar' | 'experience' | 'policies';
+}
+
+export interface PrivateDiningInquiry {
+  name: string;
+  email: string;
+  phone: string;
+  preferredDate: string;
+  partySize: number;
+  salonPreference: SeatingArea | 'full-buyout';
+  estimatedBudget: string;
+  message: string;
 }

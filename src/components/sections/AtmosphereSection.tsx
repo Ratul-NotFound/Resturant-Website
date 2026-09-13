@@ -4,15 +4,18 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { atmosphereData } from '@/data/atmosphereData';
 import { AtmosphereRoom, SeatingArea } from '@/lib/types';
-import { Sparkles, Users, Check, Maximize2, Calendar } from 'lucide-react';
+import { Sparkles, Users, Check, Maximize2, Calendar, Sun, Sunset, Moon } from 'lucide-react';
 import { LightboxModal } from '../ui/LightboxModal';
 
 interface AtmosphereSectionProps {
   onSelectAreaForBooking: (area: SeatingArea) => void;
 }
 
+type LightingMood = 'daylight' | 'sunset' | 'starlight';
+
 export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionProps) {
   const [activeAreaId, setActiveAreaId] = useState<SeatingArea>('atrium');
+  const [lightingMood, setLightingMood] = useState<LightingMood>('starlight');
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -22,6 +25,16 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
   const handleOpenLightbox = (index = 0) => {
     setLightboxIndex(index);
     setIsLightboxOpen(true);
+  };
+
+  const getMoodOverlayStyle = () => {
+    if (lightingMood === 'daylight') {
+      return 'bg-amber-100/10 mix-blend-soft-light';
+    }
+    if (lightingMood === 'sunset') {
+      return 'bg-orange-500/20 mix-blend-color-burn';
+    }
+    return 'bg-blue-950/40 mix-blend-multiply';
   };
 
   return (
@@ -41,32 +54,70 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
             The Four Distinct Dining Salons
           </h2>
           <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
-            From the soaring glass-domed Grand Atrium to the subterranean Obsidian Vaults and 12-seat Hinoki counter, choose the perfect atmosphere for your occasion.
+            Experience our dynamic lighting ambiance simulator across Daylight, Golden Hour Sunset, and Intimate Starlight Candlelight.
           </p>
         </div>
 
-        {/* Salon Selector Tabs */}
-        <div className="flex items-center justify-center gap-3 overflow-x-auto pb-4 mb-10 scrollbar-none">
-          {atmosphereData.map((room) => (
+        {/* Salon Selector Tabs + Lighting Switcher */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+          
+          {/* Salon Tabs */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none w-full sm:w-auto">
+            {atmosphereData.map((room) => (
+              <button
+                key={room.id}
+                onClick={() => setActiveAreaId(room.id)}
+                className={`px-4 py-2.5 rounded-2xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${
+                  activeAreaId === room.id
+                    ? 'bg-gold-primary text-obsidian-950 shadow-gold-glow font-bold'
+                    : 'bg-obsidian-900 border border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'
+                }`}
+              >
+                {room.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Lighting Mode Simulator Switch */}
+          <div className="flex items-center gap-1.5 p-1 bg-obsidian-900 rounded-2xl border border-neutral-800 text-xs">
             <button
-              key={room.id}
-              onClick={() => setActiveAreaId(room.id)}
-              className={`px-5 py-3 rounded-2xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${
-                activeAreaId === room.id
-                  ? 'bg-gold-primary text-obsidian-950 shadow-gold-glow'
-                  : 'bg-obsidian-900 border border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'
+              onClick={() => setLightingMood('daylight')}
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
+                lightingMood === 'daylight'
+                  ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40'
+                  : 'text-neutral-400 hover:text-white'
               }`}
             >
-              {room.name}
+              <Sun className="h-3.5 w-3.5" /> Day
             </button>
-          ))}
+            <button
+              onClick={() => setLightingMood('sunset')}
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
+                lightingMood === 'sunset'
+                  ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
+                  : 'text-neutral-400 hover:text-white'
+              }`}
+            >
+              <Sunset className="h-3.5 w-3.5" /> Sunset
+            </button>
+            <button
+              onClick={() => setLightingMood('starlight')}
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl font-medium transition-all ${
+                lightingMood === 'starlight'
+                  ? 'bg-gold-primary/20 text-gold-hover border border-gold-primary/40'
+                  : 'text-neutral-400 hover:text-white'
+              }`}
+            >
+              <Moon className="h-3.5 w-3.5" /> Starlight
+            </button>
+          </div>
         </div>
 
         {/* Active Room Detailed Showcase Card */}
         <div className="rounded-3xl bg-obsidian-900/90 border border-gold-primary/30 shadow-2xl overflow-hidden grid lg:grid-cols-12 gap-0">
           
           {/* Photography Side with Lightbox Trigger */}
-          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[480px] bg-obsidian-950 group">
+          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[480px] bg-obsidian-950 group overflow-hidden">
             <Image
               src={activeRoom.image}
               alt={activeRoom.name}
@@ -75,6 +126,8 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
               sizes="(max-width: 1024px) 100vw, 60vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            {/* Dynamic Mood Lighting Overlay */}
+            <div className={`absolute inset-0 transition-colors duration-700 ${getMoodOverlayStyle()}`} />
             <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-black/30" />
 
             {/* Expand Full-Res Lightbox Button */}
@@ -82,7 +135,7 @@ export function AtmosphereSection({ onSelectAreaForBooking }: AtmosphereSectionP
               onClick={() => handleOpenLightbox(0)}
               className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2 rounded-xl bg-obsidian-900/90 text-gold-hover text-xs font-semibold border border-gold-primary/30 shadow-xl backdrop-blur-md hover:bg-gold-primary hover:text-obsidian-950 transition-all"
             >
-              <Maximize2 className="h-3.5 w-3.5" /> Fullscreen View
+              <Maximize2 className="h-3.5 w-3.5" /> Fullscreen Lightbox
             </button>
           </div>
 

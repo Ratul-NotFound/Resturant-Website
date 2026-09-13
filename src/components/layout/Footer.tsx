@@ -1,17 +1,28 @@
 'use client';
 
 import React, { useState } from 'react';
-import { RESTAURANT_INFO, OPENING_HOURS } from '@/data/restaurantConfig';
-import { Send, Sparkles, MapPin, Phone, Mail, Award, CheckCircle2, Loader2 } from 'lucide-react';
+import { RESTAURANT_INFO, OPENING_HOURS, FAQ_ITEMS } from '@/data/restaurantConfig';
+import { Send, Sparkles, MapPin, Phone, Mail, Award, CheckCircle2, Loader2, HelpCircle, ChevronDown, Building2, Search } from 'lucide-react';
 import { useToast } from '../ui/Toast';
 import { Sanitizer } from '@/lib/security/Sanitizer';
 
-export function Footer() {
+interface FooterProps {
+  onOpenLookup?: () => void;
+  onOpenPrivateDining?: () => void;
+  onOpenSommelier?: () => void;
+}
+
+export function Footer({
+  onOpenLookup,
+  onOpenPrivateDining,
+  onOpenSommelier,
+}: FooterProps) {
   const { showToast } = useToast();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(null);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +40,7 @@ export function Footer() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: newsletterEmail.trim().toLowerCase(),
-          website_hp: honeypot, // Honeypot field
+          website_hp: honeypot,
         }),
       });
 
@@ -46,6 +57,10 @@ export function Footer() {
     } finally {
       setIsSubscribing(false);
     }
+  };
+
+  const toggleFaq = (idx: number) => {
+    setOpenFaqIdx(openFaqIdx === idx ? null : idx);
   };
 
   return (
@@ -87,6 +102,26 @@ export function Footer() {
                 <Sparkles className="h-4 w-4 text-gold-primary" /> Grand Sommelier Award
               </span>
             </div>
+
+            {/* Quick Actions Bar */}
+            <div className="flex flex-wrap gap-3 pt-3">
+              {onOpenPrivateDining && (
+                <button
+                  onClick={onOpenPrivateDining}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-obsidian-900 border border-gold-primary/30 text-gold-hover text-xs font-semibold hover:bg-gold-primary hover:text-obsidian-950 transition-all"
+                >
+                  <Building2 className="h-3.5 w-3.5" /> Private Vault Buyout Inquiry
+                </button>
+              )}
+              {onOpenLookup && (
+                <button
+                  onClick={onOpenLookup}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-obsidian-900 border border-neutral-700 text-neutral-300 text-xs font-semibold hover:border-gold-primary hover:text-white transition-all"
+                >
+                  <Search className="h-3.5 w-3.5 text-gold-primary" /> Look Up / Cancel Reservation
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Newsletter Form */}
@@ -109,7 +144,6 @@ export function Footer() {
                 </div>
               ) : (
                 <form onSubmit={handleSubscribe} className="space-y-3">
-                  {/* Bot Honeypot Input (hidden from human users) */}
                   <input
                     type="text"
                     name="website_hp"
@@ -150,6 +184,46 @@ export function Footer() {
                 </form>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* Interactive FAQ Section */}
+        <div className="py-12 border-b border-neutral-800">
+          <div className="max-w-3xl mx-auto space-y-4">
+            <div className="text-center mb-8">
+              <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold block mb-1">
+                Concierge Guidance
+              </span>
+              <h4 className="font-serif text-2xl font-bold text-champagne">Frequently Asked Questions</h4>
+            </div>
+
+            {FAQ_ITEMS.map((faq, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-obsidian-900/60 border border-neutral-800 overflow-hidden transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left text-xs sm:text-sm font-serif font-semibold text-champagne hover:text-gold-hover transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <HelpCircle className="h-4 w-4 text-gold-primary shrink-0" />
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 text-neutral-500 transition-transform duration-300 ${
+                      openFaqIdx === idx ? 'rotate-180 text-gold-primary' : ''
+                    }`}
+                  />
+                </button>
+                {openFaqIdx === idx && (
+                  <div className="px-5 pb-5 text-xs text-neutral-300 leading-relaxed font-sans border-t border-neutral-800/60 pt-3 animate-fade-in">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -222,7 +296,7 @@ export function Footer() {
               <strong className="text-neutral-300">Valet:</strong> White-glove service on 56th Street entrance.
             </p>
             <p className="text-[11px] leading-relaxed text-neutral-400">
-              <strong className="text-neutral-300">Omakase:</strong> Strictly 12 seats nightly at 18:00 & 21:00.
+              <strong className="text-neutral-300">Corkage:</strong> {RESTAURANT_INFO.corkagePolicy}
             </p>
           </div>
         </div>
@@ -231,9 +305,9 @@ export function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500">
           <p>© {new Date().getFullYear()} AURA Luxury Restaurant Group. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <span className="hover:text-neutral-400">Zero-Trust Protected</span>
+            <span className="hover:text-neutral-400">Zero-Trust Architecture</span>
             <span>·</span>
-            <span className="hover:text-neutral-400">Self-Hosted Architecture</span>
+            <span className="hover:text-neutral-400">Self-Hosted Monolith</span>
             <span>·</span>
             <span className="hover:text-neutral-400">Privacy & Terms</span>
           </div>

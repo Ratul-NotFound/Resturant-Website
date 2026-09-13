@@ -1,4 +1,4 @@
-import { OpeningHour, SeatingArea } from '@/lib/types';
+import { OpeningHour, SeatingArea, CurrencyConfig, FAQItem } from '@/lib/types';
 
 export const RESTAURANT_INFO = {
   name: 'AURA',
@@ -9,6 +9,7 @@ export const RESTAURANT_INFO = {
   phone: '+1 (212) 840-2872',
   email: 'concierge@aura-restaurant.com',
   reservationsEmail: 'reservations@aura-restaurant.com',
+  privateEventsEmail: 'events@aura-restaurant.com',
   address: {
     street: '432 Park Avenue, 30th Floor',
     city: 'New York',
@@ -22,12 +23,23 @@ export const RESTAURANT_INFO = {
   },
   valetParking: 'Complimentary private white-glove valet on 56th Street entrance.',
   dressCode: 'Elegant Attire Required. Jackets recommended for gentlemen. Athletic wear, caps, and beachwear are strictly prohibited.',
+  corkagePolicy: '$150 per 750ml bottle (maximum 2 bottles per party, must not be present on our active 4,000-bottle list).',
 };
 
-export const PROMO_COUPONS: Record<string, { discountPercent: number; description: string }> = {
-  AURA20: { discountPercent: 20, description: '20% Grand Inauguration Prestige Discount' },
+export const CURRENCIES: CurrencyConfig[] = [
+  { code: 'USD', symbol: '$', rateAgainstUSD: 1.0, label: 'USD ($)' },
+  { code: 'EUR', symbol: '€', rateAgainstUSD: 0.92, label: 'EUR (€)' },
+  { code: 'GBP', symbol: '£', rateAgainstUSD: 0.79, label: 'GBP (£)' },
+  { code: 'JPY', symbol: '¥', rateAgainstUSD: 155.0, label: 'JPY (¥)' },
+  { code: 'CHF', symbol: 'CHF ', rateAgainstUSD: 0.88, label: 'CHF' },
+];
+
+export const PROMO_COUPONS: Record<string, { discountPercent: number; description: string; isVip?: boolean }> = {
+  AURA20: { discountPercent: 20, description: '20% Grand Inauguration Prestige Courtesy' },
   VIP10: { discountPercent: 10, description: '10% Private Cellar Member Courtesy' },
   CHEFGIFT: { discountPercent: 15, description: '15% Executive Chef Tasting Courtesy' },
+  CHEFVIP: { discountPercent: 25, description: '25% Confidential Master Brigade Allocation', isVip: true },
+  MICHELIN3: { discountPercent: 30, description: '30% Three Stars Milestone Patron Courtesy', isVip: true },
 };
 
 export const OPENING_HOURS: OpeningHour[] = [
@@ -77,4 +89,43 @@ export const SLOT_CAPACITY_CONFIG: Array<{ area: SeatingArea; time: string; tabl
   { area: 'terrace', time: '20:00', tables: 4 },
   { area: 'terrace', time: '20:30', tables: 4 },
   { area: 'terrace', time: '21:00', tables: 4 },
+];
+
+export const FAQ_ITEMS: FAQItem[] = [
+  {
+    category: 'reservations',
+    question: 'How far in advance are reservations released?',
+    answer:
+      'Reservations open exactly 90 days in advance at 12:00 AM EST. Private Vault and Omakase Counter allocations often book within hours of release.',
+  },
+  {
+    category: 'reservations',
+    question: 'What is the cancellation and rescheduling policy?',
+    answer:
+      'We understand plans change. Reservations may be rescheduled or cancelled up to 24 hours in advance using your AURA-2026 digital reference code with zero fees.',
+  },
+  {
+    category: 'cellar',
+    question: 'May we bring our own vintage wines?',
+    answer:
+      'Yes. Our corkage fee is $150 per 750ml bottle (maximum 2 bottles per party), provided the vintage is not currently featured on our active 4,000-bottle cellar registry.',
+  },
+  {
+    category: 'cellar',
+    question: 'Are non-alcoholic pairings available for tasting menus?',
+    answer:
+      'Absolutely. Our Head Sommelier crafts an elaborate 7-course artisanal botanic infusion and cold-drip tea pairing specifically matching each culinary course.',
+  },
+  {
+    category: 'experience',
+    question: 'What is the strict dress code standard?',
+    answer:
+      'We require elegant evening attire. Tailored jackets are recommended for gentlemen. Athletic apparel, t-shirts, caps, shorts, and casual sandals are strictly prohibited.',
+  },
+  {
+    category: 'policies',
+    question: 'Can dietary allergies and medical restrictions be accommodated?',
+    answer:
+      'Yes. Our kitchen operates with certified allergen separation protocols. Please note any dietary needs in your reservation or filter courses using our online allergen matrix.',
+  },
 ];

@@ -1,17 +1,36 @@
+import { CurrencyCode } from '../types';
+import { CURRENCIES } from '@/data/restaurantConfig';
+
 /**
- * Formats a numeric price into a luxury USD currency string ($xx.xx or $xx).
+ * Formats a numeric USD price into any target luxury currency string.
  */
-export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: amount % 1 === 0 ? 0 : 2,
-    maximumFractionDigits: 2,
-  }).format(amount);
+export function formatCurrency(
+  amountInUSD: number,
+  targetCurrency: CurrencyCode = 'USD'
+): string {
+  const currencyCfg = CURRENCIES.find((c) => c.code === targetCurrency) || CURRENCIES[0];
+  const convertedAmount = amountInUSD * currencyCfg.rateAgainstUSD;
+
+  if (targetCurrency === 'JPY') {
+    return `¥${Math.round(convertedAmount).toLocaleString('en-US')}`;
+  }
+  if (targetCurrency === 'CHF') {
+    return `CHF ${convertedAmount.toFixed(amountInUSD % 1 === 0 ? 0 : 2)}`;
+  }
+
+  return new Intl.NumberFormat(
+    targetCurrency === 'EUR' ? 'de-DE' : targetCurrency === 'GBP' ? 'en-GB' : 'en-US',
+    {
+      style: 'currency',
+      currency: targetCurrency,
+      minimumFractionDigits: amountInUSD % 1 === 0 ? 0 : 2,
+      maximumFractionDigits: 2,
+    }
+  ).format(convertedAmount);
 }
 
 /**
- * Formats standard ISO date string (YYYY-MM-DD) into readable format (e.g. Friday, October 25, 2026).
+ * Formats standard ISO date string (YYYY-MM-DD) into readable format.
  */
 export function formatDateReadable(dateStr: string): string {
   try {

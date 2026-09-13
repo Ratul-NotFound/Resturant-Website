@@ -2,21 +2,31 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Calendar, Menu, Sparkles } from 'lucide-react';
+import { ShoppingBag, Calendar, Menu, Sparkles, Search, Wine, Globe } from 'lucide-react';
 import { AudioPlayer } from '../ui/AudioPlayer';
+import { CurrencySelector } from '../ui/CurrencySelector';
+import { CurrencyCode } from '@/lib/types';
 import { getLiveRestaurantStatus } from '@/lib/utils/hours';
 
 interface NavbarProps {
   cartCount: number;
+  currency: CurrencyCode;
+  onSelectCurrency: (c: CurrencyCode) => void;
   onOpenCart: () => void;
   onOpenReservation: () => void;
+  onOpenLookup: () => void;
+  onOpenSommelier: () => void;
   onToggleMobileMenu: () => void;
 }
 
 export function Navbar({
   cartCount,
+  currency,
+  onSelectCurrency,
   onOpenCart,
   onOpenReservation,
+  onOpenLookup,
+  onOpenSommelier,
   onToggleMobileMenu,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,14 +56,14 @@ export function Navbar({
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
         isScrolled
-          ? 'bg-obsidian-950/85 backdrop-blur-xl border-b border-gold-primary/20 py-3.5 shadow-2xl shadow-black/50'
-          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5'
+          ? 'bg-obsidian-950/85 backdrop-blur-xl border-b border-gold-primary/20 py-3 shadow-2xl shadow-black/50'
+          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-4 sm:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
           <div className="relative flex items-center justify-center h-10 w-10 rounded-full border border-gold-primary/40 bg-obsidian-900 group-hover:border-gold-primary group-hover:shadow-gold-glow transition-all duration-300">
             <span className="font-serif text-xl font-bold text-gold-primary group-hover:text-gold-hover">A</span>
           </div>
@@ -68,7 +78,7 @@ export function Navbar({
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-xs font-medium uppercase tracking-widest text-neutral-300">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-medium uppercase tracking-widest text-neutral-300">
           <a href="#story" className="hover:text-gold-hover transition-colors">Heritage</a>
           <a href="#menu" className="hover:text-gold-hover transition-colors">The Menu</a>
           <a href="#specials" className="hover:text-gold-hover transition-colors">Chef Specials</a>
@@ -78,17 +88,23 @@ export function Navbar({
         </nav>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3">
           
-          {/* Live Status Indicator (Desktop) */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-900/60 border border-neutral-800 text-[11px]">
-            <span
-              className={`h-2 w-2 rounded-full ${
-                liveStatus.isOpen ? 'bg-emerald-400 animate-pulse' : 'bg-neutral-500'
-              }`}
-            />
-            <span className="text-neutral-300">{liveStatus.statusText}</span>
-          </div>
+          {/* Currency Switcher */}
+          <CurrencySelector
+            currentCurrency={currency}
+            onSelectCurrency={onSelectCurrency}
+          />
+
+          {/* Manage Booking Quick Trigger */}
+          <button
+            onClick={onOpenLookup}
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-900/80 border border-neutral-800 hover:border-gold-primary/40 text-neutral-400 hover:text-gold-hover text-xs transition-colors"
+            title="Manage or look up existing reservation"
+          >
+            <Search className="h-3 w-3 text-gold-primary" />
+            <span className="hidden xl:inline">Find Booking</span>
+          </button>
 
           {/* Web Audio Ambient Player */}
           <AudioPlayer />
@@ -110,9 +126,9 @@ export function Navbar({
           {/* Reserve Table CTA */}
           <button
             onClick={onOpenReservation}
-            className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
+            className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-xl gold-button text-xs font-bold uppercase tracking-wider shadow-gold-glow"
           >
-            <Calendar className="h-3.5 w-3.5" /> Reserve Table
+            <Calendar className="h-3.5 w-3.5" /> Reserve
           </button>
 
           {/* Mobile Menu Hamburger */}

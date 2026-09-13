@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CartItem, OrderCalculation } from '@/lib/types';
+import { CartItem, OrderCalculation, CurrencyCode } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils/formatting';
 import { PROMO_COUPONS } from '@/data/restaurantConfig';
 import { X, CheckCircle2, ShieldCheck, Tag, Sparkles, CreditCard, ArrowRight, Loader2 } from 'lucide-react';
@@ -13,6 +13,7 @@ interface CheckoutModalProps {
   isOpen: boolean;
   items: CartItem[];
   subtotal: number;
+  currency?: CurrencyCode;
   onClose: () => void;
   onOrderSuccess: (orderId: string, calc: OrderCalculation) => void;
 }
@@ -21,6 +22,7 @@ export function CheckoutModal({
   isOpen,
   items,
   subtotal,
+  currency = 'USD',
   onClose,
   onOrderSuccess,
 }: CheckoutModalProps) {
@@ -52,9 +54,13 @@ export function CheckoutModal({
     if (PROMO_COUPONS[clean]) {
       setAppliedCoupon(clean);
       setDiscountPercent(PROMO_COUPONS[clean].discountPercent);
-      showToast(`Coupon ${clean} applied (${PROMO_COUPONS[clean].discountPercent}% off)!`, 'success', 'Promotion Active');
+      showToast(
+        `Coupon ${clean} applied (${PROMO_COUPONS[clean].discountPercent}% courtesy)!`,
+        'success',
+        'Promotion Active'
+      );
     } else {
-      showToast('Invalid or expired promotional code. Try AURA20 or VIP10', 'error', 'Invalid Coupon');
+      showToast('Invalid or expired promotional code. Try AURA20, VIP10, or CHEFVIP', 'error', 'Invalid Coupon');
     }
   };
 
@@ -104,6 +110,7 @@ export function CheckoutModal({
           })),
           couponCode: appliedCoupon || undefined,
           tipPercentage: tipPercent,
+          currency,
         }),
       });
 
@@ -142,7 +149,7 @@ export function CheckoutModal({
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold-light font-semibold mb-1">
-            <ShieldCheck className="h-4 w-4 text-gold-primary" /> Zero-Trust Verified Checkout
+            <ShieldCheck className="h-4 w-4 text-gold-primary" /> Zero-Trust Verified Checkout ({currency})
           </div>
           <h2 className="font-serif text-2xl font-bold text-champagne">Finalize Culinary Order</h2>
           <p className="text-xs text-neutral-400">
@@ -237,7 +244,7 @@ export function CheckoutModal({
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="Enter code (e.g. AURA20, VIP10)"
+                  placeholder="Enter code (e.g. AURA20, VIP10, CHEFVIP)"
                   value={couponInput}
                   onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                   maxLength={20}
@@ -281,25 +288,25 @@ export function CheckoutModal({
           <div className="p-4 rounded-2xl bg-obsidian-950 border border-neutral-800 space-y-2 text-xs">
             <div className="flex justify-between text-neutral-400">
               <span>Courses Subtotal ({items.reduce((s, i) => s + i.quantity, 0)} items)</span>
-              <span className="font-mono text-neutral-200">{formatCurrency(subtotal)}</span>
+              <span className="font-mono text-neutral-200">{formatCurrency(subtotal, currency)}</span>
             </div>
             {discountAmount > 0 && (
               <div className="flex justify-between text-gold-light">
                 <span>Promotional Courtesy ({discountPercent}%)</span>
-                <span className="font-mono">- {formatCurrency(discountAmount)}</span>
+                <span className="font-mono">- {formatCurrency(discountAmount, currency)}</span>
               </div>
             )}
             <div className="flex justify-between text-neutral-400">
               <span>NYC Hospitality Sales Tax (8.875%)</span>
-              <span className="font-mono text-neutral-200">{formatCurrency(tax)}</span>
+              <span className="font-mono text-neutral-200">{formatCurrency(tax, currency)}</span>
             </div>
             <div className="flex justify-between text-neutral-400">
               <span>Brigade Gratuity ({tipPercent}%)</span>
-              <span className="font-mono text-neutral-200">{formatCurrency(tip)}</span>
+              <span className="font-mono text-neutral-200">{formatCurrency(tip, currency)}</span>
             </div>
             <div className="flex justify-between text-base font-bold pt-3 border-t border-neutral-800 text-champagne">
               <span className="font-serif">Grand Total</span>
-              <span className="font-serif text-gold-primary text-lg">{formatCurrency(grandTotal)}</span>
+              <span className="font-serif text-gold-primary text-lg">{formatCurrency(grandTotal, currency)}</span>
             </div>
           </div>
 
@@ -315,7 +322,7 @@ export function CheckoutModal({
               </>
             ) : (
               <>
-                <CreditCard className="h-4 w-4" /> Place Order ({formatCurrency(grandTotal)})
+                <CreditCard className="h-4 w-4" /> Place Order ({formatCurrency(grandTotal, currency)})
               </>
             )}
           </button>

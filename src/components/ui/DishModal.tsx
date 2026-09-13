@@ -2,18 +2,19 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { MenuItem } from '@/lib/types';
+import { MenuItem, CurrencyCode } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils/formatting';
 import { X, Sparkles, Wine, Flame, Clock, ShieldAlert, MapPin, ChefHat, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { Sanitizer } from '@/lib/security/Sanitizer';
 
 interface DishModalProps {
   item: MenuItem | null;
+  currency?: CurrencyCode;
   onClose: () => void;
   onAddToCart: (item: MenuItem, quantity: number, notes: string) => void;
 }
 
-export function DishModal({ item, onClose, onAddToCart }: DishModalProps) {
+export function DishModal({ item, currency = 'USD', onClose, onAddToCart }: DishModalProps) {
   const [quantity, setQuantity] = useState(1);
   const [specialInstructions, setSpecialInstructions] = useState('');
 
@@ -74,7 +75,7 @@ export function DishModal({ item, onClose, onAddToCart }: DishModalProps) {
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-champagne">{item.name}</h2>
             </div>
             <span className="font-serif text-2xl sm:text-3xl font-bold text-gold-primary shrink-0">
-              {formatCurrency(item.price)}
+              {formatCurrency(item.price, currency)}
             </span>
           </div>
         </div>
@@ -221,14 +222,14 @@ export function DishModal({ item, onClose, onAddToCart }: DishModalProps) {
               <div className="text-right hidden sm:block">
                 <span className="text-[10px] text-neutral-400 uppercase block">Total Price</span>
                 <span className="font-serif text-lg font-bold text-gold-primary">
-                  {formatCurrency(item.price * quantity)}
+                  {formatCurrency(item.price * quantity, currency)}
                 </span>
               </div>
               <button
                 onClick={handleAdd}
                 className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl gold-button text-xs tracking-wider uppercase font-bold shadow-gold-glow"
               >
-                <ShoppingBag className="h-4 w-4" /> Add to Tasting Order ({formatCurrency(item.price * quantity)})
+                <ShoppingBag className="h-4 w-4" /> Add to Tasting Order ({formatCurrency(item.price * quantity, currency)})
               </button>
             </div>
           </div>

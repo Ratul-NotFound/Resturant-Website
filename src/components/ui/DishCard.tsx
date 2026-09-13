@@ -2,18 +2,19 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { MenuItem } from '@/lib/types';
+import { MenuItem, CurrencyCode } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils/formatting';
 import { Sparkles, Wine, Plus, Flame, Clock, Eye } from 'lucide-react';
 import { Card3D } from './Card3D';
 
 interface DishCardProps {
   item: MenuItem;
+  currency?: CurrencyCode;
   onSelect: (item: MenuItem) => void;
   onAddToCart: (item: MenuItem) => void;
 }
 
-export function DishCard({ item, onSelect, onAddToCart }: DishCardProps) {
+export function DishCard({ item, currency = 'USD', onSelect, onAddToCart }: DishCardProps) {
   return (
     <Card3D maxTilt={6} className="h-full">
       <div className="group relative flex flex-col justify-between h-full rounded-2xl bg-obsidian-900/80 border border-neutral-800/80 hover:border-gold-primary/40 transition-all duration-500 overflow-hidden shadow-card-dark hover:shadow-gold-glow">
@@ -79,7 +80,7 @@ export function DishCard({ item, onSelect, onAddToCart }: DishCardProps) {
               {item.name}
             </h3>
             <span className="font-serif text-lg font-bold text-gold-primary shrink-0">
-              {formatCurrency(item.price)}
+              {formatCurrency(item.price, currency)}
             </span>
           </div>
 

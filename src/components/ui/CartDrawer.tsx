@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { CartItem } from '@/lib/types';
+import { CartItem, CurrencyCode } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils/formatting';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 
@@ -10,6 +10,7 @@ interface CartDrawerProps {
   isOpen: boolean;
   items: CartItem[];
   subtotal: number;
+  currency?: CurrencyCode;
   onClose: () => void;
   onUpdateQty: (id: string, qty: number) => void;
   onRemoveItem: (id: string) => void;
@@ -20,6 +21,7 @@ export function CartDrawer({
   isOpen,
   items,
   subtotal,
+  currency = 'USD',
   onClose,
   onUpdateQty,
   onRemoveItem,
@@ -109,7 +111,7 @@ export function CartDrawer({
                         </button>
                       </div>
                       <span className="text-xs font-bold text-gold-primary">
-                        {formatCurrency(item.price)}
+                        {formatCurrency(item.price, currency)}
                       </span>
                     </div>
 
@@ -137,7 +139,7 @@ export function CartDrawer({
                         </button>
                       </div>
                       <span className="text-xs font-mono font-bold text-neutral-200">
-                        {formatCurrency(item.price * quantity)}
+                        {formatCurrency(item.price * quantity, currency)}
                       </span>
                     </div>
                   </div>
@@ -152,7 +154,7 @@ export function CartDrawer({
               <div className="space-y-1.5 text-xs font-sans">
                 <div className="flex justify-between text-neutral-400">
                   <span>Courses Subtotal</span>
-                  <span className="font-medium text-neutral-200">{formatCurrency(subtotal)}</span>
+                  <span className="font-medium text-neutral-200">{formatCurrency(subtotal, currency)}</span>
                 </div>
                 <div className="flex justify-between text-neutral-400">
                   <span>Estimated Tax & Service</span>
@@ -161,7 +163,7 @@ export function CartDrawer({
                 <div className="flex justify-between text-sm pt-2 border-t border-neutral-800">
                   <span className="font-serif font-bold text-champagne">Estimated Total</span>
                   <span className="font-serif font-bold text-gold-primary text-base">
-                    {formatCurrency(subtotal)}
+                    {formatCurrency(subtotal, currency)}
                   </span>
                 </div>
               </div>
