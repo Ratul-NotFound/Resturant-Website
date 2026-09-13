@@ -84,8 +84,8 @@ export const menuData: MenuItem[] = [
     },
     chefNote: 'Crafted daily by master cheesemakers in Andria, Puglia, and served within 36 hours of creation.',
     farmProvenance: 'Caseificio Andriese, Puglia & Provence Truffières',
-    image: 'https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=1200&q=85',
-    gallery: ['https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=1200&q=85'],
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=85',
+    gallery: ['https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=85'],
     displayOrder: 3,
   },
   {

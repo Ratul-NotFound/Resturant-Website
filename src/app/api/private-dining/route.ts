@@ -20,9 +20,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Malformed JSON payload' }, { status: 400 });
   }
 
-  const nameResult = ServerSanitizer.validateName(body.name);
-  const emailResult = ServerSanitizer.validateEmail(body.email);
-  const phoneResult = ServerSanitizer.validatePhone(body.phone);
+  const nameResult = ServerSanitizer.validateName(body.name || body.contactName);
+  const emailResult = ServerSanitizer.validateEmail(body.email || body.contactEmail);
+  const phoneResult = ServerSanitizer.validatePhone(body.phone || body.contactPhone);
 
   if (!nameResult.valid || !emailResult.valid || !phoneResult.valid) {
     return NextResponse.json(
@@ -31,11 +31,11 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const date = ServerSanitizer.sanitizeQueryParam(body.preferredDate || '', 20);
-  const partySize = parseInt(String(body.partySize || 10), 10);
-  const salon = ServerSanitizer.sanitizeQueryParam(body.salonPreference || 'vault', 40);
-  const budget = ServerSanitizer.sanitizeQueryParam(body.estimatedBudget || '', 50);
-  const message = ServerSanitizer.sanitizeString(body.message || '', 500);
+  const date = ServerSanitizer.sanitizeQueryParam(body.preferredDate || body.date || '', 20);
+  const partySize = parseInt(String(body.partySize || body.guestCount || 10), 10);
+  const salon = ServerSanitizer.sanitizeQueryParam(body.salonPreference || body.salon || 'vault', 40);
+  const budget = ServerSanitizer.sanitizeQueryParam(body.estimatedBudget || body.budget || '', 50);
+  const message = ServerSanitizer.sanitizeString(body.message || body.specialRequests || '', 500);
 
   const inquiryId = `EVT-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
 

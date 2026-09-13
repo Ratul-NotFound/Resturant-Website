@@ -160,7 +160,8 @@ export class ServerSanitizer {
       errors.partySize = 'Party size must be an integer between 1 and 12';
     }
 
-    const dateResult = ServerSanitizer.validateFutureDate(b.date);
+    const rawDate = b.date || b.diningDate;
+    const dateResult = ServerSanitizer.validateFutureDate(rawDate);
     if (!dateResult.valid) {
       errors.date = dateResult.error || 'Invalid date';
     }
@@ -196,7 +197,7 @@ export class ServerSanitizer {
       valid: true,
       data: {
         partySize,
-        date: String(b.date),
+        date: String(rawDate),
         seatingArea: b.seatingArea as SeatingArea,
         timeSlot: String(b.timeSlot),
         guestName: nameResult.sanitized!,
@@ -223,11 +224,17 @@ export class ServerSanitizer {
     const b = body as Record<string, unknown>;
     const errors: Record<string, string> = {};
 
-    if (!b.customer || typeof b.customer !== 'object') {
-      errors.customer = 'Customer details are required';
-    }
+    const cust = (
+      typeof b.customer === 'object' && b.customer !== null
+        ? b.customer
+        : {
+            name: b.customerName || b.name,
+            email: b.customerEmail || b.email,
+            phone: b.customerPhone || b.phone,
+            address: b.deliveryAddress || b.address,
+          }
+    ) as Record<string, unknown>;
 
-    const cust = (b.customer || {}) as Record<string, unknown>;
     const nameResult = ServerSanitizer.validateName(cust.name);
     if (!nameResult.valid) errors['customer.name'] = 'Valid name required (2-80 characters)';
 

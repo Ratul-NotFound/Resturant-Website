@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "id": "RES-1789324236541-5762",
+    "bookingReference": "AURA-2026-2672",
+    "guestName": "Lord Jonathan Sterling",
+    "guestEmail": "jonathan.sterling@aura-michelin.com",
+    "guestPhone": "+12125550199",
+    "partySize": 2,
+    "date": "2026-09-20",
+    "timeSlot": "19:30",
+    "seatingArea": "atrium",
+    "occasion": "anniversary",
+    "dietaryNotes": "No peanuts, champagne upon arrival",
+    "status": "CONFIRMED",
+    "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtMjY3MiIsImd1ZXN0IjoiTG9yZCBKb25hdGhhbiBTdGVybGluZyIsImRhdGUiOiIyMDI2LTA5LTIwIiwidGltZSI6IjE5OjMwIiwiYXJlYSI6ImF0cml1bSIsInBhcnR5IjoyfQ==",
+    "createdAt": "2026-09-13T18:30:36.541Z",
+    "updatedAt": "2026-09-13T18:30:36.541Z"
+  },
+  {
+    "id": "RES-1789324360425-8920",
+    "bookingReference": "AURA-2026-6931",
+    "guestName": "Lord Jonathan Sterling",
+    "guestEmail": "jonathan.sterling@aura-michelin.com",
+    "guestPhone": "+12125550199",
+    "partySize": 2,
+    "date": "2026-09-20",
+    "timeSlot": "19:30",
+    "seatingArea": "atrium",
+    "occasion": "anniversary",
+    "dietaryNotes": "No peanuts, champagne upon arrival",
+    "status": "CONFIRMED",
+    "qrData": "eyJyZWYiOiJBVVJBLTIwMjYtNjkzMSIsImd1ZXN0IjoiTG9yZCBKb25hdGhhbiBTdGVybGluZyIsImRhdGUiOiIyMDI2LTA5LTIwIiwidGltZSI6IjE5OjMwIiwiYXJlYSI6ImF0cml1bSIsInBhcnR5IjoyfQ==",
+    "createdAt": "2026-09-13T18:32:40.425Z",
+    "updatedAt": "2026-09-13T18:32:40.425Z"
+  }
+]
