@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
-import { User, Users, UsersRound, ShoppingBag, Check, SlidersHorizontal, Sparkles, Plus } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ShoppingBag, Check, SlidersHorizontal, Plus, Sparkles, Flame, User, Users, UsersRound } from 'lucide-react'
 import { MenuItemData, PortionData } from '@/lib/data'
 import { useStore } from '@/lib/store'
-import { formatPrice } from '@/lib/utils'
 
 interface DishCardProps {
   item: MenuItemData
@@ -12,194 +12,188 @@ interface DishCardProps {
 
 export default function DishCard({ item }: DishCardProps) {
   const { addToCart, openCustomizer } = useStore()
-  
-  // Find default portion or first portion
+
   const defaultPortion = item.portions.find((p) => p.isDefault) || item.portions[0]
   const [selectedPortion, setSelectedPortion] = useState<PortionData>(defaultPortion)
-  const [isPriceBumping, setIsPriceBumping] = useState(false)
   const [added, setAdded] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
-  const handlePortionSelect = (portion: PortionData) => {
+  const handlePortionSelect = (e: React.MouseEvent, portion: PortionData) => {
+    e.stopPropagation()
     setSelectedPortion(portion)
-    setIsPriceBumping(true)
-    setTimeout(() => setIsPriceBumping(false), 200)
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation()
     addToCart(item, selectedPortion, { quantity: 1 })
     setAdded(true)
     setTimeout(() => setAdded(false), 1400)
   }
 
-  // Helper for portion icon
-  const getPortionIcon = (serves: string, label: string) => {
-    if (label.includes('1:1') || serves.includes('1 Person') || label.includes('1/4') || label.includes('250ml') || label.includes('6 Pcs')) {
-      return <User className="w-3 h-3" />
-    }
-    if (label.includes('1:2') || serves.includes('2 Person') || label.includes('1/2') || label.includes('500ml')) {
-      return <Users className="w-3 h-3" />
-    }
-    return <UsersRound className="w-3 h-3" />
-  }
-
-  const hasCustomizer = item.spiceOptions || (item.addons && item.addons.length > 0)
+  const hasCustomizer = Boolean(item.spiceOptions || (item.addons && item.addons.length > 0))
 
   return (
-    <article
-      className="group relative bg-white rounded-3xl overflow-hidden border border-neutral-100/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+    <motion.article
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
+      className="group relative bg-white rounded-[28px] overflow-hidden border border-neutral-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_24px_48px_-12px_rgba(200,16,46,0.14)] hover:border-brand-red/30 transition-colors duration-300 flex flex-col justify-between"
       data-dish={item.name}
     >
-      {/* Top Image Stage with Glass Badges */}
-      <div className="h-48 sm:h-52 overflow-hidden relative bg-neutral-100">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-        />
+      {/* 1. Cinematic Food Image Stage */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-100 p-2.5 pb-0">
+        <div className="w-full h-full rounded-2xl overflow-hidden relative">
+          <motion.img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-cover"
+            animate={{ scale: isHovered ? 1.08 : 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          />
 
-        {/* Soft Bottom Image Gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+          {/* Vignette Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
-        {/* Floating Minimalist Tag Badge */}
-        {item.tag && (
-          <span
-            className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm backdrop-blur-md border border-white/20 ${
-              item.tag.includes('Bestseller')
-                ? 'bg-brand-red/90 text-white'
-                : item.tag.includes('Extra Meat')
-                ? 'bg-amber-600/90 text-white'
-                : item.tag.includes('Mustard')
-                ? 'bg-neutral-900/80 text-white'
-                : 'bg-emerald-700/90 text-white'
-            }`}
-          >
-            {item.tag}
-          </span>
-        )}
+          {/* Top Left: Minimalist Category / Bestseller Badge */}
+          {item.tag && (
+            <div className="absolute top-2.5 left-2.5 z-10">
+              <span className="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-xs">
+                {item.tag.includes('Bestseller') && <Flame className="w-3 h-3 text-amber-400 fill-amber-400" />}
+                {item.tag}
+              </span>
+            </div>
+          )}
 
-        {/* Customizer Pill / Icon Overlay */}
-        {hasCustomizer && (
-          <button
-            onClick={() => openCustomizer(item)}
-            className="absolute top-3 right-3 bg-white/90 hover:bg-white text-neutral-800 p-2 rounded-full shadow-sm backdrop-blur-md border border-white/50 transition-all hover:scale-110 active:scale-95 flex items-center gap-1 text-[10px] font-bold"
-            title="Customize Spice Level & Add-ons"
-            type="button"
-          >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
-          </button>
-        )}
+          {/* Top Right: Customizer Trigger */}
+          {hasCustomizer && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                openCustomizer(item)
+              }}
+              type="button"
+              className="absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-neutral-800 flex items-center justify-center shadow-md backdrop-blur-md border border-white/60 hover:scale-110 active:scale-95 transition-all"
+              title="Customize spices & add-ons"
+            >
+              <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
+            </button>
+          )}
+
+          {/* Floating Servings Pill on Bottom-Right of Image */}
+          <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
+            <span className="text-[11px] font-bold text-white/90 bg-black/50 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10">
+              {selectedPortion.serves}
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Card Content Details */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+      {/* 2. Content & Details */}
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
         <div>
-          {/* Title & Bengali Tag */}
-          <div>
-            <h3 className="font-display font-bold text-base sm:text-[17px] text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
-              {item.name}
-            </h3>
-            {item.nameBn && (
-              <span className="block text-[11px] font-medium text-neutral-400 font-bangla mt-0.5">
-                {item.nameBn}
+          {/* Header Row: Title & Price */}
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <h3 className="font-display font-black text-[16px] sm:text-[17px] text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
+                {item.name}
+              </h3>
+              {item.nameBn && (
+                <p className="text-[11px] font-medium text-neutral-400 font-bangla mt-0.5">
+                  {item.nameBn}
+                </p>
+              )}
+            </div>
+
+            {/* Dynamic Price Display */}
+            <div className="text-right shrink-0">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedPortion.price}
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ duration: 0.15 }}
+                  className="font-display font-black text-lg sm:text-xl text-brand-red leading-none"
+                >
+                  ৳{selectedPortion.price}
+                </motion.div>
+              </AnimatePresence>
+              <span className="text-[10px] font-bold text-neutral-400 block mt-0.5 uppercase tracking-wider">
+                {selectedPortion.label}
               </span>
-            )}
+            </div>
           </div>
 
-          {/* Description */}
+          {/* Minimalist 1-Line Editorial Description */}
           <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-2">
             {item.description}
           </p>
-
-          {/* Minimalist Segmented Portion Selector */}
-          <div className="mt-4">
-            <div className="flex items-center justify-between text-[11px] text-neutral-400 font-medium mb-1.5 px-0.5">
-              <span>Select Portion</span>
-              <span className="text-neutral-600 font-bold">{selectedPortion.serves}</span>
-            </div>
-
-            <div
-              className={`bg-neutral-50 p-1 rounded-2xl border border-neutral-200/70 grid gap-1 ${
-                item.portions.length === 2 ? 'grid-cols-2' : 'grid-cols-3'
-              }`}
-            >
-              {item.portions.map((portion) => {
-                const isSelected = selectedPortion.label === portion.label
-                return (
-                  <button
-                    key={portion.label}
-                    onClick={() => handlePortionSelect(portion)}
-                    type="button"
-                    className={`py-2 px-1 rounded-xl text-center transition-all duration-200 flex flex-col items-center justify-center ${
-                      isSelected
-                        ? 'bg-white text-neutral-900 font-bold shadow-xs border border-neutral-200/90'
-                        : 'text-neutral-500 hover:text-neutral-900 hover:bg-white/60 border border-transparent'
-                    }`}
-                  >
-                    <div className="flex items-center gap-1 text-[11px] leading-none mb-0.5">
-                      <span className={isSelected ? 'text-brand-red' : 'text-neutral-400'}>
-                        {getPortionIcon(portion.serves, portion.label)}
-                      </span>
-                      <span>{portion.label}</span>
-                    </div>
-                    <span
-                      className={`text-xs font-extrabold ${
-                        isSelected ? 'text-brand-red' : 'text-neutral-600'
-                      }`}
-                    >
-                      ৳{portion.price}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
         </div>
 
-        {/* Bottom Pricing & Action Bar */}
-        <div className="mt-5 pt-3.5 border-t border-neutral-100 flex items-center justify-between gap-2">
-          <div>
-            <span className="text-[10px] text-neutral-400 font-medium uppercase tracking-wider block">Total Price</span>
-            <div className="flex items-baseline gap-1">
-              <span
-                className={`font-display font-black text-lg sm:text-xl text-neutral-900 transition-transform duration-200 ${
-                  isPriceBumping ? 'scale-110 text-brand-red' : ''
-                }`}
-              >
-                ৳{selectedPortion.price}
-              </span>
-              <span className="text-[10px] text-neutral-400 font-normal">/ {selectedPortion.label}</span>
-            </div>
+        {/* 3. Interactive Minimalist Portion Selector Pills */}
+        <div className="space-y-3 pt-1 border-t border-neutral-100">
+          <div className="flex items-center gap-1.5 p-1 bg-neutral-100/80 rounded-2xl">
+            {item.portions.map((portion) => {
+              const isSelected = selectedPortion.label === portion.label
+              return (
+                <button
+                  key={portion.label}
+                  onClick={(e) => handlePortionSelect(e, portion)}
+                  type="button"
+                  className={`relative flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition-all duration-200 text-center flex items-center justify-center gap-1 ${
+                    isSelected
+                      ? 'text-neutral-900 shadow-xs'
+                      : 'text-neutral-500 hover:text-neutral-800'
+                  }`}
+                >
+                  {isSelected && (
+                    <motion.div
+                      layoutId={`portion-pill-${item.id}`}
+                      className="absolute inset-0 bg-white rounded-xl shadow-xs border border-neutral-200/80"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10">{portion.label}</span>
+                </button>
+              )
+            })}
           </div>
 
-          <div className="flex items-center gap-1.5">
+          {/* 4. Action Button Bar */}
+          <div className="flex items-center gap-2">
             {hasCustomizer && (
               <button
-                onClick={() => openCustomizer(item)}
-                className="p-2.5 rounded-2xl bg-neutral-50 hover:bg-neutral-100 text-neutral-600 hover:text-brand-red border border-neutral-200/80 transition active:scale-95"
-                title="Customize spice level and extra toppings"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  openCustomizer(item)
+                }}
                 type="button"
+                className="py-2.5 px-3 rounded-2xl bg-neutral-100 hover:bg-neutral-200/80 text-neutral-700 hover:text-brand-red text-xs font-bold transition-colors flex items-center gap-1.5 shrink-0"
+                title="Customize Meal"
               >
-                <SlidersHorizontal className="w-4 h-4" />
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Customize</span>
               </button>
             )}
 
             <button
               onClick={handleAddToCart}
-              className={`text-xs font-bold py-2.5 px-4 rounded-2xl transition-all duration-200 shadow-sm flex items-center gap-1.5 active:scale-95 ${
+              type="button"
+              className={`flex-1 py-2.5 px-4 rounded-2xl text-xs font-bold transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5 active:scale-95 ${
                 added
                   ? 'bg-emerald-600 text-white shadow-emerald-600/20'
                   : 'bg-brand-red hover:bg-brand-darkred text-white shadow-brand-red/20 hover:shadow-md'
               }`}
-              type="button"
             >
               {added ? (
                 <>
                   <Check className="w-3.5 h-3.5 stroke-[3] animate-bounce" />
-                  <span>Added</span>
+                  <span>Added to Feast</span>
                 </>
               ) : (
                 <>
-                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <Plus className="w-4 h-4 stroke-[2.5]" />
                   <span>Add to Tray</span>
                 </>
               )}
@@ -207,6 +201,6 @@ export default function DishCard({ item }: DishCardProps) {
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   )
 }
