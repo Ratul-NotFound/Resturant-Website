@@ -117,27 +117,27 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Full-Screen Edge-to-Edge Sticky Header */}
+      {/* Full-Screen Edge-to-Edge Header with Perfect 50/50 Optical Balance */}
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200/80 py-3'
-            : 'bg-white/90 backdrop-blur-sm border-b border-neutral-100 py-3.5'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200/80'
+            : 'bg-white/90 backdrop-blur-sm border-b border-neutral-100'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 h-16 sm:h-[72px] flex items-center justify-between relative">
           
-          {/* Left: Brand Logo & Branch Selector Chip */}
-          <div className="flex items-center space-x-3 sm:space-x-4 shrink-0">
-            <Link href="/" className="flex items-center space-x-2.5 group">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-red to-brand-darkred flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform duration-200">
+          {/* Left Wing: Brand Logo & Branch Outlet Selector (Optical Weight: ~300px) */}
+          <div className="flex items-center space-x-3 sm:space-x-4 shrink-0 z-10">
+            <Link href="/" className="flex items-center space-x-2.5 group shrink-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-brand-red to-brand-darkred flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform duration-200">
                 <Flame className="w-5 h-5 fill-white text-brand-gold" />
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-black text-lg tracking-tight text-neutral-900 leading-none group-hover:text-brand-red transition-colors flex items-center gap-0.5">
-                  FLAME<span className="text-brand-red font-serif italic text-base">&amp;</span>FEAST
+                <span className="font-display font-black text-base sm:text-lg tracking-tight text-neutral-900 leading-none group-hover:text-brand-red transition-colors flex items-center gap-0.5">
+                  FLAME<span className="text-brand-red font-serif italic text-sm sm:text-base">&amp;</span>FEAST
                 </span>
-                <span className="text-[9px] tracking-widest text-neutral-400 font-bold uppercase mt-0.5">
+                <span className="text-[8px] sm:text-[9px] tracking-widest text-neutral-400 font-bold uppercase mt-0.5">
                   Grill &amp; Kacchi Heritage
                 </span>
               </div>
@@ -147,7 +147,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsBranchModalOpen(true)}
               type="button"
-              className="hidden md:flex items-center gap-1.5 text-xs font-semibold text-neutral-600 hover:text-neutral-950 bg-neutral-100/80 hover:bg-neutral-200/80 py-1.5 px-3 rounded-xl border border-neutral-200/70 transition-all duration-150"
+              className="hidden md:flex items-center gap-1.5 text-xs font-semibold text-neutral-600 hover:text-neutral-950 bg-neutral-100/80 hover:bg-neutral-200/80 py-1.5 px-3 rounded-xl border border-neutral-200/70 transition-all duration-150 shrink-0"
               title="Click to switch branch outlet"
             >
               <MapPin className="w-3.5 h-3.5 text-brand-red shrink-0" />
@@ -156,8 +156,8 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Center: Minimalist Single-Line Nav Links (Desktop) */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 font-medium text-xs xl:text-sm text-neutral-600">
+          {/* Center: Mathematically Dead-Centered Navigation Links */}
+          <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center space-x-1 xl:space-x-2 font-medium text-xs xl:text-sm text-neutral-600 z-10">
             <Link
               href="/"
               className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 ${
@@ -184,7 +184,7 @@ export default function Navbar() {
               href="/#mega-deal"
               className="px-3.5 py-1.5 rounded-full whitespace-nowrap text-neutral-700 hover:text-brand-red hover:bg-neutral-100/80 transition-all duration-150 flex items-center gap-1.5 group"
             >
-              <span>Mega Feast</span>
+              <span>Mega Deal</span>
               <span className="bg-amber-100 text-amber-900 text-[10px] font-bold px-1.5 py-0.5 rounded-md group-hover:bg-brand-red group-hover:text-white transition-colors">
                 ৳999
               </span>
@@ -195,13 +195,6 @@ export default function Navbar() {
               className="px-3.5 py-1.5 rounded-full whitespace-nowrap hover:text-neutral-950 hover:bg-neutral-100/80 transition-all duration-150"
             >
               Our Story
-            </Link>
-
-            <Link
-              href="/#branches"
-              className="px-3.5 py-1.5 rounded-full whitespace-nowrap hover:text-neutral-950 hover:bg-neutral-100/80 transition-all duration-150"
-            >
-              Outlets
             </Link>
 
             <Link
@@ -229,10 +222,10 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Right: Actions (Fulfillment Mode, Hotline, Tray, Mobile Toggle) */}
-          <div className="flex items-center space-x-2.5 sm:space-x-3 shrink-0">
-            {/* Delivery / Takeaway Switch (XL screens) */}
-            <div className="hidden xl:inline-flex items-center bg-neutral-100/90 p-0.5 rounded-full border border-neutral-200/70 text-xs font-semibold">
+          {/* Right Wing: Symmetrical Action Controls (Optical Weight: ~280px) */}
+          <div className="flex items-center justify-end space-x-2.5 sm:space-x-3 shrink-0 z-10">
+            {/* Delivery / Takeaway Switch (2XL screens) */}
+            <div className="hidden 2xl:inline-flex items-center bg-neutral-100/90 p-0.5 rounded-full border border-neutral-200/70 text-xs font-semibold">
               <button
                 onClick={handleDeliveryMode}
                 className={`px-3 py-1 rounded-full flex items-center gap-1.5 transition-all duration-150 ${
@@ -303,7 +296,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Full-Screen Mobile Drawer (Directly under header) */}
+        {/* Full-Screen Mobile Drawer */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <>
@@ -314,7 +307,7 @@ export default function Navbar() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 top-[65px] bg-black/40 backdrop-blur-xs z-30 lg:hidden"
+                className="fixed inset-0 top-[64px] sm:top-[72px] bg-black/40 backdrop-blur-xs z-30 lg:hidden"
               />
 
               {/* Full-Width Drawer Body */}
@@ -323,7 +316,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="relative z-40 lg:hidden w-full border-t border-neutral-100 bg-white px-4 pt-4 pb-6 space-y-4 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto"
+                className="relative z-40 lg:hidden w-full border-t border-neutral-100 bg-white px-4 pt-4 pb-6 space-y-4 shadow-2xl max-h-[calc(100vh-72px)] overflow-y-auto"
               >
                 {/* Fulfillment Switcher in Mobile Drawer */}
                 <div className="flex bg-neutral-100 p-1 rounded-2xl text-xs font-bold border border-neutral-200/80">
