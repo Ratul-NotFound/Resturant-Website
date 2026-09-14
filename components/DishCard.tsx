@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { User, Users, UsersRound, ShoppingCart, Check, SlidersHorizontal, Sparkles } from 'lucide-react'
+import { User, Users, UsersRound, ShoppingBag, Check, SlidersHorizontal, Sparkles, Plus } from 'lucide-react'
 import { MenuItemData, PortionData } from '@/lib/data'
 import { useStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
@@ -22,163 +22,189 @@ export default function DishCard({ item }: DishCardProps) {
   const handlePortionSelect = (portion: PortionData) => {
     setSelectedPortion(portion)
     setIsPriceBumping(true)
-    setTimeout(() => setIsPriceBumping(false), 220)
+    setTimeout(() => setIsPriceBumping(false), 200)
   }
 
   const handleAddToCart = () => {
-    // If item has spice options and hasn't been customized, we can still add directly with default, or user can click customize
     addToCart(item, selectedPortion, { quantity: 1 })
     setAdded(true)
-    setTimeout(() => setAdded(false), 1200)
+    setTimeout(() => setAdded(false), 1400)
   }
 
-  // Get portion icon
+  // Helper for portion icon
   const getPortionIcon = (serves: string, label: string) => {
     if (label.includes('1:1') || serves.includes('1 Person') || label.includes('1/4') || label.includes('250ml') || label.includes('6 Pcs')) {
-      return <User className="w-3.5 h-3.5" />
+      return <User className="w-3 h-3" />
     }
     if (label.includes('1:2') || serves.includes('2 Person') || label.includes('1/2') || label.includes('500ml')) {
-      return <Users className="w-3.5 h-3.5" />
+      return <Users className="w-3 h-3" />
     }
-    return <UsersRound className="w-3.5 h-3.5" />
+    return <UsersRound className="w-3 h-3" />
   }
+
+  const hasCustomizer = item.spiceOptions || (item.addons && item.addons.length > 0)
 
   return (
     <article
-      className="portion-dish-card bg-white rounded-3xl overflow-hidden shadow-custom-card border border-neutral-100 flex flex-col hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group"
+      className="group relative bg-white rounded-3xl overflow-hidden border border-neutral-100/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
       data-dish={item.name}
     >
-      {/* Dish Image Stage */}
+      {/* Top Image Stage with Glass Badges */}
       <div className="h-48 sm:h-52 overflow-hidden relative bg-neutral-100">
         <img
           src={item.image}
           alt={item.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
         />
 
-        {/* Tag Pill */}
+        {/* Soft Bottom Image Gradient */}
+        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+
+        {/* Floating Minimalist Tag Badge */}
         {item.tag && (
           <span
-            className={`absolute top-3 left-3 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow-sm ${
+            className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm backdrop-blur-md border border-white/20 ${
               item.tag.includes('Bestseller')
-                ? 'bg-brand-red'
+                ? 'bg-brand-red/90 text-white'
                 : item.tag.includes('Extra Meat')
-                ? 'bg-amber-500'
+                ? 'bg-amber-600/90 text-white'
                 : item.tag.includes('Mustard')
-                ? 'bg-neutral-800'
-                : 'bg-emerald-600'
+                ? 'bg-neutral-900/80 text-white'
+                : 'bg-emerald-700/90 text-white'
             }`}
           >
             {item.tag}
           </span>
         )}
 
-        {/* Customize button overlay */}
-        {(item.spiceOptions || (item.addons && item.addons.length > 0)) && (
+        {/* Customizer Pill / Icon Overlay */}
+        {hasCustomizer && (
           <button
             onClick={() => openCustomizer(item)}
-            className="absolute top-3 right-3 bg-white/90 hover:bg-white text-brand-dark p-1.5 rounded-full shadow-md backdrop-blur transition-transform hover:scale-110"
-            title="Customize Spice & Addons"
+            className="absolute top-3 right-3 bg-white/90 hover:bg-white text-neutral-800 p-2 rounded-full shadow-sm backdrop-blur-md border border-white/50 transition-all hover:scale-110 active:scale-95 flex items-center gap-1 text-[10px] font-bold"
+            title="Customize Spice Level & Add-ons"
+            type="button"
           >
             <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
           </button>
         )}
       </div>
 
-      {/* Dish Details */}
+      {/* Card Content Details */}
       <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-display font-extrabold text-base sm:text-lg text-brand-dark text-center group-hover:text-brand-red transition-colors leading-tight">
-            {item.name}
+          {/* Title & Bengali Tag */}
+          <div>
+            <h3 className="font-display font-bold text-base sm:text-[17px] text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
+              {item.name}
+            </h3>
             {item.nameBn && (
-              <span className="block text-xs font-semibold text-neutral-500 font-bangla mt-0.5">
+              <span className="block text-[11px] font-medium text-neutral-400 font-bangla mt-0.5">
                 {item.nameBn}
               </span>
             )}
-          </h3>
+          </div>
 
-          <p className="text-[11px] sm:text-xs text-neutral-500 text-center mt-1.5 line-clamp-2 leading-relaxed">
+          {/* Description */}
+          <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-2">
             {item.description}
           </p>
 
-          {/* Portion Sizing Selectors */}
-          <div
-            className={`grid gap-1.5 sm:gap-2 mt-4 text-center border-t border-b border-neutral-100 py-3 portion-selector ${
-              item.portions.length === 2 ? 'grid-cols-2' : 'grid-cols-3'
-            }`}
-          >
-            {item.portions.map((portion) => {
-              const isSelected = selectedPortion.label === portion.label
-              return (
-                <div
-                  key={portion.label}
-                  onClick={() => handlePortionSelect(portion)}
-                  className={`portion-btn cursor-pointer p-1.5 rounded-xl transition-all duration-200 border ${
-                    isSelected
-                      ? 'is-selected bg-red-50/90 border-red-300 shadow-sm'
-                      : 'border-transparent hover:bg-red-50/40 hover:border-red-100'
-                  }`}
-                >
-                  <div
-                    className={`portion-icon mb-1 flex justify-center transition-colors ${
-                      isSelected ? 'text-brand-red' : 'text-neutral-500'
+          {/* Minimalist Segmented Portion Selector */}
+          <div className="mt-4">
+            <div className="flex items-center justify-between text-[11px] text-neutral-400 font-medium mb-1.5 px-0.5">
+              <span>Select Portion</span>
+              <span className="text-neutral-600 font-bold">{selectedPortion.serves}</span>
+            </div>
+
+            <div
+              className={`bg-neutral-50 p-1 rounded-2xl border border-neutral-200/70 grid gap-1 ${
+                item.portions.length === 2 ? 'grid-cols-2' : 'grid-cols-3'
+              }`}
+            >
+              {item.portions.map((portion) => {
+                const isSelected = selectedPortion.label === portion.label
+                return (
+                  <button
+                    key={portion.label}
+                    onClick={() => handlePortionSelect(portion)}
+                    type="button"
+                    className={`py-2 px-1 rounded-xl text-center transition-all duration-200 flex flex-col items-center justify-center ${
+                      isSelected
+                        ? 'bg-white text-neutral-900 font-bold shadow-xs border border-neutral-200/90'
+                        : 'text-neutral-500 hover:text-neutral-900 hover:bg-white/60 border border-transparent'
                     }`}
                   >
-                    {getPortionIcon(portion.serves, portion.label)}
-                  </div>
-                  <span
-                    className={`portion-ratio block text-[11px] leading-tight ${
-                      isSelected ? 'font-bold text-neutral-800' : 'font-semibold text-neutral-500'
-                    }`}
-                  >
-                    {portion.label}
-                  </span>
-                  <span
-                    className={`portion-price block text-xs font-black text-brand-red mt-0.5 transition-transform duration-200 ${
-                      isSelected && isPriceBumping ? 'scale-125 text-brand-dark' : ''
-                    }`}
-                  >
-                    {formatPrice(portion.price, true)}
-                  </span>
-                </div>
-              )
-            })}
+                    <div className="flex items-center gap-1 text-[11px] leading-none mb-0.5">
+                      <span className={isSelected ? 'text-brand-red' : 'text-neutral-400'}>
+                        {getPortionIcon(portion.serves, portion.label)}
+                      </span>
+                      <span>{portion.label}</span>
+                    </div>
+                    <span
+                      className={`text-xs font-extrabold ${
+                        isSelected ? 'text-brand-red' : 'text-neutral-600'
+                      }`}
+                    >
+                      ৳{portion.price}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="mt-4 flex items-center space-x-2">
-          {(item.spiceOptions || (item.addons && item.addons.length > 0)) && (
-            <button
-              onClick={() => openCustomizer(item)}
-              className="p-2.5 rounded-xl border border-neutral-200 text-neutral-600 hover:text-brand-red hover:bg-neutral-50 transition active:scale-95"
-              title="Customize Spice & Extras"
-            >
-              <SlidersHorizontal className="w-4 h-4" />
-            </button>
-          )}
+        {/* Bottom Pricing & Action Bar */}
+        <div className="mt-5 pt-3.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+          <div>
+            <span className="text-[10px] text-neutral-400 font-medium uppercase tracking-wider block">Total Price</span>
+            <div className="flex items-baseline gap-1">
+              <span
+                className={`font-display font-black text-lg sm:text-xl text-neutral-900 transition-transform duration-200 ${
+                  isPriceBumping ? 'scale-110 text-brand-red' : ''
+                }`}
+              >
+                ৳{selectedPortion.price}
+              </span>
+              <span className="text-[10px] text-neutral-400 font-normal">/ {selectedPortion.label}</span>
+            </div>
+          </div>
 
-          <button
-            onClick={handleAddToCart}
-            className={`flex-1 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md flex items-center justify-center space-x-1.5 active:scale-95 ${
-              added
-                ? 'bg-emerald-600 hover:bg-emerald-700'
-                : 'bg-brand-red hover:bg-brand-darkred'
-            }`}
-            type="button"
-          >
-            {added ? (
-              <>
-                <Check className="w-3.5 h-3.5 stroke-[3] animate-bounce" />
-                <span>✓ যোগ হয়েছে (Added)</span>
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="w-3.5 h-3.5" />
-                <span>অর্ডার করুন (Add to Cart)</span>
-              </>
+          <div className="flex items-center gap-1.5">
+            {hasCustomizer && (
+              <button
+                onClick={() => openCustomizer(item)}
+                className="p-2.5 rounded-2xl bg-neutral-50 hover:bg-neutral-100 text-neutral-600 hover:text-brand-red border border-neutral-200/80 transition active:scale-95"
+                title="Customize spice level and extra toppings"
+                type="button"
+              >
+                <SlidersHorizontal className="w-4 h-4" />
+              </button>
             )}
-          </button>
+
+            <button
+              onClick={handleAddToCart}
+              className={`text-xs font-bold py-2.5 px-4 rounded-2xl transition-all duration-200 shadow-sm flex items-center gap-1.5 active:scale-95 ${
+                added
+                  ? 'bg-emerald-600 text-white shadow-emerald-600/20'
+                  : 'bg-brand-red hover:bg-brand-darkred text-white shadow-brand-red/20 hover:shadow-md'
+              }`}
+              type="button"
+            >
+              {added ? (
+                <>
+                  <Check className="w-3.5 h-3.5 stroke-[3] animate-bounce" />
+                  <span>Added</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>Add to Tray</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </article>
