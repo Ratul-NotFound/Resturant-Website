@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-hind-siliguri: 'Hind Siliguri', sans-serif;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  color: #1E1B1B;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+/* Custom Textures */
+.marble-bg {
+  background-color: #FCFBFA;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(248, 245, 238, 0.9) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(246, 241, 230, 0.8) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 255, 255, 1) 0px, transparent 80%);
+}
+
+.checkered-pattern {
+  background-image: linear-gradient(45deg, #a81026 25%, transparent 25%), 
+                    linear-gradient(-45deg, #a81026 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #a81026 75%), 
+                    linear-gradient(-45deg, transparent 75%, #a81026 75%);
+  background-size: 32px 32px;
+  background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
+}
+
+.fiery-shimmer-text {
+  background: linear-gradient(90deg, #C8102E 0%, #F4A61D 30%, #EF4444 65%, #C8102E 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fiery-sheen 3.6s ease infinite;
+}
+
+.mega-deal-glow {
+  animation: ember-glow-border 3.5s ease-in-out infinite;
+}
+
+.cta-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 45%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.45) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  content: '';
+  animation: shimmer-sweep 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.cart-badge-bump {
+  animation: badge-pop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF9F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8102E;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9B0A21;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(20, 18, 18, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .badge-float-anim,
+  .badge-pulse-anim,
+  .fries-bob-anim,
+  .mega-deal-glow,
+  .cta-shimmer::after,
+  .cart-badge-bump {
+    animation: none !important;
+  }
+  .fiery-shimmer-text {
+    animation: none !important;
+    background: #C8102E;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #C8102E;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model MenuItem {
+  id           String    @id @default(cuid())
+  name         String
+  nameBn       String?
+  description  String
+  descriptionBn String?
+  category     String    // 'popular' | 'kacchi' | 'tehari' | 'grilled' | 'sides' | 'drinks' | 'platters'
+  image        String
+  isBestseller Boolean   @default(false)
+  isAvailable  Boolean   @default(true)
+  tag          String?   // 'Bestseller', 'Chef Special', 'Extra Meat', 'Mustard Oil Infused', 'Combo Treat'
+  spiceOptions String?   // JSON array string e.g. '["Lemon & Herb", "Mild", "Hot", "Extra Hot Fiery"]'
+  addonsJson   String?   // JSON string of possible addons
+  portions     Portion[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Portion {
+  id         String   @id @default(cuid())
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  label      String   // '1:1', '1:2', '1:4', etc.
+  serves     String   // '1 Person', '2 Persons', '4 Persons'
+  price      Int      // e.g. 330, 980, 1930
+  isDefault  Boolean  @default(false)
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  orderNumber     String      @unique // e.g. "FF-84920"
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  deliveryAddress String?
+  branchName      String
+  fulfillmentType String      // 'delivery' | 'takeaway'
+  subtotal        Float
+  deliveryFee     Float       @default(0)
+  discount        Float       @default(0)
+  total           Float
+  status          String      @default("RECEIVED") // 'RECEIVED' | 'PREPARING' | 'ON_FLAME' | 'OUT_FOR_DELIVERY' | 'DELIVERED' | 'CANCELLED'
+  paymentMethod   String      // 'COD' | 'BKASH' | 'NAGAD' | 'CARD'
+  paymentStatus   String      @default("PENDING") // 'PENDING' | 'PAID'
+  notes           String?
+  riderName       String?
+  riderPhone      String?
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id         String   @id @default(cuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItemId String?
+  name       String
+  portion    String   // '1:1', '1:2', '1:4'
+  quantity   Int
+  unitPrice  Float
+  totalPrice Float
+  spiceLevel String?
+  addons     String?  // comma separated addons
+}
+
+model Reservation {
+  id           String   @id @default(cuid())
+  code         String   @unique // e.g. "RES-7721"
+  name         String
+  phone        String
+  email        String?
+  branch       String
+  date         String   // YYYY-MM-DD
+  time         String   // e.g. "07:30 PM"
+  guests       Int
+  zone         String   // 'Main Dining' | 'Family Hall' | 'Rooftop Terrace' | 'VIP Lounge'
+  occasion     String?  // 'Casual' | 'Birthday' | 'Anniversary' | 'Business'
+  specialNotes String?
+  status       String   @default("CONFIRMED") // 'PENDING' | 'CONFIRMED' | 'SEATED' | 'CANCELLED'
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Branch {
+  id          String   @id @default(cuid())
+  name        String
+  area        String
+  address     String
+  phone       String
+  hours       String   @default("11:00 AM - 11:00 PM")
+  isOpen      Boolean  @default(true)
+  deliveryFee Int      @default(60)
+  mapLink     String?
+}
+
+model Coupon {
+  code      String   @id
+  discount  Float
+  type      String   // 'fixed' | 'percent'
+  minOrder  Float    @default(0)
+  isActive  Boolean  @default(true)
+}
