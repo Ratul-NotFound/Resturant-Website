@@ -3,41 +3,31 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   MenuItem,
-  SeatingArea,
   CartItem,
-  ReservationRecord,
   OrderCalculation,
   CurrencyCode,
 } from '@/lib/types';
 import { CartService } from '@/lib/services/CartService';
-import { MenuService } from '@/lib/services/MenuService';
 import { ToastProvider, useToast } from '@/components/ui/Toast';
+import { TopAnnouncementBar } from '@/components/layout/TopAnnouncementBar';
 import { Navbar } from '@/components/layout/Navbar';
-import { MobileDrawer } from '@/components/layout/MobileDrawer';
-import { Footer } from '@/components/layout/Footer';
-import { LiveAnnouncementBar } from '@/components/sections/LiveAnnouncementBar';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { StorySection } from '@/components/sections/StorySection';
-import { MenuSection } from '@/components/sections/MenuSection';
-import { SharingFeastsSection } from '@/components/sections/SharingFeastsSection';
-import { AtmosphereSection } from '@/components/sections/AtmosphereSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { ReservationSection } from '@/components/sections/ReservationSection';
-import { LocationHoursSection } from '@/components/sections/LocationHoursSection';
-import { DishModal } from '@/components/ui/DishModal';
+import { PromotionalMegaBanner } from '@/components/sections/PromotionalMegaBanner';
+import { PopularDishesPortionSection } from '@/components/sections/PopularDishesPortionSection';
+import { BrushAccentFeatureSection } from '@/components/sections/BrushAccentFeatureSection';
+import { StoreFinderAndHotline } from '@/components/sections/StoreFinderAndHotline';
+import { Footer } from '@/components/layout/Footer';
+import { FloatingMobileOrderWidget } from '@/components/layout/FloatingMobileOrderWidget';
 import { CartDrawer } from '@/components/ui/CartDrawer';
 import { CheckoutModal } from '@/components/ui/CheckoutModal';
-import { ReservationPassModal } from '@/components/ui/ReservationPassModal';
-import { ReservationLookupModal } from '@/components/ui/ReservationLookupModal';
-import { SommelierAssistantModal } from '@/components/ui/SommelierAssistantModal';
 import { OrderReceiptModal } from '@/components/ui/OrderReceiptModal';
-import { PrivateDiningModal } from '@/components/ui/PrivateDiningModal';
+import { DishModal } from '@/components/ui/DishModal';
 
-function AuraRestaurantContent() {
+function FlameAndFeastLandingContent() {
   const { showToast } = useToast();
 
-  // Active Currency
-  const [currency, setCurrency] = useState<CurrencyCode>('USD');
+  // Active Currency (BDT by default for Dhaka / Flame & Feast)
+  const [currency] = useState<CurrencyCode>('BDT');
 
   // Cart State
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -48,19 +38,11 @@ function AuraRestaurantContent() {
   const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLookupOpen, setIsLookupOpen] = useState(false);
-  const [isSommelierOpen, setIsSommelierOpen] = useState(false);
-  const [isPrivateDiningOpen, setIsPrivateDiningOpen] = useState(false);
 
   // Order Receipt Modal
   const [isReceiptOpen, setIsReceiptOpen] = useState(false);
   const [lastOrderId, setLastOrderId] = useState<string | null>(null);
   const [lastOrderCalc, setLastOrderCalc] = useState<OrderCalculation | null>(null);
-
-  // Confirmed Reservation Modal
-  const [confirmedBooking, setConfirmedBooking] = useState<ReservationRecord | null>(null);
-  const [targetBookingArea, setTargetBookingArea] = useState<SeatingArea>('atrium');
 
   // Subscribe to Cart Service
   useEffect(() => {
@@ -89,7 +71,7 @@ function AuraRestaurantContent() {
   const handleRemoveCartItem = useCallback(
     (id: string) => {
       CartService.getInstance().removeItem(id);
-      showToast('Course removed from your order.', 'info');
+      showToast('Item removed from your cart.', 'info');
     },
     [showToast]
   );
@@ -100,133 +82,61 @@ function AuraRestaurantContent() {
       setLastOrderId(orderId);
       setLastOrderCalc(calc);
       setIsReceiptOpen(true);
-      showToast(`Order #${orderId} confirmed. Our culinary brigade has recorded your allocation.`, 'success', 'Allocation Confirmed');
+      showToast(`Order #${orderId} confirmed! Our kitchen is preparing your flame feast.`, 'success', 'Order Confirmed');
     },
     [showToast]
   );
 
-  const handleExploreDishById = useCallback((dishId: string) => {
-    const item = MenuService.getInstance().getItemById(dishId);
-    if (item) {
-      setSelectedDish(item);
-    }
-  }, []);
-
-  const handleScrollToReservations = useCallback(() => {
-    const element = document.getElementById('reservations');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
-
-  const handleSelectAreaForBooking = useCallback(
-    (area: SeatingArea) => {
-      setTargetBookingArea(area);
-      handleScrollToReservations();
-    },
-    [handleScrollToReservations]
-  );
-
-  const handleSelectCurrency = (newCurrency: CurrencyCode) => {
-    setCurrency(newCurrency);
-    showToast(`Currency set to ${newCurrency}.`, 'info', 'Currency Updated');
-  };
-
   return (
-    <div className="relative min-h-screen bg-white text-[#111] flex flex-col justify-between">
+    <div className="min-h-screen bg-white text-slate-800 flex flex-col justify-between selection:bg-brand-red selection:text-white">
       
-      {/* Top Live Announcement / Promotional Marquee Ticker */}
-      <LiveAnnouncementBar />
+      {/* Top Announcement Bar */}
+      <TopAnnouncementBar />
 
-      {/* Sticky Clean Navbar */}
+      {/* Sticky Main Navbar */}
       <Navbar
         cartCount={cartCount}
-        currency={currency}
-        onSelectCurrency={handleSelectCurrency}
         onOpenCart={() => setIsCartOpen(true)}
-        onOpenReservation={handleScrollToReservations}
-        onOpenLookup={() => setIsLookupOpen(true)}
-        onOpenSommelier={() => setIsSommelierOpen(true)}
-        onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
 
-      {/* Main Complete Section Flow Matching SRS FR-01 through FR-12 */}
+      {/* Main Landing Flow */}
       <main className="flex-1">
-        {/* FR-02: Hero Section */}
+        {/* 1. Hero Section */}
         <HeroSection
-          currency={currency}
-          onReserveClick={handleScrollToReservations}
-          onExploreDish={handleExploreDishById}
-          onOpenSommelier={() => setIsSommelierOpen(true)}
+          onSeeMenuClick={() => {
+            const el = document.getElementById('menu-highlights');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          onFindBranchClick={() => {
+            const el = document.getElementById('branches');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
         />
 
-        {/* FR-03: Restaurant Introduction & Philosophy */}
-        <StorySection />
-
-        {/* FR-04: Menu Section */}
-        <MenuSection
-          currency={currency}
-          onSelectDish={setSelectedDish}
-          onAddToCart={(item) => handleAddToCart(item, 1)}
-          onOpenSommelier={() => setIsSommelierOpen(true)}
+        {/* 2. Promotional Mega Deal Banner */}
+        <PromotionalMegaBanner
+          onAddMegaDeal={(item) => handleAddToCart(item, 1)}
         />
 
-        {/* FR-05 & FR-06: Featured Dishes & Special Offers */}
-        <SharingFeastsSection
-          currency={currency}
-          onAddToCart={(item) => handleAddToCart(item, 1)}
-          onSelectDish={setSelectedDish}
-          onReserveTable={handleScrollToReservations}
+        {/* 3. Popular Dishes & Portion Packs (Kacchi Bhai & Galito's Portions) */}
+        <PopularDishesPortionSection
+          onAddToCart={(dish) => handleAddToCart(dish, 1)}
         />
 
-        {/* FR-07: Atmosphere & Visual Gallery with Lightbox */}
-        <AtmosphereSection
-          onSelectAreaForBooking={handleSelectAreaForBooking}
-        />
+        {/* 4. Heritage & Brush Accent Feature Section */}
+        <BrushAccentFeatureSection />
 
-        {/* FR-09: Customer Reviews & Critical Acclaim */}
-        <TestimonialsSection />
-
-        {/* FR-08: Table Reservation Wizard */}
-        <ReservationSection
-          initialArea={targetBookingArea}
-          onBookingConfirmed={setConfirmedBooking}
-        />
-
-        {/* FR-10: Location, Service Schedule & Map */}
-        <LocationHoursSection />
+        {/* 5. Branch Locator & Hotline */}
+        <StoreFinderAndHotline />
       </main>
 
-      {/* Footer */}
-      <Footer
-        onOpenLookup={() => setIsLookupOpen(true)}
-        onOpenPrivateDining={() => setIsPrivateDiningOpen(true)}
-        onOpenSommelier={() => setIsSommelierOpen(true)}
-      />
+      {/* Main Footer */}
+      <Footer />
 
-      {/* Mobile Drawer */}
-      <MobileDrawer
-        isOpen={isMobileMenuOpen}
-        cartCount={cartCount}
-        currency={currency}
-        onSelectCurrency={handleSelectCurrency}
-        onClose={() => setIsMobileMenuOpen(false)}
-        onOpenCart={() => setIsCartOpen(true)}
-        onOpenReservation={handleScrollToReservations}
-        onOpenLookup={() => setIsLookupOpen(true)}
-        onOpenSommelier={() => setIsSommelierOpen(true)}
-        onOpenPrivateDining={() => setIsPrivateDiningOpen(true)}
-      />
+      {/* Floating Mobile Bottom Action Widget */}
+      <FloatingMobileOrderWidget />
 
-      {/* Dish Detailed View Modal */}
-      <DishModal
-        item={selectedDish}
-        currency={currency}
-        onClose={() => setSelectedDish(null)}
-        onAddToCart={handleAddToCart}
-      />
-
-      {/* Slide-Over Shopping Cart Drawer */}
+      {/* Cart Drawer */}
       <CartDrawer
         isOpen={isCartOpen}
         items={cartItems}
@@ -238,7 +148,7 @@ function AuraRestaurantContent() {
         onCheckout={() => setIsCheckoutOpen(true)}
       />
 
-      {/* Order Checkout Modal */}
+      {/* Checkout Modal */}
       <CheckoutModal
         isOpen={isCheckoutOpen}
         items={cartItems}
@@ -248,29 +158,7 @@ function AuraRestaurantContent() {
         onOrderSuccess={handleOrderSuccess}
       />
 
-      {/* Confirmed Reservation Digital Boarding Pass */}
-      <ReservationPassModal
-        booking={confirmedBooking}
-        onClose={() => setConfirmedBooking(null)}
-      />
-
-      {/* Reservation Lookup & Cancel Modal */}
-      <ReservationLookupModal
-        isOpen={isLookupOpen}
-        onClose={() => setIsLookupOpen(false)}
-        onViewBoardingPass={(b) => setConfirmedBooking(b)}
-      />
-
-      {/* Sommelier Cellar Pairing Guide Modal */}
-      <SommelierAssistantModal
-        isOpen={isSommelierOpen}
-        currency={currency}
-        onClose={() => setIsSommelierOpen(false)}
-        onSelectDish={(item) => setSelectedDish(item)}
-        onAddToCart={(item) => handleAddToCart(item, 1)}
-      />
-
-      {/* Order Printable Receipt Modal */}
+      {/* Order Receipt Modal */}
       <OrderReceiptModal
         isOpen={isReceiptOpen}
         orderId={lastOrderId}
@@ -279,11 +167,14 @@ function AuraRestaurantContent() {
         onClose={() => setIsReceiptOpen(false)}
       />
 
-      {/* Private Dining & Buyout Inquiry Modal */}
-      <PrivateDiningModal
-        isOpen={isPrivateDiningOpen}
-        onClose={() => setIsPrivateDiningOpen(false)}
+      {/* Quick Dish Modal (if needed) */}
+      <DishModal
+        item={selectedDish}
+        currency={currency}
+        onClose={() => setSelectedDish(null)}
+        onAddToCart={handleAddToCart}
       />
+
     </div>
   );
 }
@@ -291,7 +182,7 @@ function AuraRestaurantContent() {
 export default function HomePage() {
   return (
     <ToastProvider>
-      <AuraRestaurantContent />
+      <FlameAndFeastLandingContent />
     </ToastProvider>
   );
 }
