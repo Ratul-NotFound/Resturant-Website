@@ -1,135 +1,186 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { ShoppingBag, Calendar, Menu, Search, Clock, MapPin } from 'lucide-react';
-import { CurrencySelector } from '../ui/CurrencySelector';
-import { CurrencyCode } from '@/lib/types';
-import { getLiveRestaurantStatus } from '@/lib/utils/hours';
+import React, { useState } from 'react';
 
 interface NavbarProps {
   cartCount: number;
-  currency: CurrencyCode;
-  onSelectCurrency: (c: CurrencyCode) => void;
   onOpenCart: () => void;
-  onOpenReservation: () => void;
-  onOpenLookup: () => void;
-  onOpenSommelier: () => void;
-  onToggleMobileMenu: () => void;
+  onSelectStoreClick?: () => void;
 }
 
-export function Navbar({
-  cartCount,
-  currency,
-  onSelectCurrency,
-  onOpenCart,
-  onOpenReservation,
-  onOpenLookup,
-  onOpenSommelier,
-  onToggleMobileMenu,
-}: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [liveStatus, setLiveStatus] = useState({ isOpen: true, statusText: 'Open for Dinner' });
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll);
-    setLiveStatus(getLiveRestaurantStatus());
-    const interval = setInterval(() => setLiveStatus(getLiveRestaurantStatus()), 60000);
-    return () => { window.removeEventListener('scroll', handleScroll); clearInterval(interval); };
-  }, []);
+export function Navbar({ cartCount, onOpenCart, onSelectStoreClick }: NavbarProps) {
+  const [fulfillmentType, setFulfillmentType] = useState<'delivery' | 'takeaway'>('delivery');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-400 ${
-        isScrolled
-          ? 'navbar-light py-2.5 shadow-sm'
-          : 'bg-white/0 py-4'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative flex items-center justify-center h-11 w-11 rounded-2xl bg-[#e8302a] shadow-lg shadow-red-500/30 group-hover:shadow-red-500/50 transition-all duration-300">
-            <span className="font-serif text-xl font-black text-white leading-none">A</span>
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-neutral-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        {/* Brand Logo Section */}
+        <a className="flex items-center space-x-3 group" href="#">
+          <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center border-2 border-brand-red text-brand-red text-2xl shadow-sm group-hover:scale-105 transition-transform">
+            <i className="fa-solid fa-fire-burner" />
           </div>
           <div>
-            <span className="font-serif text-xl sm:text-2xl font-black tracking-[0.15em] text-[#111] block leading-none">
-              AURA
+            <span className="block font-display font-extrabold text-2xl tracking-tight text-brand-dark leading-none">
+              FLAME <span className="text-brand-red">&amp;</span> FEAST
             </span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-[#e8302a] block mt-0.5 font-semibold">
-              ★★★ Michelin
+            <span className="text-[10px] tracking-widest text-neutral-500 font-semibold uppercase">
+              Piri-Piri • Kacchi Heritage
             </span>
           </div>
-        </Link>
+        </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-[12px] font-bold uppercase tracking-wider text-[#333]">
-          <a href="#story"           className="hover:text-brand-red transition-colors duration-200">About</a>
-          <a href="#menu"            className="hover:text-brand-red transition-colors duration-200">Menu</a>
-          <a href="#sharing-feasts"  className="hover:text-brand-red transition-colors duration-200 text-amber-700">Offers</a>
-          <a href="#atmosphere"      className="hover:text-brand-red transition-colors duration-200">Gallery</a>
-          <a href="#reviews"         className="hover:text-brand-red transition-colors duration-200">Reviews</a>
-          <a href="#reservations"    className="hover:text-brand-red transition-colors duration-200">Reservations</a>
-          <a href="#location"        className="hover:text-brand-red transition-colors duration-200">Location</a>
+        {/* Center Navigation Links */}
+        <nav className="hidden lg:flex items-center space-x-1 font-semibold text-sm">
+          <a className="px-3 py-2 text-brand-red bg-red-50 rounded-full font-bold" href="#">
+            Home
+          </a>
+          <a className="px-3 py-2 text-slate-700 hover:text-brand-red transition" href="#menu-highlights">
+            Menu
+          </a>
+          <a className="px-3 py-2 text-slate-700 hover:text-brand-red transition" href="#portion-section">
+            Portion Deals
+          </a>
+          <a className="px-3 py-2 text-slate-700 hover:text-brand-red transition" href="#mega-deal">
+            Mega Feast
+          </a>
+          <a className="px-3 py-2 text-slate-700 hover:text-brand-red transition" href="#heritage">
+            Our Story
+          </a>
+          <a className="px-3 py-2 text-slate-700 hover:text-brand-red transition" href="#branches">
+            Branches
+          </a>
         </nav>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
-
-          {/* Live Status Dot */}
-          <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-black/08 shadow-sm text-[11px] font-semibold text-gray-700">
-            <span className={`h-2 w-2 rounded-full ${liveStatus.isOpen ? 'bg-green-500 animate-pulse' : 'bg-red-400'}`} />
-            {liveStatus.isOpen ? 'Open Now' : 'Closed'}
+        {/* Right Action Controls */}
+        <div className="flex items-center space-x-3">
+          
+          {/* Fulfillment Toggle Pill */}
+          <div className="hidden sm:flex bg-neutral-100 p-1 rounded-full text-xs font-bold border border-neutral-200">
+            <button
+              type="button"
+              onClick={() => setFulfillmentType('delivery')}
+              className={`px-3 py-1.5 rounded-full shadow-sm flex items-center space-x-1.5 transition-all ${
+                fulfillmentType === 'delivery'
+                  ? 'bg-brand-red text-white'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <i className="fa-solid fa-motorcycle text-xs" />
+              <span>Delivery</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setFulfillmentType('takeaway')}
+              className={`px-3 py-1.5 rounded-full shadow-sm flex items-center space-x-1.5 transition-all ${
+                fulfillmentType === 'takeaway'
+                  ? 'bg-brand-red text-white'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <i className="fa-solid fa-bag-shopping text-xs" />
+              <span>Takeaway</span>
+            </button>
           </div>
 
-          {/* Currency Switcher */}
-          <CurrencySelector currentCurrency={currency} onSelectCurrency={onSelectCurrency} />
-
-          {/* Find Booking */}
+          {/* Store Locator Quick Access */}
           <button
-            onClick={onOpenLookup}
-            className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-black/10 hover:border-black/30 text-[#333] hover:text-[#e8302a] text-[11px] font-semibold uppercase tracking-wide transition-all shadow-sm hover:shadow"
-            title="Find reservation"
+            type="button"
+            onClick={onSelectStoreClick || (() => {
+              const el = document.getElementById('branches');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            })}
+            className="hidden md:flex items-center text-xs font-semibold text-slate-700 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 py-2 px-3 rounded-lg transition"
           >
-            <Search className="h-3.5 w-3.5" />
-            <span className="hidden xl:inline">Find Booking</span>
+            <i className="fa-solid fa-map-pin text-brand-red mr-1.5" />
+            <span>Select Store</span>
           </button>
 
-          {/* Cart */}
+          {/* Cart Drawer Trigger Button */}
           <button
+            type="button"
             onClick={onOpenCart}
-            className="relative p-2.5 rounded-xl bg-white border border-black/10 hover:border-black/30 text-[#333] hover:text-[#e8302a] transition-all shadow-sm hover:shadow"
-            aria-label="View order"
+            className="relative p-2.5 rounded-full bg-neutral-100 hover:bg-red-50 text-slate-700 hover:text-brand-red border border-neutral-200 transition-colors flex items-center justify-center"
+            aria-label="View Cart"
           >
-            <ShoppingBag className="h-4.5 w-4.5" style={{ width: 18, height: 18 }} />
+            <i className="fa-solid fa-basket-shopping text-base" />
             {cartCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-[#e8302a] text-white text-[9px] font-black flex items-center justify-center shadow-md shadow-red-500/40">
+              <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-black rounded-full h-5 w-5 flex items-center justify-center border-2 border-white animate-scale-in">
                 {cartCount}
               </span>
             )}
           </button>
 
-          {/* Reserve CTA */}
-          <button
-            onClick={onOpenReservation}
-            className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl btn-primary text-xs font-bold uppercase tracking-wider"
+          {/* Order Button */}
+          <a
+            className="bg-brand-red hover:bg-brand-darkred text-white text-sm font-bold py-2.5 px-5 rounded-full shadow-md hover:shadow-lg transition-all transform active:scale-95 flex items-center"
+            href="#menu-highlights"
           >
-            <Calendar className="h-3.5 w-3.5" />
-            Reserve
-          </button>
+            <i className="fa-solid fa-utensils mr-2 text-xs" />
+            <span>Order Now</span>
+          </a>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Menu Toggle Button */}
           <button
-            onClick={onToggleMobileMenu}
-            className="lg:hidden p-2.5 rounded-xl bg-white border border-black/10 text-[#333] hover:text-[#e8302a] transition-colors shadow-sm"
-            aria-label="Open mobile menu"
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-brand-red hover:bg-neutral-100"
+            aria-label="Toggle Navigation"
           >
-            <Menu className="h-5 w-5" />
+            <i className={`fa-solid ${isMobileMenuOpen ? 'fa-xmark' : 'fa-bars'} text-xl`} />
           </button>
         </div>
+
       </div>
+
+      {/* Mobile Navigation Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden border-t border-neutral-100 bg-white px-4 py-4 space-y-2 shadow-lg animate-fade-in">
+          <a
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg font-bold text-brand-red bg-red-50"
+            href="#"
+          >
+            Home
+          </a>
+          <a
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg font-semibold text-slate-700 hover:bg-neutral-50"
+            href="#menu-highlights"
+          >
+            Menu
+          </a>
+          <a
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg font-semibold text-slate-700 hover:bg-neutral-50"
+            href="#portion-section"
+          >
+            Portion Deals
+          </a>
+          <a
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg font-semibold text-slate-700 hover:bg-neutral-50"
+            href="#mega-deal"
+          >
+            Mega Feast
+          </a>
+          <a
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg font-semibold text-slate-700 hover:bg-neutral-50"
+            href="#heritage"
+          >
+            Our Story
+          </a>
+          <a
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg font-semibold text-slate-700 hover:bg-neutral-50"
+            href="#branches"
+          >
+            Branches
+          </a>
+        </div>
+      )}
     </header>
   );
 }
