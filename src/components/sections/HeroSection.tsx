@@ -1,374 +1,217 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Calendar, Utensils, Star, ArrowRight, Flame, Sparkles, Clock, Wine, Users, Crown } from 'lucide-react';
-import { formatCurrency } from '@/lib/utils/formatting';
-import { CurrencyCode } from '@/lib/types';
 
 interface HeroSectionProps {
-  currency?: CurrencyCode;
-  onReserveClick: () => void;
-  onExploreDish?: (dishId: string) => void;
-  onOpenSommelier?: () => void;
+  onSeeMenuClick?: () => void;
+  onFindBranchClick?: () => void;
 }
 
-const HERO_SHOWCASE_DISHES = [
-  {
-    id: 'spec-1',
-    name: 'Miyazaki A5 Wagyu Ribeye',
-    subtitle: 'Flame-seared over 400°C Kishu Binchotan with Périgord truffle jus',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=90',
-    price: 185,
-    tag: 'Chef Signature',
-    blobColor: '#e8302a',
-    accentBadge: '🔥 400°C Binchotan',
-    spiceLevel: 'Hearth Sear 🔥',
-  },
-  {
-    id: 'dish-08',
-    name: 'Royal Wagyu & Saffron Tehari',
-    subtitle: 'Aged Chinigura rice, Iranian saffron, marrow reduction & 24k gold leaf',
-    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=90',
-    price: 145,
-    tag: 'Royal Provenance',
-    blobColor: '#1d4ed8',
-    accentBadge: '👑 Imperial Recipe',
-    spiceLevel: 'Mughal Spices 🌶️',
-  },
-  {
-    id: 'spec-2',
-    name: 'Flame-Grilled Brittany Lobster',
-    subtitle: 'Dayboat Brittany blue lobster with yuzu-brown butter & Oscietra caviar',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=90',
-    price: 160,
-    tag: 'Oceanic Cru',
-    blobColor: '#059669',
-    accentBadge: '🌊 24H Dayboat',
-    spiceLevel: 'Citrus Yuzu Butter 🍋',
-  },
-];
-
-const SPICE_HEAT_METERS = [
-  { id: 'mild', label: 'Lemon & Herb 🍋', desc: 'Gentle Citrus Butter', color: 'bg-emerald-50 text-emerald-700 border-emerald-300' },
-  { id: 'medium', label: 'Medium Hearth 🔥', desc: 'Smokey Binchotan', color: 'bg-amber-50 text-amber-800 border-amber-300' },
-  { id: 'fiery', label: 'Fiery Binchotan 🌶️🌶️', desc: '400°C White Coal Kiss', color: 'bg-red-50 text-brand-red border-red-300' },
-];
-
-export function HeroSection({
-  currency = 'USD',
-  onReserveClick,
-  onExploreDish,
-  onOpenSommelier,
-}: HeroSectionProps) {
-  const [activeDishIndex, setActiveDishIndex] = useState(0);
-  const [selectedHeat, setSelectedHeat] = useState('medium');
-  const activeDish = HERO_SHOWCASE_DISHES[activeDishIndex];
-
-  const scrollToMenu = () => {
-    const el = document.getElementById('menu');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToFeasts = () => {
-    const el = document.getElementById('sharing-feasts');
+export function HeroSection({ onSeeMenuClick, onFindBranchClick }: HeroSectionProps) {
+  const handleScrollTo = (id: string) => {
+    const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
-      id="hero"
-      className="relative min-h-[92vh] flex flex-col justify-between pt-24 pb-12 overflow-hidden bg-white"
-      style={{
-        backgroundImage: `
-          radial-gradient(ellipse 700px 500px at 15% 20%, rgba(232, 48, 42, 0.06) 0%, transparent 65%),
-          radial-gradient(ellipse 600px 450px at 85% 25%, rgba(58, 125, 68, 0.05) 0%, transparent 65%),
-          radial-gradient(ellipse 550px 400px at 50% 90%, rgba(245, 158, 11, 0.04) 0%, transparent 65%)
-        `,
-      }}
+      className="relative marble-bg pt-10 pb-20 overflow-hidden border-b border-amber-100/50"
+      data-purpose="hero-banner"
     >
-      {/* Subtle Texture Grid Matrix */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:28px_28px]" />
+      {/* Floating Sticker Decorative Badges */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+        
+        {/* 'Tastes Like Home' Stamp (Top Left) */}
+        <div className="absolute -top-4 left-6 sm:left-16 z-20 transform -rotate-12 hover:rotate-0 transition-transform duration-300">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-gold border-4 border-amber-300 flex flex-col items-center justify-center text-center shadow-lg text-brand-dark p-2">
+            <i className="fa-solid fa-house-chimney text-lg sm:text-xl" />
+            <span className="font-extrabold uppercase text-[11px] sm:text-xs leading-tight tracking-tight mt-0.5">
+              Tastes Like<br />
+              <span className="text-base sm:text-lg font-black">Home</span>
+            </span>
+          </div>
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        {/* '30 Years of Flavor' Badge (Top Right) */}
+        <div className="absolute top-2 right-4 sm:right-16 z-20 hidden md:block transform rotate-6 hover:rotate-0 transition-transform duration-300">
+          <div className="bg-emerald-600 text-white p-4 rounded-3xl shadow-xl flex items-center space-x-3 border-2 border-emerald-400">
+            <div className="text-center font-black leading-none">
+              <span className="text-3xl block">30</span>
+              <span className="text-[10px] uppercase tracking-wider font-bold">Years</span>
+            </div>
+            <div className="border-l border-emerald-400 pl-3">
+              <p className="font-display font-black text-sm uppercase tracking-wide">Flame Master</p>
+              <p className="text-[10px] text-emerald-100">Galito&apos;s &amp; Dum Heritage</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Headline & Subtitle */}
+        <div className="text-center max-w-4xl mx-auto pt-8 sm:pt-4">
+          <span className="inline-block bg-red-100 text-brand-red text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-3 shadow-sm">
+            Freshly Flame-Grilled &amp; Traditional Slow-Dum
+          </span>
           
-          {/* === LEFT COLUMN: HEADLINE, HEAT METER & ACTIONS === */}
-          <div className="lg:col-span-7 flex flex-col items-start">
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-brand-dark tracking-tight uppercase leading-[1.05]">
+            FIERY, FRESH, <br className="hidden sm:inline" />
+            <span className="text-brand-red underline decoration-brand-gold decoration-wavy decoration-2">
+              FLAME-GRILLED
+            </span>{' '}
+            &amp; DUM
+          </h1>
+
+          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
+            We serve succulent Flame-Grilled Peri-Peri Chicken marinated with 100% natural spices, alongside authentic slow-cooked royal Basmati Kacchi Biryani.
+          </p>
+
+          {/* Primary CTAs */}
+          <div className="mt-7 flex flex-wrap justify-center items-center gap-4">
+            <a
+              className="bg-brand-red hover:bg-brand-darkred text-white text-base font-extrabold px-8 py-3.5 rounded-full shadow-lg hover:shadow-brand-red/30 transition transform hover:-translate-y-0.5"
+              href="#menu-highlights"
+              onClick={(e) => {
+                e.preventDefault();
+                handleScrollTo('menu-highlights');
+                if (onSeeMenuClick) onSeeMenuClick();
+              }}
+            >
+              See Our Menu
+            </a>
             
-            {/* Michelin Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] shadow-md mb-6 animate-fade-in">
-              <div className="flex items-center gap-0.5 text-amber-400">
-                <Star className="h-3.5 w-3.5 fill-amber-400" />
-                <Star className="h-3.5 w-3.5 fill-amber-400" />
-                <Star className="h-3.5 w-3.5 fill-amber-400" />
-              </div>
-              <span className="text-white">Three Michelin Stars</span>
-              <span className="text-neutral-400">· Manhattan Sky Sanctum</span>
+            <a
+              className="bg-white hover:bg-neutral-50 text-brand-dark border-2 border-slate-300 text-base font-bold px-7 py-3 rounded-full shadow-sm hover:border-slate-400 transition flex items-center"
+              href="#branches"
+              onClick={(e) => {
+                e.preventDefault();
+                handleScrollTo('branches');
+                if (onFindBranchClick) onFindBranchClick();
+              }}
+            >
+              <i className="fa-solid fa-location-dot text-brand-red mr-2" />
+              Find a Galito&apos;s &amp; Feast
+            </a>
+          </div>
+        </div>
+
+        {/* Hero Center Visual Stage with Floating Cuts */}
+        <div className="relative mt-12 mb-8 max-w-5xl mx-auto">
+          
+          {/* Floating Peri Peri Fries Cutout Decor */}
+          <div className="absolute -left-6 md:left-4 top-1/4 z-10 hidden sm:block pointer-events-none transform -rotate-12 animate-pulse">
+            <div className="bg-amber-100/80 backdrop-blur border border-amber-300 rounded-2xl p-2.5 shadow-md flex items-center space-x-2 text-xs font-bold text-amber-900">
+              <span className="text-lg">🍟</span>
+              <span>Hand-Cut Golden Fries</span>
             </div>
-
-            {/* Main Creative Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-neutral-900 tracking-tight uppercase leading-[1.04] mb-6">
-              FIERY, FRESH,{' '}
-              <span className="text-gradient-red block sm:inline italic">
-                FLAME-GRILLED
-              </span>{' '}
-              <span className="block text-neutral-900">HAUTE GASTRONOMIE</span>
-            </h1>
-
-            {/* Appetite-inducing narrative */}
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed max-w-xl mb-6 font-normal">
-              Savor ancestral Miyazaki A5 Wagyu, aromatic royal saffron tehari, and wild Brittany seafood seared at 400°C over Japanese Kishu Binchotan, paired with 4,000 Grand Cru cellar bottles.
-            </p>
-
-            {/* Flame Heat Meter (Inspired by Galito's & Nando's) */}
-            <div className="w-full max-w-xl p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200 mb-6">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-neutral-500 flex items-center gap-1">
-                  <Flame className="h-3.5 w-3.5 text-brand-red" /> Flame &amp; Heat Intensity Scale:
-                </span>
-                <span className="text-xs font-bold text-neutral-900">
-                  {SPICE_HEAT_METERS.find((h) => h.id === selectedHeat)?.label}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {SPICE_HEAT_METERS.map((heat) => (
-                  <button
-                    key={heat.id}
-                    onClick={() => setSelectedHeat(heat.id)}
-                    className={`py-2 px-2.5 rounded-xl text-xs font-bold border transition-all ${
-                      selectedHeat === heat.id
-                        ? `${heat.color} shadow-sm scale-[1.02]`
-                        : 'bg-white border-neutral-200 text-neutral-600 hover:bg-neutral-100'
-                    }`}
-                  >
-                    <span className="block truncate">{heat.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Interactive Showcase Tabs */}
-            <div className="flex flex-wrap items-center gap-2 mb-8 p-1.5 rounded-2xl bg-neutral-100 border border-neutral-200">
-              {HERO_SHOWCASE_DISHES.map((dish, idx) => {
-                const isActive = idx === activeDishIndex;
-                return (
-                  <button
-                    key={dish.id}
-                    onClick={() => setActiveDishIndex(idx)}
-                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${
-                      isActive
-                        ? 'bg-white text-neutral-900 shadow-md scale-100'
-                        : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
-                    }`}
-                  >
-                    <span
-                      className="h-2 w-2 rounded-full"
-                      style={{ background: dish.blobColor }}
-                    />
-                    <span>{dish.name.split(' ')[0]}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Main Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 mb-10">
-              <button
-                onClick={onReserveClick}
-                className="flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-brand-red hover:bg-brand-redDark text-white text-sm font-bold uppercase tracking-wider shadow-lg shadow-brand-red/30 transition-all hover:scale-105 active:scale-95"
-              >
-                <Calendar className="h-4 w-4" />
-                Reserve a Table
-                <ArrowRight className="h-4 w-4" />
-              </button>
-
-              <button
-                onClick={scrollToMenu}
-                className="flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-sm font-bold uppercase tracking-wider border border-neutral-300 transition-all hover:border-neutral-400"
-              >
-                <Utensils className="h-4 w-4 text-brand-red" />
-                Explore Full Menu
-              </button>
-
-              <button
-                onClick={scrollToFeasts}
-                className="flex items-center gap-2 px-6 py-4 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider border border-amber-200 transition-colors"
-              >
-                <Crown className="h-4 w-4 text-amber-600" />
-                Sharing Platters
-              </button>
-            </div>
-
-            {/* Key Provenance Metrics Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-neutral-200 w-full max-w-2xl">
-              <div>
-                <span className="text-2xl sm:text-3xl font-black text-brand-red font-serif block leading-none">400°C</span>
-                <span className="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold mt-1 block">Kishu Binchotan</span>
-              </div>
-              <div className="sm:border-l sm:border-neutral-200 sm:pl-4">
-                <span className="text-2xl sm:text-3xl font-black text-[#3a7d44] font-serif block leading-none">24H</span>
-                <span className="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold mt-1 block">Dayboat Catch</span>
-              </div>
-              <div className="sm:border-l sm:border-neutral-200 sm:pl-4">
-                <span className="text-2xl sm:text-3xl font-black text-[#d97706] font-serif block leading-none">4,000+</span>
-                <span className="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold mt-1 block">Grand Cru Bottles</span>
-              </div>
-              <div className="sm:border-l sm:border-neutral-200 sm:pl-4">
-                <span className="text-2xl sm:text-3xl font-black text-neutral-900 font-serif block leading-none">15 Yrs</span>
-                <span className="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold mt-1 block">3-Star Heritage</span>
-              </div>
-            </div>
-
           </div>
 
-          {/* === RIGHT COLUMN: DYNAMIC 3D BREAKOUT SHOWCASE === */}
-          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[440px] sm:min-h-[500px]">
-            
-            {/* Animated Organic Backdrop Blob */}
-            <div
-              className="absolute w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] rounded-full opacity-85 transition-all duration-700 pointer-events-none"
-              style={{
-                background: `radial-gradient(circle, ${activeDish.blobColor} 0%, ${activeDish.blobColor}99 50%, transparent 75%)`,
-                filter: 'blur(30px)',
-              }}
+          {/* Center Hero Showcase Image */}
+          <div className="relative mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-br from-amber-50 to-orange-100 max-w-3xl">
+            <img
+              alt="Whole Flame-Grilled Peri Peri Chicken Feast with Golden Fries and Sauces"
+              className="w-full h-80 sm:h-96 object-cover object-center"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdm284yXzGVEejz-0aK_r7cF1GFb39rENU6IBzqXmdKexlt6ZvbVt0W1e6TTSDfI8D5pIk_mdDZRBpoQdJO6JuRbsYEaisCbDkfEfXmXD_Q5zE-O2_Zehtu2hluoAh-6UQDLETqVBPauEuUv2cPQj9xc6Jj-cWGxkyOUc5uAI4rKoAhm6DBvw9r-ezf9cVafb-30tIEvuYXScw7WFUXNt287RAxsFvA8JnRUMuuz6151RHENGpxEpedg"
             />
-
-            {/* "Tastes Like Home" Sticker */}
-            <div className="absolute top-0 -left-2 sm:-left-4 z-30 bg-[#ffd600] text-black font-black text-xs sm:text-sm px-3.5 py-2 rounded-2xl border-2 border-black rotate-[-8deg] shadow-lg flex items-center gap-1.5 cursor-default select-none animate-float-slow">
-              <span>🏡</span> TASTES LIKE HOME
-            </div>
-
-            {/* Top Accent Provenance Badge */}
-            <div className="absolute top-2 right-2 sm:right-4 z-30 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-neutral-900 font-bold text-xs shadow-lg border border-black/5 animate-float-fast">
-              {activeDish.accentBadge}
-            </div>
-
-            {/* Main Interactive Round Plate */}
-            <div
-              onClick={() => onExploreDish && onExploreDish(activeDish.id)}
-              className="relative z-20 w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] cursor-pointer group transition-transform duration-500 hover:scale-105"
-            >
-              <div className="relative w-full h-full plate-pop-shadow">
-                <Image
-                  src={activeDish.image}
-                  alt={activeDish.name}
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 280px, 360px"
-                  className="object-cover rounded-full border-4 border-white shadow-2xl transition-transform duration-700 group-hover:rotate-3"
-                />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+              <div className="text-white">
+                <span className="bg-brand-red text-white text-xs font-black uppercase px-2.5 py-1 rounded">
+                  Chef Special
+                </span>
+                <h3 className="text-2xl font-black mt-1">Full Flame-Grilled Chicken Platter</h3>
+                <p className="text-slate-200 text-sm">
+                  Flame-seared over natural lava rocks with Lemon-Herb, Mild or Fiery Reserve sauce.
+                </p>
               </div>
             </div>
+          </div>
 
-            {/* Bottom Dish Callout Card */}
-            <div className="absolute -bottom-4 left-2 right-2 sm:left-4 sm:right-4 z-30 p-4 sm:p-5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-neutral-100 transition-all">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red px-2.5 py-0.5 rounded-full bg-red-50 border border-red-100">
-                      {activeDish.tag}
-                    </span>
-                    <span className="text-xs font-mono font-bold text-neutral-900">
-                      {formatCurrency(activeDish.price, currency)}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-sm sm:text-base font-bold text-neutral-900 leading-tight">
-                    {activeDish.name}
-                  </h3>
-                  <p className="text-[11px] text-neutral-500 line-clamp-1 mt-0.5 font-normal">
-                    {activeDish.subtitle}
-                  </p>
-                </div>
-                {onExploreDish && (
-                  <button
-                    onClick={() => onExploreDish(activeDish.id)}
-                    className="shrink-0 p-2.5 rounded-full bg-neutral-900 hover:bg-brand-red text-white shadow-sm transition-colors"
-                    title="View Course Details"
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                )}
+          {/* Floating Biryani Bowl Accent (Bottom Right) */}
+          <div className="absolute -right-4 bottom-2 z-20 hidden md:block">
+            <div className="bg-white p-3 rounded-2xl shadow-xl border border-neutral-100 flex items-center space-x-3">
+              <img
+                alt="Dum Kacchi Biryani Bowl"
+                className="w-14 h-14 rounded-full object-cover border-2 border-brand-gold"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ3hlTDS2florp3-8n_G5p1XDBjMr1ThgvXu6-xVLIcP3oqW5MshEs0q_Vbz8Ofo_ORfoKXFZVmjDmuuuRLxLduhPAfgbrPvlzMqAD2s7i0LZLC6ndlONQ9sJt08F35F-Vdp1wTdGSaINQ4fx5HYYTxvI4qBzfPFgBgm4S_8-1m8Yg8teF6yaUW-HtnAQadBkHcf-GyKOmghYlWbbl5tlxfqMd8IMScbFE75uphNFAfNOVjLS3byEVHg"
+              />
+              <div>
+                <p className="font-bold text-xs text-brand-dark leading-tight">Royal Basmati Kacchi</p>
+                <p className="text-[11px] text-brand-red font-extrabold mt-0.5">Slow Dum • Tender Meat</p>
               </div>
             </div>
-
           </div>
 
         </div>
 
-        {/* =========================================================
-            BOTTOM 3 CATEGORY BREAKOUT CARDS
-            Classic Meals | Sharing Feasts | Starters & Cru
-            ========================================================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-16 mt-8 border-t border-neutral-100">
+        {/* Quick Feature Category Cards (Screenshot 14 Bottom Cards) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto pt-6" id="quick-categories">
           
-          {/* Card 1: CLASSIC MEALS */}
-          <div
-            onClick={scrollToMenu}
-            className="group relative bg-white border border-neutral-100 hover:border-brand-red/30 rounded-3xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-400 hover:-translate-y-1 cursor-pointer flex flex-col items-center"
-          >
-            <div className="w-24 h-24 -mt-14 mb-2 relative drop-shadow-md group-hover:scale-105 transition-transform duration-400">
-              <Image
-                src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80"
-                alt="Classic Meals"
-                fill
-                sizes="96px"
-                className="object-cover rounded-full border-4 border-white shadow-md ring-1 ring-black/5"
+          {/* Card 1: Classic Meals */}
+          <div className="bg-white rounded-2xl p-5 shadow-custom-card hover:shadow-xl transition-all duration-300 border border-neutral-100 flex flex-col items-center text-center group">
+            <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-amber-100 shadow-md group-hover:scale-105 transition-transform duration-300">
+              <img
+                alt="Classic Chicken Quarter Meal with Fries"
+                className="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBONBF65JqW646NAlOBRNFkGUmAE0vilLIz6DzxnrQI_X8RCEMSQ4hR5fQFFreSVXdyFh0Fth4kulFM39qOVyxPKawDPpX9Bn-aThNLEp6CHcQp5byaxsfQa0Sn6Brxp4lG-v1OlQobIr58z8TgFfT33QFuEmGtyfdwMv93MEWbzbAsnm6mTNLt7-AQFwbgyMAT3zrT0HzC3EQLk9AfHvsHYFkI906kEJ6k0eGo-rjDPqzNM94Aeo1Few"
               />
             </div>
-            <h3 className="font-bold text-sm text-neutral-900 uppercase tracking-wider mt-2">
-              Classic Meals
-            </h3>
-            <p className="text-xs text-neutral-500 mt-1 font-normal">A5 Wagyu Ribeye &amp; Binchotan Duck</p>
-            <div className="mt-3 inline-flex items-center gap-1 text-brand-red text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Explore</span> <ArrowRight className="h-3 w-3" />
-            </div>
+            <h4 className="mt-4 font-display font-black text-lg text-brand-dark tracking-wide uppercase group-hover:text-brand-red transition">
+              CLASSIC MEALS
+            </h4>
+            <p className="text-xs text-neutral-500 mt-1">
+              Quarter or Half chicken served with spicy peri-peri chips &amp; garlic roll.
+            </p>
+            <a
+              className="mt-3 text-xs font-bold text-brand-red hover:underline flex items-center"
+              href="#portion-section"
+            >
+              View Meals <i className="fa-solid fa-arrow-right ml-1 text-[10px]" />
+            </a>
           </div>
 
-          {/* Card 2: SHARING FEASTS */}
-          <div
-            onClick={scrollToFeasts}
-            className="group relative bg-white border border-neutral-100 hover:border-emerald-500/30 rounded-3xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-400 hover:-translate-y-1 cursor-pointer flex flex-col items-center"
-          >
-            <div className="w-24 h-24 -mt-14 mb-2 relative drop-shadow-md group-hover:scale-105 transition-transform duration-400">
-              <Image
-                src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80"
-                alt="Sharing Feasts"
-                fill
-                sizes="96px"
-                className="object-cover rounded-full border-4 border-white shadow-md ring-1 ring-black/5"
+          {/* Card 2: Sharing Feasts */}
+          <div className="bg-white rounded-2xl p-5 shadow-custom-card hover:shadow-xl transition-all duration-300 border border-neutral-100 flex flex-col items-center text-center group">
+            <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-red-100 shadow-md group-hover:scale-105 transition-transform duration-300">
+              <img
+                alt="Sharing Kacchi Biryani & Whole Chicken Platter"
+                className="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC_EnvQ7pzQLzhnEA9cAub978il35XN6doDdAepXyi8jaapdlAUdj1qoO8zJCyIne_auQQQu2j8OWJ4DYRPmdUUy93qzG84Iga9bTnOfoqUOXsZcUN80bgSWP_HBbwI34DGmFtvt64fnXxmnwquqn1rWOr1_bRQa8Fp8FvI4l1R8-J-KW5dAJh8yelOWOs4Rz-9rhK-I6odWxQSh7YXl2bp5-Dv1YqSQzTubsA2Z0-89VJzJPGDLlG9g"
               />
             </div>
-            <h3 className="font-bold text-sm text-neutral-900 uppercase tracking-wider mt-2">
-              Sharing Feasts
-            </h3>
-            <p className="text-xs text-neutral-500 mt-1 font-normal">Grand Tasting Odysseys &amp; Family Platters</p>
-            <div className="mt-3 inline-flex items-center gap-1 text-emerald-600 text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Explore</span> <ArrowRight className="h-3 w-3" />
-            </div>
+            <h4 className="mt-4 font-display font-black text-lg text-brand-dark tracking-wide uppercase group-hover:text-brand-red transition">
+              SHARING FEASTS
+            </h4>
+            <p className="text-xs text-neutral-500 mt-1">
+              Full birds, sharing kacchi platters, 2 sides &amp; dips for 4-6 diners.
+            </p>
+            <a
+              className="mt-3 text-xs font-bold text-brand-red hover:underline flex items-center"
+              href="#mega-deal"
+            >
+              Explore Platters <i className="fa-solid fa-arrow-right ml-1 text-[10px]" />
+            </a>
           </div>
 
-          {/* Card 3: STARTERS & CRU */}
-          <div
-            onClick={scrollToMenu}
-            className="group relative bg-white border border-neutral-100 hover:border-amber-500/30 rounded-3xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-400 hover:-translate-y-1 cursor-pointer flex flex-col items-center"
-          >
-            <div className="w-24 h-24 -mt-14 mb-2 relative drop-shadow-md group-hover:scale-105 transition-transform duration-400">
-              <Image
-                src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=300&q=80"
-                alt="Starters & Cru"
-                fill
-                sizes="96px"
-                className="object-cover rounded-full border-4 border-white shadow-md ring-1 ring-black/5"
+          {/* Card 3: Starters & Sides */}
+          <div className="bg-white rounded-2xl p-5 shadow-custom-card hover:shadow-xl transition-all duration-300 border border-neutral-100 flex flex-col items-center text-center group">
+            <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-emerald-100 shadow-md group-hover:scale-105 transition-transform duration-300">
+              <img
+                alt="Sides - Crispy fries, dips and spicy chicken bites"
+                className="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhCunxzsxjPSvtu3oGgxpF0zW_QEzOfGqdGz3FlK7FFGhcCN6kMzMN5Qrykz_9l5t0Go9UxBPAaQtiefGvrRPCMK6eSlt2D4FJ2gbA7V-1rP1KreGrNMlTKHUqtgHUFEza8Ou82WeDnOmOd49nwmnCkDfDTbtcv6i9YGh0AqdALoFbUIUBjb4A74yTTCI61QxQE0-DeiFVIhVjsLdv1hwmnSR-0stNIWXj1SG9i-V2rE0UDZoWkCv4vQ"
               />
             </div>
-            <h3 className="font-bold text-sm text-neutral-900 uppercase tracking-wider mt-2">
-              Starters &amp; Cru
-            </h3>
-            <p className="text-xs text-neutral-500 mt-1 font-normal">Oscietra Caviar, Hokkaido Uni &amp; Tartare</p>
-            <div className="mt-3 inline-flex items-center gap-1 text-amber-600 text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Explore</span> <ArrowRight className="h-3 w-3" />
-            </div>
+            <h4 className="mt-4 font-display font-black text-lg text-brand-dark tracking-wide uppercase group-hover:text-brand-red transition">
+              STARTERS &amp; SIDES
+            </h4>
+            <p className="text-xs text-neutral-500 mt-1">
+              Spicy chicken livers, pita bread, borhani shots and crispy bites.
+            </p>
+            <a
+              className="mt-3 text-xs font-bold text-brand-red hover:underline flex items-center"
+              href="#portion-section"
+            >
+              Taste Starters <i className="fa-solid fa-arrow-right ml-1 text-[10px]" />
+            </a>
           </div>
 
         </div>

@@ -1,7 +1,18 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Outfit } from 'next/font/google';
+import { Inter, Montserrat, Playfair_Display } from 'next/font/google';
 import './globals.css';
-import { RESTAURANT_INFO } from '@/data/restaurantConfig';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+});
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -9,59 +20,44 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-  display: 'swap',
-});
-
 export const viewport: Viewport = {
-  themeColor: '#0a0a0c',
+  themeColor: '#C8102E',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
 };
 
 export const metadata: Metadata = {
-  title: 'AURA | ★★★ Three Michelin Stars Haute Gastronomie & Private Cellar',
+  title: 'Flame & Feast | Fiery Flame-Grilled & Heritage Dum Delicacies',
   description:
-    'Experience AURA, an ultra-luxury Michelin 3-Star dining establishment in Manhattan featuring Miyazaki A5 Wagyu, Brittany Turbot, Alba White Truffles, and an imperial 4,000-bottle private wine cellar.',
+    'Succulent Flame-Grilled Peri-Peri Chicken marinated with 100% natural spices, alongside authentic slow-cooked royal Basmati Kacchi Biryani and mouth-watering platters.',
   keywords: [
-    'Michelin Star Restaurant NYC',
-    'Luxury Dining Manhattan',
-    'A5 Miyazaki Wagyu',
-    'Private Dining Vaults',
-    'Haute Cuisine',
-    'Fine Wine Cellar',
-    'Chef Omakase Counter',
-    'AURA Restaurant',
+    'Flame & Feast',
+    'Peri-Peri Chicken',
+    'Flame-Grilled Chicken',
+    'Basmati Kacchi Biryani',
+    'Mutton Tehari',
+    'Galitos Restaurant',
+    'Halal Restaurant',
+    'Dhaka Food Delivery',
   ],
-  authors: [{ name: 'Chef Gabriel Moreau' }],
-  creator: 'AURA Restaurant Group',
-  publisher: 'AURA Haute Gastronomie',
-  robots: 'index, follow',
+  authors: [{ name: 'Flame & Feast Culinary Team' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://aura-restaurant.com',
-    title: 'AURA | ★★★ Three Michelin Stars Haute Gastronomie',
+    url: 'https://flamefeastbd.com',
+    title: 'Flame & Feast | Fiery Flame-Grilled & Heritage Dum Delicacies',
     description:
-      'An uncompromising symphony of flavor, fire, and architectural opulence. Reserve your table at Manhattan’s premier culinary destination.',
-    siteName: 'AURA Restaurant & Lounge',
+      'We serve succulent Flame-Grilled Peri-Peri Chicken marinated with 100% natural spices, alongside authentic slow-cooked royal Basmati Kacchi Biryani.',
+    siteName: 'Flame & Feast',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85',
-        width: 1600,
-        height: 900,
-        alt: 'AURA Restaurant Grand Atrium',
+        url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBdm284yXzGVEejz-0aK_r7cF1GFb39rENU6IBzqXmdKexlt6ZvbVt0W1e6TTSDfI8D5pIk_mdDZRBpoQdJO6JuRbsYEaisCbDkfEfXmXD_Q5zE-O2_Zehtu2hluoAh-6UQDLETqVBPauEuUv2cPQj9xc6Jj-cWGxkyOUc5uAI4rKoAhm6DBvw9r-ezf9cVafb-30tIEvuYXScw7WFUXNt287RAxsFvA8JnRUMuuz6151RHENGpxEpedg',
+        width: 1200,
+        height: 630,
+        alt: 'Flame & Feast Whole Grilled Chicken',
       },
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AURA | ★★★ Three Michelin Stars Haute Gastronomie',
-    description: 'An uncompromising symphony of flavor, fire, and architectural opulence in Manhattan.',
-    images: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85'],
   },
 };
 
@@ -70,69 +66,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Restaurant',
-    name: 'AURA Luxury Restaurant & Lounge',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85',
-    '@id': 'https://aura-restaurant.com',
-    url: 'https://aura-restaurant.com',
-    telephone: RESTAURANT_INFO.phone,
-    priceRange: '$$$$',
-    servesCuisine: ['French Haute Cuisine', 'Contemporary Gastronomy', 'Japanese Wagyu'],
-    starRating: {
-      '@type': 'Rating',
-      ratingValue: '3',
-      bestRating: '3',
-      ratingExplanation: 'Three Michelin Stars (2025 Edition)',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.98',
-      reviewCount: '1420',
-      bestRating: '5',
-      worstRating: '1',
-    },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: RESTAURANT_INFO.address.street,
-      addressLocality: RESTAURANT_INFO.address.city,
-      addressRegion: RESTAURANT_INFO.address.state,
-      postalCode: RESTAURANT_INFO.address.postalCode,
-      addressCountry: 'US',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: RESTAURANT_INFO.coordinates.lat,
-      longitude: RESTAURANT_INFO.coordinates.lng,
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '12:00',
-        closes: '14:30',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '17:00',
-        closes: '23:30',
-      },
-    ],
-    menu: 'https://aura-restaurant.com/#menu',
-    acceptsReservations: 'True',
-  };
-
   return (
-    <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${montserrat.variable} ${playfair.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        {/* FontAwesome 6 CDN for pixel-perfect icon rendering */}
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          rel="stylesheet"
+          crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-screen bg-obsidian-950 text-neutral-100 antialiased selection:bg-gold-primary selection:text-obsidian-950">
+      <body className="font-sans text-slate-800 bg-white antialiased selection:bg-brand-red selection:text-white">
         {children}
       </body>
     </html>
