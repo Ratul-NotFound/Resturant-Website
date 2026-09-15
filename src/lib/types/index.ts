@@ -28,7 +28,7 @@ export type AllergenType =
   | 'Sesame'
   | 'Mustard';
 
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CHF';
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CHF' | 'BDT';
 
 export interface CurrencyConfig {
   code: CurrencyCode;

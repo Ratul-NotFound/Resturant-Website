@@ -33,6 +33,7 @@ export const RESTAURANT_INFO = {
 };
 
 export const CURRENCIES: CurrencyConfig[] = [
+  { code: 'BDT', symbol: '৳', rateAgainstUSD: 1.0, label: 'BDT (৳)' },
   { code: 'USD', symbol: '$', rateAgainstUSD: 1.0, label: 'USD ($)' },
   { code: 'EUR', symbol: '€', rateAgainstUSD: 0.92, label: 'EUR (€)' },
   { code: 'GBP', symbol: '£', rateAgainstUSD: 0.79, label: 'GBP (£)' },

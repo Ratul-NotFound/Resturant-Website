@@ -2,596 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================
-   AURA RESTAURANT — WHITE MARBLE CREATIVE THEME
-   Inspired by Galito's, World Top Restaurant Websites
-   Color Philosophy: White/Marble Base + Bold Color Blocks
-   ========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
-
 @layer base {
   :root {
-    /* === BRAND COLORS === */
-    --aura-red:        #e8302a;
-    --aura-red-dark:   #c0281f;
-    --aura-red-light:  #ff5a52;
-    --aura-green:      #3a7d44;
-    --aura-lime:       #84cc16;
-    --aura-amber:      #f59e0b;
-    --aura-amber-dark: #d97706;
-    --aura-teal:       #0d9488;
-    --aura-purple:     #7c3aed;
-    --aura-orange:     #ea580c;
-    --aura-pink:       #ec4899;
-    
-    /* === WHITE MARBLE PALETTE === */
-    --bg-primary:      #ffffff;
-    --bg-marble:       #fafaf8;
-    --bg-soft:         #f5f3ef;
-    --bg-blush:        #fef2f2;
-    --bg-mint:         #f0fdf4;
-    --bg-cream:        #fffbf0;
-    
-    /* === TEXT COLORS === */
-    --text-dark:       #111111;
-    --text-body:       #333333;
-    --text-muted:      #6b6b6b;
-    --text-light:      #999999;
-    
-    /* === BORDERS === */
-    --border-soft:     rgba(0, 0, 0, 0.08);
-    --border-medium:   rgba(0, 0, 0, 0.14);
-    
-    /* === SHADOWS === */
-    --shadow-card:     0 4px 24px -4px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
-    --shadow-hover:    0 12px 40px -8px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-food:     0 24px 40px -8px rgba(0, 0, 0, 0.22), 0 8px 16px rgba(0, 0, 0, 0.12);
+    --brand-red: #C8102E;
+    --brand-darkred: #9B0A21;
+    --brand-gold: #F4A61D;
+    --brand-green: #488A3C;
+    --brand-dark: #1A1818;
+    --brand-cream: #FFF9F2;
   }
 
   html {
     scroll-behavior: smooth;
     color-scheme: light;
-    background-color: var(--bg-primary);
   }
 
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-dark);
-    font-family: 'Outfit', sans-serif;
+    background-color: #ffffff;
+    color: #1e293b;
+    font-family: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: var(--aura-red);
+    background: #C8102E;
     color: #ffffff;
   }
 
   /* Crisp light scrollbar */
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: #f5f5f5; }
-  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--aura-red); }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #f8fafc; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #C8102E; }
 }
 
 /* =========================================================
-   MARBLE TEXTURE BACKGROUNDS
+   CUSTOM TEXTURES & PATTERNS
    ========================================================= */
 
-.bg-marble-white {
-  background-color: #ffffff;
-  background-image:
-    radial-gradient(ellipse at 20% 30%, rgba(232, 48, 42, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(58, 125, 68, 0.03) 0%, transparent 50%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply' result='blend'/%3E%3CfeComposite in='blend' in2='SourceGraphic'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+.marble-bg {
+  background-color: #fcfbfa;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(248, 245, 238, 0.9) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(246, 241, 230, 0.8) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 255, 255, 1) 0px, transparent 80%);
 }
 
-.bg-marble-warm {
-  background-color: #fafaf8;
-  background-image:
-    radial-gradient(ellipse at 10% 20%, rgba(245, 158, 11, 0.04) 0%, transparent 45%),
-    radial-gradient(ellipse at 90% 80%, rgba(232, 48, 42, 0.03) 0%, transparent 45%);
+.checkered-pattern {
+  background-image: linear-gradient(45deg, #a81026 25%, transparent 25%), 
+                    linear-gradient(-45deg, #a81026 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #a81026 75%), 
+                    linear-gradient(-45deg, transparent 75%, #a81026 75%);
+  background-size: 32px 32px;
+  background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
 }
 
-/* =========================================================
-   COLORFUL SECTION ACCENT BLOCKS (Key Design Element)
-   ========================================================= */
-
-.accent-block-red {
-  background: linear-gradient(135deg, #e8302a 0%, #c0281f 100%);
-}
-.accent-block-green {
-  background: linear-gradient(135deg, #3a7d44 0%, #2d6237 100%);
-}
-.accent-block-amber {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-}
-.accent-block-teal {
-  background: linear-gradient(135deg, #0d9488 0%, #0a7671 100%);
+.grunge-brush-edge {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
-/* =========================================================
-   FOOD PLATE "BREAKOUT" EFFECT — Core Creative Element
-   (Food images float/pop above their containers)
-   ========================================================= */
-
-.food-breakout {
-  filter: drop-shadow(var(--shadow-food));
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.food-breakout:hover {
-  filter: drop-shadow(0 32px 48px rgba(0,0,0,0.28)) drop-shadow(0 8px 16px rgba(232, 48, 42, 0.15));
-  transform: scale(1.06) translateY(-6px) rotate(2deg);
-}
-
-.food-float-left {
-  filter: drop-shadow(0 20px 32px rgba(0,0,0,0.22));
-  transform: rotate(-4deg) translateY(-10px);
-  transition: transform 0.4s ease;
-}
-.food-float-left:hover {
-  transform: rotate(-2deg) translateY(-16px) scale(1.04);
-}
-
-/* =========================================================
-   CREATIVE STICKER / BADGE ELEMENTS
-   (Yellow, Red, Green doodle stickers like Galito's)
-   ========================================================= */
-
-.sticker-yellow {
-  background: #fef08a;
-  color: #1c1917;
-  border: 2.5px dashed #ca8a04;
-  box-shadow: 3px 3px 0px rgba(202, 138, 4, 0.4), 0 4px 12px rgba(202, 138, 4, 0.2);
-  transform: rotate(-4deg);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.sticker-yellow:hover { transform: rotate(0deg) scale(1.08); }
-
-.sticker-red {
-  background: linear-gradient(135deg, #e8302a, #c0281f);
-  color: #ffffff;
-  box-shadow: 3px 3px 0px rgba(192, 40, 31, 0.5), 0 4px 12px rgba(232, 48, 42, 0.3);
-  transform: rotate(3deg);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.sticker-red:hover { transform: rotate(0deg) scale(1.08); }
-
-.sticker-green {
-  background: linear-gradient(135deg, #3a7d44, #2d6237);
-  color: #ffffff;
-  box-shadow: 3px 3px 0px rgba(45, 98, 55, 0.5), 0 4px 12px rgba(58, 125, 68, 0.3);
-  transform: rotate(-2deg);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.sticker-green:hover { transform: rotate(1deg) scale(1.08); }
-
-.sticker-lime {
-  background: #ecfccb;
-  color: #365314;
-  border: 2px solid #84cc16;
-  box-shadow: 2px 2px 0px rgba(132, 204, 22, 0.5);
-  transform: rotate(2deg);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.sticker-lime:hover { transform: rotate(-1deg) scale(1.06); }
-
-/* Circular Stamp Seal */
-.stamp-seal {
-  border: 2.5px dashed currentColor;
-  border-radius: 50%;
-  transition: transform 0.4s ease, box-shadow 0.3s ease;
-}
-.stamp-seal:hover {
-  transform: rotate(-6deg) scale(1.05);
-}
-
-/* =========================================================
-   CARD STYLES — Clean White Cards with Color Accents
-   ========================================================= */
-
-.card-white {
-  background: #ffffff;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-card);
-  border-radius: 16px;
-  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-white:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
-}
-
-.card-blush {
-  background: #fef2f2;
-  border: 1px solid rgba(232, 48, 42, 0.1);
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-blush:hover {
-  box-shadow: 0 12px 40px -8px rgba(232, 48, 42, 0.15);
-  transform: translateY(-4px);
-}
-
-.card-mint {
-  background: #f0fdf4;
-  border: 1px solid rgba(58, 125, 68, 0.12);
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-mint:hover {
-  box-shadow: 0 12px 40px -8px rgba(58, 125, 68, 0.15);
-  transform: translateY(-4px);
-}
-
-/* =========================================================
-   BUTTON STYLES
-   ========================================================= */
-
-.btn-primary {
-  background: linear-gradient(135deg, #e8302a 0%, #c0281f 100%);
-  color: #ffffff;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  border: none;
-  box-shadow: 0 4px 16px -2px rgba(232, 48, 42, 0.4), 0 1px 4px rgba(0,0,0,0.1);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-primary:hover {
-  background: linear-gradient(135deg, #ff5a52 0%, #e8302a 100%);
-  box-shadow: 0 8px 24px -4px rgba(232, 48, 42, 0.5), 0 2px 8px rgba(0,0,0,0.12);
-  transform: translateY(-2px);
-}
-.btn-primary:active { transform: translateY(0); }
-
-.btn-outline-dark {
-  background: transparent;
-  color: #111111;
-  border: 2px solid #111111;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  transition: all 0.3s ease;
-}
-.btn-outline-dark:hover {
-  background: #111111;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-.btn-white {
-  background: #ffffff;
-  color: #111111;
-  border: 2px solid rgba(0,0,0,0.12);
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-}
-.btn-white:hover {
-  border-color: #111;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
-  transform: translateY(-2px);
-}
-
-/* =========================================================
-   CATEGORY PILL FILTERS (Reference Image Style)
-   ========================================================= */
-
-.pill-filter {
-  background: #ffffff;
-  color: #333333;
-  border: 1.5px solid rgba(0,0,0,0.12);
-  border-radius: 100px;
-  font-weight: 500;
-  font-size: 0.8125rem;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-}
-.pill-filter:hover {
-  border-color: var(--aura-red);
-  color: var(--aura-red);
-  box-shadow: 0 2px 8px rgba(232, 48, 42, 0.15);
-}
-.pill-filter-active {
-  background: var(--aura-red);
-  color: #ffffff;
-  border-color: var(--aura-red);
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(232, 48, 42, 0.35);
-  transform: scale(1.04);
-}
-
-/* =========================================================
-   MENU ITEM CARD (Clean white card with floating food)
-   ========================================================= */
-
-.menu-card {
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.07);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-.menu-card:hover {
-  box-shadow: 0 16px 48px -8px rgba(0,0,0,0.16), 0 4px 12px rgba(0,0,0,0.08);
-  transform: translateY(-6px);
-}
-.menu-card .menu-card-img-wrap {
-  background: #fef2f2;
-  overflow: visible;
-  position: relative;
-}
-
-/* Colored corner accent on cards */
-.menu-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 4px;
-  background: linear-gradient(90deg, var(--aura-red) 0%, var(--aura-amber) 100%);
-  border-radius: 20px 20px 0 0;
-}
-
-/* =========================================================
-   FLOATING GARNISH / FOOD ELEMENT ANIMATIONS
-   ========================================================= */
-
+/* Float animations */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  33%       { transform: translateY(-14px) rotate(4deg); }
-  66%       { transform: translateY(-8px) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
 }
 
 @keyframes floatFast {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-20px) rotate(-7deg); }
+  50% { transform: translateY(-14px) rotate(-3deg); }
 }
 
-@keyframes floatCircle {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-  25%       { transform: translateY(-10px) translateX(6px) rotate(3deg); }
-  75%       { transform: translateY(-6px) translateX(-4px) rotate(-2deg); }
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
 }
 
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes popIn {
-  0%   { opacity: 0; transform: scale(0.8) rotate(-8deg); }
-  70%  { transform: scale(1.06) rotate(2deg); }
-  100% { opacity: 1; transform: scale(1) rotate(0deg); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes marqueeScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-float-slow   { animation: floatSlow 5.5s ease-in-out infinite; }
-.animate-float-fast   { animation: floatFast 3.5s ease-in-out infinite; }
-.animate-float-circle { animation: floatCircle 6s ease-in-out infinite; }
-.animate-spin-slow    { animation: spinSlow 20s linear infinite; }
-.animate-pop-in       { animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-slide-up     { animation: slideUp 0.7s ease forwards; }
-.animate-marquee      { animation: marqueeScroll 25s linear infinite; }
-
-/* =========================================================
-   COLOR BLOB ACCENTS (Background decorative shapes)
-   ========================================================= */
-
-.blob-red {
-  background: radial-gradient(ellipse, rgba(232, 48, 42, 0.18) 0%, transparent 70%);
-}
-.blob-green {
-  background: radial-gradient(ellipse, rgba(58, 125, 68, 0.15) 0%, transparent 70%);
-}
-.blob-amber {
-  background: radial-gradient(ellipse, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
-}
-.blob-teal {
-  background: radial-gradient(ellipse, rgba(13, 148, 136, 0.14) 0%, transparent 70%);
-}
-
-/* =========================================================
-   TYPOGRAPHY HELPERS
-   ========================================================= */
-
-.headline-display {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: #111111;
-}
-.headline-serif {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  line-height: 1.15;
-  color: #111111;
-}
-.text-gradient-red {
-  background: linear-gradient(135deg, #e8302a 0%, #ff8c69 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.text-gradient-warm {
-  background: linear-gradient(135deg, #e8302a 0%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* =========================================================
-   SECTION DIVIDERS — Brush stroke & wave shapes
-   ========================================================= */
-
-.wave-divider-top {
-  clip-path: ellipse(55% 100% at 50% 0%);
-}
-.wave-divider-bottom {
-  clip-path: ellipse(55% 100% at 50% 100%);
-}
-.brush-edge-bottom {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 82%, 97% 88%, 93% 82%, 89% 90%, 85% 83%, 80% 91%, 76% 84%, 72% 92%, 68% 85%, 64% 93%, 60% 86%, 55% 94%, 50% 87%, 45% 95%, 40% 88%, 36% 94%, 31% 87%, 27% 93%, 22% 86%, 18% 93%, 13% 87%, 9% 93%, 5% 87%, 2% 92%, 0% 87%);
-}
-
-/* =========================================================
-   NAVBAR — Light Clean Theme
-   ========================================================= */
-
-.navbar-light {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-}
-.navbar-transparent {
-  background: rgba(255, 255, 255, 0.0);
-}
-
-/* =========================================================
-   GLASS PANEL — Light version
-   ========================================================= */
-
-.glass-light {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-/* =========================================================
-   LEGACY DARK UTILITY ALIASES (for modals still dark)
-   ========================================================= */
-
-.glass-panel {
-  background: rgba(18, 16, 14, 0.90);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.gold-button {
-  background: linear-gradient(135deg, #dfbe7a 0%, #c5a059 50%, #ad8745 100%);
-  color: #0c0b0a;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px -3px rgba(197, 160, 89, 0.22);
-}
-.gold-button:hover {
-  background: linear-gradient(135deg, #e8d39b 0%, #dfbe7a 50%, #c5a059 100%);
-  box-shadow: 0 6px 25px -2px rgba(197, 160, 89, 0.32);
-  transform: translateY(-1px);
-}
-.gold-gradient-text {
-  background: linear-gradient(135deg, #fffaf0 0%, #dfbe7a 40%, #c5a059 70%, #9e7d3b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* =========================================================
-   DISH / MENU BADGE TAGS (Dietary indicators)
-   ========================================================= */
-
-.badge-vegan    { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-.badge-gf       { background: #fef9c3; color: #713f12; border: 1px solid #fef08a; }
-.badge-halal    { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
-.badge-hot      { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
-.badge-new      { background: #ede9fe; color: #4c1d95; border: 1px solid #ddd6fe; }
-.badge-popular  { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
-
-/* =========================================================
-   PROMO BANNER STRIP — Scrolling marquee
-   ========================================================= */
-
-.promo-strip {
-  background: #111111;
-  color: #ffffff;
-}
-.promo-strip-inner {
-  display: flex;
-  width: max-content;
-}
-
-/* =========================================================
-   TESTIMONIAL CARDS
-   ========================================================= */
-
-.testimonial-card {
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.07);
-  border-radius: 20px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
-}
-.testimonial-card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-  transform: translateY(-4px);
-}
-
-/* Hot deal badge on menu items */
-.hot-badge {
-  background: linear-gradient(135deg, #e8302a, #c0281f);
-  color: white;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  padding: 3px 7px;
-  border-radius: 100px;
-  box-shadow: 0 2px 8px rgba(232,48,42,0.4);
-}
-.discount-badge {
-  background: #111111;
-  color: #fef08a;
-  font-size: 9px;
-  font-weight: 800;
-  padding: 3px 7px;
-  border-radius: 100px;
-}
-
-/* Plate-pop drop shadow for food cutouts */
-.plate-pop-shadow {
-  filter: drop-shadow(0 16px 24px rgba(0,0,0,0.22)) drop-shadow(0 4px 8px rgba(0,0,0,0.14));
-  transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.plate-pop-shadow:hover {
-  filter: drop-shadow(0 24px 36px rgba(0,0,0,0.28)) drop-shadow(0 8px 12px rgba(232,48,42,0.18));
-  transform: scale(1.05) translateY(-4px);
-}
-
-/* Aura color glow utilities */
-.aura-glow-red    { box-shadow: 0 10px 30px -5px rgba(232, 48, 42, 0.28); }
-.aura-glow-green  { box-shadow: 0 10px 30px -5px rgba(58, 125, 68, 0.24); }
-.aura-glow-amber  { box-shadow: 0 10px 30px -5px rgba(245, 158, 11, 0.24); }
-.aura-glow-teal   { box-shadow: 0 10px 30px -5px rgba(13, 148, 136, 0.24); }
-
-/* Terroir badge utilities (kept for MenuSection compatibility) */
-.terroir-badge-ocean     { background: #e0f2fe; color: #0e7490; border: 1px solid #bae6fd; }
-.terroir-badge-ember     { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
-.terroir-badge-saffron   { background: #fef9c3; color: #a16207; border: 1px solid #fef08a; }
-.terroir-badge-amethyst  { background: #ede9fe; color: #6d28d9; border: 1px solid #ddd6fe; }
-.terroir-badge-terracotta{ background: #ffedd5; color: #c2410c; border: 1px solid #fed7aa; }
-.terroir-badge-emerald   { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
-
-/* glass-panel-hover (legacy compat) */
-.glass-panel-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.animate-float-fast {
+  animation: floatFast 3.5s ease-in-out infinite;
 }

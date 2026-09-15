@@ -11,6 +11,9 @@ export function formatCurrency(
   const currencyCfg = CURRENCIES.find((c) => c.code === targetCurrency) || CURRENCIES[0];
   const convertedAmount = amountInUSD * currencyCfg.rateAgainstUSD;
 
+  if (targetCurrency === 'BDT') {
+    return `৳${Math.round(convertedAmount).toLocaleString('en-US')}`;
+  }
   if (targetCurrency === 'JPY') {
     return `¥${Math.round(convertedAmount).toLocaleString('en-US')}`;
   }
