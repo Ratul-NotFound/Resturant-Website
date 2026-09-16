@@ -36,21 +36,21 @@ export default function DishCard({ item }: DishCardProps) {
     <motion.article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="group relative bg-white rounded-[28px] overflow-hidden border border-neutral-200/70 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_28px_50px_-12px_rgba(200,16,46,0.18)] hover:border-brand-red/40 transition-all duration-300 flex flex-col justify-between"
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
+      className="group relative bg-white rounded-[28px] overflow-hidden border border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_24px_48px_-12px_rgba(200,16,46,0.16)] hover:border-brand-red/30 transition-all duration-300 flex flex-col justify-between"
       data-dish={item.name}
     >
-      {/* 1. Luxurious 3D Floating Food Stage */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-neutral-100/90 via-neutral-50/60 to-white pt-6 pb-4 px-4 flex flex-col items-center justify-center min-h-[200px] sm:min-h-[220px]">
+      {/* 1. Spacious Clean 3D Food Stage (No clipping, completely visible) */}
+      <div className="relative w-full h-52 sm:h-56 bg-gradient-to-b from-neutral-50 via-neutral-100/40 to-white flex flex-col items-center justify-center p-3 pt-4">
         
-        {/* Warm Ambient Spotlight Halo behind Dish */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-radial from-amber-400/20 via-brand-red/10 to-transparent blur-2xl opacity-40 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
+        {/* Soft Warm Backlight Spotlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-radial from-amber-400/15 via-orange-500/5 to-transparent blur-xl opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
 
         {/* Top Left: Bestseller / Category Tag */}
         {item.tag && (
-          <div className="absolute top-3 left-3 z-20">
-            <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-950/80 backdrop-blur-md text-white border border-white/20 shadow-sm">
+          <div className="absolute top-3.5 left-3.5 z-20">
+            <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-900/90 backdrop-blur-md text-white border border-white/20 shadow-xs">
               <Flame className="w-3 h-3 text-amber-400 fill-amber-400" />
               {item.tag}
             </span>
@@ -65,52 +65,52 @@ export default function DishCard({ item }: DishCardProps) {
               openCustomizer(item)
             }}
             type="button"
-            className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-neutral-800 flex items-center justify-center shadow-md backdrop-blur-md border border-neutral-200/80 hover:scale-110 active:scale-95 transition-all"
+            className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-white text-neutral-700 hover:text-brand-red flex items-center justify-center shadow-md border border-neutral-200/80 hover:scale-110 active:scale-95 transition-all"
             title="Customize spices & add-ons"
           >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
+            <SlidersHorizontal className="w-3.5 h-3.5" />
           </button>
         )}
 
-        {/* 3D Floating Transparent Dish with Realistic Spring Physics & Tilt */}
+        {/* 3D Floating Food Cutout (Preserving full aspect ratio & no cropped edges) */}
         <motion.div
           animate={{
-            scale: isHovered ? 1.15 : 1,
-            y: isHovered ? -10 : 0,
-            rotate: isHovered ? -2.5 : 0,
+            scale: isHovered ? 1.08 : 1,
+            y: isHovered ? -6 : 0,
+            rotate: isHovered ? -1.5 : 0,
           }}
           transition={{
             type: 'spring',
-            stiffness: 380,
-            damping: 18,
+            stiffness: 350,
+            damping: 22,
           }}
-          className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 flex items-center justify-center z-10 cursor-pointer"
+          className="relative w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 flex items-center justify-center z-10 select-none p-1"
         >
           <img
             src={item.image}
             alt={item.name}
-            className="w-full h-full object-contain filter drop-shadow-[0_14px_20px_rgba(0,0,0,0.32)] group-hover:drop-shadow-[0_28px_36px_rgba(0,0,0,0.48)] transition-all duration-300"
+            className="max-w-full max-h-full object-contain filter drop-shadow-[0_12px_16px_rgba(0,0,0,0.28)] group-hover:drop-shadow-[0_20px_26px_rgba(0,0,0,0.42)] transition-all duration-300"
           />
         </motion.div>
 
         {/* Realistic Ground Contact Shadow */}
-        <div className="w-28 sm:w-36 h-3 bg-black/25 rounded-full blur-[4px] opacity-75 group-hover:opacity-20 group-hover:scale-135 group-hover:blur-[6px] transition-all duration-300 mt-1 pointer-events-none" />
+        <div className="w-28 sm:w-36 h-2.5 bg-black/20 rounded-full blur-[3px] opacity-70 group-hover:opacity-30 group-hover:scale-125 transition-all duration-300 pointer-events-none" />
 
         {/* Floating Servings Badge on Bottom-Right */}
         <div className="absolute bottom-2.5 right-3 z-20 pointer-events-none">
-          <span className="text-[10px] font-bold text-neutral-600 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-neutral-200/80 shadow-xs">
+          <span className="text-[10px] font-bold text-neutral-600 bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-neutral-200 shadow-xs">
             {selectedPortion.serves}
           </span>
         </div>
       </div>
 
       {/* 2. Content & Details */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3.5 border-t border-neutral-100/80">
         <div>
           {/* Header Row: Title & Dynamic Price */}
           <div className="flex items-start justify-between gap-2">
             <div>
-              <h3 className="font-display font-black text-[16px] sm:text-[17px] text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
+              <h3 className="font-display font-black text-[15px] sm:text-[16px] text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
                 {item.name}
               </h3>
               {item.nameBn && (
@@ -140,8 +140,8 @@ export default function DishCard({ item }: DishCardProps) {
             </div>
           </div>
 
-          {/* Minimalist 2-Line Editorial Description */}
-          <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-2">
+          {/* 2-Line Appetizing Description */}
+          <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-1.5">
             {item.description}
           </p>
         </div>
