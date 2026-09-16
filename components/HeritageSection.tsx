@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Award, Clock, Flame, Utensils, ShieldCheck, Sparkles, Heart } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Clock, Flame, Utensils, ShieldCheck, Sparkles } from 'lucide-react'
 
 export default function HeritageSection() {
   return (
@@ -10,32 +11,105 @@ export default function HeritageSection() {
       data-purpose="heritage-feature"
       id="heritage"
     >
-      {/* Top Brush Illusion */}
-      <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#FFF9F6] to-transparent opacity-10" />
+      {/* Top Ambient Glow */}
+      <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#FFF9F6] to-transparent opacity-10 pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-red/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Central Artistic Food Presentation */}
+        
+        {/* Central 3D Floating Masterpiece Showcase */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="relative inline-block mx-auto mb-6 group cursor-pointer">
-            <div className="w-40 h-40 sm:w-52 sm:h-52 rounded-full overflow-hidden border-4 border-brand-gold/80 shadow-2xl p-1 bg-neutral-900 mx-auto transition-transform duration-500 group-hover:scale-105 group-hover:border-brand-gold">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuATASda2HjIIgKdDfVgFX-CI_N0z5S_patoNHBTv-tuw_ENxx37KfVoI3N55WjIROK6-9szsofesCninWStIe2boTFUGPu9U582LtYnaexiXyCab2__1qbx6sHV8eqwKPGroXRYgYI6Dds5nOhI0QH8g-NyjabvfFISAO8eKX0vA9HkkSusuC4pzkqBU5Q29dUEqdVwVEsGPRNc09ZvDXgLxRI_FGC49D24sBhSR7AE-ju0Ar-UNbHYWQ"
-                alt="Hand Crafted Herb Infused Grilled Feast"
-                className="w-full h-full object-cover rounded-full group-hover:rotate-3 transition-transform duration-700 ease-out"
-              />
-            </div>
+          
+          <div className="relative inline-block mx-auto mb-8 group select-none">
+            {/* Ambient Golden Radial Halo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-radial from-amber-500/30 via-orange-600/15 to-transparent blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
-            {/* Decorative Natural Marination Tag */}
-            <span className="absolute -bottom-2 right-2 sm:right-4 bg-emerald-700 text-emerald-100 text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full border border-emerald-400 shadow-md group-hover:scale-105 transition-transform flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-emerald-300" />
-              100% Natural Marination
-            </span>
+            {/* Floating Red Chili Garnish Left */}
+            <motion.div
+              animate={{
+                y: [0, -10, 0],
+                rotate: [-12, 6, -12],
+              }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="absolute -top-4 -left-10 w-16 sm:w-20 z-20 pointer-events-none hidden sm:block opacity-90"
+            >
+              <img
+                src="/images/chili.png"
+                alt="Chili Garnish"
+                className="w-full h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.6)]"
+              />
+            </motion.div>
+
+            {/* Floating Lime Garnish Right */}
+            <motion.div
+              animate={{
+                y: [0, 12, 0],
+                rotate: [15, -5, 15],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: 0.4,
+              }}
+              className="absolute -bottom-2 -right-10 w-16 sm:w-20 z-20 pointer-events-none hidden sm:block opacity-90"
+            >
+              <img
+                src="/images/lime.png"
+                alt="Lime Garnish"
+                className="w-full h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.6)]"
+              />
+            </motion.div>
+
+            {/* 3D Floating Royal Dum Handi Dish */}
+            <motion.div
+              animate={{
+                y: [0, -12, 0],
+                rotate: [0, 1.5, 0],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="relative z-10 w-52 h-52 sm:w-64 sm:h-64 mx-auto flex items-center justify-center cursor-pointer"
+            >
+              <img
+                src="/images/dishes/kacchi.png"
+                alt="Royal Sealed Handi Dum Kacchi"
+                className="w-full h-full object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)] group-hover:scale-110 group-hover:drop-shadow-[0_28px_40px_rgba(200,16,46,0.6)] transition-all duration-500"
+              />
+            </motion.div>
+
+            {/* Ground Contact Shadow */}
+            <motion.div
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.6, 0.3, 0.6],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="w-40 sm:w-52 h-4 bg-black/60 rounded-full blur-[6px] mx-auto pointer-events-none"
+            />
+
+            {/* Natural Marination Seal Tag */}
+            <div className="mt-3 inline-flex items-center gap-1.5 bg-emerald-800/90 text-emerald-100 text-xs font-bold px-4 py-1.5 rounded-full border border-emerald-400 shadow-xl backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+              <span>100% Natural Slow-Dum Fire Cooking</span>
+            </div>
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl font-black tracking-tight text-white uppercase">
             Crafted Fresh Upon Order
           </h2>
-          <p className="mt-3 text-slate-400 text-xs sm:text-base max-w-xl mx-auto leading-relaxed">
+          <p className="mt-3 text-slate-300 text-xs sm:text-base max-w-xl mx-auto leading-relaxed">
             No microwave shortcuts. Every piece of chicken is flame-grilled over burning charcoals and our kacchi is dum-cooked for 4 hours inside sealed deghs.
           </p>
         </div>
@@ -94,6 +168,7 @@ export default function HeritageSection() {
             </p>
           </div>
         </div>
+
       </div>
     </section>
   )

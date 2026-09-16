@@ -77,21 +77,26 @@ export default function DishCustomizerModal() {
             className="relative z-10 w-full max-w-lg max-h-[90vh] overflow-hidden rounded-3xl bg-white shadow-2xl border border-neutral-100 flex flex-col"
           >
             {/* Header with Dish Visual Banner */}
-            <div className="relative h-44 shrink-0 overflow-hidden bg-neutral-900">
-              <img
-                src={customizerItem.image}
-                alt={customizerItem.name}
-                className="w-full h-full object-cover opacity-85"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end p-5">
-                <div>
-                  <h3 className="text-xl font-display font-extrabold text-white leading-tight">
-                    {customizerItem.name}
-                  </h3>
-                  {customizerItem.nameBn && (
-                    <p className="text-xs text-amber-300 font-bangla">{customizerItem.nameBn}</p>
-                  )}
-                </div>
+            <div className="relative h-52 shrink-0 overflow-hidden bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 flex flex-col justify-between p-5 border-b border-neutral-800">
+              {/* Warm Spotlight Halo */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-radial from-amber-500/25 via-brand-red/15 to-transparent blur-2xl pointer-events-none" />
+
+              {/* Centered Floating 3D Transparent Food Item */}
+              <div className="relative z-10 w-32 h-32 mx-auto flex items-center justify-center">
+                <img
+                  src={customizerItem.image}
+                  alt={customizerItem.name}
+                  className="w-full h-full object-contain filter drop-shadow-[0_16px_22px_rgba(0,0,0,0.65)]"
+                />
+              </div>
+
+              <div className="relative z-10">
+                <h3 className="text-xl font-display font-extrabold text-white leading-tight">
+                  {customizerItem.name}
+                </h3>
+                {customizerItem.nameBn && (
+                  <p className="text-xs text-amber-300 font-bangla mt-0.5">{customizerItem.nameBn}</p>
+                )}
               </div>
               <button
                 onClick={closeCustomizer}

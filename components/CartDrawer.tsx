@@ -139,7 +139,7 @@ export default function CartDrawer() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="w-16 h-16 rounded-xl object-cover shrink-0 border border-neutral-200"
+                            className="w-16 h-16 rounded-xl object-contain p-1 shrink-0 bg-neutral-100/90 border border-neutral-200/80 filter drop-shadow-sm"
                           />
 
                           <div className="flex-1 min-w-0">
