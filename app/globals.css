@@ -10,11 +10,18 @@
   --font-hind-siliguri: 'Hind Siliguri', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font-inter), sans-serif;
   color: #1E1B1B;
   background-color: #FFFFFF;
   overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* Custom Textures */
@@ -75,9 +82,19 @@ body {
   animation: badge-pop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -106,6 +123,11 @@ body {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Safe area padding for modern mobile devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
 }
 
 /* Accessibility: Reduced Motion */
