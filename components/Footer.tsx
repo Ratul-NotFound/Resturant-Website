@@ -17,28 +17,29 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#141212] text-neutral-400 text-xs sm:text-sm pt-14 pb-8" data-purpose="footer">
+    <footer className="bg-[#141212] text-neutral-400 text-xs sm:text-sm pt-12 pb-24 lg:pb-12" data-purpose="footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-neutral-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-neutral-800">
+          
           {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center space-x-2 text-white font-display font-black text-2xl tracking-tight">
+          <div className="lg:col-span-2 space-y-3.5">
+            <Link href="/" className="flex items-center space-x-2 text-white font-display font-black text-xl sm:text-2xl tracking-tight">
               <span className="text-brand-red">
-                <Flame className="w-7 h-7 fill-brand-red animate-pulse" />
+                <Flame className="w-6 h-6 fill-brand-red animate-pulse" />
               </span>
               <span>FLAME &amp; FEAST</span>
             </Link>
 
             <p className="text-neutral-400 text-xs sm:text-sm max-w-sm leading-relaxed">
-              The culinary synthesis of flame-grilled peri chicken and authentic royal kacchi biryani. Fresh, fiery, and deeply comforting.
+              The culinary synthesis of flame-grilled peri chicken and authentic royal kacchi biryani. Fresh, fiery, and deeply comforting across Dhaka &amp; Chittagong.
             </p>
 
-            <div className="flex items-center space-x-3 text-white pt-2">
+            <div className="flex items-center space-x-3 text-white pt-1">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-brand-red hover:scale-110 flex items-center justify-center transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-neutral-800 hover:bg-brand-red hover:scale-110 flex items-center justify-center transition"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -47,7 +48,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-brand-red hover:scale-110 flex items-center justify-center transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-neutral-800 hover:bg-brand-red hover:scale-110 flex items-center justify-center transition"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -56,7 +57,7 @@ export default function Footer() {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-brand-red hover:scale-110 flex items-center justify-center transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-neutral-800 hover:bg-brand-red hover:scale-110 flex items-center justify-center transition"
                 aria-label="YouTube"
               >
                 <Youtube className="w-4 h-4" />
@@ -65,131 +66,82 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
-              Menu Items
+          <div className="space-y-2.5">
+            <h4 className="font-display font-black text-white text-xs uppercase tracking-wider">
+              Quick Links
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-1.5 text-xs">
               <li>
-                <a
-                  href="#portion-section"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Classic Meals
-                </a>
+                <Link href="/" className="hover:text-white transition">Home</Link>
               </li>
               <li>
-                <a
-                  href="#portion-section"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Basmati Kacchi Biryani
-                </a>
+                <Link href="/menu" className="hover:text-white transition">Full Menu</Link>
               </li>
               <li>
-                <a
-                  href="#portion-section"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Spicy Mutton Tehari
-                </a>
+                <a href="/#mega-deal" className="hover:text-yellow-400 transition text-yellow-300 font-bold">Mega Deal (৳999)</a>
               </li>
               <li>
-                <a
-                  href="#mega-deal"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Sharing Family Deals
-                </a>
+                <a href="/#heritage" className="hover:text-white transition">Our Heritage Story</a>
               </li>
               <li>
-                <a
-                  href="#portion-section"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Borhani &amp; Sweets
-                </a>
+                <Link href="/reserve" className="hover:text-emerald-400 text-emerald-400 font-semibold transition">Book a Table</Link>
               </li>
             </ul>
           </div>
 
-          {/* Order & Support */}
-          <div>
-            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
-              Order &amp; Support
+          {/* Strategic Outlets */}
+          <div className="space-y-2.5">
+            <h4 className="font-display font-black text-white text-xs uppercase tracking-wider">
+              Strategic Outlets
             </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link
-                  href="/track"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200 text-brand-gold font-semibold"
-                >
-                  Track Live Order
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/reserve"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Table Reservation
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#branches"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Delivery Coverage Map
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:16588"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200"
-                >
-                  Catering &amp; Party Orders
-                </a>
-              </li>
-              <li>
-                <Link
-                  href="/admin"
-                  className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-200 text-neutral-500 hover:text-neutral-300"
-                >
-                  Staff Admin Portal
-                </Link>
-              </li>
+            <ul className="space-y-1 text-xs">
+              <li>Dhanmondi (Satmasjid Rd)</li>
+              <li>Gulshan-2 (Madani Ave)</li>
+              <li>Banani (Road 11)</li>
+              <li>Uttara (Sector 7)</li>
+              <li>Mirpur-10</li>
+              <li>Bailey Road</li>
+              <li>Chittagong (GEC Circle)</li>
             </ul>
           </div>
 
-          {/* Opening Hours & Hotline */}
-          <div>
-            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
-              Opening Hours
+          {/* Hotline & Contact */}
+          <div className="space-y-2.5">
+            <h4 className="font-display font-black text-white text-xs uppercase tracking-wider">
+              24/7 Support
             </h4>
-            <div className="text-xs space-y-1.5">
-              <p className="text-slate-300 font-semibold">Everyday:</p>
-              <p className="text-neutral-400">11:00 AM - 11:00 PM</p>
-              <p className="text-slate-300 font-semibold mt-3">Hotline Support:</p>
-              <p className="text-brand-red font-black text-sm">16588 / 09612-444888</p>
-              <p className="text-[11px] text-neutral-500 mt-2">Email: contact@flamefeastbd.com</p>
+            <div className="space-y-2 text-xs">
+              <a
+                href="tel:16588"
+                className="inline-flex items-center gap-2 bg-brand-red/20 border border-brand-red/40 text-brand-red px-3 py-2 rounded-xl font-bold hover:bg-brand-red hover:text-white transition w-full"
+              >
+                <Phone className="w-4 h-4 shrink-0" />
+                <span>Hotline: 16588</span>
+              </a>
+
+              <p className="flex items-center space-x-2 text-neutral-400">
+                <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>11:00 AM – 11:30 PM (Daily)</span>
+              </p>
+
+              <p className="flex items-center space-x-2 text-neutral-400">
+                <Mail className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+                <span>support@flamefeastbd.com</span>
+              </p>
             </div>
           </div>
+
         </div>
 
-        {/* Copyright Bar */}
+        {/* Bottom copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-3">
-          <p>© 2026 FLAME &amp; FEAST Inc. Inspired by Galito&apos;s &amp; Heritage Biryani. All rights reserved.</p>
-          <div className="flex space-x-4">
-            <a href="#" className="hover:text-neutral-300 transition-colors">
-              Privacy Policy
-            </a>
+          <p>© {new Date().getFullYear()} Flame &amp; Feast Inc. All Rights Reserved.</p>
+          <div className="flex items-center space-x-4">
+            <Link href="/admin" className="text-neutral-500 hover:text-neutral-300 transition">
+              Staff Portal
+            </Link>
             <span>•</span>
-            <a href="#" className="hover:text-neutral-300 transition-colors">
-              Terms of Service
-            </a>
-            <span>•</span>
-            <Link href="/track" className="hover:text-neutral-300 transition-colors">
+            <Link href="/track" className="text-neutral-500 hover:text-neutral-300 transition">
               Order Tracker
             </Link>
           </div>

@@ -67,24 +67,24 @@ export default function MegaDealBanner() {
 
   return (
     <section
-      className="bg-[#B30E26] text-white py-10 sm:py-16 relative overflow-hidden"
+      className="bg-[#B30E26] text-white py-8 sm:py-16 relative overflow-hidden"
       data-purpose="promotional-deal-banner"
       id="mega-deal"
     >
       {/* Geometric Texture */}
       <div className="absolute inset-0 opacity-10 checkered-pattern pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="bg-[#8A0A1D] rounded-3xl p-5 sm:p-8 lg:p-10 border-2 sm:border-4 border-amber-300/40 mega-deal-glow grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center shadow-2xl">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
+        <div className="bg-[#8A0A1D] rounded-3xl p-4 sm:p-8 lg:p-10 border-2 sm:border-4 border-amber-300/40 mega-deal-glow grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-center shadow-2xl">
           
           {/* Left Pricing & Content */}
           <div className="lg:col-span-5 text-center lg:text-left">
-            <div className="inline-flex items-center space-x-2 bg-yellow-400 text-neutral-950 px-3 py-1 rounded-md text-[11px] sm:text-xs font-black uppercase mb-3 sm:mb-4 tracking-wider shadow-sm">
+            <div className="inline-flex items-center space-x-1.5 bg-yellow-400 text-neutral-950 px-3 py-1 rounded-md text-[10px] sm:text-xs font-black uppercase mb-2.5 sm:mb-4 tracking-wider shadow-xs">
               <Zap className="w-3.5 h-3.5 fill-red-600 text-red-600 animate-bounce shrink-0" />
               <span>Limited Time Mega Deal</span>
             </div>
 
-            <div className="border-2 sm:border-4 border-white p-4 sm:p-5 rounded-2xl bg-[#A10C22] inline-block w-full transition-transform hover:scale-[1.01] duration-300 shadow-xl">
+            <div className="border-2 sm:border-4 border-white p-3.5 sm:p-5 rounded-2xl bg-[#A10C22] inline-block w-full transition-transform hover:scale-[1.01] duration-300 shadow-xl">
               <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-none">
                 4 REG PLATTER
               </h3>
@@ -99,24 +99,23 @@ export default function MegaDealBanner() {
                   SAVE ৳481
                 </span>
               </div>
-              <p className="text-[11px] sm:text-xs uppercase font-extrabold tracking-widest text-white/90">
+              <p className="text-[10px] sm:text-xs uppercase font-extrabold tracking-widest text-white/90">
                 ALL DAY, EVERYDAY VALUE
               </p>
             </div>
 
-            <p className="text-[11px] sm:text-xs text-red-200 mt-2.5 font-medium leading-relaxed">
-              *T&amp;C Apply. Includes 2 Flame Quarter Chickens, 2 Mini Kacchi Bowls, 4 Peri Fries &amp; 2 Borhani Bottles.
+            <p className="text-[11px] sm:text-xs text-red-200 mt-2 font-medium leading-relaxed">
+              *Includes 2 Flame Quarter Chickens, 2 Mini Kacchi Bowls, 4 Peri Fries &amp; 2 Borhani Bottles.
             </p>
 
-            <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4">
+            <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-2.5 sm:gap-4">
               <button
                 onClick={handleGrabDeal}
-                className={
-                  'cta-shimmer font-black px-7 sm:px-8 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all transform active:scale-95 flex items-center justify-center space-x-2 ' +
-                  (added
+                className={`cta-shimmer font-black px-6 sm:px-8 py-3.5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all transform active:scale-95 flex items-center justify-center space-x-2 ${
+                  added
                     ? 'bg-emerald-500 text-white shadow-emerald-500/40'
-                    : 'bg-white hover:bg-yellow-400 text-neutral-950 hover:scale-105 shadow-xl')
-                }
+                    : 'bg-white hover:bg-yellow-400 text-neutral-950 hover:scale-105 shadow-xl'
+                }`}
                 type="button"
               >
                 {added ? (
@@ -132,24 +131,24 @@ export default function MegaDealBanner() {
                 )}
               </button>
 
-              <span className="text-xs font-semibold text-red-100 flex items-center justify-center bg-black/30 px-3.5 py-2 rounded-full border border-white/10">
+              <span className="text-xs font-semibold text-red-100 flex items-center justify-center bg-black/30 px-3.5 py-2.5 rounded-2xl border border-white/10">
                 <Clock className="w-3.5 h-3.5 mr-1.5 text-yellow-300 shrink-0" /> Fast 35 Min Delivery
               </span>
             </div>
           </div>
 
           {/* Right 4-Dish Transparent Floating Showcase */}
-          <div className="lg:col-span-7 grid grid-cols-2 gap-2.5 sm:gap-4 lg:gap-5">
+          <div className="lg:col-span-7 grid grid-cols-2 gap-2 sm:gap-4 lg:gap-5">
             {DEAL_CUTOUTS.map((dish, idx) => (
               <div
                 key={idx}
-                className="group relative bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/15 text-center hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer"
+                className="group relative bg-white/10 backdrop-blur-md rounded-2xl p-2.5 sm:p-4 border border-white/15 text-center hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer"
               >
                 {/* Ambient Golden Halo on Hover */}
                 <div className="absolute inset-0 bg-radial from-amber-400/30 via-orange-500/10 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
 
                 {/* 3D Floating Transparent Cutout */}
-                <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-1.5 sm:mb-2 flex items-center justify-center transform group-hover:scale-115 group-hover:-translate-y-1 transition-all duration-300">
+                <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-1 sm:mb-2 flex items-center justify-center transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
                   <img
                     src={dish.image}
                     alt={dish.name}
@@ -158,12 +157,12 @@ export default function MegaDealBanner() {
                 </div>
 
                 {/* Realistic Contact Shadow */}
-                <div className="w-14 sm:w-20 h-1.5 sm:h-2 bg-black/40 rounded-full blur-[2px] opacity-70 group-hover:opacity-20 group-hover:scale-125 transition-all duration-300 mx-auto mb-1.5" />
+                <div className="w-12 sm:w-20 h-1 sm:h-2 bg-black/40 rounded-full blur-[2px] opacity-70 group-hover:opacity-20 group-hover:scale-125 transition-all duration-300 mx-auto mb-1" />
 
-                <p className="font-display font-black text-xs sm:text-sm text-white group-hover:text-yellow-300 transition-colors truncate">
+                <p className="font-display font-black text-[11px] sm:text-sm text-white group-hover:text-yellow-300 transition-colors truncate">
                   {dish.name}
                 </p>
-                <span className="text-[10px] sm:text-[11px] text-yellow-300 font-semibold block mt-0.5 truncate">
+                <span className="text-[9px] sm:text-[11px] text-yellow-300 font-semibold block mt-0.5 truncate">
                   {dish.subtitle}
                 </span>
               </div>

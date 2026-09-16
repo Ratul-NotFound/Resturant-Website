@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Check, SlidersHorizontal, Flame } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { MenuItemData, PortionData } from '@/lib/data'
 import { useStore } from '@/lib/store'
 
@@ -11,12 +11,12 @@ interface DishCardProps {
 }
 
 export default function DishCard({ item }: DishCardProps) {
-  const { addToCart, openCustomizer } = useStore()
+  const { addToCart, openCustomizer, showToast } = useStore()
   const [selectedPortion, setSelectedPortion] = useState<PortionData>(
-    item.portions.find((p) => p.isDefault) || item.portions[0]
+    item.portions[0] || { label: 'Regular', serves: '1 Person', price: 0 }
   )
-  const [isHovered, setIsHovered] = useState(false)
   const [added, setAdded] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   const handlePortionSelect = (e: React.MouseEvent, portion: PortionData) => {
     e.stopPropagation()
@@ -26,31 +26,37 @@ export default function DishCard({ item }: DishCardProps) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation()
     addToCart(item, selectedPortion, { quantity: 1 })
+    showToast(
+      'Added to Feast Tray',
+      `${item.name} (${selectedPortion.label}) added for ৳${selectedPortion.price}`
+    )
     setAdded(true)
-    setTimeout(() => setAdded(false), 1400)
+    setTimeout(() => setAdded(false), 1200)
   }
 
-  const hasCustomizer = Boolean(item.spiceOptions || (item.addons && item.addons.length > 0))
+  const hasCustomizer = (item.spiceOptions && item.spiceOptions.length > 0) || (item.addons && item.addons.length > 0)
 
   return (
     <motion.article
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-20px' }}
+      transition={{ duration: 0.35 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="group relative bg-white rounded-[28px] overflow-hidden border border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_24px_48px_-12px_rgba(200,16,46,0.16)] hover:border-brand-red/30 transition-all duration-300 flex flex-col justify-between"
+      className="group relative bg-white rounded-3xl border border-neutral-200/80 hover:border-brand-red/40 shadow-sm hover:shadow-xl hover:shadow-brand-red/5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
       data-dish={item.name}
     >
       {/* 1. Spacious Clean 3D Food Stage (No clipping, completely visible) */}
-      <div className="relative w-full h-52 sm:h-56 bg-gradient-to-b from-neutral-50 via-neutral-100/40 to-white flex flex-col items-center justify-center p-3 pt-4">
+      <div className="relative w-full h-48 sm:h-56 bg-gradient-to-b from-neutral-50 via-neutral-100/40 to-white flex flex-col items-center justify-center p-3 pt-4">
         
         {/* Soft Warm Backlight Spotlight */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-radial from-amber-400/15 via-orange-500/5 to-transparent blur-xl opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
 
         {/* Top Left: Bestseller / Category Tag */}
         {item.tag && (
-          <div className="absolute top-3.5 left-3.5 z-20">
-            <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-900/90 backdrop-blur-md text-white border border-white/20 shadow-xs">
+          <div className="absolute top-3 left-3 z-20">
+            <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-900/90 backdrop-blur-md text-white border border-white/20 shadow-xs">
               <Flame className="w-3 h-3 text-amber-400 fill-amber-400" />
               {item.tag}
             </span>
@@ -65,18 +71,18 @@ export default function DishCard({ item }: DishCardProps) {
               openCustomizer(item)
             }}
             type="button"
-            className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-white text-neutral-700 hover:text-brand-red flex items-center justify-center shadow-md border border-neutral-200/80 hover:scale-110 active:scale-95 transition-all"
+            className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white text-neutral-700 hover:text-brand-red flex items-center justify-center shadow-md border border-neutral-200/80 hover:scale-110 active:scale-95 transition-all"
             title="Customize spices & add-ons"
           >
             <SlidersHorizontal className="w-3.5 h-3.5" />
           </button>
         )}
 
-        {/* 3D Floating Food Cutout (Preserving full aspect ratio & no cropped edges) */}
+        {/* 3D Floating Food Cutout */}
         <motion.div
           animate={{
             scale: isHovered ? 1.08 : 1,
-            y: isHovered ? -6 : 0,
+            y: isHovered ? -5 : 0,
             rotate: isHovered ? -1.5 : 0,
           }}
           transition={{
@@ -94,7 +100,7 @@ export default function DishCard({ item }: DishCardProps) {
         </motion.div>
 
         {/* Realistic Ground Contact Shadow */}
-        <div className="w-28 sm:w-36 h-2.5 bg-black/20 rounded-full blur-[3px] opacity-70 group-hover:opacity-30 group-hover:scale-125 transition-all duration-300 pointer-events-none" />
+        <div className="w-28 sm:w-36 h-2 bg-black/20 rounded-full blur-[3px] opacity-70 group-hover:opacity-30 group-hover:scale-125 transition-all duration-300 pointer-events-none" />
 
         {/* Floating Servings Badge on Bottom-Right */}
         <div className="absolute bottom-2.5 right-3 z-20 pointer-events-none">
@@ -105,12 +111,12 @@ export default function DishCard({ item }: DishCardProps) {
       </div>
 
       {/* 2. Content & Details */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3.5 border-t border-neutral-100/80">
+      <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 border-t border-neutral-100/80">
         <div>
           {/* Header Row: Title & Dynamic Price */}
           <div className="flex items-start justify-between gap-2">
             <div>
-              <h3 className="font-display font-black text-[15px] sm:text-[16px] text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
+              <h3 className="font-display font-black text-sm sm:text-base text-neutral-900 group-hover:text-brand-red transition-colors leading-snug">
                 {item.name}
               </h3>
               {item.nameBn && (
@@ -129,26 +135,26 @@ export default function DishCard({ item }: DishCardProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 4 }}
                   transition={{ duration: 0.15 }}
-                  className="font-display font-black text-lg sm:text-xl text-brand-red leading-none"
+                  className="font-display font-black text-base sm:text-xl text-brand-red leading-none"
                 >
                   ৳{selectedPortion.price}
                 </motion.div>
               </AnimatePresence>
-              <span className="text-[10px] font-bold text-neutral-400 block mt-0.5 uppercase tracking-wider">
+              <span className="text-[9px] sm:text-[10px] font-bold text-neutral-400 block mt-0.5 uppercase tracking-wider">
                 {selectedPortion.label}
               </span>
             </div>
           </div>
 
-          {/* 2-Line Appetizing Description */}
-          <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-1.5">
+          {/* 2-Line Description */}
+          <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-1.5 font-normal">
             {item.description}
           </p>
         </div>
 
         {/* 3. Interactive Portion Selector Pills */}
-        <div className="space-y-3 pt-1 border-t border-neutral-100">
-          <div className="flex items-center gap-1.5 p-1 bg-neutral-100/80 rounded-2xl">
+        <div className="space-y-2.5 pt-1 border-t border-neutral-100">
+          <div className="flex items-center gap-1 p-1 bg-neutral-100/80 rounded-2xl">
             {item.portions.map((portion) => {
               const isSelected = selectedPortion.label === portion.label
               return (
@@ -156,21 +162,20 @@ export default function DishCard({ item }: DishCardProps) {
                   key={portion.label}
                   onClick={(e) => handlePortionSelect(e, portion)}
                   type="button"
-                  className={
-                    'relative flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition-all duration-200 text-center flex items-center justify-center gap-1 ' +
-                    (isSelected
+                  className={`relative flex-1 py-1.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-200 text-center flex items-center justify-center gap-1 ${
+                    isSelected
                       ? 'text-neutral-900 shadow-xs'
-                      : 'text-neutral-500 hover:text-neutral-800')
-                  }
+                      : 'text-neutral-500 hover:text-neutral-800'
+                  }`}
                 >
                   {isSelected && (
                     <motion.div
-                      layoutId={'portion-pill-' + item.id}
+                      layoutId={`portion-pill-${item.id}`}
                       className="absolute inset-0 bg-white rounded-xl shadow-xs border border-neutral-200/80"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
-                  <span className="relative z-10">{portion.label}</span>
+                  <span className="relative z-10 truncate">{portion.label}</span>
                 </button>
               )
             })}
@@ -196,12 +201,11 @@ export default function DishCard({ item }: DishCardProps) {
             <button
               onClick={handleAddToCart}
               type="button"
-              className={
-                'flex-1 py-2.5 px-4 rounded-2xl text-xs font-bold transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5 active:scale-95 ' +
-                (added
+              className={`flex-1 py-2.5 px-4 rounded-2xl text-xs font-bold transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5 active:scale-95 ${
+                added
                   ? 'bg-emerald-600 text-white shadow-emerald-600/20'
-                  : 'bg-brand-red hover:bg-brand-darkred text-white shadow-brand-red/20 hover:shadow-md')
-              }
+                  : 'bg-brand-red hover:bg-brand-darkred text-white shadow-brand-red/20 hover:shadow-md'
+              }`}
             >
               {added ? (
                 <>
