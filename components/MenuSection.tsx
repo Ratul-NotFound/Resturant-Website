@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Search, Utensils, X, Flame } from 'lucide-react'
+import { Search, Utensils, X } from 'lucide-react'
 import { INITIAL_MENU_ITEMS, MenuItemData } from '@/lib/data'
 import DishCard from './DishCard'
 import { useStore } from '@/lib/store'
@@ -50,12 +50,9 @@ export default function MenuSection() {
         
         {/* Section Editorial Header */}
         <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 bg-brand-red/10 border border-brand-red/20 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full mb-2 sm:mb-3 shadow-2xs">
-            <Flame className="w-3.5 h-3.5 text-brand-red fill-brand-red" />
-            <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-red">
-              Signature Menu
-            </span>
-          </div>
+          <span className="text-brand-red font-display font-extrabold text-[11px] sm:text-xs uppercase tracking-[0.22em] block mb-1.5">
+            Chef&apos;s Signature Selections
+          </span>
 
           <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
             Order Your Perfect Feast

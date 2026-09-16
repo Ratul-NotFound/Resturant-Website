@@ -71,17 +71,17 @@ export default function HeroSection() {
             {/* Left Column: Punchy Editorial Copy & Fast Actions */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left">
               
-              {/* Halal & Fresh Pill */}
+              {/* Clean Editorial Eyebrow (No generic AI pill) */}
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs font-black tracking-wider uppercase shadow-md"
+                className="flex items-center justify-center lg:justify-start gap-2.5"
               >
-                <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-                <span className="text-amber-300 font-bold">Traditional Dum &amp; Flame-Grill</span>
-                <span className="text-white/40">•</span>
-                <span className="text-white/90 font-medium">Dhaka Flagship</span>
+                <span className="h-px w-6 bg-amber-400/80 hidden sm:inline-block" />
+                <span className="font-display font-extrabold text-[11px] sm:text-xs uppercase tracking-[0.25em] text-amber-400">
+                  Wood-Fired Grill &amp; Royal Dum Handi
+                </span>
               </motion.div>
 
               {/* Main Headline */}

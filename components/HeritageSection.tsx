@@ -100,13 +100,11 @@ export default function HeritageSection() {
               }}
               className="w-36 sm:w-52 h-3.5 sm:h-4 bg-black/60 rounded-full blur-[5px] mx-auto pointer-events-none"
             />
-
-            {/* Natural Marination Seal Tag */}
-            <div className="mt-3 inline-flex items-center gap-1.5 bg-neutral-900/90 text-amber-300 text-[11px] sm:text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-400/30 shadow-xl backdrop-blur-md">
-              <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
-              <span>Slow-Dum Wood Fire Cooking</span>
-            </div>
           </div>
+
+          <span className="text-amber-400 font-display font-extrabold text-[11px] sm:text-xs uppercase tracking-[0.22em] block mb-1.5">
+            Slow-Dum Wood Fire Cooking
+          </span>
 
           <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white uppercase leading-tight">
             Crafted Fresh Upon Order
@@ -116,7 +114,7 @@ export default function HeritageSection() {
           </p>
         </div>
 
-        {/* 4 Feature Pillars (Responsive 2-col on mobile, 4-col on desktop) */}
+        {/* 4 Feature Pillars */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mt-10 sm:mt-14 max-w-5xl mx-auto text-neutral-800">
           {/* Pillar 1: 100% Halal */}
           <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-lg hover:bg-neutral-50 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl border border-neutral-100 group cursor-pointer">

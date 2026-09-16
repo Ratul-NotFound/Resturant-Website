@@ -49,12 +49,9 @@ export default function BranchLocator() {
         
         {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-10">
-          <div className="inline-flex items-center gap-1.5 bg-brand-red/10 border border-brand-red/20 px-3 py-1 rounded-full mb-2">
-            <MapPin className="w-3.5 h-3.5 text-brand-red" />
-            <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-red">
-              7 Live Outlets in Dhaka &amp; Chittagong
-            </span>
-          </div>
+          <span className="text-brand-red font-display font-extrabold text-[11px] sm:text-xs uppercase tracking-[0.22em] block mb-1.5">
+            7 Flagship Outlets in Dhaka &amp; Chittagong
+          </span>
 
           <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
             Find Your Nearest Kitchen
