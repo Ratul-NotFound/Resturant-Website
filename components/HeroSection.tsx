@@ -6,8 +6,7 @@ import {
   Flame,
   ArrowRight,
   Star,
-  Sparkles,
-  Bike,
+  Clock,
   ShieldCheck,
   Award,
   CalendarCheck,
@@ -80,9 +79,9 @@ export default function HeroSection() {
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs font-black tracking-wider uppercase shadow-md"
               >
                 <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-                <span className="text-amber-300">Authentic Taste of Dhaka</span>
-                <span className="text-neutral-400">•</span>
-                <span className="text-white/90">Dum &amp; Flame</span>
+                <span className="text-amber-300 font-bold">Traditional Dum &amp; Flame-Grill</span>
+                <span className="text-white/40">•</span>
+                <span className="text-white/90 font-medium">Dhaka Flagship</span>
               </motion.div>
 
               {/* Main Headline */}
@@ -127,7 +126,7 @@ export default function HeroSection() {
                   href="/reserve"
                   className="bg-white/10 hover:bg-white/20 active:scale-95 text-white font-bold text-xs sm:text-sm py-3.5 px-6 rounded-2xl backdrop-blur-md border border-white/20 flex items-center justify-center gap-2 transition-all"
                 >
-                  <CalendarCheck className="w-4 h-4 text-emerald-400" />
+                  <CalendarCheck className="w-4 h-4 text-amber-300" />
                   <span>Reserve Table</span>
                 </Link>
               </motion.div>
@@ -145,11 +144,11 @@ export default function HeroSection() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Star className="w-4 h-4 text-amber-400 fill-amber-400 shrink-0" />
-                  <span>4.9 / 5 (2,500+ Reviews)</span>
+                  <span>4.9 / 5.0 (2,500+ Reviews)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
-                  <span>Avg. 32m Delivery</span>
+                  <Clock className="w-4 h-4 text-amber-300 shrink-0" />
+                  <span>Avg. 32m Fast Delivery</span>
                 </div>
               </motion.div>
 
@@ -217,7 +216,7 @@ export default function HeroSection() {
                 </div>
               </motion.div>
 
-              {/* Floating Badge 2: 100% Ghee & Basmati */}
+              {/* Floating Badge 2: Pure Saffron Ghee */}
               <motion.div
                 animate={{
                   y: [0, 5, 0],
@@ -231,7 +230,7 @@ export default function HeroSection() {
                 className="absolute bottom-2 sm:bottom-6 left-0 sm:left-2 z-20 bg-neutral-900/90 border border-white/20 text-white rounded-2xl px-2.5 py-1.5 sm:px-3.5 sm:py-2 shadow-2xl backdrop-blur-md flex items-center gap-1.5 sm:gap-2 max-w-[160px] sm:max-w-none"
               >
                 <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-amber-500 flex items-center justify-center text-white shrink-0">
-                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white" />
+                  <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                 </div>
                 <div>
                   <p className="text-[8px] sm:text-[10px] text-neutral-300 font-extrabold uppercase tracking-wider">Pure Saffron Ghee</p>
@@ -245,7 +244,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* 2. Fast Category Ribbon (Responsive horizontally scrollable on mobile, grid on desktop) */}
+      {/* 2. Fast Category Ribbon */}
       <div className="flex-shrink-0 w-full bg-brand-red border-t-2 border-b-2 border-brand-darkred shadow-2xl relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-6">
           <div className="flex sm:grid sm:grid-cols-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory gap-2.5 sm:gap-6 justify-start sm:justify-center items-center">

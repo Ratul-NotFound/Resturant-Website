@@ -3,26 +3,17 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import {
-  Calendar,
-  Clock,
-  Users,
-  MapPin,
-  Sparkles,
+  CalendarCheck,
   CheckCircle2,
-  Phone,
-  User,
-  Mail,
-  Flame,
   ArrowLeft,
   Loader2,
-  CalendarCheck,
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { INITIAL_BRANCHES } from '@/lib/data'
 import { generateReservationCode } from '@/lib/utils'
 import { useStore } from '@/lib/store'
+import confetti from 'canvas-confetti'
 
 const TIME_SLOTS = [
   { time: '12:30 PM', period: 'Lunch' },
@@ -204,8 +195,8 @@ export default function ReservePage() {
             {/* Header Banner */}
             <div className="bg-gradient-to-r from-brand-dark via-neutral-900 to-brand-dark text-white p-6 sm:p-10 border-b border-neutral-800 relative overflow-hidden">
               <div className="relative z-10 max-w-2xl">
-                <span className="bg-brand-red text-white text-[11px] font-black uppercase px-3 py-1 rounded-full inline-flex items-center gap-1 mb-2 shadow-sm">
-                  <Sparkles className="w-3 h-3 text-yellow-300" />
+                <span className="bg-brand-red text-white text-[11px] font-black uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5 mb-2 shadow-sm">
+                  <CalendarCheck className="w-3.5 h-3.5 text-amber-300" />
                   Instant Table Reservation
                 </span>
                 <h1 className="font-display text-2xl sm:text-4xl font-black uppercase tracking-tight">
@@ -219,81 +210,84 @@ export default function ReservePage() {
 
             <form onSubmit={handleBookTable} className="p-6 sm:p-10 space-y-8">
               {errorMsg && (
-                <div className="p-3.5 bg-rose-50 border border-rose-200 text-rose-700 rounded-2xl text-xs font-semibold">
+                <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-2xl text-xs font-semibold">
                   {errorMsg}
                 </div>
               )}
 
-              {/* Step 1: Branch & Date */}
-              <div className="space-y-4">
+              {/* Step 1: Branch Selection */}
+              <div className="space-y-3">
                 <h2 className="text-xs font-black uppercase tracking-wider text-brand-dark flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-brand-red text-white flex items-center justify-center text-[10px]">
                     1
                   </span>
-                  Select Outlet &amp; Date
+                  Select Dining Outlet
                 </h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-bold text-neutral-700 block mb-1">
-                      Choose Branch Outlet
-                    </label>
-                    <select
-                      value={selectedBranch}
-                      onChange={(e) => setSelectedBranch(e.target.value)}
-                      className="w-full text-xs font-semibold rounded-2xl border border-neutral-300 p-3 bg-white focus:border-brand-red focus:outline-none"
-                    >
-                      {INITIAL_BRANCHES.map((b) => (
-                        <option key={b.id} value={b.name}>
-                          {b.name} ({b.area})
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-bold text-neutral-700 block mb-1">
-                      Reservation Date
-                    </label>
-                    <input
-                      type="date"
-                      required
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full text-xs font-semibold rounded-2xl border border-neutral-300 p-3 bg-white focus:border-brand-red focus:outline-none"
-                    />
-                  </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {INITIAL_BRANCHES.map((b) => {
+                    const isSelected = selectedBranch === b.name
+                    return (
+                      <div
+                        key={b.id}
+                        onClick={() => setSelectedBranch(b.name)}
+                        className={`p-4 rounded-2xl border cursor-pointer transition ${
+                          isSelected
+                            ? 'border-brand-red bg-red-50/70 shadow-sm'
+                            : 'border-neutral-200 hover:border-neutral-300'
+                        }`}
+                      >
+                        <h4 className="font-bold text-xs sm:text-sm text-brand-dark">{b.name}</h4>
+                        <p className="text-[11px] text-neutral-500 mt-1 line-clamp-1">{b.address}</p>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
 
-              {/* Step 2: Time Slots */}
+              {/* Step 2: Date & Time */}
               <div className="space-y-4">
                 <h2 className="text-xs font-black uppercase tracking-wider text-brand-dark flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-brand-red text-white flex items-center justify-center text-[10px]">
                     2
                   </span>
-                  Choose Preferred Time Slot
+                  Date &amp; Time Slot
                 </h2>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
-                  {TIME_SLOTS.map((slot) => {
-                    const isSelected = time === slot.time
-                    return (
-                      <button
-                        key={slot.time}
-                        type="button"
-                        onClick={() => setTime(slot.time)}
-                        className={`p-3 rounded-2xl border text-center transition-all ${
-                          isSelected
-                            ? 'border-brand-red bg-red-50 text-brand-red font-black shadow-sm'
-                            : 'border-neutral-200 hover:border-neutral-300 text-slate-700'
-                        }`}
-                      >
-                        <span className="block text-xs">{slot.time}</span>
-                        <span className="block text-[10px] text-neutral-400 mt-0.5">{slot.period}</span>
-                      </button>
-                    )
-                  })}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-bold text-neutral-700 block mb-1">Reservation Date</label>
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      min={new Date().toISOString().split('T')[0]}
+                      className="w-full text-xs font-semibold rounded-2xl border border-neutral-300 p-3 bg-white focus:border-brand-red focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-neutral-700 block mb-1">Available Dining Time</label>
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                      {TIME_SLOTS.map((slot) => {
+                        const isSelected = time === slot.time
+                        return (
+                          <button
+                            key={slot.time}
+                            type="button"
+                            onClick={() => setTime(slot.time)}
+                            className={`py-2 px-1 rounded-xl text-xs font-bold border transition text-center ${
+                              isSelected
+                                ? 'bg-brand-red border-brand-red text-white shadow-sm'
+                                : 'border-neutral-300 text-neutral-700 hover:bg-neutral-50'
+                            }`}
+                          >
+                            {slot.time}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
 

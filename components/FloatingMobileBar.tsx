@@ -8,11 +8,8 @@ import {
   Utensils,
   MapPin,
   CalendarCheck,
-  Bike,
-  ShoppingBag,
   ArrowRight,
-  Sparkles,
-  Phone,
+  Flame,
 } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
@@ -114,13 +111,13 @@ export default function FloatingMobileBar() {
             <span className="text-[10px] tracking-tight mt-0.5">Menu</span>
           </a>
 
-          {/* Tab 3: Mega Deal Center Tab with Radiant Highlight */}
+          {/* Tab 3: Mega Deal Center Tab */}
           <a
             href="/#mega-deal"
             className="flex flex-col items-center justify-center -mt-3.5 transition-all active:scale-95 group"
           >
             <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-red via-brand-red to-amber-500 text-white flex items-center justify-center shadow-lg shadow-brand-red/35 border-2 border-white ring-2 ring-amber-400/50 group-hover:scale-105 transition-transform">
-              <Sparkles className="w-5 h-5 animate-spin-slow" />
+              <Flame className="w-5 h-5 fill-white" />
             </div>
             <span className="text-[9px] font-black text-brand-red tracking-tight mt-0.5 uppercase">৳999 Deal</span>
           </a>
@@ -141,11 +138,11 @@ export default function FloatingMobileBar() {
             href="/reserve"
             className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all active:scale-95 ${
               isReserve
-                ? 'text-emerald-700 font-black'
+                ? 'text-brand-red font-black'
                 : 'text-neutral-500 hover:text-neutral-900 font-medium'
             }`}
           >
-            <div className={`w-6 h-6 flex items-center justify-center rounded-lg ${isReserve ? 'text-emerald-700' : ''}`}>
+            <div className={`w-6 h-6 flex items-center justify-center rounded-lg ${isReserve ? 'text-brand-red' : ''}`}>
               <CalendarCheck className="w-5 h-5" />
             </div>
             <span className="text-[10px] tracking-tight mt-0.5">Reserve</span>

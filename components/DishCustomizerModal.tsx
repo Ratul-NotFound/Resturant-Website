@@ -2,111 +2,119 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Flame, Plus, Minus, Check, Sparkles } from 'lucide-react'
+import { X, Flame, Plus, Minus, Check } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import { PortionData } from '@/lib/data'
 import { formatPrice } from '@/lib/utils'
 
 export default function DishCustomizerModal() {
-  const { customizerItem, isCustomizerOpen, closeCustomizer, addToCart } = useStore()
+  const {
+    isCustomizerOpen,
+    customizerItem,
+    closeCustomizer,
+    addToCart,
+    showToast,
+  } = useStore()
 
   const [selectedPortion, setSelectedPortion] = useState<PortionData | null>(null)
   const [selectedSpice, setSelectedSpice] = useState<string>('')
   const [selectedAddons, setSelectedAddons] = useState<{ name: string; price: number }[]>([])
-  const [instructions, setInstructions] = useState('')
   const [quantity, setQuantity] = useState(1)
+  const [instructions, setInstructions] = useState('')
 
   useEffect(() => {
     if (customizerItem) {
-      const defPortion = customizerItem.portions.find((p) => p.isDefault) || customizerItem.portions[0]
-      setSelectedPortion(defPortion)
-      if (customizerItem.spiceOptions && customizerItem.spiceOptions.length > 0) {
-        setSelectedSpice(customizerItem.spiceOptions[0])
-      } else {
-        setSelectedSpice('')
-      }
+      const def =
+        customizerItem.portions.find((p) => p.isDefault) ||
+        customizerItem.portions[0]
+      setSelectedPortion(def)
+      setSelectedSpice(
+        customizerItem.spiceOptions ? customizerItem.spiceOptions[0] : ''
+      )
       setSelectedAddons([])
-      setInstructions('')
       setQuantity(1)
+      setInstructions('')
     }
   }, [customizerItem])
 
   if (!customizerItem || !selectedPortion) return null
 
+  const addonsTotal = selectedAddons.reduce((sum, a) => sum + a.price, 0)
+  const unitPrice = selectedPortion.price + addonsTotal
+  const totalPrice = unitPrice * quantity
+
   const handleAddonToggle = (addon: { name: string; price: number }) => {
-    const exists = selectedAddons.some((a) => a.name === addon.name)
-    if (exists) {
+    if (selectedAddons.some((a) => a.name === addon.name)) {
       setSelectedAddons(selectedAddons.filter((a) => a.name !== addon.name))
     } else {
       setSelectedAddons([...selectedAddons, addon])
     }
   }
 
-  const addonsTotal = selectedAddons.reduce((sum, a) => sum + a.price, 0)
-  const unitPrice = selectedPortion.price + addonsTotal
-  const totalPrice = unitPrice * quantity
-
   const handleConfirm = () => {
     addToCart(customizerItem, selectedPortion, {
-      spiceLevel: selectedSpice || undefined,
-      addons: selectedAddons,
-      instructions: instructions.trim() || undefined,
       quantity,
+      spiceLevel: selectedSpice || undefined,
+      addons: selectedAddons.length > 0 ? selectedAddons : undefined,
+      instructions: instructions.trim() || undefined,
     })
+
+    showToast(
+      'Custom Dish Added',
+      `${customizerItem.name} (${selectedPortion.label}) customized and added to tray.`
+    )
     closeCustomizer()
   }
 
   return (
     <AnimatePresence>
       {isCustomizerOpen && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[140] flex items-center justify-center p-3 sm:p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeCustomizer}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
           />
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 20 }}
-            className="relative z-10 w-full max-w-lg max-h-[90vh] overflow-hidden rounded-3xl bg-white shadow-2xl border border-neutral-100 flex flex-col"
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            className="relative z-10 w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-neutral-100 overflow-hidden max-h-[90vh] flex flex-col"
           >
-            {/* Header with Dish Visual Banner */}
-            <div className="relative h-52 shrink-0 overflow-hidden bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 flex flex-col justify-between p-5 border-b border-neutral-800">
-              {/* Warm Spotlight Halo */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-radial from-amber-500/25 via-brand-red/15 to-transparent blur-2xl pointer-events-none" />
-
-              {/* Centered Floating 3D Transparent Food Item */}
-              <div className="relative z-10 w-32 h-32 mx-auto flex items-center justify-center">
-                <img
-                  src={customizerItem.image}
-                  alt={customizerItem.name}
-                  className="w-full h-full object-contain filter drop-shadow-[0_16px_22px_rgba(0,0,0,0.65)]"
-                />
+            {/* Modal Header */}
+            <div className="p-4 sm:p-5 border-b border-neutral-100 flex items-center justify-between bg-neutral-50/80">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 rounded-2xl bg-neutral-100 border border-neutral-200/80 p-1 flex items-center justify-center shrink-0">
+                  <img
+                    src={customizerItem.image}
+                    alt={customizerItem.name}
+                    className="w-full h-full object-contain filter drop-shadow-xs"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-display font-black text-sm sm:text-base text-neutral-900 leading-tight">
+                    {customizerItem.name}
+                  </h3>
+                  <p className="text-[11px] text-neutral-500 font-medium mt-0.5">
+                    Customize your portion, spices &amp; extra toppings
+                  </p>
+                </div>
               </div>
 
-              <div className="relative z-10">
-                <h3 className="text-xl font-display font-extrabold text-white leading-tight">
-                  {customizerItem.name}
-                </h3>
-                {customizerItem.nameBn && (
-                  <p className="text-xs text-amber-300 font-bangla mt-0.5">{customizerItem.nameBn}</p>
-                )}
-              </div>
               <button
                 onClick={closeCustomizer}
-                className="absolute top-3 right-3 bg-black/50 hover:bg-black/80 text-white rounded-full p-1.5 transition backdrop-blur-sm"
+                className="p-1.5 rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 transition"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Scrollable Customization Body */}
+            {/* Modal Body */}
             <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
               {/* Step 1: Portion Selection */}
               <div>
@@ -141,7 +149,7 @@ export default function DishCustomizerModal() {
                 </div>
               </div>
 
-              {/* Step 2: Spice Level (If applicable) */}
+              {/* Step 2: Spice Level */}
               {customizerItem.spiceOptions && customizerItem.spiceOptions.length > 0 && (
                 <div>
                   <label className="text-xs font-black uppercase tracking-wider text-brand-dark flex items-center gap-1.5">

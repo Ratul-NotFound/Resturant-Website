@@ -1,25 +1,25 @@
 'use client'
 
 import React from 'react'
-import { Star, Quote, CheckCircle2, Flame, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { Star, Flame, Quote, CheckCircle2 } from 'lucide-react'
 
 const REVIEWS_DATA = [
   {
     id: 1,
-    name: 'Rafid Al-Mamun',
-    role: 'Food Enthusiast & Vlogger',
+    name: 'Rafsan The Chotobhai',
+    role: 'Dhaka Food Guide',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     rating: 5,
-    date: '2 days ago',
-    dishName: 'Saffron Basmati Kacchi',
+    date: '3 days ago',
+    dishName: 'Royal Basmati Kacchi',
     dishImage: '/images/dishes/kacchi.png',
     comment: 'The Basmati Kacchi is legitimately one of the best in Dhaka. Tender mutton that melts effortlessly, and the flame-grilled peri chicken has that authentic open-flame smokiness you rarely find!'
   },
   {
     id: 2,
     name: 'Nusrat Jahan',
-    role: 'Banani Foodie',
+    role: 'Banani Food Enthusiast',
     avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
     rating: 5,
     date: '1 week ago',
@@ -47,22 +47,22 @@ export default function CustomerReviews() {
       id="reviews"
       data-purpose="customer-reviews-section"
     >
-      {/* Soft Warm Amber Ambient Glow */}
+      {/* Soft Warm Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Editorial Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12">
-          <div className="inline-flex items-center space-x-1.5 bg-amber-50 border border-amber-200 text-amber-900 text-[10px] sm:text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-2 sm:mb-3 shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-900 text-[10px] sm:text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-2 sm:mb-3 shadow-2xs">
             <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
             <span>4.9 / 5.0 (2,500+ Verified Guests)</span>
           </div>
 
-          <h2 className="font-display text-xl sm:text-4xl font-black text-neutral-900 tracking-tight leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl font-black text-neutral-900 tracking-tight leading-tight">
             Loved By <span className="text-brand-red">50,000+ Food Lovers</span>
           </h2>
-          <p className="text-[11px] sm:text-sm text-neutral-500 mt-1 sm:mt-2 max-w-lg mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-500 mt-1 sm:mt-2 max-w-lg mx-auto leading-relaxed">
             Real stories from patrons who relish our flame-grilled peri chicken and slow-dum royal kacchi daily.
           </p>
         </div>
@@ -76,7 +76,7 @@ export default function CustomerReviews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: idx * 0.1 }}
-              className="group relative bg-gradient-to-b from-white via-white to-amber-50/30 rounded-3xl p-4 sm:p-6 border border-neutral-200/90 hover:border-brand-red/40 shadow-sm hover:shadow-xl hover:shadow-brand-red/10 transition-all duration-300 flex flex-col justify-between w-[86vw] max-w-[340px] sm:w-auto shrink-0 snap-center select-none overflow-hidden"
+              className="group relative bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200 hover:border-brand-red/40 shadow-xs hover:shadow-xl hover:shadow-brand-red/5 transition-all duration-300 flex flex-col justify-between w-[86vw] max-w-[340px] sm:w-auto shrink-0 snap-center select-none overflow-hidden"
             >
               <div>
                 {/* Top Row: Star Rating + 3D Floating Dish Cutout */}
@@ -90,33 +90,33 @@ export default function CustomerReviews() {
                           <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
                         ))}
                       </div>
-                      <span className="text-[10px] font-black text-amber-900 bg-amber-100/90 px-1.5 py-0.2 rounded-md shadow-2xs ml-0.5">
+                      <span className="text-[10px] font-black text-amber-900 bg-amber-100/90 px-1.5 py-0.5 rounded-md shadow-2xs ml-0.5">
                         5.0
                       </span>
                     </div>
 
                     {/* Ordered Dish Chip */}
-                    <div className="inline-flex items-center gap-1 bg-neutral-900 text-white px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wide shadow-2xs">
+                    <div className="inline-flex items-center gap-1 bg-neutral-900 text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wide shadow-2xs">
                       <Flame className="w-3 h-3 text-amber-400 fill-amber-400 shrink-0" />
                       <span className="truncate">{review.dishName}</span>
                     </div>
                   </div>
 
                   {/* Right: 3D Transparent Floating Food Cutout */}
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 flex items-center justify-center -mr-1 -mt-1 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
-                    <div className="absolute inset-0 bg-radial from-amber-400/35 via-orange-500/10 to-transparent blur-md rounded-full pointer-events-none" />
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 flex items-center justify-center -mr-1 -mt-1 group-hover:scale-105 transition-transform duration-300">
+                    <div className="absolute inset-0 bg-radial from-amber-400/20 via-orange-500/5 to-transparent blur-md rounded-full pointer-events-none" />
                     <img
                       src={review.dishImage}
                       alt={review.dishName}
-                      className="max-w-full max-h-full object-contain filter drop-shadow-[0_8px_14px_rgba(0,0,0,0.3)]"
+                      className="max-w-full max-h-full object-contain filter drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]"
                     />
                   </div>
                 </div>
 
-                {/* Quote Text with Quote Watermark */}
+                {/* Quote Text */}
                 <div className="relative my-2.5">
-                  <Quote className="w-7 h-7 text-amber-400/20 absolute -top-2.5 -left-1 pointer-events-none" />
-                  <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed pl-3 italic font-medium">
+                  <Quote className="w-6 h-6 text-amber-400/20 absolute -top-2.5 -left-1 pointer-events-none" />
+                  <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed pl-3 italic font-normal">
                     &ldquo;{review.comment}&rdquo;
                   </p>
                 </div>
@@ -129,23 +129,23 @@ export default function CustomerReviews() {
                     <img
                       src={review.avatar}
                       alt={review.name}
-                      className="w-9 h-9 rounded-full object-cover border-2 border-amber-400/70 shadow-2xs"
+                      className="w-9 h-9 rounded-full object-cover border border-amber-300 shadow-2xs"
                     />
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 fill-white absolute -bottom-0.5 -right-0.5" />
                   </div>
                   <div>
-                    <h4 className="font-display font-black text-xs sm:text-sm text-neutral-900 leading-tight">
+                    <h4 className="font-display font-bold text-xs sm:text-sm text-neutral-900 leading-tight">
                       {review.name}
                     </h4>
-                    <span className="text-[10px] text-neutral-400 font-semibold block mt-0.5">
+                    <span className="text-[10px] text-neutral-400 font-medium block mt-0.5">
                       {review.role}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="text-[9px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full block shadow-2xs">
-                    ✓ Verified Diner
+                  <span className="text-[9px] font-extrabold uppercase tracking-wider text-neutral-800 bg-neutral-100 border border-neutral-200/80 px-2 py-0.5 rounded-full block shadow-2xs">
+                    Verified Guest
                   </span>
                   <span className="text-[9px] text-neutral-400 font-medium block mt-0.5">
                     {review.date}

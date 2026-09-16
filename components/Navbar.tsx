@@ -10,11 +10,9 @@ import {
   Phone,
   ShoppingBag,
   Bike,
-  UtensilsCrossed,
   Menu as MenuIcon,
   X,
   CalendarCheck,
-  Sparkles,
   ChevronDown,
   ChevronRight,
   ShieldCheck,
@@ -46,7 +44,7 @@ export default function Navbar() {
   }, [])
 
   const itemCount = mounted ? getItemCount() : 0
-  const currentBranch = mounted && selectedBranch ? selectedBranch : { name: 'Dhanmondi Branch', area: 'Dhanmondi' }
+  const currentBranch = mounted && selectedBranch ? selectedBranch : { name: 'Dhanmondi Flagship Outlet', area: 'Dhanmondi' }
   const currentMode = mounted ? fulfillmentMode : 'delivery'
 
   // Scroll listener
@@ -98,14 +96,14 @@ export default function Navbar() {
   const handleDeliveryMode = () => {
     if (currentMode !== 'delivery') {
       setFulfillmentMode('delivery')
-      showToast('Delivery Mode', 'Delivering hot & fresh to your address.')
+      showToast('Delivery Mode Active', 'Delivering hot & fresh to your doorstep.')
     }
   }
 
   const handleTakeawayMode = () => {
     if (currentMode !== 'takeaway') {
       setFulfillmentMode('takeaway')
-      showToast('Takeaway Mode', 'Pick up ready from your selected branch.')
+      showToast('Takeaway Mode Active', 'Pickup ready from your selected branch.')
     }
   }
 
@@ -117,21 +115,21 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Full-Screen Edge-to-Edge Header with Perfect 50/50 Optical Balance */}
+      {/* Edge-to-Edge Sticky Header with Optical Balance */}
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-50 w-full transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200/80'
-            : 'bg-white/90 backdrop-blur-sm border-b border-neutral-100'
+            ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-neutral-200/80'
+            : 'bg-white/90 backdrop-blur-xs border-b border-neutral-100'
         }`}
       >
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 h-16 sm:h-[72px] flex items-center justify-between relative">
           
-          {/* Left Wing: Brand Logo & Branch Outlet Selector (Optical Weight: ~300px) */}
+          {/* Left Wing: Brand Logo & Branch Outlet Selector */}
           <div className="flex items-center space-x-3 sm:space-x-4 shrink-0 z-10">
             <Link href="/" className="flex items-center space-x-2.5 group shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-brand-red to-brand-darkred flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform duration-200">
-                <Flame className="w-5 h-5 fill-white text-brand-gold" />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-brand-red to-brand-darkred flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform duration-200">
+                <Flame className="w-5 h-5 fill-white text-amber-300" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-black text-base sm:text-lg tracking-tight text-neutral-900 leading-none group-hover:text-brand-red transition-colors flex items-center gap-0.5">
@@ -156,14 +154,14 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Center: Mathematically Dead-Centered Navigation Links */}
+          {/* Center: Clean Mathematical Centered Navigation Links */}
           <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center space-x-1 xl:space-x-2 font-medium text-xs xl:text-sm text-neutral-600 z-10">
             <Link
               href="/"
-              className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 ${
+              className={`px-3.5 py-2 rounded-xl transition-all duration-150 ${
                 isHomeActive
-                  ? 'bg-neutral-900 text-white font-bold shadow-xs'
-                  : 'hover:text-neutral-950 hover:bg-neutral-100/80'
+                  ? 'text-brand-red font-bold bg-neutral-100/70'
+                  : 'hover:text-neutral-950 hover:bg-neutral-100/50'
               }`}
             >
               Home
@@ -171,64 +169,65 @@ export default function Navbar() {
 
             <Link
               href="/menu"
-              className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 ${
+              className={`px-3.5 py-2 rounded-xl transition-all duration-150 ${
                 isMenuActive
-                  ? 'bg-neutral-900 text-white font-bold shadow-xs'
-                  : 'hover:text-neutral-950 hover:bg-neutral-100/80'
+                  ? 'text-brand-red font-bold bg-neutral-100/70'
+                  : 'hover:text-neutral-950 hover:bg-neutral-100/50'
               }`}
             >
-              Menu
+              Full Menu
             </Link>
 
-            <Link
+            <a
               href="/#mega-deal"
-              className="px-3.5 py-1.5 rounded-full whitespace-nowrap text-neutral-700 hover:text-brand-red hover:bg-neutral-100/80 transition-all duration-150 flex items-center gap-1.5 group"
+              className="px-3.5 py-2 rounded-xl text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100/50 transition-all duration-150 flex items-center gap-1.5"
             >
               <span>Mega Deal</span>
-              <span className="bg-amber-100 text-amber-900 text-[10px] font-bold px-1.5 py-0.5 rounded-md group-hover:bg-brand-red group-hover:text-white transition-colors">
+              <span className="bg-brand-red text-white text-[10px] font-black px-1.5 py-0.2 rounded-full">
                 ৳999
               </span>
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/#heritage"
-              className="px-3.5 py-1.5 rounded-full whitespace-nowrap hover:text-neutral-950 hover:bg-neutral-100/80 transition-all duration-150"
+              className="px-3.5 py-2 rounded-xl text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100/50 transition-all duration-150"
             >
               Our Story
-            </Link>
+            </a>
 
             <Link
               href="/reserve"
-              className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 flex items-center gap-1.5 ${
+              className={`px-3.5 py-2 rounded-xl transition-all duration-150 flex items-center gap-1.5 ${
                 isReserveActive
-                  ? 'bg-emerald-800 text-white font-bold shadow-xs'
-                  : 'text-emerald-700 hover:text-emerald-900 hover:bg-emerald-50/70'
+                  ? 'text-brand-red font-bold bg-neutral-100/70'
+                  : 'hover:text-neutral-950 hover:bg-neutral-100/50'
               }`}
             >
-              <CalendarCheck className="w-3.5 h-3.5" />
-              <span>Reserve</span>
+              <CalendarCheck className="w-3.5 h-3.5 text-neutral-500" />
+              <span>Reserve Table</span>
             </Link>
 
             <Link
               href="/track"
-              className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 flex items-center gap-1.5 ${
+              className={`px-3.5 py-2 rounded-xl transition-all duration-150 flex items-center gap-1.5 ${
                 isTrackActive
-                  ? 'bg-neutral-900 text-white font-bold shadow-xs'
-                  : 'hover:text-neutral-950 hover:bg-neutral-100/80'
+                  ? 'text-brand-red font-bold bg-neutral-100/70'
+                  : 'hover:text-neutral-950 hover:bg-neutral-100/50'
               }`}
             >
-              <Bike className="w-3.5 h-3.5 text-brand-red" />
-              <span>Track</span>
+              <Bike className="w-3.5 h-3.5 text-neutral-500" />
+              <span>Track Order</span>
             </Link>
           </nav>
 
-          {/* Right Wing: Symmetrical Action Controls (Optical Weight: ~280px) */}
-          <div className="flex items-center justify-end space-x-2.5 sm:space-x-3 shrink-0 z-10">
-            {/* Delivery / Takeaway Switch (2XL screens) */}
-            <div className="hidden 2xl:inline-flex items-center bg-neutral-100/90 p-0.5 rounded-full border border-neutral-200/70 text-xs font-semibold">
+          {/* Right Wing: Fulfillment Selector + Cart Trigger + Mobile Toggle */}
+          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0 z-10">
+            
+            {/* Delivery / Takeaway Switcher (Desktop) */}
+            <div className="hidden sm:flex items-center bg-neutral-100 p-1 rounded-2xl border border-neutral-200/70 text-xs font-semibold">
               <button
                 onClick={handleDeliveryMode}
-                className={`px-3 py-1 rounded-full flex items-center gap-1.5 transition-all duration-150 ${
+                className={`px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all duration-150 ${
                   currentMode === 'delivery'
                     ? 'bg-white text-neutral-900 shadow-xs font-bold'
                     : 'text-neutral-500 hover:text-neutral-900'
@@ -238,9 +237,10 @@ export default function Navbar() {
                 <Bike className="w-3.5 h-3.5 text-brand-red" />
                 <span>Delivery</span>
               </button>
+
               <button
                 onClick={handleTakeawayMode}
-                className={`px-3 py-1 rounded-full flex items-center gap-1.5 transition-all duration-150 ${
+                className={`px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all duration-150 ${
                   currentMode === 'takeaway'
                     ? 'bg-white text-neutral-900 shadow-xs font-bold'
                     : 'text-neutral-500 hover:text-neutral-900'
@@ -252,79 +252,78 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Quick Hotline Call Link */}
+            {/* Hotline Quick Call */}
             <a
               href="tel:16588"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-neutral-700 hover:text-brand-red px-3 py-1.5 rounded-xl hover:bg-neutral-100 transition-colors"
+              className="hidden 2xl:flex items-center space-x-1.5 text-xs font-bold text-neutral-700 bg-neutral-50 hover:bg-neutral-100 px-3 py-2 rounded-xl border border-neutral-200/60 transition"
+              title="Call 24/7 Hotline"
             >
               <Phone className="w-3.5 h-3.5 text-brand-red" />
               <span>16588</span>
             </a>
 
-            {/* Cart Tray Button (Primary Luxury CTA) */}
+            {/* Cart Drawer Trigger Button */}
             <button
               onClick={() => setCartOpen(true)}
-              className="relative bg-brand-red hover:bg-brand-darkred text-white text-xs sm:text-sm font-bold py-2 sm:py-2.5 px-4 sm:px-5 rounded-full shadow-md shadow-brand-red/20 hover:shadow-lg hover:shadow-brand-red/30 transition-all transform hover:scale-[1.03] active:scale-[0.97] flex items-center gap-2 shrink-0 group"
+              className="relative p-2.5 sm:px-4 sm:py-2.5 rounded-2xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm flex items-center space-x-2 transition-all duration-150 shadow-xs active:scale-95"
               type="button"
-              aria-label="Open food tray"
+              aria-label="Open Cart Tray"
             >
-              <UtensilsCrossed className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
-              <span>Tray</span>
-              {itemCount > 0 ? (
+              <ShoppingBag className="w-4 h-4 text-amber-300" />
+              <span className="hidden sm:inline">Tray</span>
+              {itemCount > 0 && (
                 <span
-                  className={`bg-white text-brand-red text-[11px] font-black min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center shadow-xs ${
+                  className={`w-5 h-5 rounded-full bg-brand-red text-white text-[11px] font-black flex items-center justify-center shadow-xs ${
                     bumpBadge ? 'cart-badge-bump' : ''
                   }`}
                 >
                   {itemCount}
                 </span>
-              ) : (
-                <span className="text-[11px] font-medium opacity-70">0</span>
               )}
             </button>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Hamburger Drawer Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-neutral-700 hover:text-neutral-950 rounded-xl bg-neutral-100 hover:bg-neutral-200/80 transition-colors"
-              aria-label="Toggle navigation menu"
-              aria-expanded={isMobileMenuOpen}
+              className="lg:hidden p-2.5 rounded-2xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition active:scale-95 border border-neutral-200/80"
               type="button"
+              aria-label="Toggle Mobile Navigation Drawer"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5 text-brand-red" /> : <MenuIcon className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <MenuIcon className="w-5 h-5" />}
             </button>
+
           </div>
         </div>
 
-        {/* Full-Screen Mobile Drawer */}
+        {/* Mobile Navigation Drawer Modal (Clean Editorial Aesthetic) */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <>
-              {/* Full-Screen Backdrop */}
+              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
+                transition={{ duration: 0.2 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 top-[64px] sm:top-[72px] bg-black/40 backdrop-blur-xs z-30 lg:hidden"
+                className="fixed inset-0 top-16 sm:top-[72px] bg-black/50 backdrop-blur-xs z-40 lg:hidden"
               />
 
-              {/* Full-Width Drawer Body */}
+              {/* Drawer Container */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="relative z-40 lg:hidden w-full border-t border-neutral-100 bg-white px-4 pt-4 pb-6 space-y-4 shadow-2xl max-h-[calc(100vh-72px)] overflow-y-auto"
+                className="fixed top-16 sm:top-[72px] left-0 right-0 bg-white border-b border-neutral-200/90 shadow-2xl z-50 lg:hidden px-4 py-5 space-y-4 max-h-[85vh] overflow-y-auto"
               >
-                {/* Fulfillment Switcher in Mobile Drawer */}
-                <div className="flex bg-neutral-100 p-1 rounded-2xl text-xs font-bold border border-neutral-200/80">
+                {/* Mobile Fulfillment Mode Switcher */}
+                <div className="flex items-center bg-neutral-100 p-1 rounded-2xl border border-neutral-200 text-xs font-semibold">
                   <button
                     onClick={handleDeliveryMode}
                     className={`flex-1 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
                       currentMode === 'delivery'
-                        ? 'bg-white text-brand-dark shadow-xs font-bold'
+                        ? 'bg-white text-neutral-900 shadow-xs font-bold'
                         : 'text-neutral-500 hover:text-neutral-900'
                     }`}
                     type="button"
@@ -336,7 +335,7 @@ export default function Navbar() {
                     onClick={handleTakeawayMode}
                     className={`flex-1 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
                       currentMode === 'takeaway'
-                        ? 'bg-white text-brand-dark shadow-xs font-bold'
+                        ? 'bg-white text-neutral-900 shadow-xs font-bold'
                         : 'text-neutral-500 hover:text-neutral-900'
                     }`}
                     type="button"
@@ -377,13 +376,15 @@ export default function Navbar() {
                   <Link
                     href="/#mega-deal"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-3 rounded-2xl border border-amber-200 bg-amber-50/70 text-amber-950 transition flex items-center justify-between col-span-2 sm:col-span-1"
+                    className="p-3 rounded-2xl border border-neutral-200/80 bg-neutral-50 hover:bg-neutral-100 text-neutral-900 transition flex items-center justify-between col-span-2 sm:col-span-1 group"
                   >
-                    <span className="flex items-center gap-1.5 font-bold text-brand-red">
-                      <Sparkles className="w-4 h-4 text-amber-500" />
-                      Mega Deal (৳999)
+                    <span className="flex items-center gap-2 font-bold">
+                      <Flame className="w-4 h-4 text-brand-red shrink-0" />
+                      <span>Mega Deal Platter</span>
                     </span>
-                    <ChevronRight className="w-4 h-4 opacity-40" />
+                    <span className="bg-brand-red text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+                      ৳999
+                    </span>
                   </Link>
 
                   <Link
@@ -391,9 +392,9 @@ export default function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-3 rounded-2xl border border-neutral-200/80 bg-neutral-50 text-neutral-800 hover:bg-neutral-100 transition flex items-center justify-between col-span-2 sm:col-span-1"
                   >
-                    <span className="flex items-center gap-1.5">
-                      <BookOpen className="w-4 h-4 text-neutral-400" />
-                      Our Story
+                    <span className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-neutral-500" />
+                      <span>Our Story</span>
                     </span>
                     <ChevronRight className="w-4 h-4 opacity-40" />
                   </Link>
@@ -403,13 +404,13 @@ export default function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`p-3 rounded-2xl border transition flex items-center justify-between ${
                       isReserveActive
-                        ? 'border-emerald-800 bg-emerald-800 text-white font-bold'
-                        : 'border-emerald-200 bg-emerald-50/50 text-emerald-900 hover:bg-emerald-100'
+                        ? 'border-neutral-900 bg-neutral-900 text-white font-bold'
+                        : 'border-neutral-200/80 bg-neutral-50 text-neutral-800 hover:bg-neutral-100'
                     }`}
                   >
-                    <span className="flex items-center gap-1.5">
-                      <CalendarCheck className="w-4 h-4 text-emerald-600" />
-                      Reserve Table
+                    <span className="flex items-center gap-2">
+                      <CalendarCheck className="w-4 h-4 text-neutral-600" />
+                      <span>Reserve Table</span>
                     </span>
                     <ChevronRight className="w-4 h-4 opacity-40" />
                   </Link>
@@ -423,9 +424,9 @@ export default function Navbar() {
                         : 'border-neutral-200/80 bg-neutral-50 text-neutral-800 hover:bg-neutral-100'
                     }`}
                   >
-                    <span className="flex items-center gap-1.5">
+                    <span className="flex items-center gap-2">
                       <Bike className="w-4 h-4 text-brand-red" />
-                      Track Order
+                      <span>Track Order</span>
                     </span>
                     <ChevronRight className="w-4 h-4 opacity-40" />
                   </Link>

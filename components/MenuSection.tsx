@@ -1,19 +1,19 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Search, Sparkles, Utensils, X, Flame } from 'lucide-react'
+import { Search, Utensils, X, Flame } from 'lucide-react'
 import { INITIAL_MENU_ITEMS, MenuItemData } from '@/lib/data'
 import DishCard from './DishCard'
 import { useStore } from '@/lib/store'
 
 const CATEGORIES = [
-  { id: 'all', name: 'All Dishes' },
-  { id: 'popular', name: '🔥 Bestsellers' },
+  { id: 'all', name: 'All Delicacies' },
+  { id: 'popular', name: 'Bestsellers' },
   { id: 'kacchi', name: 'Royal Kacchi' },
   { id: 'tehari', name: 'Old Dhaka Tehari' },
   { id: 'grilled', name: 'Flame Peri Chicken' },
   { id: 'platters', name: 'Mega Feasts' },
-  { id: 'sides', name: 'Sides & Starters' },
+  { id: 'sides', name: 'Sides & Fries' },
   { id: 'drinks', name: 'Drinks & Desserts' },
 ]
 
@@ -22,7 +22,7 @@ export default function MenuSection() {
   const [searchQuery, setSearchQuery] = useState('')
   const { showToast } = useStore()
 
-  const handleCategoryChange = (catId: string, name: string) => {
+  const handleCategoryChange = (catId: string) => {
     setActiveCategory(catId)
   }
 
@@ -46,21 +46,21 @@ export default function MenuSection() {
       data-purpose="menu-section"
       id="portion-section"
     >
-      <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Section Editorial Header */}
         <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 bg-brand-red/10 border border-brand-red/20 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full mb-2 sm:mb-3 shadow-xs">
-            <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-brand-red" />
+          <div className="inline-flex items-center gap-1.5 bg-brand-red/10 border border-brand-red/20 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full mb-2 sm:mb-3 shadow-2xs">
+            <Flame className="w-3.5 h-3.5 text-brand-red fill-brand-red" />
             <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-red">
-              Portion-Engine Menu
+              Signature Menu
             </span>
           </div>
 
-          <h2 className="font-display text-xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight">
             Order Your Perfect Feast
           </h2>
-          <p className="text-[11px] sm:text-base text-neutral-500 mt-1 sm:mt-2 max-w-lg mx-auto">
+          <p className="text-xs sm:text-base text-neutral-500 mt-1 sm:mt-2 max-w-lg mx-auto font-normal">
             Choose exact portions from Single Quarter to 4-Person Feasts with real-time dynamic pricing.
           </p>
         </div>
@@ -75,11 +75,11 @@ export default function MenuSection() {
               return (
                 <button
                   key={cat.id}
-                  onClick={() => handleCategoryChange(cat.id, cat.name)}
+                  onClick={() => handleCategoryChange(cat.id)}
                   type="button"
-                  className={`px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[11px] sm:text-sm font-bold whitespace-nowrap snap-start transition-all duration-200 border shrink-0 ${
+                  className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap snap-start transition-all duration-150 border shrink-0 ${
                     isActive
-                      ? 'bg-neutral-900 text-white border-neutral-900 shadow-md shadow-neutral-900/20 scale-[1.02]'
+                      ? 'bg-neutral-900 text-white border-neutral-900 shadow-xs'
                       : 'bg-white text-neutral-700 hover:bg-neutral-100 border-neutral-200/80 hover:border-neutral-300'
                   }`}
                 >
@@ -92,28 +92,28 @@ export default function MenuSection() {
           {/* Search Bar & Dish Counter */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-0.5">
             <div className="relative flex-1 max-w-md">
-              <Search className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-neutral-400 absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search dishes (e.g. Kacchi, Wings, Fries)..."
-                className="w-full bg-white pl-8 sm:pl-9 pr-8 sm:pr-9 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition shadow-2xs"
+                placeholder="Search dishes (e.g. Kacchi, Chicken, Fries)..."
+                className="w-full bg-white pl-9 pr-9 py-2.5 rounded-xl sm:rounded-2xl border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition shadow-2xs"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
                   type="button"
-                  className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700"
                 >
-                  <X className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                  <X className="w-4 h-4" />
                 </button>
               )}
             </div>
 
             <div className="text-left sm:text-right">
-              <span className="text-[11px] sm:text-xs font-semibold text-neutral-500">
-                Showing <strong className="text-neutral-900">{filteredDishes.length}</strong> delicious delicacies
+              <span className="text-xs font-medium text-neutral-500">
+                Showing <strong className="text-neutral-900 font-bold">{filteredDishes.length}</strong> delicacies
               </span>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function MenuSection() {
 
         {/* 2-Column Mobile Grid -> Multi-Column Tablet/Desktop */}
         {filteredDishes.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-5 lg:gap-6">
             {filteredDishes.map((dish) => (
               <DishCard key={dish.id} item={dish} />
             ))}
@@ -132,7 +132,7 @@ export default function MenuSection() {
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-red/10 text-brand-red flex items-center justify-center mx-auto mb-3">
               <Utensils className="w-6 h-6 sm:w-7 sm:h-7" />
             </div>
-            <h3 className="font-display font-black text-base sm:text-lg text-neutral-900">No dishes found</h3>
+            <h3 className="font-display font-bold text-base sm:text-lg text-neutral-900">No dishes found</h3>
             <p className="text-xs text-neutral-500 mt-1">
               Try searching for something else or pick from the category tabs above.
             </p>

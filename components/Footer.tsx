@@ -7,12 +7,9 @@ import {
   Phone,
   Mail,
   Clock,
-  MapPin,
   Facebook,
   Instagram,
   Youtube,
-  ShieldAlert,
-  CalendarCheck,
 } from 'lucide-react'
 
 export default function Footer() {
@@ -25,12 +22,12 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-3.5">
             <Link href="/" className="flex items-center space-x-2 text-white font-display font-black text-xl sm:text-2xl tracking-tight">
               <span className="text-brand-red">
-                <Flame className="w-6 h-6 fill-brand-red animate-pulse" />
+                <Flame className="w-6 h-6 fill-brand-red" />
               </span>
               <span>FLAME &amp; FEAST</span>
             </Link>
 
-            <p className="text-neutral-400 text-xs sm:text-sm max-w-sm leading-relaxed">
+            <p className="text-neutral-400 text-xs sm:text-sm max-w-sm leading-relaxed font-normal">
               The culinary synthesis of flame-grilled peri chicken and authentic royal kacchi biryani. Fresh, fiery, and deeply comforting across Dhaka &amp; Chittagong.
             </p>
 
@@ -67,10 +64,10 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-2.5">
-            <h4 className="font-display font-black text-white text-xs uppercase tracking-wider">
+            <h4 className="font-display font-bold text-white text-xs uppercase tracking-wider">
               Quick Links
             </h4>
-            <ul className="space-y-1.5 text-xs">
+            <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/" className="hover:text-white transition">Home</Link>
               </li>
@@ -78,42 +75,42 @@ export default function Footer() {
                 <Link href="/menu" className="hover:text-white transition">Full Menu</Link>
               </li>
               <li>
-                <a href="/#mega-deal" className="hover:text-yellow-400 transition text-yellow-300 font-bold">Mega Deal (৳999)</a>
+                <a href="/#mega-deal" className="hover:text-amber-300 transition text-amber-400 font-semibold">Mega Deal (৳999)</a>
               </li>
               <li>
                 <a href="/#heritage" className="hover:text-white transition">Our Heritage Story</a>
               </li>
               <li>
-                <Link href="/reserve" className="hover:text-emerald-400 text-emerald-400 font-semibold transition">Book a Table</Link>
+                <Link href="/reserve" className="hover:text-white transition">Reserve a Table</Link>
               </li>
             </ul>
           </div>
 
           {/* Strategic Outlets */}
           <div className="space-y-2.5">
-            <h4 className="font-display font-black text-white text-xs uppercase tracking-wider">
+            <h4 className="font-display font-bold text-white text-xs uppercase tracking-wider">
               Strategic Outlets
             </h4>
-            <ul className="space-y-1 text-xs">
+            <ul className="space-y-1.5 text-xs">
               <li>Dhanmondi (Satmasjid Rd)</li>
-              <li>Gulshan-2 (Madani Ave)</li>
+              <li>Gulshan 2 (Pink City)</li>
               <li>Banani (Road 11)</li>
               <li>Uttara (Sector 7)</li>
-              <li>Mirpur-10</li>
-              <li>Bailey Road</li>
+              <li>Mirpur 10</li>
+              <li>Nazira Bazar (Old Dhaka)</li>
               <li>Chittagong (GEC Circle)</li>
             </ul>
           </div>
 
           {/* Hotline & Contact */}
           <div className="space-y-2.5">
-            <h4 className="font-display font-black text-white text-xs uppercase tracking-wider">
-              24/7 Support
+            <h4 className="font-display font-bold text-white text-xs uppercase tracking-wider">
+              24/7 Hotline &amp; Support
             </h4>
             <div className="space-y-2 text-xs">
               <a
                 href="tel:16588"
-                className="inline-flex items-center gap-2 bg-brand-red/20 border border-brand-red/40 text-brand-red px-3 py-2 rounded-xl font-bold hover:bg-brand-red hover:text-white transition w-full"
+                className="inline-flex items-center gap-2 bg-brand-red/15 border border-brand-red/30 text-brand-red px-3 py-2 rounded-xl font-bold hover:bg-brand-red hover:text-white transition w-full"
               >
                 <Phone className="w-4 h-4 shrink-0" />
                 <span>Hotline: 16588</span>
@@ -121,7 +118,7 @@ export default function Footer() {
 
               <p className="flex items-center space-x-2 text-neutral-400">
                 <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>11:00 AM – 11:30 PM (Daily)</span>
+                <span>11:00 AM - 11:30 PM (Daily)</span>
               </p>
 
               <p className="flex items-center space-x-2 text-neutral-400">
@@ -135,7 +132,7 @@ export default function Footer() {
 
         {/* Bottom copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-3">
-          <p>© {new Date().getFullYear()} Flame &amp; Feast Inc. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Flame &amp; Feast. All rights reserved.</p>
           <div className="flex items-center space-x-4">
             <Link href="/admin" className="text-neutral-500 hover:text-neutral-300 transition">
               Staff Portal

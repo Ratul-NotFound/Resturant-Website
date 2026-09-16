@@ -1,10 +1,16 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Plus, Check, SlidersHorizontal, Flame } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Flame,
+  Plus,
+  Check,
+  SlidersHorizontal,
+} from 'lucide-react'
 import { MenuItemData, PortionData } from '@/lib/data'
 import { useStore } from '@/lib/store'
+import confetti from 'canvas-confetti'
 
 interface DishCardProps {
   item: MenuItemData
@@ -12,9 +18,11 @@ interface DishCardProps {
 
 export default function DishCard({ item }: DishCardProps) {
   const { addToCart, openCustomizer, showToast } = useStore()
-  const [selectedPortion, setSelectedPortion] = useState<PortionData>(
-    item.portions[0] || { label: 'Regular', serves: '1 Person', price: 0 }
-  )
+  
+  // Default selected portion
+  const defaultPortion =
+    item.portions.find((p) => p.isDefault) || item.portions[0]
+  const [selectedPortion, setSelectedPortion] = useState<PortionData>(defaultPortion)
   const [added, setAdded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -25,37 +33,46 @@ export default function DishCard({ item }: DishCardProps) {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation()
+
+    // Trigger subtle food confetti on desktop
+    if (typeof window !== 'undefined' && window.innerWidth > 768) {
+      confetti({
+        particleCount: 25,
+        spread: 45,
+        origin: { y: 0.8 },
+      })
+    }
+
     addToCart(item, selectedPortion, { quantity: 1 })
     showToast(
-      'Added to Feast Tray',
-      `${item.name} (${selectedPortion.label}) added for ৳${selectedPortion.price}`
+      'Added to Tray',
+      `${item.name} (${selectedPortion.label}) added to your feast tray.`
     )
+
     setAdded(true)
     setTimeout(() => setAdded(false), 1200)
   }
 
-  const hasCustomizer = (item.spiceOptions && item.spiceOptions.length > 0) || (item.addons && item.addons.length > 0)
+  const hasCustomizer =
+    (item.spiceOptions && item.spiceOptions.length > 0) ||
+    (item.addons && item.addons.length > 0)
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-20px' }}
-      transition={{ duration: 0.35 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/80 hover:border-brand-red/40 shadow-xs hover:shadow-xl hover:shadow-brand-red/5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
-      data-dish={item.name}
+      className="group relative bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/80 hover:border-brand-red/50 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer"
+      data-purpose="dish-card"
     >
-      {/* 1. 3D Food Stage (Scaled for 2-column mobile and multi-column desktop) */}
-      <div className="relative w-full h-32 sm:h-48 md:h-56 bg-gradient-to-b from-neutral-50 via-neutral-100/40 to-white flex flex-col items-center justify-center p-2 sm:p-3 pt-2.5 sm:pt-4">
+      {/* 1. 3D Food Stage Background */}
+      <div className="relative h-32 sm:h-48 md:h-52 bg-gradient-to-b from-[#F9F7F5] via-[#F4EFEA] to-[#EFEAE4] flex items-center justify-center overflow-hidden border-b border-neutral-100">
         
-        {/* Soft Warm Backlight Spotlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 sm:w-44 h-28 sm:h-44 rounded-full bg-radial from-amber-400/15 via-orange-500/5 to-transparent blur-lg sm:blur-xl opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
+        {/* Soft Radial Ambient Spotlight on Hover */}
+        <div className="absolute inset-0 bg-radial from-amber-400/20 via-brand-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-        {/* Top Left: Bestseller / Category Tag */}
+        {/* Top Left: Bestseller / Signature Tag */}
         {item.tag && (
-          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-20">
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-20 pointer-events-none">
             <span className="inline-flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-neutral-900/90 backdrop-blur-md text-white border border-white/20 shadow-2xs">
               <Flame className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-amber-400 fill-amber-400 shrink-0" />
               <span className="truncate max-w-[65px] sm:max-w-none">{item.tag}</span>
@@ -116,7 +133,7 @@ export default function DishCard({ item }: DishCardProps) {
           {/* Header Row: Title & Dynamic Price */}
           <div className="flex items-start justify-between gap-1 sm:gap-2">
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-black text-xs sm:text-base text-neutral-900 group-hover:text-brand-red transition-colors leading-tight line-clamp-1 sm:line-clamp-2">
+              <h3 className="font-display font-bold text-xs sm:text-base text-neutral-900 group-hover:text-brand-red transition-colors leading-tight line-clamp-1 sm:line-clamp-2">
                 {item.name}
               </h3>
               {item.nameBn && (
@@ -146,7 +163,7 @@ export default function DishCard({ item }: DishCardProps) {
             </div>
           </div>
 
-          {/* 2-Line Description (Visible on tablets/desktops, subtle on mobile) */}
+          {/* 2-Line Description */}
           <p className="hidden sm:block text-xs text-neutral-500 line-clamp-2 leading-relaxed mt-1.5 font-normal">
             {item.description}
           </p>

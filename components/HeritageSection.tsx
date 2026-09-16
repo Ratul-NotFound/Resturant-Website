@@ -2,25 +2,27 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Clock, Flame, Utensils, ShieldCheck, Sparkles } from 'lucide-react'
+import { Clock, Flame, Utensils, ShieldCheck } from 'lucide-react'
 
 export default function HeritageSection() {
   return (
     <section
-      className="relative bg-brand-dark text-white pt-16 sm:pt-24 pb-16 sm:pb-20 overflow-hidden"
-      data-purpose="heritage-feature"
+      className="py-12 sm:py-24 bg-brand-dark text-white relative overflow-hidden"
+      data-purpose="heritage-story-section"
       id="heritage"
     >
-      {/* Top Ambient Glow */}
-      <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#FFF9F6] to-transparent opacity-10 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-80 sm:w-96 h-80 sm:h-96 bg-brand-red/15 rounded-full blur-[140px] pointer-events-none" />
+      {/* Dynamic Background Fire Particles / Glow */}
+      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-brand-red/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-64 sm:w-80 h-64 sm:h-80 bg-amber-500/15 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Central 3D Floating Masterpiece Showcase */}
-        <div className="text-center max-w-3xl mx-auto">
+        {/* Section Header with 3D Dish Hero */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
           
-          <div className="relative inline-block mx-auto mb-6 sm:mb-8 group select-none">
+          {/* Floating Food Hero Stage */}
+          <div className="relative mb-6 sm:mb-10 group select-none">
+            
             {/* Ambient Golden Radial Halo */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 sm:w-80 sm:h-80 rounded-full bg-radial from-amber-500/30 via-orange-600/15 to-transparent blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -100,9 +102,9 @@ export default function HeritageSection() {
             />
 
             {/* Natural Marination Seal Tag */}
-            <div className="mt-3 inline-flex items-center gap-1.5 bg-emerald-800/90 text-emerald-100 text-[11px] sm:text-xs font-bold px-3.5 py-1.5 rounded-full border border-emerald-400 shadow-xl backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-              <span>100% Natural Slow-Dum Fire Cooking</span>
+            <div className="mt-3 inline-flex items-center gap-1.5 bg-neutral-900/90 text-amber-300 text-[11px] sm:text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-400/30 shadow-xl backdrop-blur-md">
+              <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
+              <span>Slow-Dum Wood Fire Cooking</span>
             </div>
           </div>
 
