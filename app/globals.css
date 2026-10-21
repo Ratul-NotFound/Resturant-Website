@@ -91,6 +91,10 @@ body {
   scrollbar-width: none;
 }
 
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;

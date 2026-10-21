@@ -245,9 +245,12 @@ export default function HeroSection() {
       </div>
 
       {/* 2. Fast Category Ribbon */}
-      <div className="flex-shrink-0 w-full bg-brand-red border-t-2 border-b-2 border-brand-darkred shadow-2xl relative z-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-6">
-          <div className="flex sm:grid sm:grid-cols-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory gap-2.5 sm:gap-6 justify-start sm:justify-center items-center">
+      <div className="flex-shrink-0 w-full bg-brand-red border-t-2 border-b-2 border-brand-darkred shadow-2xl relative z-20 overflow-visible">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-6 relative">
+          {/* Mobile Right Edge Gradient Fade Indicator */}
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-red to-transparent pointer-events-none sm:hidden z-30" />
+
+          <div className="flex sm:grid sm:grid-cols-6 overflow-x-auto sm:overflow-visible no-scrollbar scroll-smooth snap-x snap-mandatory gap-2.5 sm:gap-6 justify-start sm:justify-center items-center py-2 sm:py-0">
             {CATEGORY_RIBBON.map((cat, idx) => {
               const tiltAngle = idx % 2 === 0 ? -10 : 10
               return (
