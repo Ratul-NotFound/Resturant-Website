@@ -37,6 +37,38 @@ const DEAL_CUTOUTS = [
 export default function MegaDealBanner() {
   const { addToCart, showToast } = useStore()
   const [added, setAdded] = useState(false)
+  const [timeLeft, setTimeLeft] = useState<{ hours: string; minutes: string; seconds: string }>({
+    hours: '04',
+    minutes: '42',
+    seconds: '18',
+  })
+
+  // Real-time ticking countdown to midnight
+  React.useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date()
+      const endOfDay = new Date()
+      endOfDay.setHours(23, 59, 59, 999)
+      const diff = endOfDay.getTime() - now.getTime()
+      if (diff <= 0) {
+        return { hours: '00', minutes: '00', seconds: '00' }
+      }
+      const h = Math.floor(diff / (1000 * 60 * 60))
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      const s = Math.floor((diff % (1000 * 60)) / 1000)
+      return {
+        hours: String(h).padStart(2, '0'),
+        minutes: String(m).padStart(2, '0'),
+        seconds: String(s).padStart(2, '0'),
+      }
+    }
+
+    setTimeLeft(calculateTimeLeft())
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft())
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   const handleGrabDeal = () => {
     confetti({
@@ -83,9 +115,17 @@ export default function MegaDealBanner() {
           
           {/* Left Pricing & Content */}
           <div className="lg:col-span-5 text-center lg:text-left">
-            <div className="inline-flex items-center space-x-1.5 bg-amber-400 text-neutral-950 px-3 py-1 rounded-md text-[10px] sm:text-xs font-black uppercase mb-2.5 sm:mb-4 tracking-wider shadow-xs">
-              <Flame className="w-3.5 h-3.5 fill-brand-red text-brand-red shrink-0" />
-              <span>Limited Time Mega Deal</span>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-2.5 sm:mb-4">
+              <div className="inline-flex items-center space-x-1.5 bg-amber-400 text-neutral-950 px-3 py-1 rounded-md text-[10px] sm:text-xs font-black uppercase tracking-wider shadow-xs">
+                <Flame className="w-3.5 h-3.5 fill-brand-red text-brand-red shrink-0" />
+                <span>Limited Time Mega Deal</span>
+              </div>
+
+              {/* Live Ticking Countdown Clock */}
+              <div className="inline-flex items-center space-x-1.5 bg-black/40 border border-amber-400/40 text-amber-300 px-3 py-1 rounded-md text-[10px] sm:text-xs font-mono font-bold tracking-widest backdrop-blur-md">
+                <Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse shrink-0" />
+                <span>ENDS IN {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}</span>
+              </div>
             </div>
 
             <div className="border-2 sm:border-4 border-white p-3.5 sm:p-5 rounded-2xl bg-[#A10C22] inline-block w-full transition-transform hover:scale-[1.01] duration-300 shadow-xl">

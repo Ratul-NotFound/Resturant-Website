@@ -62,59 +62,61 @@ export default function MenuSection() {
           </p>
         </div>
 
-        {/* Filter & Search Bar Container */}
-        <div className="mb-4 sm:mb-10 space-y-2.5 sm:space-y-3.5">
-          
-          {/* Horizontal Scrolling Category Pills Rail */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth snap-x pb-1.5 pt-1">
-            {CATEGORIES.map((cat) => {
-              const isActive = activeCategory === cat.id
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => handleCategoryChange(cat.id)}
-                  type="button"
-                  className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap snap-start transition-all duration-150 border shrink-0 ${
-                    isActive
-                      ? 'bg-neutral-900 text-white border-neutral-900 shadow-xs'
-                      : 'bg-white text-neutral-700 hover:bg-neutral-100 border-neutral-200/80 hover:border-neutral-300'
-                  }`}
-                >
-                  {cat.name}
-                </button>
-              )
-            })}
+        {/* Search Bar & Dish Counter */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 mb-4 sm:mb-6">
+          <div className="relative flex-1 max-w-md">
+            <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search dishes (e.g. Kacchi, Chicken, Fries)..."
+              className="w-full bg-white pl-9 pr-9 py-2.5 rounded-xl sm:rounded-2xl border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition shadow-2xs"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                type="button"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
-          {/* Search Bar & Dish Counter */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-0.5">
-            <div className="relative flex-1 max-w-md">
-              <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search dishes (e.g. Kacchi, Chicken, Fries)..."
-                className="w-full bg-white pl-9 pr-9 py-2.5 rounded-xl sm:rounded-2xl border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition shadow-2xs"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  type="button"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
+          <div className="text-left sm:text-right">
+            <span className="text-xs font-medium text-neutral-500">
+              Showing <strong className="text-neutral-900 font-bold">{filteredDishes.length}</strong> delicacies
+            </span>
+          </div>
+        </div>
 
-            <div className="text-left sm:text-right">
-              <span className="text-xs font-medium text-neutral-500">
-                Showing <strong className="text-neutral-900 font-bold">{filteredDishes.length}</strong> delicacies
-              </span>
+        {/* Sticky Horizontal Scrolling Category Pills Rail with Mobile Edge Fade */}
+        <div className="sticky top-14 sm:top-16 z-30 bg-[#FCFBFA]/95 backdrop-blur-md py-2.5 mb-5 sm:mb-8 -mx-3 sm:-mx-6 lg:-mx-8 px-3 sm:px-6 lg:px-8 border-b border-neutral-200/60 shadow-xs">
+          <div className="relative max-w-7xl mx-auto">
+            {/* Mobile Right Edge Gradient Fade */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#FCFBFA] to-transparent pointer-events-none sm:hidden z-10" />
+
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth snap-x pb-0.5 pt-0.5">
+              {CATEGORIES.map((cat) => {
+                const isActive = activeCategory === cat.id
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleCategoryChange(cat.id)}
+                    type="button"
+                    className={`px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap snap-start transition-all duration-150 border shrink-0 ${
+                      isActive
+                        ? 'bg-neutral-900 text-white border-neutral-900 shadow-xs'
+                        : 'bg-white text-neutral-700 hover:bg-neutral-100 border-neutral-200/80 hover:border-neutral-300'
+                    }`}
+                  >
+                    {cat.name}
+                  </button>
+                )
+              })}
             </div>
           </div>
-
         </div>
 
         {/* 2-Column Mobile Grid -> Multi-Column Tablet/Desktop */}
