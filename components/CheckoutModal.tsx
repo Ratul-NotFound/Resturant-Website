@@ -44,10 +44,25 @@ export default function CheckoutModal() {
   const [phone, setPhone] = useState('')
   const [address, setAddress] = useState('')
   const [notes, setNotes] = useState('')
+  const [saveDetails, setSaveDetails] = useState(true)
   const [paymentMethod, setPaymentMethod] = useState<'COD' | 'BKASH' | 'NAGAD' | 'CARD'>('COD')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [confirmedOrder, setConfirmedOrder] = useState<any | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
+
+  // Pre-fill from localStorage for returning food lovers
+  React.useEffect(() => {
+    try {
+      const savedName = localStorage.getItem('flame_customer_name')
+      const savedPhone = localStorage.getItem('flame_customer_phone')
+      const savedAddress = localStorage.getItem('flame_customer_address')
+      if (savedName) setName(savedName)
+      if (savedPhone) setPhone(savedPhone)
+      if (savedAddress) setAddress(savedAddress)
+    } catch {
+      // localStorage unavailable or restricted
+    }
+  }, [])
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -114,6 +129,19 @@ export default function CheckoutModal() {
         spread: 70,
         origin: { y: 0.6 },
       })
+
+      // Persist customer profile if requested
+      if (saveDetails) {
+        try {
+          localStorage.setItem('flame_customer_name', name.trim())
+          localStorage.setItem('flame_customer_phone', phone.trim())
+          if (address.trim()) {
+            localStorage.setItem('flame_customer_address', address.trim())
+          }
+        } catch {
+          // ignore
+        }
+      }
 
       setConfirmedOrder(data.order)
       clearCart()
@@ -268,6 +296,19 @@ export default function CheckoutModal() {
                           className="w-full text-xs rounded-xl border border-neutral-200 p-2.5 focus:border-brand-red focus:outline-none"
                         />
                       </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 pt-1">
+                      <input
+                        type="checkbox"
+                        id="saveCustomerDetails"
+                        checked={saveDetails}
+                        onChange={(e) => setSaveDetails(e.target.checked)}
+                        className="rounded text-brand-red focus:ring-brand-red w-3.5 h-3.5 accent-brand-red cursor-pointer"
+                      />
+                      <label htmlFor="saveCustomerDetails" className="text-[11px] text-neutral-600 font-medium cursor-pointer select-none">
+                        Save my details for faster 1-click feasts next time
+                      </label>
                     </div>
                   </div>
 

@@ -22,6 +22,21 @@ export default function BranchLocator() {
   const [mobileView, setMobileView] = useState<'list' | 'map'>('list')
 
   const currentBranch = selectedBranch || INITIAL_BRANCHES[0]
+  const [isOpenNow, setIsOpenNow] = useState(true)
+
+  // Calculate live operational status from local device clock (12:00 PM to 11:30 PM)
+  React.useEffect(() => {
+    const checkOpenStatus = () => {
+      const now = new Date()
+      const timeInMinutes = now.getHours() * 60 + now.getMinutes()
+      const openTime = 12 * 60 // 12:00 PM
+      const closeTime = 23 * 60 + 30 // 11:30 PM
+      setIsOpenNow(timeInMinutes >= openTime && timeInMinutes <= closeTime)
+    }
+    checkOpenStatus()
+    const timer = setInterval(checkOpenStatus, 60000)
+    return () => clearInterval(timer)
+  }, [])
 
   const handleSelectBranch = (branch: BranchData) => {
     setSelectedBranch(branch)
@@ -157,9 +172,13 @@ export default function BranchLocator() {
                             <span className="inline-flex items-center gap-0.5 bg-brand-red text-white text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full shrink-0 shadow-2xs">
                               <Check className="w-2.5 h-2.5 stroke-[3]" /> Active
                             </span>
+                          ) : isOpenNow ? (
+                            <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-full shrink-0 border border-emerald-200/60">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Open Now
+                            </span>
                           ) : (
-                            <span className="inline-flex items-center gap-0.5 text-[8px] sm:text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-full shrink-0 border border-emerald-200/60">
-                              <span className="w-1 h-1 rounded-full bg-emerald-600 animate-pulse" /> Open
+                            <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-bold text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded-full shrink-0 border border-amber-200/60">
+                              <Clock className="w-2.5 h-2.5 text-amber-600" /> Opens 12 PM
                             </span>
                           )}
                         </div>

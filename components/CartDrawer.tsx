@@ -12,9 +12,26 @@ import {
   ShoppingBag,
   Bike,
   UtensilsCrossed,
+  Flame,
 } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
+import { INITIAL_MENU_ITEMS } from '@/lib/data'
+
+const QUICK_UPSELLS = [
+  {
+    dishId: 'royal-borhani',
+    name: 'Shahi Borhani (250ml)',
+    price: 70,
+    image: '/images/dishes/borhani.png',
+  },
+  {
+    dishId: 'peri-peri-fries',
+    name: 'Peri Fries (Regular)',
+    price: 140,
+    image: '/images/dishes/fries.png',
+  },
+]
 
 export default function CartDrawer() {
   const {
@@ -22,6 +39,7 @@ export default function CartDrawer() {
     isCartOpen,
     setCartOpen,
     setCheckoutOpen,
+    addToCart,
     updateQuantity,
     removeFromCart,
     clearCart,
@@ -39,6 +57,14 @@ export default function CartDrawer() {
 
   const [couponInput, setCouponInput] = useState('')
   const [couponError, setCouponError] = useState('')
+
+  const handleQuickAdd = (dishId: string) => {
+    const item = INITIAL_MENU_ITEMS.find((d) => d.id === dishId)
+    if (!item) return
+    const defPortion = item.portions.find((p) => p.isDefault) || item.portions[0]
+    addToCart(item, defPortion, { quantity: 1 })
+    showToast('Add-on Added!', `${item.name} (${defPortion.label}) added to tray`)
+  }
 
   const subtotal = getSubtotal()
   const discount = getDiscountAmount()
@@ -242,6 +268,54 @@ export default function CartDrawer() {
                     </div>
                   </div>
                 ))
+              )}
+
+              {/* 1-Click Popular Add-ons Upsell */}
+              {cart.length > 0 && (
+                <div className="pt-3 pb-1 border-t border-neutral-100">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[11px] font-black uppercase tracking-wider text-neutral-800 flex items-center gap-1.5">
+                      <Flame className="w-3 h-3 text-brand-red fill-brand-red" />
+                      <span>Popular Feast Add-ons</span>
+                    </span>
+                    <span className="text-[10px] text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60">
+                      1-Click Add
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {QUICK_UPSELLS.map((addon) => (
+                      <div
+                        key={addon.dishId}
+                        className="flex items-center justify-between p-2 rounded-xl bg-white border border-neutral-200/80 shadow-2xs hover:border-brand-red/40 transition"
+                      >
+                        <div className="flex items-center space-x-2 min-w-0">
+                          <img
+                            src={addon.image}
+                            alt={addon.name}
+                            className="w-7 h-7 object-contain shrink-0"
+                          />
+                          <div className="min-w-0">
+                            <p className="text-[10px] font-bold text-neutral-800 truncate leading-tight">
+                              {addon.name}
+                            </p>
+                            <p className="text-[10px] font-black text-brand-red">
+                              {formatPrice(addon.price, true)}
+                            </p>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => handleQuickAdd(addon.dishId)}
+                          type="button"
+                          className="p-1 px-2 rounded-lg bg-neutral-100 hover:bg-brand-red hover:text-white text-neutral-700 text-[10px] font-black transition active:scale-95 shrink-0 ml-1"
+                        >
+                          + Add
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
 
