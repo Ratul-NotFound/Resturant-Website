@@ -71,51 +71,31 @@ export default function HeroSection() {
             {/* Left Column: Punchy Editorial Copy & Fast Actions */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left">
               
-              {/* Clean Editorial Eyebrow (No generic AI pill) */}
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="flex items-center justify-center lg:justify-start gap-2.5"
-              >
+              {/* Clean Editorial Eyebrow */}
+              <div className="flex items-center justify-center lg:justify-start gap-2.5">
                 <span className="h-px w-6 bg-amber-400/80 hidden sm:inline-block" />
                 <span className="font-display font-extrabold text-[11px] sm:text-xs uppercase tracking-[0.25em] text-amber-400">
                   Wood-Fired Grill &amp; Royal Dum Handi
                 </span>
-              </motion.div>
+              </div>
 
               {/* Main Headline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-3xl sm:text-5xl md:text-6xl font-black font-display text-white tracking-tight leading-[1.1] sm:leading-[1.15]"
-              >
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-display text-white tracking-tight leading-[1.1] sm:leading-[1.15]">
                 Fiery Flame-Grilled <br />
                 <span className="fiery-shimmer-text">Peri Chicken</span> &amp; <br />
                 Royal Basmati Kacchi.
-              </motion.h1>
+              </h1>
 
               {/* Sub-Headline */}
-              <motion.p
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-xs sm:text-base text-neutral-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal"
-              >
+              <p className="text-xs sm:text-base text-neutral-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
                 Charcoal-seared lava-rock quarter chickens paired with 4-hour slow-dum Basmati Kacchi with tender mutton. Delivered hot to your doorstep across Dhaka.
-              </motion.p>
+              </p>
 
               {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2"
-              >
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2">
                 <a
                   href="#portion-section"
-                  className="cta-shimmer bg-brand-red hover:bg-brand-darkred active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider py-3.5 px-6 sm:px-8 rounded-2xl shadow-xl shadow-brand-red/30 flex items-center justify-center gap-2 transition-all group"
+                  className="cta-shimmer bg-brand-red hover:bg-[#A30C23] active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider py-3.5 px-6 sm:px-8 rounded-2xl shadow-xl shadow-brand-red/30 flex items-center justify-center gap-2 transition-all group"
                 >
                   <Flame className="w-4 h-4 fill-white animate-pulse" />
                   <span>Order Online Now</span>
@@ -129,15 +109,10 @@ export default function HeroSection() {
                   <CalendarCheck className="w-4 h-4 text-amber-300" />
                   <span>Reserve Table</span>
                 </Link>
-              </motion.div>
+              </div>
 
               {/* Trust Badges */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 pt-2 text-[11px] sm:text-xs text-neutral-300 font-semibold"
-              >
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 pt-2 text-[11px] sm:text-xs text-neutral-300 font-semibold">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>100% Halal Certified</span>
@@ -150,7 +125,7 @@ export default function HeroSection() {
                   <Clock className="w-4 h-4 text-amber-300 shrink-0" />
                   <span>Avg. 32m Fast Delivery</span>
                 </div>
-              </motion.div>
+              </div>
 
             </div>
 
@@ -205,14 +180,14 @@ export default function HeroSection() {
                   ease: 'easeInOut',
                   delay: 0.3,
                 }}
-                className="absolute top-1 sm:top-4 right-0 sm:right-2 z-20 bg-neutral-900/90 border border-amber-400/40 text-white rounded-2xl px-2.5 py-1.5 sm:px-3.5 sm:py-2 shadow-2xl backdrop-blur-md flex items-center gap-1.5 sm:gap-2 max-w-[160px] sm:max-w-none"
+                className="absolute top-1 sm:top-4 right-0 sm:right-2 z-20 bg-black/60 border border-white/10 text-white rounded-2xl px-3 py-2 shadow-2xl backdrop-blur-xl flex items-center gap-2.5 max-w-[170px] sm:max-w-none"
               >
-                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-brand-red flex items-center justify-center text-white shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-brand-red/90 flex items-center justify-center text-white shrink-0 shadow-xs">
                   <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white" />
                 </div>
                 <div>
-                  <p className="text-[8px] sm:text-[10px] text-amber-300 font-extrabold uppercase tracking-wider">Chef Signature</p>
-                  <p className="text-[10px] sm:text-xs font-black text-white truncate">Dum Handi Kacchi</p>
+                  <p className="text-[8px] sm:text-[9px] text-amber-400 font-extrabold uppercase tracking-wider">Chef Signature</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-white truncate">Dum Handi Kacchi</p>
                 </div>
               </motion.div>
 
@@ -227,14 +202,14 @@ export default function HeroSection() {
                   ease: 'easeInOut',
                   delay: 0.7,
                 }}
-                className="absolute bottom-2 sm:bottom-6 left-0 sm:left-2 z-20 bg-neutral-900/90 border border-white/20 text-white rounded-2xl px-2.5 py-1.5 sm:px-3.5 sm:py-2 shadow-2xl backdrop-blur-md flex items-center gap-1.5 sm:gap-2 max-w-[160px] sm:max-w-none"
+                className="absolute bottom-2 sm:bottom-6 left-0 sm:left-2 z-20 bg-black/60 border border-white/10 text-white rounded-2xl px-3 py-2 shadow-2xl backdrop-blur-xl flex items-center gap-2.5 max-w-[170px] sm:max-w-none"
               >
-                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-amber-500 flex items-center justify-center text-white shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-500/90 flex items-center justify-center text-white shrink-0 shadow-xs">
                   <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-[8px] sm:text-[10px] text-neutral-300 font-extrabold uppercase tracking-wider">Pure Saffron Ghee</p>
-                  <p className="text-[10px] sm:text-xs font-black text-amber-300 truncate">Royal Recipe</p>
+                  <p className="text-[8px] sm:text-[9px] text-neutral-400 font-extrabold uppercase tracking-wider">Pure Saffron Ghee</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-amber-300 truncate">Royal Recipe</p>
                 </div>
               </motion.div>
 
@@ -244,11 +219,11 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* 2. Fast Category Ribbon */}
-      <div className="flex-shrink-0 w-full bg-brand-red border-t-2 border-b-2 border-brand-darkred shadow-2xl relative z-20 overflow-visible">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-6 relative">
+      {/* 2. Fast Category Ribbon - Sleek Modern Obsidian Bar */}
+      <div className="flex-shrink-0 w-full bg-[#141212] border-t border-b border-white/10 shadow-2xl relative z-20 overflow-visible">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-5 relative">
           {/* Mobile Right Edge Gradient Fade Indicator */}
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-red to-transparent pointer-events-none sm:hidden z-30" />
+          <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#141212] to-transparent pointer-events-none sm:hidden z-30" />
 
           <div className="flex sm:grid sm:grid-cols-6 overflow-x-auto sm:overflow-visible no-scrollbar scroll-smooth snap-x snap-mandatory gap-2.5 sm:gap-6 justify-start sm:justify-center items-center py-2 sm:py-0">
             {CATEGORY_RIBBON.map((cat, idx) => {
@@ -259,13 +234,13 @@ export default function HeroSection() {
                   href={cat.target}
                   className="group relative flex flex-col items-center justify-center text-center cursor-pointer select-none py-1 hover:z-30 min-w-[92px] sm:min-w-0 snap-center shrink-0 sm:shrink"
                 >
-                  {/* Warm Golden Spotlight Halo on Hover */}
-                  <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-44 sm:h-44 rounded-full bg-radial from-amber-400/50 via-orange-500/25 to-transparent blur-2xl opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-175 transition-all duration-500 pointer-events-none" />
+                  {/* Subtle Warm Spotlight Halo on Hover */}
+                  <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-44 sm:h-44 rounded-full bg-radial from-amber-400/25 via-brand-red/15 to-transparent blur-2xl opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-150 transition-all duration-500 pointer-events-none" />
 
                   {/* Free-Floating Food Item */}
                   <motion.div
                     whileHover={{
-                      scale: 1.5,
+                      scale: 1.45,
                       rotate: tiltAngle,
                       y: -14,
                     }}
@@ -279,20 +254,20 @@ export default function HeroSection() {
                     <img
                       src={cat.image}
                       alt={cat.name}
-                      className="w-full h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.4)] group-hover:drop-shadow-[0_28px_40px_rgba(0,0,0,0.75)] transition-all duration-300"
+                      className="w-full h-full object-contain filter drop-shadow-[0_10px_16px_rgba(0,0,0,0.5)] group-hover:drop-shadow-[0_24px_36px_rgba(0,0,0,0.8)] transition-all duration-300"
                     />
                   </motion.div>
 
                   {/* Realistic Dynamic Contact Shadow on the Ribbon */}
-                  <div className="w-10 sm:w-20 h-1.5 sm:h-2 bg-black/45 rounded-full blur-[3px] opacity-70 group-hover:opacity-15 group-hover:scale-175 transition-all duration-300 mb-1.5 mt-1" />
+                  <div className="w-10 sm:w-20 h-1.5 sm:h-2 bg-black/60 rounded-full blur-[3px] opacity-70 group-hover:opacity-20 group-hover:scale-150 transition-all duration-300 mb-1.5 mt-1" />
 
-                  {/* Category Title with Golden Glow */}
-                  <span className="font-display font-black text-[10px] sm:text-xs md:text-sm text-white tracking-wider uppercase block leading-tight drop-shadow-sm group-hover:text-amber-300 group-hover:scale-105 transition-all duration-200 truncate max-w-[90px] sm:max-w-none">
+                  {/* Category Title with Warm Gold Hover Accent */}
+                  <span className="font-display font-bold text-[10px] sm:text-xs md:text-sm text-neutral-300 tracking-wider uppercase block leading-tight group-hover:text-amber-400 group-hover:scale-105 transition-all duration-200 truncate max-w-[90px] sm:max-w-none">
                     {cat.name}
                   </span>
 
                   {/* Expanding Golden Indicator Line */}
-                  <span className="h-0.5 w-0 bg-amber-300 rounded-full mt-1 group-hover:w-10 sm:group-hover:w-12 transition-all duration-300 ease-out" />
+                  <span className="h-0.5 w-0 bg-amber-400 rounded-full mt-1 group-hover:w-10 sm:group-hover:w-12 transition-all duration-300 ease-out" />
                 </a>
               )
             })}

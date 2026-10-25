@@ -33,25 +33,14 @@ body {
     radial-gradient(at 50% 50%, rgba(255, 255, 255, 1) 0px, transparent 80%);
 }
 
-.checkered-pattern {
-  background-image: linear-gradient(45deg, #a81026 25%, transparent 25%), 
-                    linear-gradient(-45deg, #a81026 25%, transparent 25%), 
-                    linear-gradient(45deg, transparent 75%, #a81026 75%), 
-                    linear-gradient(-45deg, transparent 75%, #a81026 75%);
-  background-size: 32px 32px;
-  background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
-}
-
 .fiery-shimmer-text {
-  background: linear-gradient(90deg, #C8102E 0%, #F4A61D 30%, #EF4444 65%, #C8102E 100%);
-  background-size: 250% auto;
+  background: linear-gradient(135deg, #F9D342 0%, #F59E0B 45%, #E11D48 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: fiery-sheen 3.6s ease infinite;
 }
 
 .mega-deal-glow {
-  animation: ember-glow-border 3.5s ease-in-out infinite;
+  box-shadow: 0 20px 50px -15px rgba(200, 16, 46, 0.25);
 }
 
 .cta-shimmer {
