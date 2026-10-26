@@ -103,62 +103,62 @@ export default function MegaDealBanner() {
 
   return (
     <section
-      className="bg-[#B30E26] text-white py-8 sm:py-16 relative overflow-hidden"
+      className="bg-[#121111] text-white py-12 sm:py-20 relative overflow-hidden"
       data-purpose="promotional-deal-banner"
       id="mega-deal"
     >
-      {/* Geometric Texture */}
-      <div className="absolute inset-0 opacity-10 checkered-pattern pointer-events-none" />
+      {/* Soft Ambient Warmth */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-brand-red/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
-        <div className="bg-[#8A0A1D] rounded-3xl p-4 sm:p-8 lg:p-10 border-2 sm:border-4 border-amber-300/40 mega-deal-glow grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-center shadow-2xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="bg-[#1A1818] rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center shadow-2xl relative overflow-hidden">
           
+          {/* Subtle Top Accent Shimmer */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400/80 via-brand-red to-orange-500/80 opacity-70" />
+
           {/* Left Pricing & Content */}
-          <div className="lg:col-span-5 text-center lg:text-left">
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-2.5 sm:mb-4">
-              <div className="inline-flex items-center space-x-1.5 bg-amber-400 text-neutral-950 px-3 py-1 rounded-md text-[10px] sm:text-xs font-black uppercase tracking-wider shadow-xs">
-                <Flame className="w-3.5 h-3.5 fill-brand-red text-brand-red shrink-0" />
+          <div className="lg:col-span-5 text-center lg:text-left space-y-4 sm:space-y-6">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              <div className="inline-flex items-center space-x-1.5 bg-amber-400/15 border border-amber-400/30 text-amber-300 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+                <Flame className="w-3.5 h-3.5 fill-amber-400 text-amber-400 shrink-0" />
                 <span>Limited Time Mega Deal</span>
               </div>
 
               {/* Live Ticking Countdown Clock */}
-              <div className="inline-flex items-center space-x-1.5 bg-black/40 border border-amber-400/40 text-amber-300 px-3 py-1 rounded-md text-[10px] sm:text-xs font-mono font-bold tracking-widest backdrop-blur-md">
+              <div className="inline-flex items-center space-x-1.5 bg-white/[0.05] border border-white/10 text-neutral-300 px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono font-medium tracking-wider backdrop-blur-md">
                 <Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse shrink-0" />
                 <span>ENDS IN {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}</span>
               </div>
             </div>
 
-            <div className="border-2 sm:border-4 border-white p-3.5 sm:p-5 rounded-2xl bg-[#A10C22] inline-block w-full transition-transform hover:scale-[1.01] duration-300 shadow-xl">
-              <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-none">
-                4 REG PLATTER
+            <div className="space-y-2.5">
+              <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                4-REG Platter Feast
               </h3>
-              <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-2 my-1.5 sm:my-2">
-                <span className="text-3xl sm:text-5xl lg:text-6xl font-black text-amber-300 drop-shadow-md leading-none">
+              <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-3 my-2">
+                <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-amber-400 leading-none">
                   ৳999
                 </span>
-                <span className="text-xs sm:text-sm uppercase tracking-widest text-slate-200 font-bold line-through">
+                <span className="text-sm sm:text-base text-neutral-400 font-semibold line-through">
                   ৳1,480
                 </span>
-                <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded">
-                  SAVE ৳481
+                <span className="bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full">
+                  Save ৳481
                 </span>
               </div>
-              <p className="text-[10px] sm:text-xs uppercase font-extrabold tracking-widest text-white/90">
-                ALL DAY, EVERYDAY VALUE
+              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal max-w-md mx-auto lg:mx-0">
+                Includes 2x Flame Quarter Chickens, 2x Mini Dum Kacchi Bowls, 4x Hand-Cut Peri Fries &amp; 2x Chilled Shahi Borhani Bottles.
               </p>
             </div>
 
-            <p className="text-[11px] sm:text-xs text-red-100 mt-2 font-medium leading-relaxed">
-              Includes 2 Flame Quarter Chickens, 2 Mini Kacchi Bowls, 4 Peri Fries &amp; 2 Borhani Bottles.
-            </p>
-
-            <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-2.5 sm:gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-1">
               <button
                 onClick={handleGrabDeal}
-                className={`cta-shimmer font-black px-6 sm:px-8 py-3.5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all transform active:scale-95 flex items-center justify-center space-x-2 ${
+                className={`cta-shimmer font-bold px-7 sm:px-9 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition-all transform active:scale-95 flex items-center justify-center space-x-2.5 ${
                   added
-                    ? 'bg-emerald-500 text-white shadow-emerald-500/40'
-                    : 'bg-white hover:bg-amber-300 text-neutral-950 hover:scale-105 shadow-xl'
+                    ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
+                    : 'bg-brand-red hover:bg-brand-darkred text-white shadow-xl shadow-brand-red/30 hover:scale-[1.02]'
                 }`}
                 type="button"
               >
@@ -175,39 +175,39 @@ export default function MegaDealBanner() {
                 )}
               </button>
 
-              <span className="text-xs font-semibold text-red-100 flex items-center justify-center bg-black/30 px-3.5 py-2.5 rounded-2xl border border-white/10">
-                <Clock className="w-3.5 h-3.5 mr-1.5 text-amber-300 shrink-0" />
+              <span className="text-xs font-medium text-neutral-300 flex items-center justify-center bg-white/[0.05] px-4 py-3 rounded-2xl border border-white/10">
+                <Clock className="w-3.5 h-3.5 mr-1.5 text-amber-400 shrink-0" />
                 <span>Fast 35 Min Delivery</span>
               </span>
             </div>
           </div>
 
           {/* Right 4-Dish Transparent Floating Showcase */}
-          <div className="lg:col-span-7 grid grid-cols-2 gap-2 sm:gap-4 lg:gap-5">
+          <div className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
             {DEAL_CUTOUTS.map((dish, idx) => (
               <div
                 key={idx}
-                className="group relative bg-white/10 backdrop-blur-md rounded-2xl p-2.5 sm:p-4 border border-white/15 text-center hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl cursor-pointer"
+                className="group relative bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-md rounded-2xl p-3 sm:p-5 border border-white/[0.08] hover:border-amber-400/30 text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl cursor-pointer"
               >
-                {/* Ambient Golden Halo on Hover */}
-                <div className="absolute inset-0 bg-radial from-amber-400/30 via-orange-500/10 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                {/* Subtle Ambient Halo on Hover */}
+                <div className="absolute inset-0 bg-radial from-amber-400/20 via-orange-500/5 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
 
-                {/* 3D Floating Transparent Cutout */}
-                <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-1 sm:mb-2 flex items-center justify-center transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                {/* 3D Floating Cutout */}
+                <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-2 flex items-center justify-center transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
                   <img
                     src={dish.image}
                     alt={dish.name}
-                    className="max-w-full max-h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.5)] group-hover:drop-shadow-[0_20px_26px_rgba(0,0,0,0.7)] transition-all duration-300"
+                    className="max-w-full max-h-full object-contain filter drop-shadow-[0_10px_16px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] transition-all duration-300"
                   />
                 </div>
 
                 {/* Realistic Contact Shadow */}
-                <div className="w-12 sm:w-20 h-1 sm:h-2 bg-black/40 rounded-full blur-[2px] opacity-70 group-hover:opacity-20 group-hover:scale-125 transition-all duration-300 mx-auto mb-1" />
+                <div className="w-12 sm:w-20 h-1 sm:h-2 bg-black/50 rounded-full blur-[2px] opacity-70 group-hover:opacity-20 group-hover:scale-125 transition-all duration-300 mx-auto mb-1.5" />
 
-                <p className="font-display font-black text-[11px] sm:text-sm text-white group-hover:text-amber-300 transition-colors truncate">
+                <p className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-amber-400 transition-colors truncate">
                   {dish.name}
                 </p>
-                <span className="text-[9px] sm:text-[11px] text-amber-300 font-semibold block mt-0.5 truncate">
+                <span className="text-[10px] sm:text-xs text-neutral-400 font-medium block mt-0.5 truncate">
                   {dish.subtitle}
                 </span>
               </div>
