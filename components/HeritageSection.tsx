@@ -7,65 +7,24 @@ import { Clock, Flame, Utensils, ShieldCheck } from 'lucide-react'
 export default function HeritageSection() {
   return (
     <section
-      className="py-12 sm:py-24 bg-brand-dark text-white relative overflow-hidden"
+      className="py-16 sm:py-28 bg-[#121111] text-white relative overflow-hidden border-t border-white/10"
       data-purpose="heritage-story-section"
       id="heritage"
     >
-      {/* Dynamic Background Fire Particles / Glow */}
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-brand-red/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-64 sm:w-80 h-64 sm:h-80 bg-amber-500/15 rounded-full blur-[100px] pointer-events-none" />
+      {/* Dynamic Background Glow */}
+      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-brand-red/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-64 sm:w-80 h-64 sm:h-80 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header with 3D Dish Hero */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-20">
           
           {/* Floating Food Hero Stage */}
           <div className="relative mb-6 sm:mb-10 group select-none">
             
-            {/* Ambient Golden Radial Halo */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 sm:w-80 sm:h-80 rounded-full bg-radial from-amber-500/30 via-orange-600/15 to-transparent blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
-
-            {/* Floating Red Chili Garnish Left */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-                rotate: [-12, 6, -12],
-              }}
-              transition={{
-                duration: 4.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="absolute -top-4 -left-8 sm:-left-10 w-12 sm:w-16 md:w-20 z-20 pointer-events-none hidden sm:block opacity-90"
-            >
-              <img
-                src="/images/chili.png"
-                alt="Chili Garnish"
-                className="w-full h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.6)]"
-              />
-            </motion.div>
-
-            {/* Floating Lime Garnish Right */}
-            <motion.div
-              animate={{
-                y: [0, 12, 0],
-                rotate: [15, -5, 15],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 0.4,
-              }}
-              className="absolute -bottom-2 -right-8 sm:-right-10 w-12 sm:w-16 md:w-20 z-20 pointer-events-none hidden sm:block opacity-90"
-            >
-              <img
-                src="/images/lime.png"
-                alt="Lime Garnish"
-                className="w-full h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.6)]"
-              />
-            </motion.div>
+            {/* Ambient Warm Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 sm:w-72 sm:h-72 rounded-full bg-radial from-amber-500/20 via-orange-600/10 to-transparent blur-2xl group-hover:scale-115 transition-transform duration-500 pointer-events-none" />
 
             {/* 3D Floating Royal Dum Handi Dish */}
             <motion.div
@@ -83,7 +42,7 @@ export default function HeritageSection() {
               <img
                 src="/images/dishes/kacchi.png"
                 alt="Royal Sealed Handi Dum Kacchi"
-                className="max-w-full max-h-full object-contain filter drop-shadow-[0_16px_24px_rgba(0,0,0,0.7)] group-hover:scale-108 group-hover:drop-shadow-[0_28px_40px_rgba(200,16,46,0.6)] transition-all duration-500"
+                className="max-w-full max-h-full object-contain filter drop-shadow-[0_16px_24px_rgba(0,0,0,0.6)] group-hover:scale-105 group-hover:drop-shadow-[0_24px_36px_rgba(200,16,46,0.4)] transition-all duration-500"
               />
             </motion.div>
 
@@ -98,72 +57,75 @@ export default function HeritageSection() {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="w-36 sm:w-52 h-3.5 sm:h-4 bg-black/60 rounded-full blur-[5px] mx-auto pointer-events-none"
+              className="w-36 sm:w-52 h-3 sm:h-3.5 bg-black/60 rounded-full blur-[4px] mx-auto pointer-events-none mt-2"
             />
           </div>
 
-          <span className="text-amber-400 font-display font-extrabold text-[11px] sm:text-xs uppercase tracking-[0.22em] block mb-1.5">
-            Slow-Dum Wood Fire Cooking
-          </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 mb-3.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-amber-400">
+              Slow-Dum Wood Fire Cooking
+            </span>
+          </div>
 
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white uppercase leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Crafted Fresh Upon Order
           </h2>
-          <p className="mt-2.5 text-slate-300 text-xs sm:text-base max-w-xl mx-auto leading-relaxed">
+          <p className="mt-3 text-neutral-300 text-xs sm:text-base max-w-xl mx-auto leading-relaxed font-normal">
             No microwave shortcuts. Every piece of chicken is flame-grilled over burning charcoals and our kacchi is dum-cooked for 4 hours inside sealed deghs.
           </p>
         </div>
 
         {/* 4 Feature Pillars */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mt-10 sm:mt-14 max-w-5xl mx-auto text-neutral-800">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto">
           {/* Pillar 1: 100% Halal */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-lg hover:bg-neutral-50 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl border border-neutral-100 group cursor-pointer">
-            <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2.5 sm:mb-3 bg-red-50 text-brand-red rounded-full flex items-center justify-center text-lg sm:text-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-              <ShieldCheck className="w-5 h-5 sm:w-7 sm:h-7" />
+          <div className="bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.15] backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center transition-all duration-300 transform hover:-translate-y-1 group">
+            <div className="w-11 h-11 sm:w-13 sm:h-13 mx-auto mb-3 sm:mb-4 rounded-2xl bg-white/[0.05] border border-white/10 text-amber-400 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h4 className="font-display font-bold text-xs sm:text-base group-hover:text-brand-red transition-colors">
+            <h4 className="font-display font-bold text-xs sm:text-base text-white">
               100% Halal
             </h4>
-            <p className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1 leading-snug">
+            <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5 leading-relaxed font-normal">
               Strictly certified authentic farm sources
             </p>
           </div>
 
           {/* Pillar 2: 24-Hr Marinade */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-lg hover:bg-neutral-50 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl border border-neutral-100 group cursor-pointer">
-            <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2.5 sm:mb-3 bg-amber-50 text-brand-gold rounded-full flex items-center justify-center text-lg sm:text-2xl group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
-              <Clock className="w-5 h-5 sm:w-7 sm:h-7" />
+          <div className="bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.15] backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center transition-all duration-300 transform hover:-translate-y-1 group">
+            <div className="w-11 h-11 sm:w-13 sm:h-13 mx-auto mb-3 sm:mb-4 rounded-2xl bg-white/[0.05] border border-white/10 text-amber-400 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h4 className="font-display font-bold text-xs sm:text-base group-hover:text-amber-600 transition-colors">
+            <h4 className="font-display font-bold text-xs sm:text-base text-white">
               24-Hr Marinade
             </h4>
-            <p className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1 leading-snug">
+            <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5 leading-relaxed font-normal">
               Infused with African Bird&apos;s Eye chilies
             </p>
           </div>
 
           {/* Pillar 3: Open Flame */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-lg hover:bg-neutral-50 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl border border-neutral-100 group cursor-pointer">
-            <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2.5 sm:mb-3 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-lg sm:text-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-              <Flame className="w-5 h-5 sm:w-7 sm:h-7 fill-emerald-600" />
+          <div className="bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.15] backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center transition-all duration-300 transform hover:-translate-y-1 group">
+            <div className="w-11 h-11 sm:w-13 sm:h-13 mx-auto mb-3 sm:mb-4 rounded-2xl bg-white/[0.05] border border-white/10 text-brand-red flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Flame className="w-5 h-5 sm:w-6 sm:h-6 fill-brand-red" />
             </div>
-            <h4 className="font-display font-bold text-xs sm:text-base group-hover:text-emerald-600 transition-colors">
+            <h4 className="font-display font-bold text-xs sm:text-base text-white">
               Open Flame
             </h4>
-            <p className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1 leading-snug">
+            <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5 leading-relaxed font-normal">
               Low-fat, flame-seared caramelization
             </p>
           </div>
 
           {/* Pillar 4: Slow Dum Rice */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-lg hover:bg-neutral-50 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl border border-neutral-100 group cursor-pointer">
-            <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2.5 sm:mb-3 bg-red-50 text-brand-red rounded-full flex items-center justify-center text-lg sm:text-2xl group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
-              <Utensils className="w-5 h-5 sm:w-7 sm:h-7" />
+          <div className="bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.15] backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center transition-all duration-300 transform hover:-translate-y-1 group">
+            <div className="w-11 h-11 sm:w-13 sm:h-13 mx-auto mb-3 sm:mb-4 rounded-2xl bg-white/[0.05] border border-white/10 text-amber-400 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Utensils className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h4 className="font-display font-bold text-xs sm:text-base group-hover:text-brand-red transition-colors">
+            <h4 className="font-display font-bold text-xs sm:text-base text-white">
               Slow Dum Rice
             </h4>
-            <p className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1 leading-snug">
+            <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5 leading-relaxed font-normal">
               Sealed brass pots with fragrant ghee
             </p>
           </div>
